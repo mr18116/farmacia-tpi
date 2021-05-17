@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\tipoUsuario;
+use App\Models\Carrito;
+use App\Models\Factura;
 
 class User extends Authenticatable
 {
@@ -40,4 +43,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tipoUsuario(){
+        return $this->hasOne(tipoUsuario::class);
+    }
+
+    public function carrito(){
+        return $this->hasOne(Carrito::class);
+    }
+
+    public function facturas(){
+        return $this->hasMany(Factura::class);
+    }
+
 }
