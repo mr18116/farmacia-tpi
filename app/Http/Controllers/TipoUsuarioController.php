@@ -25,7 +25,15 @@ class TipoUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipoUsuario =  new tipoUsuario();
+        $tipoUsuario->rol = $request->rol;
+        $tipoUsuario->user_id = $request->user_id;
+        $result = $tipoUsuario->save();
+        if($result){
+            return response($tipoUsuario, 200);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**

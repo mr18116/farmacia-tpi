@@ -2,6 +2,7 @@
     <v-app>
         <v-app-bar app flat>
             app-bar
+            {{ $store.state.user }}
         </v-app-bar>
         <v-main>
             <router-view></router-view>
@@ -14,9 +15,12 @@
 </template>
 
 <script>
-    export default {
-        
-    }
+import Login from '../views/Login';
+export default {
+    created(){
+        console.log(this.$store.state.user);
+    }        
+}
 </script>
 
 <style lang="scss" scoped>

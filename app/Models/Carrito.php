@@ -16,6 +16,6 @@ class Carrito extends Model
     }
 
     public function carritoHasProductos(){
-        return $this->hasToMany(CarritoHasProductos::class);
+        return $this->hasMany(CarritoHasProductos::class);
     }
 }

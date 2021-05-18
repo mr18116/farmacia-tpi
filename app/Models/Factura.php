@@ -26,6 +26,6 @@ class Factura extends Model
     }
 
     public function facturaHasProductos(){
-        return $this->hasToMany(FacturaHasProducto::class);
+        return $this->hasMany(FacturaHasProducto::class);
     }
 }
