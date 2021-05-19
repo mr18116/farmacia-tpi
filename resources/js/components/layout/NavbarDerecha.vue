@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-list-item>
+        <v-list-item v-if="$store.state.user =! null">
             <v-list-item-avatar>
                 <v-avatar>
                     <v-icon>mdi-account-circle</v-icon>
@@ -8,13 +8,17 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-                <v-list-item-title v-if="$store.state.user =! null">{{ $store.state.user.name }}</v-list-item-title>
-                <v-list-item-title v-else>Aún no tienes cuenta</v-list-item-title>
-                <v-list-item-subtitle v-if="$store.state.user =! null">Logged In</v-list-item-subtitle>
+                <v-list-item-title >{{ $store.state.user.name }}</v-list-item-title>
+                <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+            </v-list-item-content>
+        </v-list-item >
+        <v-list-item v-else >
+            <v-list-item-content>
+                <v-list-item-title>Aún no tienes cuenta</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
-        <v-row class="d-flex justify-center my-md-3">
-            <v-btn  elevation="0" small @click="logout">Cerrar sesión</v-btn>
+        <v-row class="d-flex justify-center my-md-3" v-if="$store.state.user =! null">
+            <v-btn  elevation="0" small @click="logout" v-if="$store.state.user =! null">Cerrar sesión</v-btn>
         </v-row>
         <v-divider></v-divider>
         <v-list>

@@ -1,14 +1,13 @@
 <template>
     <v-app>
-        <v-navigation-drawer v-model="drawer" app >
-            <Navbar />
+        <v-navigation-drawer v-model="drawer" app clipped >
+            <NavbarDerecha />
         </v-navigation-drawer>
-        <v-app-bar app elevation="3" color="white" >
+        <v-app-bar elevation="3" color="white" clipped-left  app>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title>Farmacia TPI</v-toolbar-title>
+            <Navbar />
             <v-spacer></v-spacer>
-            <v-icon>mdi-cart</v-icon>
-            
+            <v-icon>mdi-cart</v-icon>            
         </v-app-bar>
         <v-main>
             {{ $store.state.user }}
@@ -24,13 +23,15 @@
 <script>
 import Login from '../views/Login';
 import NavbarDerecha from './layout/NavbarDerecha'
+import Navbar from './Navbar'
 
 export default {
     data:() =>({
         drawer: true,
     }),
     components:{
-        NavbarDerecha
+        NavbarDerecha,
+        Navbar
     },
     created(){
         console.log(this.$store.state.user);
