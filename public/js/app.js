@@ -1961,6 +1961,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -39177,63 +39197,184 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("v-toolbar-title", { staticClass: "text-uppercase grey--text" }, [
-        _c("span", [_vm._v("Farmacia")]),
-        _vm._v(" "),
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("Online")])
-      ]),
+      _c(
+        "v-toolbar-title",
+        {
+          staticClass: "text-uppercase grey--text mainHeader",
+          attrs: { flat: "" }
+        },
+        [
+          _c("span", [_vm._v("Farmacia")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("Online")])
+        ]
+      ),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
-      _vm.$store.state.user == null
-        ? _c(
-            "v-btn",
-            { attrs: { text: "", color: "grey darken-3", to: "/login" } },
-            [
-              _c("span", { staticClass: "mr-2" }, [_vm._v("Iniciar Sesión")]),
-              _vm._v(" "),
-              _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                _vm._v("mdi-account")
-              ])
-            ],
-            1
-          )
-        : _vm._e(),
+      _c(
+        "v-toolbar-items",
+        { staticClass: "hidden-xs-only" },
+        [
+          _vm.$store.state.user == null
+            ? _c(
+                "v-btn",
+                { attrs: { text: "", color: "grey darken-3", to: "/login" } },
+                [
+                  _c("span", { staticClass: "mr-2" }, [
+                    _vm._v("Iniciar Sesión")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-icon", { attrs: { color: "grey darken-3" } }, [
+                    _vm._v("mdi-account")
+                  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.$store.state.user == null
+            ? _c(
+                "v-btn",
+                {
+                  attrs: { text: "", color: "grey darken-3", to: "/register" }
+                },
+                [
+                  _c("span", { staticClass: "mr-2" }, [_vm._v("Registrarse")]),
+                  _vm._v(" "),
+                  _c("v-icon", { attrs: { color: "grey darken-3" } }, [
+                    _vm._v("mdi-account")
+                  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.$store.state.user != null
+            ? _c(
+                "v-btn",
+                {
+                  attrs: { text: "", color: "grey darken-3" },
+                  on: { click: _vm.logout }
+                },
+                [
+                  _c("span", [_vm._v("Cerrar sesión")]),
+                  _vm._v(" "),
+                  _c("v-icon", { attrs: { color: "grey darken-3" } }, [
+                    _vm._v("mdi-logout")
+                  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("v-icon", { staticClass: "px-2" }, [_vm._v("mdi-cart")])
+        ],
+        1
+      ),
       _vm._v(" "),
-      _vm.$store.state.user == null
-        ? _c(
-            "v-btn",
-            { attrs: { text: "", color: "grey darken-3", to: "/register" } },
-            [
-              _c("span", { staticClass: "mr-2" }, [_vm._v("Registrarse")]),
-              _vm._v(" "),
-              _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                _vm._v("mdi-account")
-              ])
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.$store.state.user != null
-        ? _c(
-            "v-btn",
+      _c(
+        "div",
+        { staticClass: "hidden-sm-and-up" },
+        [
+          _c(
+            "v-menu",
             {
-              attrs: { text: "", color: "grey darken-3" },
-              on: { click: _vm.logout }
+              attrs: { "offset-y": "" },
+              scopedSlots: _vm._u([
+                {
+                  key: "activator",
+                  fn: function(ref) {
+                    var on = ref.on
+                    return [
+                      _c(
+                        "v-app-bar-nav-icon",
+                        _vm._g({}, on),
+                        [
+                          _c("v-icon", { attrs: { color: "grey darken-3" } }, [
+                            _vm._v("mdi-account")
+                          ])
+                        ],
+                        1
+                      )
+                    ]
+                  }
+                }
+              ])
             },
             [
-              _c("span", [_vm._v("Cerrar sesión")]),
               _vm._v(" "),
-              _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                _vm._v("mdi-logout")
-              ])
+              _c(
+                "v-list",
+                { staticClass: "responsiveMenu" },
+                [
+                  _vm.$store.state.user == null
+                    ? _c(
+                        "v-list-item",
+                        [
+                          _c(
+                            "v-list-item-title",
+                            [
+                              _c("router-link", { attrs: { to: "/login" } }, [
+                                _vm._v("Iniciar Sesión")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$store.state.user == null
+                    ? _c(
+                        "v-list-item",
+                        [
+                          _c(
+                            "v-list-item-title",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: "/register" } },
+                                [_vm._v("Registrarse")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$store.state.user != null
+                    ? _c(
+                        "v-list-item",
+                        { on: { click: _vm.logout } },
+                        [
+                          _c(
+                            "v-list-item-title",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: "/register" } },
+                                [_vm._v("Cerrar sesión")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("v-icon", { staticClass: "px-2" }, [_vm._v("mdi-cart")])
+        ],
+        1
+      )
     ],
     1
   )
