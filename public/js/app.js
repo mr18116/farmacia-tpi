@@ -1882,12 +1882,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      mostrar: true
+    };
+  },
   components: {
     NavbarDerecha: _layout_NavbarDerecha__WEBPACK_IMPORTED_MODULE_1__.default,
     Navbar: _Navbar__WEBPACK_IMPORTED_MODULE_2__.default
   },
   created: function created() {
     console.log(this.$store.state.user);
+  },
+  computed: {
+    mostrarLayout: function mostrarLayout() {
+      if (this.$route.path == "/login" || this.$route.path == "/register") {
+        return false;
+      } else {
+        return true;
+      }
+    }
   }
 });
 
@@ -39080,30 +39094,39 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c(
-        "v-navigation-drawer",
-        {
-          attrs: { app: "", clipped: "" },
-          model: {
-            value: _vm.$store.state.drawer,
-            callback: function($$v) {
-              _vm.$set(_vm.$store.state, "drawer", $$v)
+      _vm.mostrarLayout
+        ? _c(
+            "v-navigation-drawer",
+            {
+              attrs: { app: "", clipped: "" },
+              model: {
+                value: _vm.$store.state.drawer,
+                callback: function($$v) {
+                  _vm.$set(_vm.$store.state, "drawer", $$v)
+                },
+                expression: "$store.state.drawer"
+              }
             },
-            expression: "$store.state.drawer"
-          }
-        },
-        [_c("NavbarDerecha")],
-        1
-      ),
+            [_c("NavbarDerecha")],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "v-app-bar",
-        {
-          attrs: { elevation: "3", color: "white", "clipped-left": "", app: "" }
-        },
-        [_c("Navbar")],
-        1
-      ),
+      _vm.mostrarLayout
+        ? _c(
+            "v-app-bar",
+            {
+              attrs: {
+                elevation: "3",
+                color: "white",
+                "clipped-left": "",
+                app: ""
+              }
+            },
+            [_c("Navbar")],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "v-main",
