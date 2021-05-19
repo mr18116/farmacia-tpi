@@ -1,9 +1,9 @@
 <template>
     <v-app>
-        <v-navigation-drawer v-model="drawer" app v-if="$store.state.user != null">
+        <v-navigation-drawer v-model="drawer" app >
             <Navbar />
         </v-navigation-drawer>
-        <v-app-bar app elevation="3" color="white"  v-if="$store.state.user != null">
+        <v-app-bar app elevation="3" color="white" >
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
             <v-toolbar-title>Farmacia TPI</v-toolbar-title>
             <v-spacer></v-spacer>
@@ -23,14 +23,14 @@
 
 <script>
 import Login from '../views/Login';
-import Navbar from './layout/Navbar'
+import NavbarDerecha from './layout/NavbarDerecha'
 
 export default {
     data:() =>({
         drawer: true,
     }),
     components:{
-        Navbar
+        NavbarDerecha
     },
     created(){
         console.log(this.$store.state.user);

@@ -8,8 +8,9 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-                <v-list-item-title>{{ $store.state.user.name }}</v-list-item-title>
-                <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+                <v-list-item-title v-if="$store.state.user =! null">{{ $store.state.user.name }}</v-list-item-title>
+                <v-list-item-title v-else>Aún no tienes cuenta</v-list-item-title>
+                <v-list-item-subtitle v-if="$store.state.user =! null">Logged In</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
         <v-row class="d-flex justify-center my-md-3">
