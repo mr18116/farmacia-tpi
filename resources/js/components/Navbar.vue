@@ -1,6 +1,6 @@
 <template>
-    <nav>
-        <v-toolbar flat>
+    <v-row align="center">
+            <v-app-bar-nav-icon @click="$store.state.drawer = !$store.state.drawer"></v-app-bar-nav-icon>
             <v-toolbar-title class="text-uppercase grey--text">
             <span>Farmacia</span>
             <span class="font-weight-bold">Online</span>
@@ -9,6 +9,7 @@
             <v-btn
             text color="grey darken-3"
             to="/login"
+            v-if="$store.state.user == null"
             >
             <span class="mr-2">Iniciar Sesión</span>
             <v-icon color="grey darken-3" >mdi-account</v-icon>
@@ -16,6 +17,7 @@
             <v-btn
             text color="grey darken-3"
             to="/register"
+            v-if="$store.state.user == null"
             >
             <span class="mr-2">Registrarse</span>
             <v-icon color="grey darken-3" >mdi-account</v-icon>
@@ -26,8 +28,8 @@
             <span>Cerrar sesión</span>
             <v-icon color="grey darken-3" >mdi-logout</v-icon>
             </v-btn>
-        </v-toolbar>
-    </nav>
+            <v-icon class="px-2">mdi-cart</v-icon>  
+    </v-row>
 </template>
 <script>
 import axios from 'axios';

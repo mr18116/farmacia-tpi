@@ -1,13 +1,10 @@
 <template>
     <v-app>
-        <v-navigation-drawer v-model="drawer" app clipped >
+        <v-navigation-drawer v-model="$store.state.drawer" app clipped >
             <NavbarDerecha />
         </v-navigation-drawer>
         <v-app-bar elevation="3" color="white" clipped-left  app>
-            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <Navbar />
-            <v-spacer></v-spacer>
-            <v-icon>mdi-cart</v-icon>            
+            <Navbar />          
         </v-app-bar>
         <v-main>
             {{ $store.state.user }}
@@ -26,9 +23,6 @@ import NavbarDerecha from './layout/NavbarDerecha'
 import Navbar from './Navbar'
 
 export default {
-    data:() =>({
-        drawer: true,
-    }),
     components:{
         NavbarDerecha,
         Navbar

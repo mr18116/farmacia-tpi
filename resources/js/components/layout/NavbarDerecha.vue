@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-list-item v-if="$store.state.user =! null">
+        <v-list-item v-if="$store.state.user != null">
             <v-list-item-avatar>
                 <v-avatar>
                     <v-icon>mdi-account-circle</v-icon>
@@ -17,8 +17,8 @@
                 <v-list-item-title>Aún no tienes cuenta</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
-        <v-row class="d-flex justify-center my-md-3" v-if="$store.state.user =! null">
-            <v-btn  elevation="0" small @click="logout" v-if="$store.state.user =! null">Cerrar sesión</v-btn>
+        <v-row class="d-flex justify-center my-md-3" v-if="$store.state.user != null">
+            <v-btn  elevation="0" small @click="logout" v-if="$store.state.user != null">Cerrar sesión</v-btn>
         </v-row>
         <v-divider></v-divider>
         <v-list>

@@ -1878,18 +1878,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      drawer: true
-    };
-  },
   components: {
     NavbarDerecha: _layout_NavbarDerecha__WEBPACK_IMPORTED_MODULE_1__.default,
     Navbar: _Navbar__WEBPACK_IMPORTED_MODULE_2__.default
@@ -1922,6 +1914,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -2498,6 +2492,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
   state: {
+    drawer: true,
     user: null
   },
   mutations: {
@@ -39090,11 +39085,11 @@ var render = function() {
         {
           attrs: { app: "", clipped: "" },
           model: {
-            value: _vm.drawer,
+            value: _vm.$store.state.drawer,
             callback: function($$v) {
-              _vm.drawer = $$v
+              _vm.$set(_vm.$store.state, "drawer", $$v)
             },
-            expression: "drawer"
+            expression: "$store.state.drawer"
           }
         },
         [_c("NavbarDerecha")],
@@ -39106,21 +39101,7 @@ var render = function() {
         {
           attrs: { elevation: "3", color: "white", "clipped-left": "", app: "" }
         },
-        [
-          _c("v-app-bar-nav-icon", {
-            on: {
-              click: function($event) {
-                _vm.drawer = !_vm.drawer
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("Navbar"),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c("v-icon", [_vm._v("mdi-cart")])
-        ],
+        [_c("Navbar")],
         1
       ),
       _vm._v(" "),
@@ -39162,21 +39143,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "nav",
+    "v-row",
+    { attrs: { align: "center" } },
     [
-      _c(
-        "v-toolbar",
-        { attrs: { flat: "" } },
-        [
-          _c("v-toolbar-title", { staticClass: "text-uppercase grey--text" }, [
-            _c("span", [_vm._v("Farmacia")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "font-weight-bold" }, [_vm._v("Online")])
-          ]),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _c(
+      _c("v-app-bar-nav-icon", {
+        on: {
+          click: function($event) {
+            _vm.$store.state.drawer = !_vm.$store.state.drawer
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("v-toolbar-title", { staticClass: "text-uppercase grey--text" }, [
+        _c("span", [_vm._v("Farmacia")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("Online")])
+      ]),
+      _vm._v(" "),
+      _c("v-spacer"),
+      _vm._v(" "),
+      _vm.$store.state.user == null
+        ? _c(
             "v-btn",
             { attrs: { text: "", color: "grey darken-3", to: "/login" } },
             [
@@ -39187,9 +39174,11 @@ var render = function() {
               ])
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.$store.state.user == null
+        ? _c(
             "v-btn",
             { attrs: { text: "", color: "grey darken-3", to: "/register" } },
             [
@@ -39200,28 +39189,28 @@ var render = function() {
               ])
             ],
             1
-          ),
-          _vm._v(" "),
-          _vm.$store.state.user != null
-            ? _c(
-                "v-btn",
-                {
-                  attrs: { text: "", color: "grey darken-3" },
-                  on: { click: _vm.logout }
-                },
-                [
-                  _c("span", [_vm._v("Cerrar sesión")]),
-                  _vm._v(" "),
-                  _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                    _vm._v("mdi-logout")
-                  ])
-                ],
-                1
-              )
-            : _vm._e()
-        ],
-        1
-      )
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.$store.state.user != null
+        ? _c(
+            "v-btn",
+            {
+              attrs: { text: "", color: "grey darken-3" },
+              on: { click: _vm.logout }
+            },
+            [
+              _c("span", [_vm._v("Cerrar sesión")]),
+              _vm._v(" "),
+              _c("v-icon", { attrs: { color: "grey darken-3" } }, [
+                _vm._v("mdi-logout")
+              ])
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("v-icon", { staticClass: "px-2" }, [_vm._v("mdi-cart")])
     ],
     1
   )
@@ -39252,7 +39241,7 @@ var render = function() {
   return _c(
     "div",
     [
-      (_vm.$store.state.user = !null)
+      _vm.$store.state.user != null
         ? _c(
             "v-list-item",
             [
@@ -39294,12 +39283,12 @@ var render = function() {
             1
           ),
       _vm._v(" "),
-      (_vm.$store.state.user = !null)
+      _vm.$store.state.user != null
         ? _c(
             "v-row",
             { staticClass: "d-flex justify-center my-md-3" },
             [
-              (_vm.$store.state.user = !null)
+              _vm.$store.state.user != null
                 ? _c(
                     "v-btn",
                     {

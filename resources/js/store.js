@@ -8,12 +8,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        drawer: true,
         user: null,
     },
     mutations: {
         SET_USER(state, user){
             state.user = user;
-        }
+        },
     },
     actions: {
         async getUser({ commit }){
