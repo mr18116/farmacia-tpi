@@ -39107,7 +39107,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "div",
-                                            { staticClass: "text-center" },
+                                            { staticClass: "text-center py-4" },
                                             [
                                               _c(
                                                 "v-btn",

@@ -31,7 +31,7 @@
                                         class="text-center"
                                         >Registrate y disfruta de nuestras ofertas</h5>
                                     </v-card-text>
-                                    <div class="text-center">
+                                    <div class="text-center py-4">
                                         <v-btn small to="/register" rounded outlined dark @click="step++">REGISTRARME</v-btn>
                                     </div>
                                     </v-col>
