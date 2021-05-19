@@ -1,9 +1,7 @@
 <template>
     <v-app>
-        <v-app-bar app flat>
-            app-bar
+            <Navbar />
             {{ $store.state.user }}
-        </v-app-bar>
         <v-main>
             <router-view></router-view>
         </v-main>
@@ -16,7 +14,9 @@
 
 <script>
 import Login from '../views/Login';
+import Navbar from './Navbar.vue';
 export default {
+    components: { Navbar },
     created(){
         console.log(this.$store.state.user);
     }        

@@ -50,6 +50,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -198,113 +222,272 @@ var render = function() {
     "div",
     [
       _c(
-        "v-row",
-        { attrs: { justify: "center" } },
+        "v-content",
         [
           _c(
-            "v-col",
-            { attrs: { cols: "12", sm: "10", md: "8", lg: "6" } },
+            "v-container",
+            { staticClass: "fill-height", attrs: { fluid: "" } },
             [
               _c(
-                "v-card",
+                "v-row",
+                { attrs: { align: "center", justify: "center" } },
                 [
-                  _c("v-card-title", [_vm._v("Registrar")]),
-                  _vm._v(" "),
                   _c(
-                    "v-card-text",
+                    "v-col",
+                    { attrs: { cols: "12", sm: "10", md: "8", lg: "6" } },
                     [
                       _c(
-                        "v-form",
+                        "v-card",
+                        { staticClass: "elevation-12" },
                         [
-                          _c("v-text-field", {
-                            attrs: { label: "Nombre" },
-                            model: {
-                              value: _vm.user.name,
-                              callback: function($$v) {
-                                _vm.$set(_vm.user, "name", $$v)
-                              },
-                              expression: "user.name"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "email" },
-                            model: {
-                              value: _vm.user.email,
-                              callback: function($$v) {
-                                _vm.$set(_vm.user, "email", $$v)
-                              },
-                              expression: "user.email"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: { label: "contraseña", type: "password" },
-                            model: {
-                              value: _vm.user.password,
-                              callback: function($$v) {
-                                _vm.$set(_vm.user, "password", $$v)
-                              },
-                              expression: "user.password"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Confirmar contraseña",
-                              type: "password"
+                          _c(
+                            "v-window",
+                            {
+                              model: {
+                                value: _vm.step,
+                                callback: function($$v) {
+                                  _vm.step = $$v
+                                },
+                                expression: "step"
+                              }
                             },
-                            model: {
-                              value: _vm.user.password_confirmation,
-                              callback: function($$v) {
-                                _vm.$set(_vm.user, "password_confirmation", $$v)
-                              },
-                              expression: "user.password_confirmation"
-                            }
-                          })
+                            [
+                              _c(
+                                "v-window-item",
+                                { attrs: { value: 2 } },
+                                [
+                                  _c(
+                                    "v-row",
+                                    { staticClass: "fill-height" },
+                                    [
+                                      _c(
+                                        "v-col",
+                                        {
+                                          staticClass: "teal accent-3",
+                                          attrs: { cols: "12", md: "4" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            {
+                                              staticClass: "white--text mt-12"
+                                            },
+                                            [
+                                              _c(
+                                                "h1",
+                                                {
+                                                  staticClass:
+                                                    "text-center display-1"
+                                                },
+                                                [_vm._v("¿Ya tienes cuenta?")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "h5",
+                                                { staticClass: "text-center" },
+                                                [
+                                                  _vm._v(
+                                                    "Ingresa tus credenciales"
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "text-center" },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    small: "",
+                                                    to: "/login",
+                                                    rounded: "",
+                                                    outlined: "",
+                                                    dark: ""
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.step--
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("INICIAR SESIÓN")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-col",
+                                        { attrs: { cols: "12", md: "8" } },
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            { staticClass: "mt-12" },
+                                            [
+                                              _c(
+                                                "h1",
+                                                {
+                                                  staticClass:
+                                                    "text-center display-2 teal--text text--accent-3"
+                                                },
+                                                [_vm._v("Crear cuenta")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "h4",
+                                                {
+                                                  staticClass:
+                                                    "text-center mt-4"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "Ingresa tus datos de registro"
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-form",
+                                                [
+                                                  _c("v-text-field", {
+                                                    attrs: { label: "Nombre" },
+                                                    model: {
+                                                      value: _vm.user.name,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.user,
+                                                          "name",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression: "user.name"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("v-text-field", {
+                                                    attrs: { label: "email" },
+                                                    model: {
+                                                      value: _vm.user.email,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.user,
+                                                          "email",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression: "user.email"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label: "contraseña",
+                                                      type: "password"
+                                                    },
+                                                    model: {
+                                                      value: _vm.user.password,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.user,
+                                                          "password",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "user.password"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("v-text-field", {
+                                                    attrs: {
+                                                      label:
+                                                        "Confirmar contraseña",
+                                                      type: "password"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm.user
+                                                          .password_confirmation,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.user,
+                                                          "password_confirmation",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "user.password_confirmation"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "text-center py-4" },
+                                            [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    rounded: "",
+                                                    color: "teal accent-3",
+                                                    dark: ""
+                                                  },
+                                                  on: { click: _vm.signup }
+                                                },
+                                                [_vm._v("REGISTRARSE")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: { block: "", color: "green" },
-                          on: { click: _vm.signup }
-                        },
-                        [_vm._v("Registrar")]
-                      ),
-                      _vm._v(" "),
-                      _c("v-divider"),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("Ya tiene cuenta?")]),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        { attrs: { small: "", to: "/login", color: "blue" } },
-                        [_vm._v("Iniciar sesión")]
                       )
                     ],
                     1
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                { attrs: { justify: "center" } },
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "auto" } },
+                    [_c("v-btn", { attrs: { to: "/" } }, [_vm._v("Inicio")])],
+                    1
+                  )
+                ],
+                1
               )
             ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { attrs: { justify: "center" } },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "auto" } },
-            [_c("v-btn", { attrs: { to: "/" } }, [_vm._v("Inicio")])],
             1
           )
         ],
