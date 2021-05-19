@@ -43,6 +43,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -192,7 +197,7 @@ var render = function() {
               _c(
                 "v-card",
                 [
-                  _c("v-card-title", [_vm._v("Log in")]),
+                  _c("v-card-title", [_vm._v("Iniciar Sesión")]),
                   _vm._v(" "),
                   _c(
                     "v-card-text",
@@ -212,7 +217,7 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            attrs: { label: "password", type: "password" },
+                            attrs: { label: "contraseña", type: "password" },
                             model: {
                               value: _vm.user.password,
                               callback: function($$v) {
@@ -231,19 +236,19 @@ var render = function() {
                           attrs: { block: "", color: "green" },
                           on: { click: _vm.login }
                         },
-                        [_vm._v("Log in")]
+                        [_vm._v("Iniciar Sesión")]
                       ),
                       _vm._v(" "),
                       _c("v-divider"),
                       _vm._v(" "),
-                      _c("span", [_vm._v("create account")]),
+                      _c("span", [_vm._v("No tiene cuenta?")]),
                       _vm._v(" "),
                       _c(
                         "v-btn",
                         {
-                          attrs: { small: "", to: "/resgister", color: "blue" }
+                          attrs: { small: "", to: "/register", color: "blue" }
                         },
-                        [_vm._v("Sign up")]
+                        [_vm._v("Registrarse")]
                       )
                     ],
                     1
@@ -252,6 +257,20 @@ var render = function() {
                 1
               )
             ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { attrs: { justify: "center" } },
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "auto" } },
+            [_c("v-btn", { attrs: { to: "/" } }, [_vm._v("Inicio")])],
             1
           )
         ],
