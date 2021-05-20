@@ -20,7 +20,7 @@ const routes = [
         component: () => import('../views/Signup.vue'),
     },
     {
-        path: '/detalle',
+        path: '/detalle/:id',
         name: 'ProductoDetalle',
         component: () => import('../views/ProductoDetalle.vue')
     },
