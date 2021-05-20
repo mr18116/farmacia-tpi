@@ -148,10 +148,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     CardsProductos: _components_CardsProductos__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  data: function data() {
+    return {
+      items: [{
+        src: 'https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/10/22032059/Blog-farmacia-01-min.jpg'
+      }, {
+        src: 'https://aspec.org.pe/wp-content/uploads/2020/06/farmacia.jpg'
+      }, {
+        src: 'https://centroecuatorianodecapacitacion.com/wp-content/uploads/2015/06/farmacia2.jpg'
+      }, {
+        src: 'https://image.freepik.com/foto-gratis/cliente-mujer-carpeta-farmacia_1368-17805.jpg'
+      }]
+    };
   }
 });
 
@@ -556,6 +579,21 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
+      _c(
+        "v-carousel",
+        _vm._l(_vm.items, function(item, i) {
+          return _c("v-carousel-item", {
+            key: i,
+            attrs: {
+              src: item.src,
+              "reverse-transition": "fade-transition",
+              transition: "fade-transition"
+            }
+          })
+        }),
+        1
+      ),
+      _vm._v(" "),
       _c(
         "v-row",
         { staticClass: "text-h4" },
