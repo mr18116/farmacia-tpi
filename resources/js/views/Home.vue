@@ -1,7 +1,10 @@
 <template>
 
     <v-container fluid>
-        <v-carousel>
+        <v-carousel cycle
+    height="400"
+    hide-delimiters
+    show-arrows-on-hover>
     <v-carousel-item
       v-for="(item,i) in items"
       :key="i"
@@ -29,6 +32,7 @@ export default {
     },
     data () {
       return {
+        intervalo:3000,
         items: [
           {
             src: 'https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/10/22032059/Blog-farmacia-01-min.jpg',

@@ -158,6 +158,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -165,6 +168,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      intervalo: 3000,
       items: [{
         src: 'https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/10/22032059/Blog-farmacia-01-min.jpg'
       }, {
@@ -640,6 +644,14 @@ var render = function() {
     [
       _c(
         "v-carousel",
+        {
+          attrs: {
+            cycle: "",
+            height: "400",
+            "hide-delimiters": "",
+            "show-arrows-on-hover": ""
+          }
+        },
         _vm._l(_vm.items, function(item, i) {
           return _c("v-carousel-item", {
             key: i,
