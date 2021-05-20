@@ -39803,11 +39803,14 @@ var render = function() {
                           attrs: {
                             rounded: "",
                             color: "teal accent-3",
-                            dark: "",
                             to: "/"
                           }
                         },
-                        [_vm._v("INICIO")]
+                        [
+                          _c("v-icon", [_vm._v("mdi-home")]),
+                          _c("span", [_vm._v("INICIO")])
+                        ],
+                        1
                       )
                     ],
                     1
