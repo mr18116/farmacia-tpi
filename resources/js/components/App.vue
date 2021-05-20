@@ -7,7 +7,6 @@
             <Navbar />          
         </v-app-bar>
         <v-main>
-            {{ $store.state.user }}
             <router-view></router-view>
         </v-main>
         <v-footer>

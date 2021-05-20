@@ -1877,7 +1877,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -39148,14 +39147,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c(
-        "v-main",
-        [
-          _vm._v("\n        " + _vm._s(_vm.$store.state.user) + "\n        "),
-          _c("router-view")
-        ],
-        1
-      ),
+      _c("v-main", [_c("router-view")], 1),
       _vm._v(" "),
       _c("v-footer", [_vm._v("\n        footer\n    ")])
     ],
