@@ -38,11 +38,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      imagenes: ["https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588", "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588"]
+      producto: {
+        nombre: "NEUROGLUTAN AMPOLLAS BEBIBLES X 12 SACHET",
+        imagen_url: "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=022e3d37-b35d-404c-9187-8192ecf46404&idMultimedia=e8d015ed-f476-40f7-b3a6-5c1224e8ca73",
+        descripcion: "Neuroglután está indicado para el cansancio físico y mental. Mejora la capacidad de concentración y la memoria. Es un estimulante cerebral que contiene ácido glutámico que activa la circulación del cerebro. Además posee las vitaminas b1, b6, b12 y ginseng coreano. Estos componentes mejoran el estado de ánimo y el sistema nervioso.",
+        precio: 8.26,
+        laboratorio: "",
+        cantidad: 1,
+        indicaciones: "Neuroglután está indicado para el cansancio físico y mental. Mejora la capacidad de concentración y la memoria. Es un estimulante cerebral que contiene ácido glutámico que activa la circulación del cerebro. Además posee las vitaminas b1, b6, b12 y ginseng coreano. Estos componentes mejoran el estado de ánimo y el sistema nervioso."
+      },
+      cantidad: 1
     };
+  },
+  methods: {
+    disminuir: function disminuir() {
+      if (this.cantidad > 1) {
+        this.cantidad--;
+      }
+    },
+    aumentar: function aumentar() {
+      this.cantidad++;
+    }
   }
 });
 
@@ -150,31 +217,174 @@ var render = function() {
                 "v-col",
                 { attrs: { cols: "12", md: "6" } },
                 [
-                  _c(
-                    "v-carousel",
-                    {
-                      attrs: {
-                        cycle: "",
-                        height: "400",
-                        "hide-delimiter-background": "",
-                        "show-arrows-on-hover": ""
-                      }
-                    },
-                    _vm._l(_vm.imagenes, function(imagen, i) {
-                      return _c("v-carousel-item", {
-                        key: i,
-                        attrs: { src: imagen }
-                      })
-                    }),
-                    1
-                  )
+                  _c("v-img", {
+                    staticClass: "elevation-1",
+                    attrs: { src: _vm.producto.imagen_url }
+                  })
                 ],
                 1
               ),
               _vm._v(" "),
-              _c("v-col", { attrs: { cols: "12", md: "6" } }, [
-                _vm._v("\n                Hola\n            ")
-              ])
+              _c(
+                "v-col",
+                { attrs: { cols: "12", md: "6" } },
+                [
+                  _c(
+                    "v-card",
+                    { attrs: { "min-height": "100%" } },
+                    [
+                      _c("v-card-title", [
+                        _vm._v(_vm._s(_vm.producto.nombre) + " ")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-card-text", [
+                        _c("h4", [_vm._v("Descripcion")]),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.producto.descripcion) +
+                            "\n                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("v-card-text", [
+                        _c("h4", [_vm._v("Indicaciones")]),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.producto.indicaciones) +
+                            "\n                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                align: "center",
+                                justify: "center",
+                                "align-content": "center",
+                                "no-gutters": ""
+                              }
+                            },
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticStyle: {
+                                        padding: "0px",
+                                        "min-width": "30px",
+                                        "min-height": "39px"
+                                      },
+                                      attrs: { outlined: "" },
+                                      on: { click: _vm.disminuir }
+                                    },
+                                    [_c("v-icon", [_vm._v("mdi-minus")])],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { lg: "2" } },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "centered-input",
+                                    attrs: {
+                                      "hide-details": "true",
+                                      dense: "",
+                                      outlined: "",
+                                      color: "primary darken-2"
+                                    },
+                                    model: {
+                                      value: _vm.cantidad,
+                                      callback: function($$v) {
+                                        _vm.cantidad = $$v
+                                      },
+                                      expression: "cantidad"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "auto" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticStyle: {
+                                        padding: "0px",
+                                        "min-width": "30px",
+                                        "min-height": "39px"
+                                      },
+                                      attrs: {
+                                        outlined: "",
+                                        color: "primary darken-2"
+                                      },
+                                      on: { click: _vm.aumentar }
+                                    },
+                                    [_c("v-icon", [_vm._v("mdi-plus")])],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-spacer", {
+                                staticClass: "d-none d-lg-block"
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  staticClass: "mt-1 mt-lg-0",
+                                  attrs: { cols: "12", lg: "6" }
+                                },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        outlined: "",
+                                        color: "primary darken-2",
+                                        block: ""
+                                      }
+                                    },
+                                    [
+                                      _c("v-icon", { attrs: { left: "" } }, [
+                                        _vm._v("mdi-cart-plus")
+                                      ]),
+                                      _vm._v(
+                                        "\n                                    Agregar\n                                "
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )

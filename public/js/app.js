@@ -2467,6 +2467,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_views_Signup_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Signup.vue */ "./resources/js/views/Signup.vue"));
   }
 }, {
+  path: '/detalle',
+  name: 'ProductoDetalle',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_ProductoDetalle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/ProductoDetalle.vue */ "./resources/js/views/ProductoDetalle.vue"));
+  }
+}, {
   path: '*',
   name: 'Error',
   component: function component() {
@@ -39137,7 +39143,7 @@ var render = function() {
             {
               attrs: {
                 elevation: "3",
-                color: "white",
+                color: "teal lighten-3",
                 "clipped-left": "",
                 app: ""
               }
@@ -39147,7 +39153,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("v-main", [_c("router-view")], 1),
+      _c("v-main", { staticClass: "grey lighten-4" }, [_c("router-view")], 1),
       _vm._v(" "),
       _c("v-footer", [_vm._v("\n        footer\n    ")])
     ],
@@ -101600,7 +101606,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Signup_vue":1,"resources_js_views_Error404_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Signup_vue":1,"resources_js_views_ProductoDetalle_vue":1,"resources_js_views_Error404_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

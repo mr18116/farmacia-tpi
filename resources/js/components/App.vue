@@ -3,10 +3,10 @@
         <v-navigation-drawer v-if="mostrarLayout" v-model="$store.state.drawer" app clipped >
             <NavbarDerecha />
         </v-navigation-drawer>
-        <v-app-bar v-if="mostrarLayout" elevation="3" color="white" clipped-left  app>
+        <v-app-bar v-if="mostrarLayout" elevation="3" color="teal lighten-3" clipped-left  app>
             <Navbar />          
         </v-app-bar>
-        <v-main>
+        <v-main class="grey lighten-4">
             <router-view></router-view>
         </v-main>
         <v-footer>
