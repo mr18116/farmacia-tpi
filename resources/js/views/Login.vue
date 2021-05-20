@@ -43,7 +43,7 @@
             </v-row>
             <v-row justify="center">
                 <v-col cols="auto">
-                    <v-btn to="/">Inicio</v-btn>
+                    <v-btn rounded color="teal accent-3" dark to="/">INICIO</v-btn>
                 </v-col>
             </v-row>
         </v-container>

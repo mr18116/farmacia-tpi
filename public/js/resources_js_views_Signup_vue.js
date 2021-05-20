@@ -481,7 +481,20 @@ var render = function() {
                   _c(
                     "v-col",
                     { attrs: { cols: "auto" } },
-                    [_c("v-btn", { attrs: { to: "/" } }, [_vm._v("Inicio")])],
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            rounded: "",
+                            color: "teal accent-3",
+                            dark: "",
+                            to: "/"
+                          }
+                        },
+                        [_vm._v("INICIO")]
+                      )
+                    ],
                     1
                   )
                 ],
