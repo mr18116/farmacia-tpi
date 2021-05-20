@@ -491,7 +491,7 @@ var render = function() {
                     {
                       staticStyle: {
                         padding: "0px",
-                        "min-width": "39px",
+                        "min-width": "30px",
                         "min-height": "39px"
                       },
                       attrs: { outlined: "" },
@@ -510,7 +510,12 @@ var render = function() {
                 [
                   _c("v-text-field", {
                     staticClass: "centered-input",
-                    attrs: { "hide-details": "true", dense: "", outlined: "" },
+                    attrs: {
+                      "hide-details": "true",
+                      dense: "",
+                      outlined: "",
+                      color: "primary darken-2"
+                    },
                     model: {
                       value: _vm.cantidad,
                       callback: function($$v) {
@@ -532,10 +537,10 @@ var render = function() {
                     {
                       staticStyle: {
                         padding: "0px",
-                        "min-width": "39px",
+                        "min-width": "30px",
                         "min-height": "39px"
                       },
-                      attrs: { outlined: "" },
+                      attrs: { outlined: "", color: "primary darken-2" },
                       on: { click: _vm.aumentar }
                     },
                     [_c("v-icon", [_vm._v("mdi-plus")])],
@@ -553,7 +558,13 @@ var render = function() {
                 [
                   _c(
                     "v-btn",
-                    { attrs: { dark: "", block: "" } },
+                    {
+                      attrs: {
+                        outlined: "",
+                        color: "primary darken-2",
+                        block: ""
+                      }
+                    },
                     [
                       _c("v-icon", { attrs: { left: "" } }, [
                         _vm._v("mdi-cart-plus")
