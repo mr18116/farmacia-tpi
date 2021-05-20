@@ -20,6 +20,11 @@ const routes = [
         component: () => import('../views/Signup.vue'),
     },
     {
+        path: '/detalle',
+        name: 'ProductoDetalle',
+        component: () => import('../views/ProductoDetalle.vue')
+    },
+    {
         path: '*',
         name: 'Error',
         component: () => import('../views/Error404.vue')
