@@ -15,7 +15,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Error404'
+});
 
 /***/ }),
 
@@ -107,7 +129,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Recurso no encontrado")])
+  return _c(
+    "div",
+    {
+      staticClass:
+        "fullscreen bg-blue text-white text-center q-pa-md flex flex-center"
+    },
+    [
+      _c(
+        "div",
+        [
+          _c("div", { staticStyle: { "font-size": "30vh" } }, [
+            _vm._v("\n      404\n    ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-h2", staticStyle: { opacity: ".4" } },
+            [_vm._v("\n      Oops. Nothing here...\n    ")]
+          ),
+          _vm._v(" "),
+          _c("q-btn", {
+            staticClass: "q-mt-xl",
+            attrs: {
+              color: "white",
+              "text-color": "blue",
+              unelevated: "",
+              to: "/",
+              label: "Go Home",
+              "no-caps": ""
+            }
+          })
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
