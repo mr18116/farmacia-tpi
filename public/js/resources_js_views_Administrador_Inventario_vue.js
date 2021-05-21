@@ -44,11 +44,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -61,7 +56,8 @@ __webpack_require__.r(__webpack_exports__);
         id: index,
         nombre: 'ALERCET JARABE FRASCO X 60 ML ' + (index + 1),
         imagen_url: 'https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588',
-        precio: 8.95
+        precio: 8.95,
+        cantidad: 10
       };
       this.productos.push(ejemplo);
     }
@@ -188,7 +184,10 @@ var render = function() {
           _vm._l(_vm.productos, function(producto) {
             return _c(
               "v-col",
-              { key: producto.id, attrs: { cols: "12", md: "6" } },
+              {
+                key: producto.id,
+                attrs: { cols: "12", sm: "6", md: "4", lg: "3" }
+              },
               [
                 _c(
                   "v-card",
@@ -207,8 +206,6 @@ var render = function() {
                         _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
-                        _c("v-icon", [_vm._v("mdi-playlist-plus")]),
-                        _vm._v(" "),
                         _c("v-icon", [_vm._v("mdi-pencil")]),
                         _vm._v(" "),
                         _c("v-icon", [_vm._v("mdi-delete")])
@@ -222,22 +219,32 @@ var render = function() {
                         staticClass: "d-flex flex-no-wrap justify-space-between"
                       },
                       [
-                        _c("v-img", {
-                          attrs: {
-                            src: producto.imagen_url,
-                            height: "100px",
-                            contain: ""
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", [_c("h4", [_vm._v("Generales")])]),
-                    _vm._v(" "),
-                    _c("div", [_c("h4", [_vm._v("Descripcion")])]),
-                    _vm._v(" "),
-                    _c("div", [_c("h4", [_vm._v("Indicaciones")])])
+                        _c(
+                          "div",
+                          [
+                            _c("v-img", {
+                              attrs: {
+                                src: producto.imagen_url,
+                                width: "100px",
+                                height: "100px",
+                                contain: ""
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c("div", [
+                            _vm._v("Precio: " + _vm._s(producto.precio))
+                          ]),
+                          _vm._v(" "),
+                          _c("div", [
+                            _vm._v("Cantidad: " + _vm._s(producto.cantidad))
+                          ])
+                        ])
+                      ]
+                    )
                   ],
                   1
                 )
