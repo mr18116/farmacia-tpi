@@ -42,6 +42,8 @@
           <v-row align="center" justify="space-around">
             <v-col
               cols="12"
+              xl="9"
+              md="10"
               sm="12"
               class="text-center"
             > 
@@ -61,6 +63,8 @@
           <v-row align="center" justify="space-around">
             <v-col
               cols="12"
+              xl="9"
+              md="10"
               sm="12"
               class="text-center"
             >

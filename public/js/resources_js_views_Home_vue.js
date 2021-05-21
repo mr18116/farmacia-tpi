@@ -238,6 +238,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1173,7 +1177,7 @@ var render = function() {
                     "v-col",
                     {
                       staticClass: "text-center",
-                      attrs: { cols: "12", sm: "12" }
+                      attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
                     },
                     [
                       _c("v-hover", {
@@ -1233,7 +1237,7 @@ var render = function() {
                     "v-col",
                     {
                       staticClass: "text-center",
-                      attrs: { cols: "12", sm: "12" }
+                      attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
                     },
                     [
                       _c("v-hover", {
