@@ -47,22 +47,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      productos: []
+      productos: [],
+      page: 1
     };
   },
   created: function created() {
+    var ejemplo0 = {
+      id: -1,
+      nombre: 'ALERCET JARABE FRASCO X 60 ML 0',
+      imagen_url: 'https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588',
+      precio: 8.95,
+      cantidad: 0
+    };
+    this.productos.push(ejemplo0);
+
     for (var index = 0; index < 10; index++) {
       var ejemplo = {
         id: index,
         nombre: 'ALERCET JARABE FRASCO X 60 ML ' + (index + 1),
         imagen_url: 'https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588',
         precio: 8.95,
-        cantidad: 10
+        cantidad: Math.floor(Math.random() * 20)
       };
       this.productos.push(ejemplo);
+    }
+  },
+  methods: {
+    colorCard: function colorCard(cantidad) {
+      var color = 'teal lighten-3';
+
+      if (cantidad == 0) {
+        color = 'red lighten-1';
+      } else if (cantidad > 0 && cantidad <= 10) {
+        color = 'orange lighten-1';
+      }
+
+      return color;
     }
   }
 });
@@ -163,6 +197,7 @@ var render = function() {
     [
       _c(
         "v-row",
+        { attrs: { align: "center" } },
         [
           _c("v-col", { staticClass: "text-h1", attrs: { cols: "12" } }, [
             _vm._v("\n            Inventario\n        ")
@@ -170,11 +205,11 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "12" } },
+            { attrs: { cols: "12", sm: "4" } },
             [
               _c(
                 "v-btn",
-                { attrs: { color: "green" } },
+                { attrs: { block: "", color: "green" } },
                 [
                   _c("v-icon", { attrs: { left: "" } }, [_vm._v("mdi-plus")]),
                   _vm._v("Nuevo Producto")
@@ -185,6 +220,29 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", sm: "8" } },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  "background-color": "white",
+                  outlined: "",
+                  "prepend-inner-icon": "mdi-magnify",
+                  "hide-details": "true",
+                  dense: ""
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        [
           _vm._l(_vm.productos, function(producto) {
             return _c(
               "v-col",
@@ -199,7 +257,11 @@ var render = function() {
                     _c(
                       "v-app-bar",
                       {
-                        attrs: { color: "teal lighten-3", flat: "", dense: "" }
+                        attrs: {
+                          color: _vm.colorCard(producto.cantidad),
+                          flat: "",
+                          dense: ""
+                        }
                       },
                       [
                         _c("v-toolbar-title", [
@@ -266,7 +328,25 @@ var render = function() {
               ],
               1
             )
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12" } },
+            [
+              _c("v-pagination", {
+                attrs: { length: 10 },
+                model: {
+                  value: _vm.page,
+                  callback: function($$v) {
+                    _vm.page = $$v
+                  },
+                  expression: "page"
+                }
+              })
+            ],
+            1
+          )
         ],
         2
       )
