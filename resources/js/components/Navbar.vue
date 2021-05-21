@@ -1,5 +1,5 @@
 <template>
-    <v-row align="center">
+<!--     <v-row align="center">
         <v-app-bar-nav-icon
             @click="$store.state.drawer = !$store.state.drawer"
         ></v-app-bar-nav-icon>
@@ -77,14 +77,123 @@
                 </v-list>
             </v-menu>
         </div>
-    </v-row>
+    </v-row> -->
+
+  <div>
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      temporary
+      dark 
+      src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgDrawer.jpg?alt=media&token=749fc88d-914f-4e6e-8f2b-52e08d8abec3"
+    >
+      <v-divider />
+    </v-navigation-drawer>
+
+    <v-app-bar
+      app
+      :color="color"
+      :flat="flat"
+      dark
+      class="px-5"
+      :class="{ expand: flat }"
+    >
+      <v-toolbar-title>
+         <v-app-bar-nav-icon
+            @click="$store.state.drawer = !$store.state.drawer">
+        </v-app-bar-nav-icon>
+      </v-toolbar-title>
+      <a href="/"><v-img class="mb-n1 mx-auto" src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05" max-width="200px" /></a>
+      <v-spacer /> 
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        class="mr-4"
+        v-if="isXs"
+      />
+      <div v-else class="hidden-xs-only">
+            <v-btn
+                text
+                color="grey darken-3"
+                to="/login"
+                v-if="$store.state.user == null"
+            >
+                <span class="mr-2 white--text">Iniciar Sesión</span>
+                <v-icon color="grey darken-3">mdi-account</v-icon>
+            </v-btn>
+            <v-btn
+                text
+                color="grey darken-3"
+                to="/register"
+                v-if="$store.state.user == null"
+            >
+                <span class="mr-2 white--text">Registrarse</span>
+                <v-icon color="grey darken-3">mdi-account</v-icon>
+            </v-btn>
+            <v-btn
+                text
+                color="grey darken-3"
+                v-if="$store.state.user != null"
+                @click="logout"
+            >
+                <span class="mr-2 white--text">Cerrar sesión</span>
+                <v-icon color="grey darken-3">mdi-logout</v-icon>
+            </v-btn>
+      </div>
+      <div class="hidden-sm-and-up">
+            <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                    <v-app-bar-nav-icon v-on="on"
+                        ><v-icon color="grey darken-3"
+                            >mdi-account</v-icon
+                        ></v-app-bar-nav-icon
+                    >
+                </template>
+                <v-list class="responsiveMenu">
+                    <v-list-item v-if="$store.state.user == null">
+                        <v-list-item-title
+                            ><router-link to="/login"
+                                >Iniciar Sesión</router-link
+                            ></v-list-item-title
+                        >
+                    </v-list-item>
+                    <v-list-item v-if="$store.state.user == null">
+                        <v-list-item-title
+                            ><router-link to="/register"
+                                >Registrarse</router-link
+                            ></v-list-item-title
+                        >
+                    </v-list-item>
+                    <v-list-item
+                        v-if="$store.state.user != null"
+                        @click="logout"
+                    >
+                        <v-list-item-title
+                            ><router-link to="/register"
+                                >Cerrar sesión</router-link
+                            ></v-list-item-title
+                        >
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+        </div>
+    </v-app-bar>
+  </div>
+
 </template>
-<script>
+<script> 
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
 export default {
+        props: {
+        color: String,
+        flat: Boolean,
+  },    
+    data: () => ({
+    drawer: null,
+    isXs: false,
+  }),
     methods: {
         logout() {
             axios.get("/sanctum/csrf-cookie").then(response => {
@@ -92,12 +201,17 @@ export default {
                     await this.$store.dispatch("getUser");
                 });
             });
-        }
+        },
     }
 };
 </script>
 <style>
-   a:hover{
-        text-decoration: none;
-    }
+.v-toolbar {
+  transition: 0.6s;
+}
+
+.expand {
+  height: 80px !important;
+  padding-top: 10px;
+}
 </style>

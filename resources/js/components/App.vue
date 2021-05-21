@@ -1,10 +1,37 @@
 <template>
-    <v-app>
+
+  <v-app>
+    <Navbar :color="color" :flat="flat" v-if="mostrarLayout"/>
+    <v-navigation-drawer v-if="mostrarLayout" v-model="$store.state.drawer" app clipped >
+            <NavbarDerecha />
+        </v-navigation-drawer>
+    <v-main class="pt-0">
+      <router-view></router-view>
+    </v-main>
+    <v-scale-transition>
+      <v-btn
+        fab
+        v-show="fab"
+        v-scroll="onScroll"
+        dark
+        fixed
+        bottom
+        right
+        color="secondary"
+        @click="toTop"
+      >
+        <v-icon>mdi-arrow-up</v-icon>
+      </v-btn>
+    </v-scale-transition>
+    <footerf />
+  </v-app>
+
+<!--     <v-app>
         <v-navigation-drawer v-if="mostrarLayout" v-model="$store.state.drawer" app clipped >
             <NavbarDerecha />
         </v-navigation-drawer>
         <v-app-bar v-if="mostrarLayout" elevation="3" color="teal lighten-3" clipped-left  app>
-            <Navbar />          
+            <Navbar :color="color" :flat="flat" />       
         </v-app-bar>
         <v-main class="grey lighten-4">
             <router-view></router-view>
@@ -12,26 +39,37 @@
         <v-footer>
             footer
         </v-footer>
-    </v-app>
+    </v-app> -->
     
-</template>
+</template> 
 
 <script>
-import Login from '../views/Login';
-import NavbarDerecha from './layout/NavbarDerecha'
 import Navbar from './Navbar'
+import NavbarDerecha from './layout/NavbarDerecha'
+import footerf from "./Footer";
+
 
 export default {
-    data: () => ({
-        mostrar: true,
-    }),
+  components: {
+    Navbar,
+    NavbarDerecha,
+    footerf,
+  },
 
-    components:{
-        NavbarDerecha,
-        Navbar
-    },
+  data: () => ({
+    mostrar: true,
+    fab: null,
+    color: "",
+    flat: null,
+  }),
     created(){
+        const top = window.pageYOffset || 0;
+        if (top <= 60) {
+        this.color = "transparent";
+        this.flat = true;
+        }
         console.log(this.$store.state.user);
+
     },
     computed:{
         mostrarLayout(){
@@ -41,10 +79,38 @@ export default {
                 return true;
             }
         }
-    }     
-}
+    },
+      watch: {
+    fab(value) {
+      if (value) {
+        this.color = "#0077c9";
+        this.flat = false;
+      } else {
+        this.color = "transparent";
+        this.flat = true;
+      }
+    }, 
+  },
+
+  methods: {
+    onScroll(e) {
+      if (typeof window === "undefined") return;
+      const top = window.pageYOffset || e.target.scrollTop || 0;
+      this.fab = top > 60;
+    },
+    toTop() {
+      this.$vuetify.goTo(0);
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
 
+<style scoped>
+.v-main {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgMain.png?alt=media&token=03365016-46b1-4e49-988d-86e075aa7ae3");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
 </style>
