@@ -44,6 +44,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -51,7 +54,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    for (var index = 0; index < 4; index++) {
+    for (var index = 0; index < 10; index++) {
       var ejemplo = {
         id: index,
         nombre: 'ALERCET JARABE FRASCO X 60 ML ' + (index + 1),
@@ -156,6 +159,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-container",
+    { attrs: { fluid: "" } },
     [
       _c(
         "v-row",
@@ -186,7 +190,7 @@ var render = function() {
               "v-col",
               {
                 key: producto.id,
-                attrs: { cols: "12", sm: "6", md: "4", lg: "3" }
+                attrs: { cols: "6", sm: "4", md: "3", lg: "2" }
               },
               [
                 _c(
@@ -194,14 +198,14 @@ var render = function() {
                   [
                     _c(
                       "v-app-bar",
-                      { attrs: { color: "teal lighten-3", flat: "" } },
+                      {
+                        attrs: { color: "teal lighten-3", flat: "", dense: "" }
+                      },
                       [
                         _c("v-toolbar-title", [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(producto.nombre) +
-                              "\n                    "
-                          )
+                          _c("div", { staticClass: "text-subtitle-2" }, [
+                            _vm._v(" " + _vm._s(producto.nombre) + " ")
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("v-spacer"),
@@ -214,13 +218,12 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
-                      "div",
-                      {
-                        staticClass: "d-flex flex-no-wrap justify-space-between"
-                      },
+                      "v-row",
+                      { attrs: { align: "center" } },
                       [
                         _c(
-                          "div",
+                          "v-col",
+                          { attrs: { cols: "6" } },
                           [
                             _c("v-img", {
                               attrs: {
@@ -234,16 +237,28 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c("div", [
-                          _c("div", [
-                            _vm._v("Precio: " + _vm._s(producto.precio))
-                          ]),
-                          _vm._v(" "),
-                          _c("div", [
-                            _vm._v("Cantidad: " + _vm._s(producto.cantidad))
-                          ])
-                        ])
-                      ]
+                        _c(
+                          "v-col",
+                          { attrs: { cols: "6" } },
+                          [
+                            _c("div", [
+                              _vm._v("Precio: " + _vm._s(producto.precio))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm._v("Cantidad: " + _vm._s(producto.cantidad))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              { attrs: { "x-small": "", color: "blue" } },
+                              [_vm._v("Detalles")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
                     )
                   ],
                   1

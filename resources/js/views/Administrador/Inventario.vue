@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
       <v-row>
           <v-col cols="12" class="text-h1">
               Inventario
@@ -7,24 +7,27 @@
           <v-col cols="12">
               <v-btn color="green"><v-icon left>mdi-plus</v-icon>Nuevo Producto</v-btn>
           </v-col>
-          <v-col cols="12" sm="6" md="4" lg="3" v-for="producto in productos" :key="producto.id">
+          <v-col cols="6" sm="4" md="3" lg="2" v-for="producto in productos" :key="producto.id">
               <v-card>
-                  <v-app-bar color="teal lighten-3" flat>
+                  <v-app-bar color="teal lighten-3" flat dense>
                       <v-toolbar-title>
-                          {{ producto.nombre }}
+                          <div class="text-subtitle-2"> {{ producto.nombre }} </div>
                       </v-toolbar-title>
                       <v-spacer></v-spacer>
                       <v-icon>mdi-pencil</v-icon>
                       <v-icon>mdi-delete</v-icon>
                   </v-app-bar>
-                  <div class="d-flex flex-no-wrap justify-space-between">
-                      <div>
-                        <v-img :src="producto.imagen_url" width="100px" height="100px" contain></v-img></div>
-                        <div>
-                            <div>Precio: {{ producto.precio }}</div>
+                  <v-row align="center">
+                      <v-col cols="6">
+                          <v-img :src="producto.imagen_url" width="100px" height="100px" contain></v-img>
+                      </v-col>
+                      
+                      <v-col cols="6">
+                          <div>Precio: {{ producto.precio }}</div>
                             <div>Cantidad: {{ producto.cantidad }}</div>
-                        </div>
-                  </div>
+                            <v-btn x-small color="blue">Detalles</v-btn>
+                      </v-col>
+                  </v-row>
               </v-card>
           </v-col>
       </v-row>
@@ -37,7 +40,7 @@ export default {
         productos: []
     }),
     created(){
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < 10; index++) {
             let ejemplo = {
                 id: index,
                 nombre: 'ALERCET JARABE FRASCO X 60 ML ' + (index + 1),
