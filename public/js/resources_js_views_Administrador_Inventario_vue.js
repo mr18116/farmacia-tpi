@@ -85,11 +85,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      nuevaImagen: null,
+      nuevaImagenUrl: ''
+    };
+  },
   props: ["editar", "producto"],
   methods: {
     cerrarModal: function cerrarModal() {
       this.$emit("cerrarModal");
+      this.nuevaImagen = null, this.nuevaImagenUrl = '';
+    }
+  },
+  watch: {
+    nuevaImagen: function nuevaImagen() {
+      this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
+      console.log(this.nuevaImagenUrl);
     }
   }
 });
@@ -406,7 +438,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "600px" },
+          attrs: { persistent: "", "max-width": "vh" },
           model: {
             value: _vm.editar,
             callback: function($$v) {
@@ -432,138 +464,220 @@ var render = function() {
                       _c(
                         "v-row",
                         [
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", sm: "6", md: "4" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "ID", disabled: "" },
-                                model: {
-                                  value: _vm.producto.id,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "id", $$v)
-                                  },
-                                  expression: "producto.id"
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _vm.nuevaImagenUrl == ""
+                            ? _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "4", md: "4" } },
+                                [
+                                  _c("v-img", {
+                                    attrs: { src: _vm.producto.imagen_url }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-file-input", {
+                                    attrs: {
+                                      label: "File input",
+                                      filled: "",
+                                      "prepend-icon": "mdi-camera"
+                                    },
+                                    model: {
+                                      value: _vm.nuevaImagen,
+                                      callback: function($$v) {
+                                        _vm.nuevaImagen = $$v
+                                      },
+                                      expression: "nuevaImagen"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "4", md: "4" } },
+                                [
+                                  _c("v-img", {
+                                    attrs: { src: _vm.nuevaImagenUrl }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("v-file-input", {
+                                    attrs: {
+                                      label: "File input",
+                                      filled: "",
+                                      "prepend-icon": "mdi-camera"
+                                    },
+                                    model: {
+                                      value: _vm.nuevaImagen,
+                                      callback: function($$v) {
+                                        _vm.nuevaImagen = $$v
+                                      },
+                                      expression: "nuevaImagen"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
                           _vm._v(" "),
                           _c(
                             "v-col",
-                            { attrs: { cols: "12" } },
+                            { attrs: { cols: "12", sm: "8" } },
                             [
-                              _c("v-text-field", {
-                                attrs: { label: "Nombre" },
-                                model: {
-                                  value: _vm.producto.nombre,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "nombre", $$v)
-                                  },
-                                  expression: "producto.nombre"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12" } },
-                            [
-                              _c("v-textarea", {
-                                attrs: { label: "Descripcion" },
-                                model: {
-                                  value: _vm.producto.descripcion,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "descripcion", $$v)
-                                  },
-                                  expression: "producto.descripcion"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", md: "6" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Precio" },
-                                model: {
-                                  value: _vm.producto.precio,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "precio", $$v)
-                                  },
-                                  expression: "producto.precio"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", md: "6" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Cantidad", type: "number" },
-                                model: {
-                                  value: _vm.producto.cantidad,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "cantidad", $$v)
-                                  },
-                                  expression: "producto.cantidad"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12" } },
-                            [
-                              _c("v-text-field", {
-                                attrs: { label: "Laboratorio" },
-                                model: {
-                                  value: _vm.producto.laboratorio,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "laboratorio", $$v)
-                                  },
-                                  expression: "producto.laboratorio"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12" } },
-                            [
-                              _c("v-textarea", {
-                                attrs: { label: "Indicaciones" },
-                                model: {
-                                  value: _vm.producto.indicaciones,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.producto, "indicaciones", $$v)
-                                  },
-                                  expression: "producto.indicaciones"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            [
-                              _c("v-img", {
-                                attrs: { src: "producto.imagen_url" }
-                              })
+                              _c(
+                                "v-row",
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "2" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { label: "ID", disabled: "" },
+                                        model: {
+                                          value: _vm.producto.id,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.producto, "id", $$v)
+                                          },
+                                          expression: "producto.id"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "10" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { label: "Nombre" },
+                                        model: {
+                                          value: _vm.producto.nombre,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "nombre",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "producto.nombre"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c("v-textarea", {
+                                        attrs: { label: "Descripcion" },
+                                        model: {
+                                          value: _vm.producto.descripcion,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "descripcion",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "producto.descripcion"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { label: "Precio" },
+                                        model: {
+                                          value: _vm.producto.precio,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "precio",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "producto.precio"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12", sm: "6" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: {
+                                          label: "Cantidad",
+                                          type: "number"
+                                        },
+                                        model: {
+                                          value: _vm.producto.cantidad,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "cantidad",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "producto.cantidad"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c("v-text-field", {
+                                        attrs: { label: "Laboratorio" },
+                                        model: {
+                                          value: _vm.producto.laboratorio,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "laboratorio",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "producto.laboratorio"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "12" } },
+                                    [
+                                      _c("v-textarea", {
+                                        attrs: { label: "Indicaciones" },
+                                        model: {
+                                          value: _vm.producto.indicaciones,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "indicaciones",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "producto.indicaciones"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
                             ],
                             1
                           )
