@@ -34,6 +34,7 @@
       <div class="svg-border-waves text-white">
         <v-img src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FborderWaves.svg?alt=media&token=c2ad04db-4fcc-419e-9a42-ebac98c1360e" />
       </div>
+      <v-container fluid>
         <v-row class="text-h4 text-center">
             <v-col>Lo último</v-col>
         </v-row>
@@ -76,6 +77,7 @@
           </v-row>
         </v-col>
       </v-row>  
+      </v-container>
       <div class="svg-border-waves">
       <img src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fwave2.svg?alt=media&token=a59b4b8a-8362-45f3-b327-912eaeca7fbb" />
       </div>

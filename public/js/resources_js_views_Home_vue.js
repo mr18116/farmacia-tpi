@@ -242,6 +242,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1155,52 +1157,59 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "v-row",
-        { staticClass: "text-h4 text-center" },
-        [_c("v-col", [_vm._v("Lo último")])],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { attrs: { align: "center", justify: "center" } },
+        "v-container",
+        { attrs: { fluid: "" } },
         [
           _c(
-            "v-col",
-            { attrs: { cols: "12" } },
+            "v-row",
+            { staticClass: "text-h4 text-center" },
+            [_c("v-col", [_vm._v("Lo último")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            { attrs: { align: "center", justify: "center" } },
             [
               _c(
-                "v-row",
-                { attrs: { align: "center", justify: "space-around" } },
+                "v-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "v-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
-                    },
+                    "v-row",
+                    { attrs: { align: "center", justify: "space-around" } },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return [
-                                _c("CardsProductos", {
-                                  class: { up: hover },
-                                  attrs: {
-                                    shaped: "",
-                                    elevation: hover ? 10 : 4,
-                                    n: 4,
-                                    parametro: "mas_vendidos"
-                                  }
-                                })
-                              ]
-                            }
-                          }
-                        ])
-                      })
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
+                        },
+                        [
+                          _c("v-hover", {
+                            scopedSlots: _vm._u([
+                              {
+                                key: "default",
+                                fn: function(ref) {
+                                  var hover = ref.hover
+                                  return [
+                                    _c("CardsProductos", {
+                                      class: { up: hover },
+                                      attrs: {
+                                        shaped: "",
+                                        elevation: hover ? 10 : 4,
+                                        n: 4,
+                                        parametro: "mas_vendidos"
+                                      }
+                                    })
+                                  ]
+                                }
+                              }
+                            ])
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -1209,58 +1218,58 @@ var render = function() {
               )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { staticClass: "text-h4 text-center" },
-        [_c("v-col", [_vm._v("Lo más vendido")])],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { attrs: { align: "center", justify: "center" } },
-        [
+          ),
+          _vm._v(" "),
           _c(
-            "v-col",
-            { attrs: { cols: "12" } },
+            "v-row",
+            { staticClass: "text-h4 text-center" },
+            [_c("v-col", [_vm._v("Lo más vendido")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            { attrs: { align: "center", justify: "center" } },
             [
               _c(
-                "v-row",
-                { attrs: { align: "center", justify: "space-around" } },
+                "v-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "v-col",
-                    {
-                      staticClass: "text-center",
-                      attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
-                    },
+                    "v-row",
+                    { attrs: { align: "center", justify: "space-around" } },
                     [
-                      _c("v-hover", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var hover = ref.hover
-                              return [
-                                _c("CardsProductos", {
-                                  class: { up: hover },
-                                  attrs: {
-                                    shaped: "",
-                                    elevation: hover ? 10 : 4,
-                                    n: 4,
-                                    parametro: "nuevos"
-                                  }
-                                })
-                              ]
-                            }
-                          }
-                        ])
-                      })
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
+                        },
+                        [
+                          _c("v-hover", {
+                            scopedSlots: _vm._u([
+                              {
+                                key: "default",
+                                fn: function(ref) {
+                                  var hover = ref.hover
+                                  return [
+                                    _c("CardsProductos", {
+                                      class: { up: hover },
+                                      attrs: {
+                                        shaped: "",
+                                        elevation: hover ? 10 : 4,
+                                        n: 4,
+                                        parametro: "nuevos"
+                                      }
+                                    })
+                                  ]
+                                }
+                              }
+                            ])
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
