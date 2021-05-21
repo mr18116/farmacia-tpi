@@ -25,6 +25,11 @@ const routes = [
         component: () => import('../views/ProductoDetalle.vue')
     },
     {
+        path: '/inventario',
+        name: 'Inventario',
+        component: () => import('../views/Administrador/Inventario.vue'),
+    },
+    {
         path: '*',
         name: 'Error',
         component: () => import('../views/Error404.vue')
