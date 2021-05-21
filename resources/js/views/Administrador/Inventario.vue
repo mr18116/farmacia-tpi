@@ -17,7 +17,7 @@
                       <v-icon>mdi-pencil</v-icon>
                       <v-icon>mdi-delete</v-icon>
                   </v-app-bar>
-                  <v-row align="center">
+                  <v-row align="center" no-gutters>
                       <v-col cols="6">
                           <v-img :src="producto.imagen_url" width="100px" height="100px" contain></v-img>
                       </v-col>

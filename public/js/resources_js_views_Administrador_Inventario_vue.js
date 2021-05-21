@@ -219,7 +219,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "v-row",
-                      { attrs: { align: "center" } },
+                      { attrs: { align: "center", "no-gutters": "" } },
                       [
                         _c(
                           "v-col",
