@@ -14,7 +14,7 @@
                           <div class="text-subtitle-2"> {{ producto.nombre }} </div>
                       </v-toolbar-title>
                       <v-spacer></v-spacer>
-                      <v-icon>mdi-pencil</v-icon>
+                      <v-btn icon @click="editarProducto(producto)"><v-icon>mdi-pencil</v-icon></v-btn>
                       <v-icon>mdi-delete</v-icon>
                   </v-app-bar>
                   <v-row align="center" no-gutters>
@@ -31,13 +31,18 @@
               </v-card>
           </v-col>
       </v-row>
+      <ModalEditarProducto :editar="editar" :producto="productoEditar" v-on:cerrarModal="cerrar"/>
   </v-container>
 </template>
 
 <script>
+import ModalEditarProducto from '../../components/Administrador/ModalEditarProducto'
+
 export default {
     data: () =>  ({
-        productos: []
+        productos: [],
+        editar: false,
+        productoEditar: {},
     }),
     created(){
         for (let index = 0; index < 10; index++) {
@@ -49,6 +54,18 @@ export default {
                 cantidad: 10,
             };
             this.productos.push(ejemplo);
+        }
+    }, 
+    components:{
+        ModalEditarProducto
+    },
+    methods:{
+        editarProducto(producto){
+            this.editar = true
+            this.productoEditar = producto;
+        },
+        cerrar(){
+            this.editar = false;
         }
     }
 }
