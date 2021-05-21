@@ -1163,7 +1163,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { cols: "10" } },
+            { attrs: { cols: "12" } },
             [
               _c(
                 "v-row",
@@ -1173,7 +1173,7 @@ var render = function() {
                     "v-col",
                     {
                       staticClass: "text-center",
-                      attrs: { cols: "12", sm: "9" }
+                      attrs: { cols: "12", sm: "12" }
                     },
                     [
                       _c("v-hover", {
@@ -1223,7 +1223,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { cols: "10" } },
+            { attrs: { cols: "12" } },
             [
               _c(
                 "v-row",
@@ -1233,7 +1233,7 @@ var render = function() {
                     "v-col",
                     {
                       staticClass: "text-center",
-                      attrs: { cols: "12", sm: "9" }
+                      attrs: { cols: "12", sm: "12" }
                     },
                     [
                       _c("v-hover", {

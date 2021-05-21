@@ -38,11 +38,11 @@
             <v-col>Lo último</v-col>
         </v-row>
       <v-row align="center" justify="center">
-        <v-col cols="10">
+        <v-col cols="12">
           <v-row align="center" justify="space-around">
             <v-col
               cols="12"
-              sm="9"
+              sm="12"
               class="text-center"
             > 
               <v-hover v-slot:default="{ hover }">
@@ -57,11 +57,11 @@
             <v-col>Lo más vendido</v-col>
         </v-row>      
       <v-row align="center" justify="center">
-        <v-col cols="10">
+        <v-col cols="12">
           <v-row align="center" justify="space-around">
             <v-col
               cols="12"
-              sm="9"
+              sm="12"
               class="text-center"
             >
               <v-hover v-slot:default="{ hover }">
