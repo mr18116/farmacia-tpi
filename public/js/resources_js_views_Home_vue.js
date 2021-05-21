@@ -50,6 +50,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     producto: Object
@@ -201,7 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.centered-input[data-v-8d3d670a] input {\n  text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.centered-input[data-v-8d3d670a] input {\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -462,9 +481,16 @@ var render = function() {
   return _c(
     "v-card",
     [
-      _c("v-img", {
-        attrs: { height: "200", contain: "", src: _vm.producto.imagen_url }
-      }),
+      _c(
+        "router-link",
+        { attrs: { to: "/detalle/" + _vm.producto.id } },
+        [
+          _c("v-img", {
+            attrs: { height: "200", contain: "", src: _vm.producto.imagen_url }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("v-card-title", [
         _vm._v("\n        " + _vm._s(_vm.producto.nombre) + "\n    ")

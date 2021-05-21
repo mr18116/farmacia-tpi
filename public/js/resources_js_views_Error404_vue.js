@@ -133,7 +133,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "fullscreen bg-blue text-white text-center q-pa-md flex flex-center"
+        "fullscreen bg-blue text-black text-center q-pa-md flex flex-center"
     },
     [
       _c(
@@ -152,7 +152,7 @@ var render = function() {
           _c("q-btn", {
             staticClass: "q-mt-xl",
             attrs: {
-              color: "white",
+              color: "black",
               "text-color": "blue",
               unelevated: "",
               to: "/",
