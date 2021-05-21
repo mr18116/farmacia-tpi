@@ -524,7 +524,7 @@ var render = function() {
                         "min-width": "30px",
                         "min-height": "39px"
                       },
-                      attrs: { outlined: "" },
+                      attrs: { outlined: "", color: "primary darken-2" },
                       on: { click: _vm.disminuir }
                     },
                     [_c("v-icon", [_vm._v("mdi-minus")])],
@@ -536,7 +536,6 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-col",
-                { attrs: { lg: "2" } },
                 [
                   _c("v-text-field", {
                     staticClass: "centered-input",
@@ -580,27 +579,23 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("v-spacer", { staticClass: "d-none d-lg-block" }),
+              _c("v-spacer"),
               _vm._v(" "),
               _c(
                 "v-col",
-                { staticClass: "mt-1 mt-lg-0", attrs: { cols: "12", lg: "6" } },
+                { staticClass: "mt-1 mt-lg-0", attrs: { cols: "auto" } },
                 [
                   _c(
                     "v-btn",
                     {
                       attrs: {
+                        icon: "",
                         outlined: "",
                         color: "primary darken-2",
                         block: ""
                       }
                     },
-                    [
-                      _c("v-icon", { attrs: { left: "" } }, [
-                        _vm._v("mdi-cart-plus")
-                      ]),
-                      _vm._v("\n                    Agregar\n                ")
-                    ],
+                    [_c("v-icon", [_vm._v("mdi-cart-plus")])],
                     1
                   )
                 ],
