@@ -74,6 +74,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -210,194 +217,211 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-container",
+    { staticClass: "fill-height", attrs: { fluid: "" } },
     [
       _c(
-        "v-container",
-        { staticClass: "fill-height", attrs: { fluid: "" } },
+        "v-app-bar",
+        {
+          staticClass: "px-5",
+          class: { expand: _vm.flat },
+          attrs: { app: "", color: _vm.color, flat: _vm.flat, dark: "" }
+        },
         [
           _c(
-            "v-row",
-            { attrs: { align: "center", justify: "center" } },
+            "a",
+            { attrs: { href: "/" } },
+            [
+              _c("v-img", {
+                staticClass: "mb-n1 mx-auto",
+                attrs: {
+                  src:
+                    "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05",
+                  "max-width": "200px"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _vm.isXs
+            ? _c("v-app-bar-nav-icon", {
+                staticClass: "mr-4",
+                on: {
+                  click: function($event) {
+                    $event.stopPropagation()
+                    _vm.drawer = !_vm.drawer
+                  }
+                }
+              })
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { attrs: { align: "center", justify: "center" } },
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "12", sm: "10", md: "8", lg: "6" } },
             [
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "10", md: "8", lg: "6" } },
+                "v-card",
+                { staticClass: "elevation-12" },
                 [
                   _c(
-                    "v-card",
-                    { staticClass: "elevation-12" },
+                    "v-window",
                     [
                       _c(
-                        "v-window",
-                        {
-                          model: {
-                            value: _vm.step,
-                            callback: function($$v) {
-                              _vm.step = $$v
-                            },
-                            expression: "step"
-                          }
-                        },
+                        "v-window-item",
+                        { attrs: { value: 1 } },
                         [
                           _c(
-                            "v-window-item",
-                            { attrs: { value: 1 } },
+                            "v-row",
                             [
                               _c(
-                                "v-row",
+                                "v-col",
+                                { attrs: { cols: "12", md: "8" } },
                                 [
                                   _c(
-                                    "v-col",
-                                    { attrs: { cols: "12", md: "8" } },
+                                    "v-card-text",
+                                    { staticClass: "mt-12" },
                                     [
                                       _c(
-                                        "v-card-text",
-                                        { staticClass: "mt-12" },
+                                        "h1",
+                                        {
+                                          staticClass:
+                                            "text-center display-2 light-blue--text text--darken-3"
+                                        },
+                                        [_vm._v("Iniciar Sesión")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h4",
+                                        { staticClass: "text-center mt-4" },
+                                        [_vm._v("Ingrese sus credenciales")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-form",
                                         [
-                                          _c(
-                                            "h1",
-                                            {
-                                              staticClass:
-                                                "text-center display-2 teal--text text--accent-3"
+                                          _c("v-text-field", {
+                                            attrs: { label: "email" },
+                                            model: {
+                                              value: _vm.user.email,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.user, "email", $$v)
+                                              },
+                                              expression: "user.email"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-text-field", {
+                                            attrs: {
+                                              label: "contraseña",
+                                              type: "password"
                                             },
-                                            [_vm._v("Iniciar Sesión")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "h4",
-                                            { staticClass: "text-center mt-4" },
-                                            [_vm._v("Ingrese sus credenciales")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-form",
-                                            [
-                                              _c("v-text-field", {
-                                                attrs: { label: "email" },
-                                                model: {
-                                                  value: _vm.user.email,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.user,
-                                                      "email",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression: "user.email"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("v-text-field", {
-                                                attrs: {
-                                                  label: "contraseña",
-                                                  type: "password"
-                                                },
-                                                model: {
-                                                  value: _vm.user.password,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.user,
-                                                      "password",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression: "user.password"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "h6",
-                                            { staticClass: "text-center mt-3" },
-                                            [_vm._v("Olvidé mi contraseña")]
-                                          )
+                                            model: {
+                                              value: _vm.user.password,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.user,
+                                                  "password",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "user.password"
+                                            }
+                                          })
                                         ],
                                         1
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "div",
-                                        { staticClass: "text-center py-4" },
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              staticClass: "py-1",
-                                              attrs: {
-                                                rounded: "",
-                                                color: "teal accent-3",
-                                                dark: ""
-                                              },
-                                              on: { click: _vm.login }
-                                            },
-                                            [_vm._v("INICIAR SESIÓN")]
-                                          )
-                                        ],
-                                        1
+                                        "h6",
+                                        { staticClass: "text-center mt-3" },
+                                        [_vm._v("Olvidé mi contraseña")]
                                       )
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "v-col",
-                                    {
-                                      staticClass: "teal accent-3",
-                                      attrs: { cols: "12", md: "4" }
-                                    },
+                                    "div",
+                                    { staticClass: "text-center py-4" },
                                     [
                                       _c(
-                                        "v-card-text",
-                                        { staticClass: "white--text mt-12" },
-                                        [
-                                          _c(
-                                            "h1",
-                                            {
-                                              staticClass:
-                                                "text-center display-1"
-                                            },
-                                            [_vm._v("¿Nuevo?")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "h5",
-                                            { staticClass: "text-center" },
-                                            [
-                                              _vm._v(
-                                                "Registrate y disfruta de nuestras ofertas"
-                                              )
-                                            ]
-                                          )
-                                        ]
+                                        "v-btn",
+                                        {
+                                          staticClass: "py-1",
+                                          attrs: {
+                                            rounded: "",
+                                            color: "light-blue darken-2",
+                                            dark: ""
+                                          },
+                                          on: { click: _vm.login }
+                                        },
+                                        [_vm._v("INICIAR SESIÓN")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  staticClass: "light-blue darken-1",
+                                  attrs: { cols: "12", md: "4" }
+                                },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "white--text mt-12" },
+                                    [
+                                      _c(
+                                        "h1",
+                                        {
+                                          staticClass: "text-center display-1"
+                                        },
+                                        [_vm._v("¿Nuevo?")]
                                       ),
                                       _vm._v(" "),
+                                      _c("h5", { staticClass: "text-center" }, [
+                                        _vm._v(
+                                          "Registrate y disfruta de nuestras ofertas"
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "text-center py-4" },
+                                    [
                                       _c(
-                                        "div",
-                                        { staticClass: "text-center py-4" },
-                                        [
-                                          _c(
-                                            "v-btn",
-                                            {
-                                              attrs: {
-                                                small: "",
-                                                to: "/register",
-                                                rounded: "",
-                                                outlined: "",
-                                                dark: ""
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.step++
-                                                }
-                                              }
-                                            },
-                                            [_vm._v("REGISTRARME")]
-                                          )
-                                        ],
-                                        1
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            small: "",
+                                            to: "/register",
+                                            rounded: "",
+                                            outlined: "",
+                                            dark: ""
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.step++
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("REGISTRARME")]
                                       )
                                     ],
                                     1
@@ -411,30 +435,6 @@ var render = function() {
                         ],
                         1
                       )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            { attrs: { justify: "center" } },
-            [
-              _c(
-                "v-col",
-                { attrs: { cols: "auto" } },
-                [
-                  _c(
-                    "v-btn",
-                    { attrs: { rounded: "", color: "teal accent-3", to: "/" } },
-                    [
-                      _c("v-icon", [_vm._v("mdi-home")]),
-                      _c("span", [_vm._v("INICIO")])
                     ],
                     1
                   )
