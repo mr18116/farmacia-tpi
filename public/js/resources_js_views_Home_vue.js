@@ -275,7 +275,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.centered-input[data-v-8d3d670a] input {\r\n    text-align: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.centered-input[data-v-8d3d670a] input {\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -299,7 +299,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#download[data-v-cf2929b2] {\r\n  background-image: url(\"https://image.freepik.com/vector-gratis/fondo-medico-azul-elegante-hexagono_1017-19373.jpg\");\r\n  background-attachment: fixed;\r\n  background-repeat: no-repeat;\r\n  background-size: cover;\r\n  background-position: center;\r\n  height: 500px;\n}\n#download .container[data-v-cf2929b2],\r\n#download .row[data-v-cf2929b2] {\r\n  height: 100%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#download[data-v-cf2929b2] {\n  background-image: url(\"https://image.freepik.com/vector-gratis/fondo-medico-azul-elegante-hexagono_1017-19373.jpg\");\n  background-attachment: fixed;\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  height: 500px;\n}\n#download .container[data-v-cf2929b2],\n#download .row[data-v-cf2929b2] {\n  height: 100%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -323,7 +323,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.svg-border-waves .v-image {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 3rem;\r\n  width: 100%;\r\n  overflow: hidden;\n}\n.svg-border-waves img {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  margin-bottom: -2px;\r\n  z-index: -1;\n}\n.zoom-efect {\r\n  transform: scale(1.1);\n}\n.up {\r\n  transform: translateY(-20px);\r\n  transition: 0.5s ease-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.svg-border-waves .v-image {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  height: 3rem;\n  width: 100%;\n  overflow: hidden;\n}\n.svg-border-waves img {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  margin-bottom: -2px;\n  z-index: -1;\n}\n.zoom-efect {\n  transform: scale(1.1);\n}\n.up {\n  transform: translateY(-20px);\n  transition: 0.5s ease-out;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -347,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection {\r\n  position: relative;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection {\n  position: relative;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1069,15 +1069,15 @@ var render = function() {
                           _vm._v(" "),
                           _c("h1", { staticClass: "font-weight-light" }, [
                             _vm._v(
-                              "\r\n                Lorem ipsum dolor sit amet consectetur "
+                              "\n                Lorem ipsum dolor sit amet consectetur "
                             ),
                             _c("br"),
                             _vm._v(
-                              "\r\n                adipisicing elit. Maiores porro voluptatibus "
+                              "\n                adipisicing elit. Maiores porro voluptatibus "
                             ),
                             _c("br"),
                             _vm._v(
-                              "\r\n                delectus nam optio harum!\r\n              "
+                              "\n                delectus nam optio harum!\n              "
                             )
                           ]),
                           _vm._v(" "),
@@ -1099,7 +1099,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                Saber más\r\n                "
+                                "\n                Saber más\n                "
                               ),
                               _c("v-icon", { staticClass: "ml-2" }, [
                                 _vm._v("mdi-arrow-down")

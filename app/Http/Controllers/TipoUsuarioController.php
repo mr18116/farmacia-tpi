@@ -30,10 +30,15 @@ class TipoUsuarioController extends Controller
         $tipoUsuario->user_id = $request->user_id;
         $result = $tipoUsuario->save();
         if($result){
-            return response($tipoUsuario, 200);
+            return response($tipoUsuario, 201);
         } else {
             return response('fallo', 400);
         }
+    }
+
+    public function rol(int $user_id){
+        $tipoUsuario = tipoUsuario::where('user_id', '=', $user_id)->first();
+        return $tipoUsuario;
     }
 
     /**

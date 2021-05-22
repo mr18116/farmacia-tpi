@@ -67,8 +67,8 @@ export default {
                 axios.post('/login', this.user).then(async response => {
                     await this.$store.dispatch('getUser');
                     this.$router.replace('/');
-                })
-            })
+                });
+            });
         }
     },
 }

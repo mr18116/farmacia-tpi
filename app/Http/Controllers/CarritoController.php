@@ -25,7 +25,23 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carrito =  new Carrito();
+        $carrito->user_id = $request->user_id;
+        $result = $carrito->save();
+        if($result){
+            return response($carrito, 201);
+        } else {
+            return response('fallo', 400);
+        }
+    }
+
+    public function carritoByUser(int $user_id){
+        $carrito = Carrito::where('user_id', '=', $user_id)->first();
+        $relations = $carrito->carritoHasProductos;
+        foreach ($relations as $value) {
+            $value->producto;
+        }
+        return $carrito;
     }
 
     /**

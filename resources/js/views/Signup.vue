@@ -67,11 +67,16 @@ export default {
         signup(){
             axios.get("/sanctum/csrf-cookie").then(response => {
                 axios.post('/register', this.user).then(async response => {
-                    await this.$store.dispatch('getUser');
-                    await axios.post('/api/tipo_usuario', {
-                        rol: 'cliente',
-                        user_id: this.$store.state.user.id
+                    await axios.get('/api/user').then( async res => {
+                        await axios.post('/api/tipo_usuario', {
+                            rol: 'cliente',
+                            user_id: res.data.id
+                        });
+                        await axios.post('api/carrito', {
+                            user_id: res.data.id
+                        });
                     });
+                    await this.$store.dispatch('getUser');
                     this.$router.replace('/');
                 });
             });
