@@ -16,7 +16,7 @@
                     v-if="isXs"
                 />
                 </v-app-bar>
-            <v-row align="center" justify="center">
+            <v-row class="mg" align="center" justify="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
                     <v-card class="elevation-12">
                         <v-window>
@@ -83,5 +83,7 @@ export default {
 </script>
 
 <style>
-
+.mg{
+    padding: 80px 0 20px 0;
+}
 </style>
