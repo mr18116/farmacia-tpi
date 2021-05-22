@@ -2,19 +2,10 @@
         <v-container class="fill-height" fluid >
                 <v-app-bar
                     app
-                    :color="color"
-                    :flat="flat"
                     dark
                     class="px-5"
-                    :class="{ expand: flat }"
                     >
                 <a href="/"><v-img class="mb-n1 mx-auto" src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05" max-width="200px" /></a>
-                <v-spacer /> 
-                <v-app-bar-nav-icon
-                    @click.stop="drawer = !drawer"
-                    class="mr-4"
-                    v-if="isXs"
-                />
                 </v-app-bar>
             <v-row class="mg" align="center" justify="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
@@ -46,7 +37,7 @@
                                         >Registrate y disfruta de nuestras ofertas</h5>
                                     </v-card-text>
                                     <div class="text-center py-4">
-                                        <v-btn small to="/register" rounded outlined dark @click="step++">REGISTRARME</v-btn>
+                                        <v-btn small to="/register" rounded outlined dark>REGISTRARME</v-btn>
                                     </div>
                                     </v-col>
                                 </v-row>
@@ -64,6 +55,7 @@ axios.defaults.withCredentials = true;
 
 export default {
     data: () => ({
+        drawer: null,
         user: {
             email: '',
             password: '',

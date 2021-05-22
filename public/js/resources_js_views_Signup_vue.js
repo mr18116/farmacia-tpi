@@ -72,15 +72,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -272,46 +263,23 @@ var render = function() {
     "v-container",
     { staticClass: "fill-height", attrs: { fluid: "" } },
     [
-      _c(
-        "v-app-bar",
-        {
-          staticClass: "px-5",
-          class: { expand: _vm.flat },
-          attrs: { app: "", color: _vm.color, flat: _vm.flat, dark: "" }
-        },
-        [
-          _c(
-            "a",
-            { attrs: { href: "/" } },
-            [
-              _c("v-img", {
-                staticClass: "mb-n1 mx-auto",
-                attrs: {
-                  src:
-                    "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05",
-                  "max-width": "200px"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
-          _vm.isXs
-            ? _c("v-app-bar-nav-icon", {
-                staticClass: "mr-4",
-                on: {
-                  click: function($event) {
-                    $event.stopPropagation()
-                    _vm.drawer = !_vm.drawer
-                  }
-                }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
+      _c("v-app-bar", { staticClass: "px-5", attrs: { app: "", dark: "" } }, [
+        _c(
+          "a",
+          { attrs: { href: "/" } },
+          [
+            _c("v-img", {
+              staticClass: "mb-n1 mx-auto",
+              attrs: {
+                src:
+                  "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05",
+                "max-width": "200px"
+              }
+            })
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
         "v-row",
@@ -374,11 +342,6 @@ var render = function() {
                                             rounded: "",
                                             outlined: "",
                                             dark: ""
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.step--
-                                            }
                                           }
                                         },
                                         [_vm._v("INICIAR SESIÓN")]
