@@ -38,24 +38,28 @@
                                     <v-col cols="12" sm="10">
                                         <v-text-field
                                             label="Nombre"
+                                            :disabled="opciones.disabled"
                                             v-model="producto.nombre"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
                                         <v-textarea
                                             label="Descripcion"
+                                            :disabled="opciones.disabled"
                                             v-model="producto.descripcion"
                                         ></v-textarea>
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         <v-text-field
                                             label="Precio"
+                                            :disabled="opciones.disabled"
                                             v-model="producto.precio"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         <v-text-field
                                             label="Cantidad"
+                                            :disabled="opciones.disabled"
                                             v-model="producto.cantidad"
                                             type="number"
                                         ></v-text-field>
@@ -63,12 +67,14 @@
                                     <v-col cols="12">
                                         <v-text-field
                                             label="Laboratorio"
+                                            :disabled="opciones.disabled"
                                             v-model="producto.laboratorio"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
                                         <v-textarea
                                             label="Indicaciones"
+                                            :disabled="opciones.disabled"
                                             v-model="producto.indicaciones"
                                         ></v-textarea>
                                     </v-col>
@@ -82,8 +88,11 @@
                     <v-btn color="blue darken-1" text @click="cerrarModal">
                         Cerrar
                     </v-btn>
-                    <v-btn color="blue darken-1" text>
-                        Guardar
+                    <v-btn v-if="opciones.btn_editar" color="blue darken-1" text @click="editarProducto">
+                        {{ opciones.btn_texto }}
+                    </v-btn>
+                    <v-btn v-if="opciones.btn_guardar" color="blue darken-1" text @click="guardarProducto">
+                        {{ opciones.btn_texto }}
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -97,12 +106,21 @@ export default {
         nuevaImagen: null,
         nuevaImagenUrl: '',
     }),
-    props: ["editar", "producto"],
-    methods: {
-        cerrarModal() {
+    props: ["editar", "producto", "opciones"],
+    methods: {        
+        cerrarModal: function() {
             this.$emit("cerrarModal");
-            this.nuevaImagen = null,
-            this.nuevaImagenUrl = ''
+            this.nuevaImagen = null;
+            this.nuevaImagenUrl = '';
+        },
+        guardarProducto(){
+            this.$emit('guardarProducto');
+
+        },
+        editarProducto(){
+            this.$emit('editarProducto', this.producto);
+            this.nuevaImagen = null;
+            this.nuevaImagenUrl = '';
         }
     },
     watch:{

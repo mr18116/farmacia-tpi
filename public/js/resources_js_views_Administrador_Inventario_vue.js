@@ -104,6 +104,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -111,11 +120,20 @@ __webpack_require__.r(__webpack_exports__);
       nuevaImagenUrl: ''
     };
   },
-  props: ["editar", "producto"],
+  props: ["editar", "producto", "opciones"],
   methods: {
     cerrarModal: function cerrarModal() {
       this.$emit("cerrarModal");
-      this.nuevaImagen = null, this.nuevaImagenUrl = '';
+      this.nuevaImagen = null;
+      this.nuevaImagenUrl = '';
+    },
+    guardarProducto: function guardarProducto() {
+      this.$emit('guardarProducto');
+    },
+    editarProducto: function editarProducto() {
+      this.$emit('editarProducto', this.producto);
+      this.nuevaImagen = null;
+      this.nuevaImagenUrl = '';
     }
   },
   watch: {
@@ -140,6 +158,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_Administrador_ModalEditarProducto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Administrador/ModalEditarProducto */ "./resources/js/components/Administrador/ModalEditarProducto.vue");
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
 //
 //
 //
@@ -221,7 +247,8 @@ __webpack_require__.r(__webpack_exports__);
       productos: [],
       editar: false,
       productoEditar: {},
-      page: 1
+      page: 1,
+      opciones: {}
     };
   },
   created: function created() {
@@ -248,26 +275,54 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ModalEditarProducto: _components_Administrador_ModalEditarProducto__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  methods: {
-    editarProducto: function editarProducto(producto) {
+  methods: (_methods = {
+    nuevoProductoModal: function nuevoProductoModal() {
       this.editar = true;
+      this.opciones = {
+        disabled: false,
+        btn_guardar: true,
+        btn_texto: 'Guardar'
+      };
+    },
+    editarProductoModal: function editarProductoModal(producto) {
+      this.editar = true;
+      this.opciones = {
+        disabled: false,
+        btn_guardar: true,
+        btn_texto: 'Guardar'
+      };
       this.productoEditar = producto;
+    },
+    detalleProductoModal: function detalleProductoModal(producto) {
+      this.editar = true;
+      this.opciones = {
+        disabled: true,
+        btn_editar: true,
+        btn_texto: 'Editar'
+      };
+      this.productoEditar = producto;
+    },
+    guardarProducto: function guardarProducto() {
+      console.log('guardar');
     },
     cerrar: function cerrar() {
       this.editar = false;
-    },
-    colorCard: function colorCard(cantidad) {
-      var color = "teal lighten-3";
-
-      if (cantidad == 0) {
-        color = "red lighten-1";
-      } else if (cantidad > 0 && cantidad <= 10) {
-        color = "orange lighten-1";
-      }
-
-      return color;
+      this.productoEditar = {};
+      this.opciones = {};
     }
-  }
+  }, _defineProperty(_methods, "guardarProducto", function guardarProducto() {
+    console.log("guardar");
+  }), _defineProperty(_methods, "colorCard", function colorCard(cantidad) {
+    var color = "teal lighten-3";
+
+    if (cantidad == 0) {
+      color = "red lighten-1";
+    } else if (cantidad > 0 && cantidad <= 10) {
+      color = "orange lighten-1";
+    }
+
+    return color;
+  }), _methods)
 });
 
 /***/ }),
@@ -546,7 +601,10 @@ var render = function() {
                                     { attrs: { cols: "12", sm: "10" } },
                                     [
                                       _c("v-text-field", {
-                                        attrs: { label: "Nombre" },
+                                        attrs: {
+                                          label: "Nombre",
+                                          disabled: _vm.opciones.disabled
+                                        },
                                         model: {
                                           value: _vm.producto.nombre,
                                           callback: function($$v) {
@@ -568,7 +626,10 @@ var render = function() {
                                     { attrs: { cols: "12" } },
                                     [
                                       _c("v-textarea", {
-                                        attrs: { label: "Descripcion" },
+                                        attrs: {
+                                          label: "Descripcion",
+                                          disabled: _vm.opciones.disabled
+                                        },
                                         model: {
                                           value: _vm.producto.descripcion,
                                           callback: function($$v) {
@@ -590,7 +651,10 @@ var render = function() {
                                     { attrs: { cols: "12", sm: "6" } },
                                     [
                                       _c("v-text-field", {
-                                        attrs: { label: "Precio" },
+                                        attrs: {
+                                          label: "Precio",
+                                          disabled: _vm.opciones.disabled
+                                        },
                                         model: {
                                           value: _vm.producto.precio,
                                           callback: function($$v) {
@@ -614,6 +678,7 @@ var render = function() {
                                       _c("v-text-field", {
                                         attrs: {
                                           label: "Cantidad",
+                                          disabled: _vm.opciones.disabled,
                                           type: "number"
                                         },
                                         model: {
@@ -637,7 +702,10 @@ var render = function() {
                                     { attrs: { cols: "12" } },
                                     [
                                       _c("v-text-field", {
-                                        attrs: { label: "Laboratorio" },
+                                        attrs: {
+                                          label: "Laboratorio",
+                                          disabled: _vm.opciones.disabled
+                                        },
                                         model: {
                                           value: _vm.producto.laboratorio,
                                           callback: function($$v) {
@@ -659,7 +727,10 @@ var render = function() {
                                     { attrs: { cols: "12" } },
                                     [
                                       _c("v-textarea", {
-                                        attrs: { label: "Indicaciones" },
+                                        attrs: {
+                                          label: "Indicaciones",
+                                          disabled: _vm.opciones.disabled
+                                        },
                                         model: {
                                           value: _vm.producto.indicaciones,
                                           callback: function($$v) {
@@ -705,9 +776,39 @@ var render = function() {
                     [_vm._v("\n                    Cerrar\n                ")]
                   ),
                   _vm._v(" "),
-                  _c("v-btn", { attrs: { color: "blue darken-1", text: "" } }, [
-                    _vm._v("\n                    Guardar\n                ")
-                  ])
+                  _vm.opciones.btn_editar
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", text: "" },
+                          on: { click: _vm.editarProducto }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.opciones.btn_texto) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.opciones.btn_guardar
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "blue darken-1", text: "" },
+                          on: { click: _vm.guardarProducto }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.opciones.btn_texto) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -762,7 +863,10 @@ var render = function() {
             [
               _c(
                 "v-btn",
-                { attrs: { block: "", color: "green" } },
+                {
+                  attrs: { block: "", color: "green" },
+                  on: { click: _vm.nuevoProductoModal }
+                },
                 [
                   _c("v-icon", { attrs: { left: "" } }, [_vm._v("mdi-plus")]),
                   _vm._v("Nuevo Producto")
@@ -835,7 +939,7 @@ var render = function() {
                             attrs: { icon: "" },
                             on: {
                               click: function($event) {
-                                return _vm.editarProducto(producto)
+                                return _vm.editarProductoModal(producto)
                               }
                             }
                           },
@@ -882,7 +986,14 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "v-btn",
-                              { attrs: { "x-small": "", color: "blue" } },
+                              {
+                                attrs: { "x-small": "", color: "blue" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.detalleProductoModal(producto)
+                                  }
+                                }
+                              },
                               [_vm._v("Detalles")]
                             )
                           ],
@@ -921,8 +1032,16 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("ModalEditarProducto", {
-        attrs: { editar: _vm.editar, producto: _vm.productoEditar },
-        on: { cerrarModal: _vm.cerrar }
+        attrs: {
+          editar: _vm.editar,
+          producto: _vm.productoEditar,
+          opciones: _vm.opciones
+        },
+        on: {
+          editarProducto: _vm.editarProductoModal,
+          guardarProducto: _vm.guardarProducto,
+          cerrarModal: _vm.cerrar
+        }
       })
     ],
     1

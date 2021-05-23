@@ -6,6 +6,7 @@
             </v-col>
             <v-col cols="12" sm="4">
                 <v-btn block color="green"
+                        @click="nuevoProductoModal"
                     ><v-icon left>mdi-plus</v-icon>Nuevo Producto</v-btn
                 >
             </v-col>
@@ -37,7 +38,7 @@
                             </div>
                         </v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <v-btn icon @click="editarProducto(producto)"
+                        <v-btn icon @click="editarProductoModal(producto)"
                             ><v-icon>mdi-pencil</v-icon></v-btn
                         >
                         <v-icon>mdi-delete</v-icon>
@@ -55,7 +56,7 @@
                         <v-col cols="6">
                             <div>Precio: {{ producto.precio }}</div>
                             <div>Cantidad: {{ producto.cantidad }}</div>
-                            <v-btn x-small color="blue">Detalles</v-btn>
+                            <v-btn x-small color="blue" @click="detalleProductoModal(producto)">Detalles</v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -67,7 +68,10 @@
         <ModalEditarProducto
             :editar="editar"
             :producto="productoEditar"
-            v-on:cerrarModal="cerrar"
+            :opciones="opciones"
+            @editarProducto="editarProductoModal"
+            @guardarProducto="guardarProducto"
+            @cerrarModal="cerrar"
         />
     </v-container>
 </template>
@@ -80,7 +84,8 @@ export default {
         productos: [],
         editar: false,
         productoEditar: {},
-        page: 1
+        page: 1,
+        opciones: {}
     }),
     created() {
         let ejemplo0 = {
@@ -108,12 +113,42 @@ export default {
         ModalEditarProducto
     },
     methods: {
-        editarProducto(producto) {
+        nuevoProductoModal(){
             this.editar = true;
+            this.opciones = {
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: 'Guardar',
+            }
+        },
+        editarProductoModal(producto) {
+            this.editar = true;
+            this.opciones = {
+                disabled: false,                
+                btn_guardar: true,
+                btn_texto: 'Guardar',
+            }
             this.productoEditar = producto;
         },
-        cerrar() {
+        detalleProductoModal(producto){
+            this.editar = true;
+            this.opciones = {
+                disabled: true,
+                btn_editar: true,
+                btn_texto: 'Editar',
+            }
+            this.productoEditar = producto;
+        },
+        guardarProducto(){
+            console.log('guardar')
+        },
+        cerrar: function() {
             this.editar = false;
+            this.productoEditar ={};
+            this.opciones = {};
+        },
+        guardarProducto(){
+            console.log("guardar")
         },
         colorCard(cantidad) {
             let color = "teal lighten-3";
