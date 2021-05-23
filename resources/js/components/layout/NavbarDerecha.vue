@@ -20,8 +20,18 @@
         <v-row class="d-flex justify-center my-md-3" v-if="$store.state.user != null">
             <v-btn  elevation="0" small @click="logout" v-if="$store.state.user != null">Cerrar sesión</v-btn>
         </v-row>
+        <v-divider v-if="$store.state.rol == 'administrador'"></v-divider>
+        <v-list v-if="$store.state.rol == 'administrador'">
+            <v-subheader>Administracion</v-subheader>
+            <v-list-item to="/inventario" link>
+                <v-list-item-content>
+                    <v-list-item-title>Inventario</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
         <v-divider></v-divider>
         <v-list>
+            <v-subheader>Medicamentos</v-subheader>
             <v-list-group
                 v-for="item in items"
                 :key="item.title"
@@ -125,6 +135,9 @@ export default {
             axios.get("/sanctum/csrf-cookie").then((response) => {
                 axios.post("/logout").then(async response => {
                     await this.$store.dispatch('getUser');
+                    if (this.$route.path == '/inventario') {
+                        this.$router.replace('/');
+                    }
                 });
             });
         }

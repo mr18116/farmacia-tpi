@@ -14,7 +14,7 @@ class TipoProductoController extends Controller
      */
     public function index()
     {
-        //
+        return TipoProducto::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class TipoProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipoProducto = new TipoProducto();
+        $tipoProducto->nombre = $request->nombre;
+        $result = $tipoProducto->save();
+        if($result){
+            return response($tipoProducto, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**

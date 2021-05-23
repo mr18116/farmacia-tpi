@@ -49,7 +49,9 @@ router.beforeEach((to, from, next) => {
         } else {
             next();
         }
-    } else {
+    } else if (to.name == 'Inventario' && localStorage.getItem('rol') != 'administrador') {
+        next({ path: from.path });
+    }else {
         next();
     }
 });

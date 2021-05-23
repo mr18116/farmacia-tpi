@@ -47,13 +47,13 @@
                         <v-col cols="6">
                             <v-img
                                 :src="producto.imagen_url"
-                                width="100px"
                                 height="100px"
                                 contain
+
                             ></v-img>
                         </v-col>
 
-                        <v-col cols="6">
+                        <v-col cols="6" class="text-center">
                             <div>Precio: {{ producto.precio }}</div>
                             <div>Cantidad: {{ producto.cantidad }}</div>
                             <v-btn x-small color="blue" @click="detalleProductoModal(producto)">Detalles</v-btn>
@@ -63,6 +63,14 @@
             </v-col>
             <v-col cols="12">
                 <v-pagination v-model="page" :length="10"> </v-pagination>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12" md="6">
+                <DataCategorias />
+            </v-col>
+            <v-col cols="12" md="6">
+                <DataTipoProductos />
             </v-col>
         </v-row>
         <ModalEditarProducto
@@ -78,6 +86,8 @@
 
 <script>
 import ModalEditarProducto from "../../components/Administrador/ModalEditarProducto";
+import DataCategorias from '../../components/Administrador/DataCategorias';
+import DataTipoProductos from '../../components/Administrador/DataTipoProductos';
 
 export default {
     data: () => ({
@@ -110,7 +120,9 @@ export default {
         }
     },
     components: {
-        ModalEditarProducto
+        ModalEditarProducto,
+        DataCategorias,
+        DataTipoProductos,
     },
     methods: {
         nuevoProductoModal(){

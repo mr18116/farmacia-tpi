@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\TipoUsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +30,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'tipo_usuario' => TipoUsuarioController::class,
     'carrito' => CarritoController::class,
+    'producto' => ProductoController::class,
+    'categoria' => CategoriaController::class,
+    'tipo_producto' => TipoProductoController::class,
 ]);
 
 Route::get('carrito-user/{user_id}', [CarritoController::class, 'carritoByUser']);

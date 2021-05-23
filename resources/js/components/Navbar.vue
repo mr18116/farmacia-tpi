@@ -199,6 +199,9 @@ export default {
             axios.get("/sanctum/csrf-cookie").then(response => {
                 axios.post("/logout").then(async response => {
                     await this.$store.dispatch("getUser");
+                    if (this.$route.path == '/inventario') {
+                        this.$router.replace('/');
+                    }
                 });
             });
         },

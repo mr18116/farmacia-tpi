@@ -14,7 +14,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        return Categoria::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Categoria();
+        $categoria->nombre = $request->nombre;
+        $result = $categoria->save();
+        if($result){
+            return response($categoria, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**

@@ -14,7 +14,19 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+        $productos->load(['categorias', 'tipo_productos']);
+        return $productos;
+    }
+
+    public function ultimos(int $n)
+    {
+        $productos = Producto::all()->orderBy('created_at', 'desc')->limit($n)->get();
+        return $productos;
+    }
+
+    public function productosByCategoria(int $n){
+        
     }
 
     /**
@@ -25,7 +37,22 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->imagen_url = $request->imagen_url;
+        $producto->descripcion = $producto->descripcion;
+        $producto->precio = $request->precio;
+        $producto->laboratorio = $request->laboratorio;
+        $producto->cantidad = $request->cantidad;
+        $producto->indicaciones = $producto->indicaciones;
+        $producto->categoria()->attach($request->idsCategorias);
+        $producto->tipoProducto()->attach($request->idsTipoProductos);
+        $result = $producto->save();
+        if($result){
+            return response($producto, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -48,7 +75,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        
     }
 
     /**
@@ -59,6 +86,11 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $result = $producto->delete();
+        if($result){
+            return $producto;
+        } else {
+            return "Fallo";
+        }
     }
 }

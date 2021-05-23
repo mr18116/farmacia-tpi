@@ -2264,6 +2264,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return _this.$store.dispatch("getUser");
 
                   case 2:
+                    if (_this.$route.path == '/inventario') {
+                      _this.$router.replace('/');
+                    }
+
+                  case 3:
                   case "end":
                     return _context.stop();
                 }
@@ -2301,6 +2306,16 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2457,6 +2472,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return _this.$store.dispatch('getUser');
 
                   case 2:
+                    if (_this.$route.path == '/inventario') {
+                      _this.$router.replace('/');
+                    }
+
+                  case 3:
                   case "end":
                     return _context.stop();
                 }
@@ -2644,6 +2664,10 @@ router.beforeEach(function (to, from, next) {
     } else {
       next();
     }
+  } else if (to.name == 'Inventario' && localStorage.getItem('rol') != 'administrador') {
+    next({
+      path: from.path
+    });
   } else {
     next();
   }
@@ -39947,72 +39971,101 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
+      _vm.$store.state.rol == "administrador" ? _c("v-divider") : _vm._e(),
+      _vm._v(" "),
+      _vm.$store.state.rol == "administrador"
+        ? _c(
+            "v-list",
+            [
+              _c("v-subheader", [_vm._v("Administracion")]),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/inventario", link: "" } },
+                [
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Inventario")])],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("v-divider"),
       _vm._v(" "),
       _c(
         "v-list",
-        _vm._l(_vm.items, function(item) {
-          return _c(
-            "v-list-group",
-            {
-              key: item.title,
-              attrs: { "no-action": "" },
-              scopedSlots: _vm._u(
-                [
-                  {
-                    key: "activator",
-                    fn: function() {
-                      return [
-                        _c(
-                          "v-list-item-content",
-                          [
-                            _c("v-list-item-title", {
-                              domProps: { textContent: _vm._s(item.title) }
-                            })
-                          ],
-                          1
-                        )
-                      ]
-                    },
-                    proxy: true
-                  }
-                ],
-                null,
-                true
-              ),
-              model: {
-                value: item.active,
-                callback: function($$v) {
-                  _vm.$set(item, "active", $$v)
-                },
-                expression: "item.active"
-              }
-            },
-            [
-              _vm._v(" "),
-              _vm._l(item.items, function(child) {
-                return _c(
-                  "v-list-item",
-                  { key: child.title, attrs: { link: "", to: child.link } },
+        [
+          _c("v-subheader", [_vm._v("Medicamentos")]),
+          _vm._v(" "),
+          _vm._l(_vm.items, function(item) {
+            return _c(
+              "v-list-group",
+              {
+                key: item.title,
+                attrs: { "no-action": "" },
+                scopedSlots: _vm._u(
                   [
-                    _c(
-                      "v-list-item-content",
-                      [
-                        _c("v-list-item-title", {
-                          domProps: { textContent: _vm._s(child.title) }
-                        })
-                      ],
-                      1
-                    )
+                    {
+                      key: "activator",
+                      fn: function() {
+                        return [
+                          _c(
+                            "v-list-item-content",
+                            [
+                              _c("v-list-item-title", {
+                                domProps: { textContent: _vm._s(item.title) }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
                   ],
-                  1
-                )
-              })
-            ],
-            2
-          )
-        }),
-        1
+                  null,
+                  true
+                ),
+                model: {
+                  value: item.active,
+                  callback: function($$v) {
+                    _vm.$set(item, "active", $$v)
+                  },
+                  expression: "item.active"
+                }
+              },
+              [
+                _vm._v(" "),
+                _vm._l(item.items, function(child) {
+                  return _c(
+                    "v-list-item",
+                    { key: child.title, attrs: { link: "", to: child.link } },
+                    [
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c("v-list-item-title", {
+                            domProps: { textContent: _vm._s(child.title) }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                })
+              ],
+              2
+            )
+          })
+        ],
+        2
       )
     ],
     1
