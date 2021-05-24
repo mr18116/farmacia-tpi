@@ -12,7 +12,7 @@
                 >
                     <v-toolbar-title class="text-h5">Tipos</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" dark>
+                    <v-btn color="primary" dark @click="nuevoTipo">
                         Agregar Tipo
                     </v-btn>
                 </v-toolbar>
@@ -43,8 +43,31 @@ export default {
     }),
     created(){
         axios.get('/api/tipo_producto').then( response => {
-            this.categorias = response.data;
+            this.tipos = response.data;
         });
+    },
+    methods:{
+         nuevoTipo(){
+              let opciones = {
+                titulo: 'Nuevo Tipo',
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: "Guardar"
+            };
+            this.$emit('nuevaCategoria', opciones);
+        }, 
+        editarTipo(item){       
+             let opciones = {
+                titulo: 'Nueva Categoria',
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: "Guardar"
+            };     
+            this.$emit('editarCategoria', item, opciones);
+        },
+        eliminarTipo(item){
+            this.$emit('eliminarCategoria', item);
+        }
     }
 }
 </script>

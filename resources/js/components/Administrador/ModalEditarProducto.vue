@@ -8,24 +8,29 @@
                 <v-card-text>
                     <v-container>
                         <v-row>
-                            <v-col cols="12" sm="4" md="4" v-if="nuevaImagenUrl == '' ">
-                                <v-img :src="producto.imagen_url"></v-img> 
-                                 <v-file-input
+                            <v-col
+                                cols="12"
+                                sm="4"
+                                md="4"
+                                v-if="nuevaImagenUrl == ''"
+                            >
+                                <v-img :src="producto.imagen_url"></v-img>
+                                <v-file-input
                                     label="File input"
                                     filled
                                     prepend-icon="mdi-camera"
                                     v-model="nuevaImagen"
-                                ></v-file-input>                                 
+                                ></v-file-input>
                             </v-col>
                             <v-col cols="12" sm="4" md="4" v-else>
-                                <v-img :src="nuevaImagenUrl"></v-img>    
-                                 <v-file-input
+                                <v-img :src="nuevaImagenUrl"></v-img>
+                                <v-file-input
                                     label="File input"
                                     filled
                                     prepend-icon="mdi-camera"
                                     v-model="nuevaImagen"
-                                ></v-file-input>                          
-                            </v-col>                                                        
+                                ></v-file-input>
+                            </v-col>
                             <v-col cols="12" sm="8">
                                 <v-row>
                                     <v-col cols="12" sm="2">
@@ -64,6 +69,26 @@
                                             type="number"
                                         ></v-text-field>
                                     </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <v-select                                            
+                                            item-text="state"
+                                            item-value="abbr"
+                                            label="Categoria"
+                                            persistent-hint
+                                            return-object
+                                            single-line
+                                        ></v-select>
+                                    </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <v-select                                            
+                                            item-text="state"
+                                            item-value="abbr"
+                                            label="Tipo"
+                                            persistent-hint
+                                            return-object
+                                            single-line
+                                        ></v-select>
+                                    </v-col>
                                     <v-col cols="12">
                                         <v-text-field
                                             label="Laboratorio"
@@ -88,10 +113,20 @@
                     <v-btn color="blue darken-1" text @click="cerrarModal">
                         Cerrar
                     </v-btn>
-                    <v-btn v-if="opciones.btn_editar" color="blue darken-1" text @click="editarProducto">
+                    <v-btn
+                        v-if="opciones.btn_editar"
+                        color="blue darken-1"
+                        text
+                        @click="editarProducto"
+                    >
                         {{ opciones.btn_texto }}
                     </v-btn>
-                    <v-btn v-if="opciones.btn_guardar" color="blue darken-1" text @click="guardarProducto">
+                    <v-btn
+                        v-if="opciones.btn_guardar"
+                        color="blue darken-1"
+                        text
+                        @click="guardarProducto"
+                    >
                         {{ opciones.btn_texto }}
                     </v-btn>
                 </v-card-actions>
@@ -104,29 +139,28 @@
 export default {
     data: () => ({
         nuevaImagen: null,
-        nuevaImagenUrl: '',
+        nuevaImagenUrl: ""
     }),
     props: ["editar", "producto", "opciones"],
-    methods: {        
+    methods: {
         cerrarModal: function() {
             this.$emit("cerrarModal");
             this.nuevaImagen = null;
-            this.nuevaImagenUrl = '';
+            this.nuevaImagenUrl = "";
         },
-        guardarProducto(){
-            this.$emit('guardarProducto');
-
+        guardarProducto() {
+            this.$emit("guardarProducto");
         },
-        editarProducto(){
-            this.$emit('editarProducto', this.producto);
+        editarProducto() {
+            this.$emit("editarProducto", this.producto);
             this.nuevaImagen = null;
-            this.nuevaImagenUrl = '';
+            this.nuevaImagenUrl = "";
         }
     },
-    watch:{
-        nuevaImagen: function(){
+    watch: {
+        nuevaImagen: function() {
             this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
-            console.log(this.nuevaImagenUrl)
+            console.log(this.nuevaImagenUrl);
         }
     }
 };

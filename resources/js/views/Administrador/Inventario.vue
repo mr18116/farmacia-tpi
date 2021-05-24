@@ -5,8 +5,7 @@
                 Inventario
             </v-col>
             <v-col cols="12" sm="4">
-                <v-btn block color="green"
-                        @click="nuevoProductoModal"
+                <v-btn block color="green" @click="nuevoProductoModal"
                     ><v-icon left>mdi-plus</v-icon>Nuevo Producto</v-btn
                 >
             </v-col>
@@ -49,14 +48,18 @@
                                 :src="producto.imagen_url"
                                 height="100px"
                                 contain
-
                             ></v-img>
                         </v-col>
 
                         <v-col cols="6" class="text-center">
                             <div>Precio: {{ producto.precio }}</div>
                             <div>Cantidad: {{ producto.cantidad }}</div>
-                            <v-btn x-small color="blue" @click="detalleProductoModal(producto)">Detalles</v-btn>
+                            <v-btn
+                                x-small
+                                color="blue"
+                                @click="detalleProductoModal(producto)"
+                                >Detalles</v-btn
+                            >
                         </v-col>
                     </v-row>
                 </v-card>
@@ -67,10 +70,18 @@
         </v-row>
         <v-row>
             <v-col cols="12" md="6">
-                <DataCategorias />
+                <DataCategorias
+                    @nuevaCategoria="nuevaCategoriaOTipo"
+                    @editarCategoria="editarCategoriaOTipo"
+                    @eliminarCategoria="eliminarCategoriaOTipo"
+                />
             </v-col>
             <v-col cols="12" md="6">
-                <DataTipoProductos />
+                <DataTipoProductos
+                   @nuevaCategoria="nuevaCategoriaOTipo"
+                    @editarCategoria="editarCategoriaOTipo"
+                    @eliminarCategoria="eliminarCategoriaOTipo"
+                />
             </v-col>
         </v-row>
         <ModalEditarProducto
@@ -81,13 +92,21 @@
             @guardarProducto="guardarProducto"
             @cerrarModal="cerrar"
         />
+        <ModalCategoria
+            :mostrar="mostrarModalCategoriaOTipo"
+            :categoriaOTipo="categoriaOTipo"
+            :opciones="opciones"
+            @guardarCategoriaOTipo="guardarCategoriaOTipo"
+            @cerrarModalCategoriaOTipo="cerrarModalCategoriaOTipo"
+        />
     </v-container>
 </template>
 
 <script>
 import ModalEditarProducto from "../../components/Administrador/ModalEditarProducto";
-import DataCategorias from '../../components/Administrador/DataCategorias';
-import DataTipoProductos from '../../components/Administrador/DataTipoProductos';
+import DataCategorias from "../../components/Administrador/DataCategorias";
+import DataTipoProductos from "../../components/Administrador/DataTipoProductos";
+import ModalCategoria from "../../components/Administrador/ModalCategoria";
 
 export default {
     data: () => ({
@@ -95,7 +114,11 @@ export default {
         editar: false,
         productoEditar: {},
         page: 1,
-        opciones: {}
+        opciones: {},
+        mostrarModalCategoriaOTipo: false,
+        categoriaOTipo: {},
+        opcionesCategoria: {},
+        categorias: []
     }),
     created() {
         let ejemplo0 = {
@@ -118,50 +141,72 @@ export default {
             };
             this.productos.push(ejemplo);
         }
+        axios.get("/api/categoria").then(response => {
+            this.categorias = response.data;
+        });
     },
     components: {
         ModalEditarProducto,
         DataCategorias,
         DataTipoProductos,
+        ModalCategoria
     },
     methods: {
-        nuevoProductoModal(){
+        nuevoProductoModal() {
             this.editar = true;
             this.opciones = {
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: 'Guardar',
-            }
+                btn_texto: "Guardar"
+            };
         },
         editarProductoModal(producto) {
             this.editar = true;
             this.opciones = {
-                disabled: false,                
+                disabled: false,
                 btn_guardar: true,
-                btn_texto: 'Guardar',
-            }
+                btn_texto: "Guardar"
+            };
             this.productoEditar = producto;
         },
-        detalleProductoModal(producto){
+        detalleProductoModal(producto) {
             this.editar = true;
             this.opciones = {
                 disabled: true,
                 btn_editar: true,
-                btn_texto: 'Editar',
-            }
+                btn_texto: "Editar"
+            };
             this.productoEditar = producto;
         },
-        guardarProducto(){
-            console.log('guardar')
+        guardarProducto() {
+            console.log("guardar");
         },
         cerrar: function() {
             this.editar = false;
-            this.productoEditar ={};
+            this.productoEditar = {};
             this.opciones = {};
         },
-        guardarProducto(){
-            console.log("guardar")
+        guardarProducto() {
+            console.log("guardar");
         },
+        nuevaCategoriaOTipo(opciones) {
+            this.mostrarModalCategoriaOTipo = true;
+            this.opciones = opciones;
+        },
+        cerrarModalCategoriaOTipo() {
+            this.mostrarModalCategoriaOTipo = false;
+            this.categoriaOTipo = {};
+            this.opciones = {};
+        },
+        guardarCategoriaOTipo() {
+            this.mostrarModalCategoriaOTipo = false;
+        },
+        editarCategoriaOTipo(categoria, opciones) {
+            this.mostrarModalCategoriaOTipo = true;
+            this.opciones = opciones;
+            this.categoriaOTipo = categoria;
+        },
+        eliminarCategoriaOTipo(categoria) {},
         colorCard(cantidad) {
             let color = "teal lighten-3";
             if (cantidad == 0) {

@@ -12,16 +12,16 @@
                 >
                     <v-toolbar-title class="text-h5">Categorias</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" dark>
+                    <v-btn color="primary" @click="nuevaCategoria" dark>
                         Agregar Categoria
                     </v-btn>
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-icon small class="mr-2">
+                <v-icon small class="mr-2" @click="editarCategoria(item)">
                     mdi-pencil
                 </v-icon>
-                <v-icon small>
+                <v-icon small @click="eliminarCategoria(item)">
                     mdi-delete
                 </v-icon>
             </template>
@@ -47,6 +47,29 @@ export default {
         axios.get('/api/categoria').then( response => {
             this.categorias = response.data;
         });
+    },
+    methods:{
+        nuevaCategoria(){
+            let opciones = {
+                titulo: 'Nueva Categoria',
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: "Guardar"
+            };
+            this.$emit('nuevaCategoria', opciones);
+        }, 
+        editarCategoria(item){    
+             let opciones = {
+                titulo: 'Editar Categoria',
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: "Guardar"
+            };        
+            this.$emit('editarCategoria', item, opciones);
+        },
+        eliminarCategoria(item){
+            this.$emit('eliminarCategoria', item);
+        }
     }
 
 }
