@@ -1,9 +1,9 @@
 <template>
-    <div>        
-        <v-dialog v-model="mostrar" persistent >
+    <div>
+        <v-dialog v-model="mostrar" persistent>
             <v-card>
                 <v-card-title>
-                    <span class="headline">{{opciones.titulo}}</span>
+                    <span class="headline">{{ opciones.titulo }}</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container>
@@ -11,14 +11,14 @@
                             <v-col cols="12">
                                 <v-text-field
                                     label="ID"
-                                     disabled
+                                    disabled
                                     v-model="categoriaOTipo.id"
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field
                                     label="nombre"
-                                     :disabled="opciones.disabled"
+                                    :disabled="opciones.disabled"
                                     v-model="categoriaOTipo.nombre"
                                 ></v-text-field>
                             </v-col>
@@ -55,12 +55,20 @@
 <script>
 export default {
     props: ["mostrar", "categoriaOTipo", "opciones"],
-    methods:{
-        cerrarModal(){
-            this.$emit('cerrarModalCategoriaOTipo');
+    methods: {
+        cerrarModal() {
+            this.$emit("cerrarModalCategoriaOTipo");
         },
-        guardarCategoriaOTipo(){
-            this.$emit('guardarCategoriaOTipo');
+        guardarCategoriaOTipo() {
+            if (this.opciones.editar === false) {
+                let nuevo = {
+                    nombre: this.categoriaOTipo.nombre
+                };
+                this.$emit("guardarCategoriaOTipo", nuevo, this.opciones);
+            }else if (this.opciones.editar === true){
+                console.log('editar');
+                this.$emit("guardarCategoriaOTipo", this.categoriaOTipo, this.opciones)
+            }
         }
     }
 };

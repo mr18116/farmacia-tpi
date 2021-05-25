@@ -59,6 +59,7 @@
                                             label="Precio"
                                             :disabled="opciones.disabled"
                                             v-model="producto.precio"
+                                            type="number"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6">
@@ -70,23 +71,31 @@
                                         ></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <v-select                                            
-                                            item-text="state"
-                                            item-value="abbr"
+                                        <v-select
+                                            v-if="opciones.nuevo"
+                                            :items="categorias"
+                                            v-model="nuevasCategorias"
+                                            item-text="nombre"
+                                            item-value="id"
                                             label="Categoria"
                                             persistent-hint
                                             return-object
                                             single-line
+                                            multiple
                                         ></v-select>
                                     </v-col>
                                     <v-col cols="12" sm="6">
-                                        <v-select                                            
-                                            item-text="state"
-                                            item-value="abbr"
+                                        <v-select
+                                            v-if="opciones.nuevo"
+                                            :items="tipos"
+                                            v-model="nuevosTipos"
+                                            item-text="nombre"
+                                            item-value="id"
                                             label="Tipo"
                                             persistent-hint
                                             return-object
                                             single-line
+                                            multiple
                                         ></v-select>
                                     </v-col>
                                     <v-col cols="12">
@@ -136,25 +145,53 @@
 </template>
 
 <script>
+import {storage} from "../../firebase";
+
 export default {
     data: () => ({
         nuevaImagen: null,
-        nuevaImagenUrl: ""
+        nuevaImagenUrl: "",
+        nuevasCategorias: [],
+        nuevosTipos: []
     }),
-    props: ["editar", "producto", "opciones"],
+    props: ["editar", "producto", "opciones", "categorias", "tipos"],
     methods: {
         cerrarModal: function() {
             this.$emit("cerrarModal");
             this.nuevaImagen = null;
             this.nuevaImagenUrl = "";
         },
-        guardarProducto() {
-            this.$emit("guardarProducto");
+        guardarProducto: async function() {
+            if (this.nuevaImagen === null) {
+                this.$emit("guardarProducto");
+            } else {
+                await this.subirImagen();
+                let productoAGuardar = {
+                    nombre: this.producto.nombre,
+                    imagen_url: this.nuevaImagenUrl,
+                    escripcion: this.producto.descripcion,
+                    precio: this.producto.precio,
+                    aboratorio: this.producto.laboratorio,
+                    antidad: this.producto.cantidad,
+                    ndicaciones: this.producto.indicaciones,
+                    categoria: this.nuevasCategorias,
+                    tipoProducto: this.nuevosTipos
+                };               
+               this.$emit("guardarProducto", productoAGuardar, "nuevo")
+            }
         },
         editarProducto() {
             this.$emit("editarProducto", this.producto);
             this.nuevaImagen = null;
             this.nuevaImagenUrl = "";
+        },
+        subirImagen: async function() {
+            const ref = storage.ref();
+            const archivoRef = ref.child("Productos/"+ this.nuevaImagen.name);
+            var task = await archivoRef.put(this.nuevaImagen);
+            const urlImage = await task.ref.getDownloadURL();
+            console.log(urlImage);
+            this.nuevaImagenUrl = urlImage;
         }
     },
     watch: {

@@ -41,20 +41,17 @@ export default {
             { text: 'Nombre', value: 'nombre', sorteable: true },
             { text: 'Acciones', value: 'actions', sortable: false },
         ],
-        categorias: [],
     }),
-    created(){
-        axios.get('/api/categoria').then( response => {
-            this.categorias = response.data;
-        });
-    },
+    props: ["categorias"],
     methods:{
         nuevaCategoria(){
             let opciones = {
                 titulo: 'Nueva Categoria',
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: "Guardar"
+                btn_texto: "Guardar",
+                categoriaOTipo: "categoria",
+                editar: false
             };
             this.$emit('nuevaCategoria', opciones);
         }, 
@@ -63,12 +60,14 @@ export default {
                 titulo: 'Editar Categoria',
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: "Guardar"
+                btn_texto: "Guardar",
+                categoriaOTipo: "categoria",
+                editar: true
             };        
             this.$emit('editarCategoria', item, opciones);
         },
         eliminarCategoria(item){
-            this.$emit('eliminarCategoria', item);
+            this.$emit('eliminarCategoria', item, "categoria");
         }
     }
 

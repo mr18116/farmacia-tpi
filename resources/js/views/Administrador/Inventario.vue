@@ -40,7 +40,9 @@
                         <v-btn icon @click="editarProductoModal(producto)"
                             ><v-icon>mdi-pencil</v-icon></v-btn
                         >
-                        <v-icon>mdi-delete</v-icon>
+                        <v-btn icon @click="eliminar(producto)"
+                            ><v-icon>mdi-delete</v-icon></v-btn
+                        >
                     </v-app-bar>
                     <v-row align="center" no-gutters>
                         <v-col cols="6">
@@ -71,16 +73,18 @@
         <v-row>
             <v-col cols="12" md="6">
                 <DataCategorias
+                    :categorias="categorias"
                     @nuevaCategoria="nuevaCategoriaOTipo"
                     @editarCategoria="editarCategoriaOTipo"
-                    @eliminarCategoria="eliminarCategoriaOTipo"
+                    @eliminarCategoria="eliminarItem"
                 />
             </v-col>
             <v-col cols="12" md="6">
                 <DataTipoProductos
-                   @nuevaCategoria="nuevaCategoriaOTipo"
+                    :tipos="tipos"
+                    @nuevaCategoria="nuevaCategoriaOTipo"
                     @editarCategoria="editarCategoriaOTipo"
-                    @eliminarCategoria="eliminarCategoriaOTipo"
+                    @eliminarCategoria="eliminarItem"
                 />
             </v-col>
         </v-row>
@@ -88,6 +92,8 @@
             :editar="editar"
             :producto="productoEditar"
             :opciones="opciones"
+            :categorias="categorias"
+            :tipos="tipos"
             @editarProducto="editarProductoModal"
             @guardarProducto="guardarProducto"
             @cerrarModal="cerrar"
@@ -99,6 +105,13 @@
             @guardarCategoriaOTipo="guardarCategoriaOTipo"
             @cerrarModalCategoriaOTipo="cerrarModalCategoriaOTipo"
         />
+        <EliminarItem
+            :item="itemAEliminar"
+            :mostrar="eliminar"
+            :tipo="tipoItemAEliminar"
+            @cancelarEliminar="cancelarEliminar"
+            @confirmarEliminar="confirmarEliminarItem"
+        />
     </v-container>
 </template>
 
@@ -107,18 +120,24 @@ import ModalEditarProducto from "../../components/Administrador/ModalEditarProdu
 import DataCategorias from "../../components/Administrador/DataCategorias";
 import DataTipoProductos from "../../components/Administrador/DataTipoProductos";
 import ModalCategoria from "../../components/Administrador/ModalCategoria";
+import EliminarItem from "../../components/Administrador/EliminarItem";
+import axios from "axios";
 
 export default {
     data: () => ({
         productos: [],
         editar: false,
+        eliminar: false,
+        itemAEliminar: {},
+        tipoItemAEliminar: "",
         productoEditar: {},
         page: 1,
         opciones: {},
         mostrarModalCategoriaOTipo: false,
         categoriaOTipo: {},
         opcionesCategoria: {},
-        categorias: []
+        categorias: [],
+        tipos: []
     }),
     created() {
         let ejemplo0 = {
@@ -141,15 +160,15 @@ export default {
             };
             this.productos.push(ejemplo);
         }
-        axios.get("/api/categoria").then(response => {
-            this.categorias = response.data;
-        });
+        this.obtenerCategorias();
+        this.obtenerTipos();
     },
     components: {
         ModalEditarProducto,
         DataCategorias,
         DataTipoProductos,
-        ModalCategoria
+        ModalCategoria,
+        EliminarItem
     },
     methods: {
         nuevoProductoModal() {
@@ -157,7 +176,8 @@ export default {
             this.opciones = {
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: "Guardar"
+                btn_texto: "Guardar",
+                nuevo: true
             };
         },
         editarProductoModal(producto) {
@@ -178,17 +198,25 @@ export default {
             };
             this.productoEditar = producto;
         },
-        guardarProducto() {
+        guardarProducto(producto, opcion) {
             console.log("guardar");
+            console.log(producto, opcion)
+            if(producto !== null && producto !== undefined){
+                if(opcion === "nuevo"){
+                    console.log("axios guardar")
+                    axios.post("/api/producto",producto).then(() =>{
+                        this.cerrar();                       
+                    })
+                    console.log("axios guardar termino")
+                }
+            }
+            
         },
         cerrar: function() {
             this.editar = false;
             this.productoEditar = {};
             this.opciones = {};
-        },
-        guardarProducto() {
-            console.log("guardar");
-        },
+        },       
         nuevaCategoriaOTipo(opciones) {
             this.mostrarModalCategoriaOTipo = true;
             this.opciones = opciones;
@@ -198,15 +226,67 @@ export default {
             this.categoriaOTipo = {};
             this.opciones = {};
         },
-        guardarCategoriaOTipo() {
+        guardarCategoriaOTipo(objeto, opciones) {
             this.mostrarModalCategoriaOTipo = false;
+            if (objeto.nombre != "" && objeto.nombre != undefined) {
+                if (
+                    opciones.categoriaOTipo === "categoria" &&
+                    opciones.editar === false
+                ) {
+                    axios.post("/api/categoria", objeto).then(res => {
+                        this.cerrarModalCategoriaOTipo();
+                        this.obtenerCategorias();
+                    });
+                } else if (
+                    opciones.categoriaOTipo === "tipo" &&
+                    opciones.editar === false
+                ) {
+                    axios.post("/api/tipo_producto", objeto).then(res => {
+                        this.cerrarModalCategoriaOTipo();
+                        this.obtenerTipos();
+                    });
+                } else if (
+                    opciones.categoriaOTipo === "categoria" &&
+                    opciones.editar === true
+                ) {
+                    /*axios.put(`api/categoria/${objeto}`, objeto).then( res => {
+                        this.cerrarModalCategoriaOTipo();
+                    })*/
+                } else if (
+                    opciones.categoriaOTipo === "tipo" &&
+                    opciones.editar === true
+                ) {
+                    console.log(`api/tipo_producto/${objeto}`);
+
+                    /*axios.put(`api/tipo_producto/${objeto}`, objeto).then( res => {
+                        this.cerrarModalCategoriaOTipo();
+                    })*/
+                }
+            }
         },
         editarCategoriaOTipo(categoria, opciones) {
             this.mostrarModalCategoriaOTipo = true;
             this.opciones = opciones;
             this.categoriaOTipo = categoria;
         },
-        eliminarCategoriaOTipo(categoria) {},
+        eliminarItem(item, tipo) {
+            this.eliminar = true;
+            this.itemAEliminar = item;
+            this.tipoItemAEliminar = tipo;
+        },
+        confirmarEliminarItem(item, tipo) {
+            if (item != null) {
+                if (tipo === "categoria") {
+                    this.cancelarEliminar();
+                } else if (tipo === "tipo") {
+                    this.cancelarEliminar();
+                }
+            }
+        },
+        cancelarEliminar() {
+            this.eliminar = false;
+            this.itemAEliminar = {};
+        },
         colorCard(cantidad) {
             let color = "teal lighten-3";
             if (cantidad == 0) {
@@ -215,6 +295,16 @@ export default {
                 color = "orange lighten-1";
             }
             return color;
+        },
+        obtenerCategorias() {
+            axios.get("/api/categoria").then(response => {
+                this.categorias = response.data;
+            });
+        },
+        obtenerTipos() {
+            axios.get("/api/tipo_producto").then(response => {
+                this.tipos = response.data;
+            });
         }
     }
 };

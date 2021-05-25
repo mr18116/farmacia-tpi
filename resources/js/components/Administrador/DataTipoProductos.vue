@@ -1,15 +1,13 @@
 <template>
-  <div>
-      <v-data-table
+    <div>
+        <v-data-table
             :headers="headers"
             :items="tipos"
             :items-per-page="5"
             class="elevation-1"
         >
             <template v-slot:top>
-                <v-toolbar
-                    flat
-                >
+                <v-toolbar flat>
                     <v-toolbar-title class="text-h5">Tipos</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-btn color="primary" dark @click="nuevoTipo">
@@ -18,60 +16,61 @@
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-icon small class="mr-2">
-                    mdi-pencil
-                </v-icon>
-                <v-icon small>
-                    mdi-delete
-                </v-icon>
+                <v-btn icon @click="editarTipo(item)">
+                    <v-icon small class="mr-2">
+                        mdi-pencil
+                    </v-icon>
+                </v-btn>
+                <v-btn icon @click="eliminarTipo(item)">
+                    <v-icon small>
+                        mdi-delete
+                    </v-icon>
+                </v-btn>
             </template>
             <template v-slot:no-data>
                 No hay datos
             </template>
         </v-data-table>
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
     data: () => ({
         headers: [
-            { text: 'Nombre', value: 'nombre', sorteable: true },
-            { text: 'Acciones', value: 'actions', sortable: false },
-        ],
-        tipos: [],
+            { text: "Nombre", value: "nombre", sorteable: true },
+            { text: "Acciones", value: "actions", sortable: false }
+        ]
     }),
-    created(){
-        axios.get('/api/tipo_producto').then( response => {
-            this.tipos = response.data;
-        });
-    },
-    methods:{
-         nuevoTipo(){
-              let opciones = {
-                titulo: 'Nuevo Tipo',
+    props: ["tipos"],
+    methods: {
+        nuevoTipo() {
+            let opciones = {
+                titulo: "Nuevo Tipo",
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: "Guardar"
+                btn_texto: "Guardar",
+                categoriaOTipo: "tipo",
+                editar: false
             };
-            this.$emit('nuevaCategoria', opciones);
-        }, 
-        editarTipo(item){       
-             let opciones = {
-                titulo: 'Nueva Categoria',
+            this.$emit("nuevaCategoria", opciones);
+        },
+        editarTipo(item) {
+            let opciones = {
+                titulo: "Nueva Categoria",
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: "Guardar"
-            };     
-            this.$emit('editarCategoria', item, opciones);
+                btn_texto: "Guardar",
+                categoriaOTipo: "tipo",
+                editar: true
+            };
+            this.$emit("editarCategoria", item, opciones);
         },
-        eliminarTipo(item){
-            this.$emit('eliminarCategoria', item);
+        eliminarTipo(item) {
+            this.$emit("eliminarCategoria", item, "tipo");
         }
     }
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
