@@ -55,7 +55,7 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoria = Categoria::find();
+        $categoria = Categoria::find($id);
         $categoria->nombre = $request->nombre;
         $result = $categoria->save();
         if($result){
@@ -73,7 +73,7 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        $categoria = Categoria::find();
+        $categoria = Categoria::find($id);
         $categoria->delete();
         return $categoria;
     }
