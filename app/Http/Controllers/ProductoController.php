@@ -15,7 +15,7 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::all();
-        $productos->load(['categorias', 'tipo_productos']);
+        $productos->load(['categoria', 'tipoProducto']);
         return $productos;
     }
 
@@ -40,15 +40,16 @@ class ProductoController extends Controller
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->imagen_url = $request->imagen_url;
-        $producto->descripcion = $producto->descripcion;
+        $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
         $producto->laboratorio = $request->laboratorio;
         $producto->cantidad = $request->cantidad;
-        $producto->indicaciones = $producto->indicaciones;
-        $producto->categoria()->attach($request->idsCategorias);
-        $producto->tipoProducto()->attach($request->idsTipoProductos);
+        $producto->indicaciones = $request->indicaciones;
         $result = $producto->save();
         if($result){
+            $producto->categoria()->attach($request->idsCategorias);
+            $producto->tipoProducto()->attach($request->idsTipoProductos);
+            $result = $producto->save();
             return response($producto, 201);
         } else {
             return response('fallo', 400);
@@ -78,11 +79,11 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         $producto->nombre = $request->nombre;
         $producto->imagen_url = $request->imagen_url;
-        $producto->descripcion = $producto->descripcion;
+        $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
         $producto->laboratorio = $request->laboratorio;
         $producto->cantidad = $request->cantidad;
-        $producto->indicaciones = $producto->indicaciones;
+        $producto->indicaciones = $request->indicaciones;
         $producto->categoria()->attach($request->idsCategorias);
         $producto->tipoProducto()->attach($request->idsTipoProductos);
         $result = $producto->save();
