@@ -53,9 +53,16 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::find();
+        $categoria->nombre = $request->nombre;
+        $result = $categoria->save();
+        if($result){
+            return response($categoria, 200);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -64,8 +71,10 @@ class CategoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy($id)
     {
-        //
+        $categoria = Categoria::find();
+        $categoria->delete();
+        return $categoria;
     }
 }

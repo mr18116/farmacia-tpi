@@ -53,9 +53,16 @@ class TipoProductoController extends Controller
      * @param  \App\Models\TipoProducto  $tipoProducto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoProducto $tipoProducto)
+    public function update(Request $request, $id)
     {
-        //
+        $tipoProducto = TipoProducto::find($id);
+        $tipoProducto->nombre = $request->nombre;
+        $result = $tipoProducto->save();
+        if($result){
+            return response($tipoProducto, 200);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -64,8 +71,10 @@ class TipoProductoController extends Controller
      * @param  \App\Models\TipoProducto  $tipoProducto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoProducto $tipoProducto)
+    public function destroy($id)
     {
-        //
+        $tipoProducto = TipoProducto::find($id);
+        $tipoProducto->delete();
+        return $tipoProducto;
     }
 }

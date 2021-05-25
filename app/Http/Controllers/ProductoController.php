@@ -73,9 +73,24 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        
+        $producto = Producto::find($id);
+        $producto->nombre = $request->nombre;
+        $producto->imagen_url = $request->imagen_url;
+        $producto->descripcion = $producto->descripcion;
+        $producto->precio = $request->precio;
+        $producto->laboratorio = $request->laboratorio;
+        $producto->cantidad = $request->cantidad;
+        $producto->indicaciones = $producto->indicaciones;
+        $producto->categoria()->attach($request->idsCategorias);
+        $producto->tipoProducto()->attach($request->idsTipoProductos);
+        $result = $producto->save();
+        if($result){
+            return response($producto, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -84,13 +99,10 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
-        $result = $producto->delete();
-        if($result){
-            return $producto;
-        } else {
-            return "Fallo";
-        }
+        $producto = Producto::find($id);
+        $producto->delete();
+        return $producto;
     }
 }
