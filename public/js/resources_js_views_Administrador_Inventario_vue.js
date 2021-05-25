@@ -7793,13 +7793,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 productoAGuardar = {
                   nombre: this.producto.nombre,
                   imagen_url: this.nuevaImagenUrl,
-                  escripcion: this.producto.descripcion,
+                  descripcion: this.producto.descripcion,
                   precio: this.producto.precio,
-                  aboratorio: this.producto.laboratorio,
-                  antidad: this.producto.cantidad,
-                  ndicaciones: this.producto.indicaciones,
-                  categoria: this.nuevasCategorias,
-                  tipoProducto: this.nuevosTipos
+                  laboratorio: this.producto.laboratorio,
+                  cantidad: this.producto.cantidad,
+                  indicaciones: this.producto.indicaciones,
+                  idsCtegorias: this.nuevasCategorias,
+                  idsTipoProductos: this.nuevosTipos
                 };
                 this.$emit("guardarProducto", productoAGuardar, "nuevo");
 
@@ -7841,10 +7841,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 7:
                 urlImage = _context2.sent;
-                console.log(urlImage);
                 this.nuevaImagenUrl = urlImage;
 
-              case 10:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -7862,7 +7861,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {
     nuevaImagen: function nuevaImagen() {
       this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
-      console.log(this.nuevaImagenUrl);
     }
   }
 });
@@ -8090,16 +8088,11 @@ __webpack_require__.r(__webpack_exports__);
     guardarProducto: function guardarProducto(producto, opcion) {
       var _this = this;
 
-      console.log("guardar");
-      console.log(producto, opcion);
-
       if (producto !== null && producto !== undefined) {
         if (opcion === "nuevo") {
-          console.log("axios guardar");
           axios__WEBPACK_IMPORTED_MODULE_5___default().post("/api/producto", producto).then(function () {
             _this.cerrar();
           });
-          console.log("axios guardar termino");
         }
       }
     },
@@ -9716,7 +9709,6 @@ var render = function() {
                                               "item-value": "id",
                                               label: "Categoria",
                                               "persistent-hint": "",
-                                              "return-object": "",
                                               "single-line": "",
                                               multiple: ""
                                             },
@@ -9745,7 +9737,6 @@ var render = function() {
                                               "item-value": "id",
                                               label: "Tipo",
                                               "persistent-hint": "",
-                                              "return-object": "",
                                               "single-line": "",
                                               multiple: ""
                                             },

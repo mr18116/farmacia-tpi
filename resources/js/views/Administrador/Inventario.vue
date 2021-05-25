@@ -199,15 +199,11 @@ export default {
             this.productoEditar = producto;
         },
         guardarProducto(producto, opcion) {
-            console.log("guardar");
-            console.log(producto, opcion)
             if(producto !== null && producto !== undefined){
                 if(opcion === "nuevo"){
-                    console.log("axios guardar")
                     axios.post("/api/producto",producto).then(() =>{
                         this.cerrar();                       
                     })
-                    console.log("axios guardar termino")
                 }
             }
             

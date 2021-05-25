@@ -79,7 +79,7 @@
                                             item-value="id"
                                             label="Categoria"
                                             persistent-hint
-                                            return-object
+
                                             single-line
                                             multiple
                                         ></v-select>
@@ -93,7 +93,7 @@
                                             item-value="id"
                                             label="Tipo"
                                             persistent-hint
-                                            return-object
+
                                             single-line
                                             multiple
                                         ></v-select>
@@ -169,13 +169,13 @@ export default {
                 let productoAGuardar = {
                     nombre: this.producto.nombre,
                     imagen_url: this.nuevaImagenUrl,
-                    escripcion: this.producto.descripcion,
+                    descripcion: this.producto.descripcion,
                     precio: this.producto.precio,
-                    aboratorio: this.producto.laboratorio,
-                    antidad: this.producto.cantidad,
-                    ndicaciones: this.producto.indicaciones,
-                    categoria: this.nuevasCategorias,
-                    tipoProducto: this.nuevosTipos
+                    laboratorio: this.producto.laboratorio,
+                    cantidad: this.producto.cantidad,
+                    indicaciones: this.producto.indicaciones,
+                    idsCtegorias: this.nuevasCategorias,
+                    idsTipoProductos: this.nuevosTipos
                 };               
                this.$emit("guardarProducto", productoAGuardar, "nuevo")
             }
@@ -190,14 +190,12 @@ export default {
             const archivoRef = ref.child("Productos/"+ this.nuevaImagen.name);
             var task = await archivoRef.put(this.nuevaImagen);
             const urlImage = await task.ref.getDownloadURL();
-            console.log(urlImage);
             this.nuevaImagenUrl = urlImage;
         }
     },
     watch: {
         nuevaImagen: function() {
             this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
-            console.log(this.nuevaImagenUrl);
         }
     }
 };
