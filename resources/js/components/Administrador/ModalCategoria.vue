@@ -31,14 +31,6 @@
                         Cerrar
                     </v-btn>
                     <v-btn
-                        v-if="opciones.btn_editar"
-                        color="blue darken-1"
-                        text
-                        @click="editarProducto"
-                    >
-                        {{ opciones.btn_texto }}
-                    </v-btn>
-                    <v-btn
                         v-if="opciones.btn_guardar"
                         color="blue darken-1"
                         text
@@ -66,7 +58,6 @@ export default {
                 };
                 this.$emit("guardarCategoriaOTipo", nuevo, this.opciones);
             }else if (this.opciones.editar === true){
-                console.log('editar');
                 this.$emit("guardarCategoriaOTipo", this.categoriaOTipo, this.opciones)
             }
         }

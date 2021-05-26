@@ -7556,14 +7556,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["mostrar", "categoriaOTipo", "opciones"],
   methods: {
@@ -7577,7 +7569,6 @@ __webpack_require__.r(__webpack_exports__);
         };
         this.$emit("guardarCategoriaOTipo", nuevo, this.opciones);
       } else if (this.opciones.editar === true) {
-        console.log('editar');
         this.$emit("guardarCategoriaOTipo", this.categoriaOTipo, this.opciones);
       }
     }
@@ -7750,8 +7741,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7771,26 +7760,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     guardarProducto: function () {
       var _guardarProducto = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var productoAGuardar;
+        var id, productoAGuardar, _id, _productoAGuardar, _id2, _productoAGuardar2;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(this.nuevaImagen === null)) {
-                  _context.next = 4;
+                if (!(this.nuevaImagen === null && this.opciones.nuevo === false)) {
+                  _context.next = 6;
                   break;
                 }
 
-                this.$emit("guardarProducto");
-                _context.next = 8;
+                id = this.producto.id;
+                productoAGuardar = {
+                  nombre: this.producto.nombre,
+                  imagen_url: this.producto.imagen_url,
+                  descripcion: this.producto.descripcion,
+                  precio: this.producto.precio,
+                  laboratorio: this.producto.laboratorio,
+                  cantidad: this.producto.cantidad,
+                  indicaciones: this.producto.indicaciones,
+                  idsCtegorias: this.nuevasCategorias,
+                  idsTipoProductos: this.nuevosTipos
+                };
+                this.$emit("guardarProducto", productoAGuardar, id, "actualizar");
+                _context.next = 20;
                 break;
 
-              case 4:
-                _context.next = 6;
+              case 6:
+                if (!(this.nuevaImagen !== null && this.opciones.nuevo === false)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                _context.next = 9;
                 return this.subirImagen();
 
-              case 6:
-                productoAGuardar = {
+              case 9:
+                _id = this.producto.id;
+                _productoAGuardar = {
                   nombre: this.producto.nombre,
                   imagen_url: this.nuevaImagenUrl,
                   descripcion: this.producto.descripcion,
@@ -7801,9 +7809,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   idsCtegorias: this.nuevasCategorias,
                   idsTipoProductos: this.nuevosTipos
                 };
-                this.$emit("guardarProducto", productoAGuardar, "nuevo");
+                this.$emit("guardarProducto", _productoAGuardar, _id, "actualizar");
+                _context.next = 20;
+                break;
 
-              case 8:
+              case 14:
+                if (!(this.nuevaImagen !== null && this.opciones.nuevo === true)) {
+                  _context.next = 20;
+                  break;
+                }
+
+                _context.next = 17;
+                return this.subirImagen();
+
+              case 17:
+                _id2 = this.producto.id;
+                _productoAGuardar2 = {
+                  nombre: this.producto.nombre,
+                  imagen_url: this.nuevaImagenUrl,
+                  descripcion: this.producto.descripcion,
+                  precio: this.producto.precio,
+                  laboratorio: this.producto.laboratorio,
+                  cantidad: this.producto.cantidad,
+                  indicaciones: this.producto.indicaciones,
+                  idsCtegorias: this.nuevasCategorias,
+                  idsTipoProductos: this.nuevosTipos
+                };
+                this.$emit("guardarProducto", _productoAGuardar2, _id2, "nuevo");
+
+              case 20:
               case "end":
                 return _context.stop();
             }
@@ -7818,7 +7852,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return guardarProducto;
     }(),
     editarProducto: function editarProducto() {
-      this.$emit("editarProducto", this.producto);
+      this.$emit("editarProductoModal", this.producto);
       this.nuevaImagen = null;
       this.nuevaImagenUrl = "";
     },
@@ -8068,7 +8102,8 @@ __webpack_require__.r(__webpack_exports__);
       this.opciones = {
         disabled: false,
         btn_guardar: true,
-        btn_texto: "Guardar"
+        btn_texto: "Guardar",
+        nuevo: false
       };
       this.productoEditar = producto;
     },
@@ -8081,13 +8116,21 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.productoEditar = producto;
     },
-    guardarProducto: function guardarProducto(producto, opcion) {
+    guardarProducto: function guardarProducto(producto, id, opcion) {
       var _this2 = this;
 
       if (producto !== null && producto !== undefined) {
         if (opcion === "nuevo") {
           axios__WEBPACK_IMPORTED_MODULE_5___default().post("/api/producto", producto).then(function () {
             _this2.cerrar();
+
+            _this2.obtenerProductos();
+          });
+        } else if (opcion === "actualizar") {
+          axios__WEBPACK_IMPORTED_MODULE_5___default().put("/api/producto/".concat(id), producto).then(function () {
+            _this2.cerrar();
+
+            _this2.obtenerProductos();
           });
         }
       }
@@ -8125,14 +8168,17 @@ __webpack_require__.r(__webpack_exports__);
             _this3.obtenerTipos();
           });
         } else if (opciones.categoriaOTipo === "categoria" && opciones.editar === true) {
-          /*axios.put(`api/categoria/${objeto}`, objeto).then( res => {
-              this.cerrarModalCategoriaOTipo();
-          })*/
+          axios__WEBPACK_IMPORTED_MODULE_5___default().put("api/categoria/".concat(objeto.id), objeto).then(function (res) {
+            _this3.cerrarModalCategoriaOTipo();
+
+            _this3.obtenerCategorias();
+          });
         } else if (opciones.categoriaOTipo === "tipo" && opciones.editar === true) {
-          console.log("api/tipo_producto/".concat(objeto));
-          /*axios.put(`api/tipo_producto/${objeto}`, objeto).then( res => {
-              this.cerrarModalCategoriaOTipo();
-          })*/
+          axios__WEBPACK_IMPORTED_MODULE_5___default().put("api/tipo_producto/".concat(objeto.id), objeto).then(function (res) {
+            _this3.cerrarModalCategoriaOTipo();
+
+            _this3.obtenerTipos();
+          });
         }
       }
     },
@@ -8147,11 +8193,27 @@ __webpack_require__.r(__webpack_exports__);
       this.tipoItemAEliminar = tipo;
     },
     confirmarEliminarItem: function confirmarEliminarItem(item, tipo) {
-      if (item != null) {
+      var _this4 = this;
+
+      if (item !== null) {
         if (tipo === "categoria") {
-          this.cancelarEliminar();
+          axios__WEBPACK_IMPORTED_MODULE_5___default().delete("/api/categoria/".concat(item.id)).then(function () {
+            _this4.obtenerCategorias();
+
+            _this4.cancelarEliminar();
+          });
         } else if (tipo === "tipo") {
-          this.cancelarEliminar();
+          axios__WEBPACK_IMPORTED_MODULE_5___default().delete("/api/tipo_producto/".concat(item.id)).then(function () {
+            _this4.obtenerTipos();
+
+            _this4.cancelarEliminar();
+          });
+        } else if (tipo === "producto") {
+          axios__WEBPACK_IMPORTED_MODULE_5___default().delete("/api/producto/".concat(item.id)).then(function () {
+            _this4.obtenerProductos();
+
+            _this4.cancelarEliminar();
+          });
         }
       }
     },
@@ -8171,17 +8233,17 @@ __webpack_require__.r(__webpack_exports__);
       return color;
     },
     obtenerCategorias: function obtenerCategorias() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/categoria").then(function (response) {
-        _this4.categorias = response.data;
+        _this5.categorias = response.data;
       });
     },
     obtenerTipos: function obtenerTipos() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/tipo_producto").then(function (response) {
-        _this5.tipos = response.data;
+        _this6.tipos = response.data;
       });
     }
   }
@@ -9413,23 +9475,6 @@ var render = function() {
                     [_vm._v("\n                    Cerrar\n                ")]
                   ),
                   _vm._v(" "),
-                  _vm.opciones.btn_editar
-                    ? _c(
-                        "v-btn",
-                        {
-                          attrs: { color: "blue darken-1", text: "" },
-                          on: { click: _vm.editarProducto }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.opciones.btn_texto) +
-                              "\n                "
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
                   _vm.opciones.btn_guardar
                     ? _c(
                         "v-btn",
@@ -10005,7 +10050,7 @@ var render = function() {
                             attrs: { icon: "" },
                             on: {
                               click: function($event) {
-                                return _vm.eliminar(producto)
+                                return _vm.eliminarItem(producto, "producto")
                               }
                             }
                           },
@@ -10142,7 +10187,7 @@ var render = function() {
           tipos: _vm.tipos
         },
         on: {
-          editarProducto: _vm.editarProductoModal,
+          editarProductoModal: _vm.editarProductoModal,
           guardarProducto: _vm.guardarProducto,
           cerrarModal: _vm.cerrar
         }

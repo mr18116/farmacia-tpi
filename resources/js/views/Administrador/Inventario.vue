@@ -40,7 +40,7 @@
                         <v-btn icon @click="editarProductoModal(producto)"
                             ><v-icon>mdi-pencil</v-icon></v-btn
                         >
-                        <v-btn icon @click="eliminar(producto)"
+                        <v-btn icon @click="eliminarItem(producto, 'producto')"
                             ><v-icon>mdi-delete</v-icon></v-btn
                         >
                     </v-app-bar>
@@ -94,7 +94,7 @@
             :opciones="opciones"
             :categorias="categorias"
             :tipos="tipos"
-            @editarProducto="editarProductoModal"
+            @editarProductoModal="editarProductoModal"
             @guardarProducto="guardarProducto"
             @cerrarModal="cerrar"
         />
@@ -179,7 +179,8 @@ export default {
             this.opciones = {
                 disabled: false,
                 btn_guardar: true,
-                btn_texto: "Guardar"
+                btn_texto: "Guardar",
+                 nuevo: false
             };
             this.productoEditar = producto;
         },
@@ -192,11 +193,17 @@ export default {
             };
             this.productoEditar = producto;
         },
-        guardarProducto(producto, opcion) {
+        guardarProducto(producto, id, opcion) {
             if(producto !== null && producto !== undefined){
                 if(opcion === "nuevo"){
                     axios.post("/api/producto",producto).then(() =>{
-                        this.cerrar();                       
+                        this.cerrar();      
+                        this.obtenerProductos();                 
+                    })
+                }else if (opcion === "actualizar"){
+                    axios.put(`/api/producto/${id}`, producto).then( () => {
+                        this.cerrar();
+                        this.obtenerProductos();
                     })
                 }
             }
@@ -239,18 +246,18 @@ export default {
                     opciones.categoriaOTipo === "categoria" &&
                     opciones.editar === true
                 ) {
-                    /*axios.put(`api/categoria/${objeto}`, objeto).then( res => {
+                    axios.put(`api/categoria/${objeto.id}`, objeto).then( res => {
                         this.cerrarModalCategoriaOTipo();
-                    })*/
+                        this.obtenerCategorias();
+                    })
                 } else if (
                     opciones.categoriaOTipo === "tipo" &&
                     opciones.editar === true
                 ) {
-                    console.log(`api/tipo_producto/${objeto}`);
-
-                    /*axios.put(`api/tipo_producto/${objeto}`, objeto).then( res => {
+                    axios.put(`api/tipo_producto/${objeto.id}`, objeto).then( res => {
                         this.cerrarModalCategoriaOTipo();
-                    })*/
+                        this.obtenerTipos();
+                    })
                 }
             }
         },
@@ -265,11 +272,22 @@ export default {
             this.tipoItemAEliminar = tipo;
         },
         confirmarEliminarItem(item, tipo) {
-            if (item != null) {
+            if (item !== null) {
                 if (tipo === "categoria") {
-                    this.cancelarEliminar();
+                    axios.delete(`/api/categoria/${item.id}`).then( () => {
+                        this.obtenerCategorias();
+                        this.cancelarEliminar();
+                    });
                 } else if (tipo === "tipo") {
-                    this.cancelarEliminar();
+                    axios.delete(`/api/tipo_producto/${item.id}`).then( () => {
+                        this.obtenerTipos();
+                        this.cancelarEliminar();
+                    });
+                } else if (tipo === "producto"){
+                   axios.delete(`/api/producto/${item.id}`).then( () => {
+                        this.obtenerProductos();
+                        this.cancelarEliminar();
+                    });
                 }
             }
         },

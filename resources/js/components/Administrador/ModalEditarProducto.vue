@@ -79,7 +79,6 @@
                                             item-value="id"
                                             label="Categoria"
                                             persistent-hint
-
                                             single-line
                                             multiple
                                         ></v-select>
@@ -93,7 +92,6 @@
                                             item-value="id"
                                             label="Tipo"
                                             persistent-hint
-
                                             single-line
                                             multiple
                                         ></v-select>
@@ -145,7 +143,7 @@
 </template>
 
 <script>
-import {storage} from "../../firebase";
+import { storage } from "../../firebase";
 
 export default {
     data: () => ({
@@ -162,10 +160,26 @@ export default {
             this.nuevaImagenUrl = "";
         },
         guardarProducto: async function() {
-            if (this.nuevaImagen === null) {
-                this.$emit("guardarProducto");
-            } else {
+            if (this.nuevaImagen === null && this.opciones.nuevo === false) {
+                const id = this.producto.id;
+                let productoAGuardar = {
+                    nombre: this.producto.nombre,
+                    imagen_url: this.producto.imagen_url,
+                    descripcion: this.producto.descripcion,
+                    precio: this.producto.precio,
+                    laboratorio: this.producto.laboratorio,
+                    cantidad: this.producto.cantidad,
+                    indicaciones: this.producto.indicaciones,
+                    idsCtegorias: this.nuevasCategorias,
+                    idsTipoProductos: this.nuevosTipos
+                };
+                this.$emit("guardarProducto", productoAGuardar, id,"actualizar");
+            } else if (
+                this.nuevaImagen !== null &&
+                this.opciones.nuevo === false
+            ) {
                 await this.subirImagen();
+                 const id = this.producto.id;
                 let productoAGuardar = {
                     nombre: this.producto.nombre,
                     imagen_url: this.nuevaImagenUrl,
@@ -176,18 +190,33 @@ export default {
                     indicaciones: this.producto.indicaciones,
                     idsCtegorias: this.nuevasCategorias,
                     idsTipoProductos: this.nuevosTipos
-                };               
-               this.$emit("guardarProducto", productoAGuardar, "nuevo")
+                };
+                this.$emit("guardarProducto", productoAGuardar, id, "actualizar");
+            } else if (this.nuevaImagen !== null && this.opciones.nuevo === true) {
+                await this.subirImagen();
+                 const id = this.producto.id;
+                let productoAGuardar = {
+                    nombre: this.producto.nombre,
+                    imagen_url: this.nuevaImagenUrl,
+                    descripcion: this.producto.descripcion,
+                    precio: this.producto.precio,
+                    laboratorio: this.producto.laboratorio,
+                    cantidad: this.producto.cantidad,
+                    indicaciones: this.producto.indicaciones,
+                    idsCtegorias: this.nuevasCategorias,
+                    idsTipoProductos: this.nuevosTipos
+                };
+                this.$emit("guardarProducto", productoAGuardar, id, "nuevo");
             }
         },
         editarProducto() {
-            this.$emit("editarProducto", this.producto);
+            this.$emit("editarProductoModal", this.producto);
             this.nuevaImagen = null;
             this.nuevaImagenUrl = "";
         },
         subirImagen: async function() {
             const ref = storage.ref();
-            const archivoRef = ref.child("Productos/"+ this.nuevaImagen.name);
+            const archivoRef = ref.child("Productos/" + this.nuevaImagen.name);
             var task = await archivoRef.put(this.nuevaImagen);
             const urlImage = await task.ref.getDownloadURL();
             this.nuevaImagenUrl = urlImage;
