@@ -8017,7 +8017,10 @@ __webpack_require__.r(__webpack_exports__);
       itemAEliminar: {},
       tipoItemAEliminar: "",
       productoEditar: {},
-      page: 1,
+      pagina: 1,
+      paginas: 1,
+      allProductos: [],
+      nProductosPagina: 12,
       opciones: {},
       mostrarModalCategoriaOTipo: false,
       categoriaOTipo: {},
@@ -8027,26 +8030,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var ejemplo0 = {
-      id: -1,
-      nombre: "ALERCET JARABE FRASCO X 60 ML 0",
-      imagen_url: "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588",
-      precio: 8.95,
-      cantidad: 0
-    };
-    this.productos.push(ejemplo0);
-
-    for (var index = 0; index < 10; index++) {
-      var ejemplo = {
-        id: index,
-        nombre: "ALERCET JARABE FRASCO X 60 ML " + (index + 1),
-        imagen_url: "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588",
-        precio: 8.95,
-        cantidad: Math.floor(Math.random() * 20)
-      };
-      this.productos.push(ejemplo);
-    }
-
+    this.obtenerProductos();
     this.obtenerCategorias();
     this.obtenerTipos();
   },
@@ -8058,6 +8042,18 @@ __webpack_require__.r(__webpack_exports__);
     EliminarItem: _components_Administrador_EliminarItem__WEBPACK_IMPORTED_MODULE_4__.default
   },
   methods: {
+    obtenerProductos: function obtenerProductos() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_5___default().get('/api/producto').then(function (response) {
+        _this.allProductos = response.data;
+        _this.productos = _this.allProductos.slice(0, _this.nProductosPagina);
+        _this.paginas = Math.ceil(_this.allProductos.length / _this.nProductosPagina);
+      });
+    },
+    cambioPagina: function cambioPagina() {
+      this.productos = this.allProductos.slice(this.nProductosPagina * (this.pagina - 1), this.nProductosPagina * this.pagina);
+    },
     nuevoProductoModal: function nuevoProductoModal() {
       this.editar = true;
       this.opciones = {
@@ -8086,12 +8082,12 @@ __webpack_require__.r(__webpack_exports__);
       this.productoEditar = producto;
     },
     guardarProducto: function guardarProducto(producto, opcion) {
-      var _this = this;
+      var _this2 = this;
 
       if (producto !== null && producto !== undefined) {
         if (opcion === "nuevo") {
           axios__WEBPACK_IMPORTED_MODULE_5___default().post("/api/producto", producto).then(function () {
-            _this.cerrar();
+            _this2.cerrar();
           });
         }
       }
@@ -8111,22 +8107,22 @@ __webpack_require__.r(__webpack_exports__);
       this.opciones = {};
     },
     guardarCategoriaOTipo: function guardarCategoriaOTipo(objeto, opciones) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.mostrarModalCategoriaOTipo = false;
 
       if (objeto.nombre != "" && objeto.nombre != undefined) {
         if (opciones.categoriaOTipo === "categoria" && opciones.editar === false) {
           axios__WEBPACK_IMPORTED_MODULE_5___default().post("/api/categoria", objeto).then(function (res) {
-            _this2.cerrarModalCategoriaOTipo();
+            _this3.cerrarModalCategoriaOTipo();
 
-            _this2.obtenerCategorias();
+            _this3.obtenerCategorias();
           });
         } else if (opciones.categoriaOTipo === "tipo" && opciones.editar === false) {
           axios__WEBPACK_IMPORTED_MODULE_5___default().post("/api/tipo_producto", objeto).then(function (res) {
-            _this2.cerrarModalCategoriaOTipo();
+            _this3.cerrarModalCategoriaOTipo();
 
-            _this2.obtenerTipos();
+            _this3.obtenerTipos();
           });
         } else if (opciones.categoriaOTipo === "categoria" && opciones.editar === true) {
           /*axios.put(`api/categoria/${objeto}`, objeto).then( res => {
@@ -8175,17 +8171,17 @@ __webpack_require__.r(__webpack_exports__);
       return color;
     },
     obtenerCategorias: function obtenerCategorias() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/categoria").then(function (response) {
-        _this3.categorias = response.data;
+        _this4.categorias = response.data;
       });
     },
     obtenerTipos: function obtenerTipos() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/tipo_producto").then(function (response) {
-        _this4.tipos = response.data;
+        _this5.tipos = response.data;
       });
     }
   }
@@ -10082,13 +10078,14 @@ var render = function() {
             { attrs: { cols: "12" } },
             [
               _c("v-pagination", {
-                attrs: { length: 10 },
+                attrs: { length: _vm.paginas },
+                on: { input: _vm.cambioPagina },
                 model: {
-                  value: _vm.page,
+                  value: _vm.pagina,
                   callback: function($$v) {
-                    _vm.page = $$v
+                    _vm.pagina = $$v
                   },
-                  expression: "page"
+                  expression: "pagina"
                 }
               })
             ],

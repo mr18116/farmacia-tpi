@@ -67,7 +67,7 @@
                 </v-card>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="page" :length="10"> </v-pagination>
+                <v-pagination v-model="pagina" :length="paginas" @input="cambioPagina"> </v-pagination>
             </v-col>
         </v-row>
         <v-row>
@@ -131,7 +131,10 @@ export default {
         itemAEliminar: {},
         tipoItemAEliminar: "",
         productoEditar: {},
-        page: 1,
+        pagina: 1,
+        paginas: 1,
+        allProductos: [],
+        nProductosPagina: 12,
         opciones: {},
         mostrarModalCategoriaOTipo: false,
         categoriaOTipo: {},
@@ -140,26 +143,7 @@ export default {
         tipos: []
     }),
     created() {
-        let ejemplo0 = {
-            id: -1,
-            nombre: "ALERCET JARABE FRASCO X 60 ML 0",
-            imagen_url:
-                "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588",
-            precio: 8.95,
-            cantidad: 0
-        };
-        this.productos.push(ejemplo0);
-        for (let index = 0; index < 10; index++) {
-            let ejemplo = {
-                id: index,
-                nombre: "ALERCET JARABE FRASCO X 60 ML " + (index + 1),
-                imagen_url:
-                    "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588",
-                precio: 8.95,
-                cantidad: Math.floor(Math.random() * 20)
-            };
-            this.productos.push(ejemplo);
-        }
+        this.obtenerProductos();
         this.obtenerCategorias();
         this.obtenerTipos();
     },
@@ -171,6 +155,16 @@ export default {
         EliminarItem
     },
     methods: {
+        obtenerProductos(){
+            axios.get('/api/producto').then( response => {
+                this.allProductos = response.data;
+                this.productos = this.allProductos.slice(0, this.nProductosPagina);
+                this.paginas = Math.ceil(this.allProductos.length/this.nProductosPagina);
+            });
+        },
+        cambioPagina(){
+            this.productos = this.allProductos.slice(this.nProductosPagina*(this.pagina-1), this.nProductosPagina*this.pagina);
+        },
         nuevoProductoModal() {
             this.editar = true;
             this.opciones = {
