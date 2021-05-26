@@ -30,6 +30,11 @@ const routes = [
         component: () => import('../views/Administrador/Inventario.vue'),
     },
     {
+        path: '/:categoria',
+        name: 'Categoria',
+        component: () => import('../views/Categoria.vue'),
+    },
+    {
         path: '*',
         name: 'Error',
         component: () => import('../views/Error404.vue')

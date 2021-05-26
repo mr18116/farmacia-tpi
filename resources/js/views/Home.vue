@@ -50,7 +50,7 @@
             > 
               <v-hover v-slot:default="{ hover }">
                 <CardsProductos shaped :elevation="hover ? 10 : 4"
-                  :class="{ up: hover }" :n="4" parametro="mas_vendidos" />
+                  :class="{ up: hover }" :n="4" parametro="ultimos" />
               </v-hover>
             </v-col>
           </v-row>
@@ -71,7 +71,7 @@
             >
               <v-hover v-slot:default="{ hover }">
                 <CardsProductos shaped :elevation="hover ? 10 : 4"
-                  :class="{ up: hover }" :n="4" parametro="nuevos" />
+                  :class="{ up: hover }" :n="4" parametro="mas-comprados" />
               </v-hover>
             </v-col>
           </v-row>

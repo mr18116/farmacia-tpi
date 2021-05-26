@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -19,14 +20,31 @@ class ProductoController extends Controller
         return $productos;
     }
 
-    public function ultimos(int $n)
+    public function ultimos($n)
     {
-        $productos = Producto::all()->orderBy('created_at', 'desc')->limit($n)->get();
+        $productos = Producto::orderBy('created_at', 'desc')->limit($n)->get();
+        $productos->load(['categoria', 'tipoProducto']);
         return $productos;
     }
 
-    public function productosByCategoria(int $n){
-        
+    public function masVendidos($n)
+    {
+        $productos = Producto::join('factura_has_productos', 'productos.id', '=', 'factura_has_productos.producto_id')
+        ->join('facturas', 'factura_has_productos.factura_id', '=', 'facturas.id')
+        ->orderBy('factura_has_productos.cantidad', 'asc')
+        ->select('productos.*')->limit($n)->get();
+        $productos->load(['categoria', 'tipoProducto']);
+        return $productos;
+    }
+
+    public function productosByCategoria($categoria){
+        $productos = Producto::join('categoria_has_productos', 'productos.id', '=', 'categoria_has_productos.producto_id')
+        ->join('categorias', 'categoria_has_productos.categoria_id', '=', 'categorias.id')
+        ->where('categorias.nombre', '=', $categoria)
+        ->select('productos.*')
+        ->get();
+        $productos->load(['categoria', 'tipoProducto']);
+        return $productos;
     }
 
     /**

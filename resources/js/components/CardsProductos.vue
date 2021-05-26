@@ -8,6 +8,8 @@
 
 <script>
 import CardProducto from './CardProducto';
+import axios from 'axios';
+
 export default {
     components: {
         CardProducto
@@ -18,19 +20,37 @@ export default {
     },
     data: () => ({
         productos: [],
+        allProductos: [],
+        paginas: 1,
     }),
     methods: {
-
+        cargarProductos(){
+            if (this.parametro == 'ultimos') {
+                axios.get('/api/productos-ultimos/' + this.n).then( response => {
+                    this.productos = response.data;
+                });
+            } else if (this.parametro == 'mas-comprados') {
+                axios.get('/api/productos-mas-comprados/' + this.n).then( response => {
+                    this.productos = response.data;
+                });
+            } else {
+                axios.get('/api/productos-categoria/' + this.parametro).then( response => {
+                    this.allProductos = response.data;
+                    this.productos = this.allProductos.slice(0, this.n);
+                    this.paginass = Math.ceil(this.allProductos.length/this.n);
+                });
+            }
+        },
+        cambiarPagina(pagina){
+            this.productos = this.allProductos.slice(this.n*(pagina-1), this.n*pagina);
+        }
     },
     created(){
-        for (let index = 0; index < this.n; index++) {
-            let ejemplo = {
-                id: index,
-                nombre: 'ALERCET JARABE FRASCO X 60 ML ' + (index + 1),
-                imagen_url: 'https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588',
-                precio: 8.95,
-            };
-            this.productos.push(ejemplo);
+        this.cargarProductos();
+    },
+    watch: {
+        '$route.params': function () {
+            this.cargarProductos();
         }
     }
 }

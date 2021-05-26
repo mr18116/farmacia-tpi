@@ -104,6 +104,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _CardProducto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardProducto */ "./resources/js/components/CardProducto.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -112,6 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -123,19 +126,41 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      productos: []
+      productos: [],
+      allProductos: [],
+      paginas: 1
     };
   },
-  methods: {},
+  methods: {
+    cargarProductos: function cargarProductos() {
+      var _this = this;
+
+      if (this.parametro == 'ultimos') {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-ultimos/' + this.n).then(function (response) {
+          _this.productos = response.data;
+        });
+      } else if (this.parametro == 'mas-comprados') {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-mas-comprados/' + this.n).then(function (response) {
+          _this.productos = response.data;
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-categoria/' + this.parametro).then(function (response) {
+          _this.allProductos = response.data;
+          _this.productos = _this.allProductos.slice(0, _this.n);
+          _this.paginass = Math.ceil(_this.allProductos.length / _this.n);
+        });
+      }
+    },
+    cambiarPagina: function cambiarPagina(pagina) {
+      this.productos = this.allProductos.slice(this.n * (pagina - 1), this.n * pagina);
+    }
+  },
   created: function created() {
-    for (var index = 0; index < this.n; index++) {
-      var ejemplo = {
-        id: index,
-        nombre: 'ALERCET JARABE FRASCO X 60 ML ' + (index + 1),
-        imagen_url: 'https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=c4d90d93-d0ad-4873-8bf3-4f5052c19505&idMultimedia=e9363332-777b-4862-a180-9a6db039f588',
-        precio: 8.95
-      };
-      this.productos.push(ejemplo);
+    this.cargarProductos();
+  },
+  watch: {
+    '$route.params': function $routeParams() {
+      this.cargarProductos();
     }
   }
 });
@@ -1199,7 +1224,7 @@ var render = function() {
                                         shaped: "",
                                         elevation: hover ? 10 : 4,
                                         n: 4,
-                                        parametro: "mas_vendidos"
+                                        parametro: "ultimos"
                                       }
                                     })
                                   ]
@@ -1259,7 +1284,7 @@ var render = function() {
                                         shaped: "",
                                         elevation: hover ? 10 : 4,
                                         n: 4,
-                                        parametro: "nuevos"
+                                        parametro: "mas-comprados"
                                       }
                                     })
                                   ]

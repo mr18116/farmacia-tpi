@@ -38,3 +38,9 @@ Route::apiResources([
 Route::get('carrito-user/{user_id}', [CarritoController::class, 'carritoByUser']);
 
 Route::get('rol-user/{user_id}', [TipoUsuarioController::class, 'rol']);
+
+Route::get('productos-categoria/{categoria}', [ProductoController::class, 'productosByCategoria']);
+
+Route::get('productos-ultimos/{n}', [ProductoController::class, 'ultimos']);
+
+Route::get('productos-mas-comprados/{n}', [ProductoController::class, 'masVendidos']);
