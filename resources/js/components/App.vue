@@ -96,7 +96,7 @@ export default {
     onScroll(e) {
       if (typeof window === "undefined") return;
       const top = window.pageYOffset || e.target.scrollTop || 0;
-      this.fab = top > 60;
+      this.fab = top > 40;
     },
     toTop() {
       this.$vuetify.goTo(0);
