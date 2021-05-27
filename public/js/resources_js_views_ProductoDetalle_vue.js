@@ -87,6 +87,11 @@ __webpack_require__.r(__webpack_exports__);
     aumentar: function aumentar() {
       this.cantidad++;
     }
+  },
+  filters: {
+    subStr: function subStr(string) {
+      return string.substring(0, 15) + '...';
+    }
   }
 });
 
@@ -290,6 +295,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     CardsProductos: _components_CardsProductos__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  filters: {
+    subStr: function subStr(string) {
+      return string.substring(0, 15) + '...';
+    }
   },
   data: function data() {
     return {
@@ -670,7 +680,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("v-card-title", [
-        _vm._v("\n        " + _vm._s(_vm.producto.nombre) + "\n    ")
+        _vm._v(
+          "\n        " +
+            _vm._s(_vm._f("subStr")(_vm.producto.nombre)) +
+            "\n    "
+        )
       ]),
       _vm._v(" "),
       _c("v-card-subtitle", [_vm._v("$" + _vm._s(_vm.producto.precio))]),
@@ -880,7 +894,7 @@ var render = function() {
               { staticClass: "pl-6" },
               [
                 _c("p", { staticClass: "display-1 mb-1" }, [
-                  _vm._v(_vm._s(_vm.producto.nombre))
+                  _vm._v(_vm._s(_vm._f("subStr")(_vm.producto.nombre)))
                 ]),
                 _vm._v(" "),
                 _c(

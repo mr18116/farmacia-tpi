@@ -4,7 +4,7 @@
             <v-img height="200" contain :src="producto.imagen_url"></v-img>
         </router-link>
         <v-card-title>
-            {{ producto.nombre }}
+            {{ producto.nombre | subStr}}
         </v-card-title>
         <v-card-subtitle>${{ producto.precio }}</v-card-subtitle>
         <v-card-actions>
@@ -73,7 +73,14 @@ export default {
         aumentar() {
             this.cantidad++;
         }
-    }
+    },
+            filters: {
+  
+  	subStr: function(string) {
+    	return string.substring(0,15) + '...';
+        }
+  
+  },
 };
 </script>
 

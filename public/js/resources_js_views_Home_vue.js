@@ -87,6 +87,11 @@ __webpack_require__.r(__webpack_exports__);
     aumentar: function aumentar() {
       this.cantidad++;
     }
+  },
+  filters: {
+    subStr: function subStr(string) {
+      return string.substring(0, 15) + '...';
+    }
   }
 });
 
@@ -756,7 +761,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("v-card-title", [
-        _vm._v("\n        " + _vm._s(_vm.producto.nombre) + "\n    ")
+        _vm._v(
+          "\n        " +
+            _vm._s(_vm._f("subStr")(_vm.producto.nombre)) +
+            "\n    "
+        )
       ]),
       _vm._v(" "),
       _c("v-card-subtitle", [_vm._v("$" + _vm._s(_vm.producto.precio))]),
