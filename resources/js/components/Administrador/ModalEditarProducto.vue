@@ -160,6 +160,7 @@ export default {
             this.nuevaImagenUrl = "";
         },
         guardarProducto: async function() {
+            this.$emit("activarCargando");
             if (this.nuevaImagen === null && this.opciones.nuevo === false) {
                 const id = this.producto.id;
                 let productoAGuardar = {

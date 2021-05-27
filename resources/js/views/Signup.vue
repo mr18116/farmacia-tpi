@@ -46,10 +46,12 @@
                         </v-card>
                     </v-col>
                 </v-row>
+                <Loader :cargando="cargando" />
             </v-container>
 </template>
 
 <script>
+import Loader from "../components/Loader"
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -62,10 +64,12 @@ export default {
             password: '',
             password_confirmation: '',
         },
+        cargando: false
     }),
     methods: {
         signup(){
             axios.get("/sanctum/csrf-cookie").then(response => {
+                 this.cargando = true;
                 axios.post('/register', this.user).then(async response => {
                     await axios.get('/api/user').then( async res => {
                         await axios.post('/api/tipo_usuario', {
@@ -77,11 +81,15 @@ export default {
                         });
                     });
                     await this.$store.dispatch('getUser');
+                     this.cargando = false;
                     this.$router.replace('/');
                 });
             });
         }
     },
+    components: {
+        Loader
+    }
 }
 </script>
 
