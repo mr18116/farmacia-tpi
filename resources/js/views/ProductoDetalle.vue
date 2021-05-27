@@ -4,7 +4,7 @@
             color="#0077c9"
             class="px-5">
         </v-app-bar>
-      <div class="row pt-15">
+      <div class="row pt-10">
         <div class="col-md-5 col-sm-5 col-xs-12">
             <v-img  class="elevation-1" :src="producto.imagen_url"></v-img>
         </div>
@@ -136,7 +136,7 @@ export default {
       {
         text: "Alergias",
         disabled: false,
-        href: "{{producto.categoria}}",
+        href: "#",
       },
       {
         text: "Antialergicos",

@@ -193,6 +193,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -201,7 +210,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       pagina: 1,
-      paginas: 1
+      paginas: 1,
+      etiquetas: [{
+        text: "Inicio",
+        disabled: false,
+        href: "/"
+      }, {
+        text: "Alergia",
+        disabled: false,
+        href: "#"
+      }, {
+        text: "Antialergicos",
+        disabled: true,
+        href: "#"
+      }]
     };
   },
   methods: {
@@ -687,28 +709,45 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-container",
+    { attrs: { fluid: "" } },
     [
-      _c(
-        "v-row",
-        [
-          _c("v-col", { staticClass: "text-h1", attrs: { cols: "12" } }, [
-            _vm._v(
-              "\n            " +
-                _vm._s(this.$route.params.categoria) +
-                "\n        "
-            )
-          ])
-        ],
-        1
-      ),
+      _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
       _vm._v(" "),
-      _c("CardsProductos", {
-        attrs: {
-          id: "cardCategoria",
-          n: 36,
-          parametro: this.$route.params.categoria
-        }
-      }),
+      _c("div", { staticClass: "row pt-15" }, [
+        _c(
+          "div",
+          { staticClass: "col-md-9 col-sm-7 col-xs-12" },
+          [
+            _c("v-breadcrumbs", {
+              staticClass: "pb-0",
+              attrs: { items: _vm.etiquetas }
+            }),
+            _vm._v(" "),
+            _c(
+              "v-row",
+              [
+                _c("v-col", { staticClass: "text-h1", attrs: { cols: "12" } }, [
+                  _vm._v(
+                    "\n                      " +
+                      _vm._s(this.$route.params.categoria) +
+                      "\n                  "
+                  )
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("CardsProductos", {
+              attrs: {
+                id: "cardCategoria",
+                n: 36,
+                parametro: this.$route.params.categoria
+              }
+            })
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
         "v-col",

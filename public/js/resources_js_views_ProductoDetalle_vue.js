@@ -311,7 +311,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: "Alergias",
         disabled: false,
-        href: "{{producto.categoria}}"
+        href: "#"
       }, {
         text: "Antialergicos",
         disabled: true,
@@ -853,7 +853,7 @@ var render = function() {
     [
       _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-15" }, [
+      _c("div", { staticClass: "row pt-10" }, [
         _c(
           "div",
           { staticClass: "col-md-5 col-sm-5 col-xs-12" },
