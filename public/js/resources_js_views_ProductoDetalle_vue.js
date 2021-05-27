@@ -286,8 +286,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -306,31 +304,31 @@ __webpack_require__.r(__webpack_exports__);
       },
       cantidad: 1,
       rating: 4.5,
-      breadcrums: [{
-        text: 'Inicio',
+      etiquetas: [{
+        text: "Inicio",
         disabled: false,
-        href: '/'
+        href: "/"
       }, {
-        text: 'Alergias',
+        text: "Alergias",
         disabled: false,
-        href: '#'
+        href: "{{producto.categoria}}"
       }, {
-        text: 'Antialergicos',
+        text: "Antialergicos",
         disabled: true,
-        href: '#'
+        href: "#"
       }],
       item: 3,
       items: [{
-        avatar: 'https://pbs.twimg.com/profile_images/1393419008540659712/kKFelPMI_400x400.jpg',
-        title: 'Me parece un medicamente increible',
+        avatar: "https://pbs.twimg.com/profile_images/1393419008540659712/kKFelPMI_400x400.jpg",
+        title: "Me parece un medicamente increible",
         subtitle: "<span class='text--primary'>Nayib Bukele</span> &mdash; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Tincidunt arcu non sodales neque sodales ut etiam. Lectus arcu bibendum at varius vel pharetra. Morbi tristique senectus et netus et malesuada.\n" + "\n"
       }, {
-        avatar: 'https://static.elmundo.sv/wp-content/uploads/2020/03/Francisco-Alabi-1.jpg',
-        title: 'Wow!',
+        avatar: "https://static.elmundo.sv/wp-content/uploads/2020/03/Francisco-Alabi-1.jpg",
+        title: "Wow!",
         subtitle: "<span class='text--primary'>Alabi, Scott, Jennifer</span> &mdash; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
       }, {
-        avatar: 'https://s.france24.com/media/display/1418cfe0-964a-11eb-a27e-005056bf87d6/w:1280/p:16x9/putin-5.webp',
-        title: 'удивительный',
+        avatar: "https://s.france24.com/media/display/1418cfe0-964a-11eb-a27e-005056bf87d6/w:1280/p:16x9/putin-5.webp",
+        title: "удивительный",
         subtitle: "<span class='text--primary'>Vladimir Putín</span> &mdash; Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       }]
     };
@@ -874,7 +872,7 @@ var render = function() {
           [
             _c("v-breadcrumbs", {
               staticClass: "pb-0",
-              attrs: { items: _vm.breadcrums }
+              attrs: { items: _vm.etiquetas }
             }),
             _vm._v(" "),
             _c(
@@ -1036,6 +1034,7 @@ var render = function() {
                                         innerHTML: _vm._s(item.title)
                                       }
                                     }),
+                                    _vm._v(" "),
                                     _c("v-rating", {
                                       attrs: {
                                         "background-color": "warning lighten-3",
