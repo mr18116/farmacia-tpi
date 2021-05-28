@@ -679,7 +679,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-card-title", [
+      _c("v-card-title", { staticClass: "text-uppercase" }, [
         _vm._v(
           "\n        " +
             _vm._s(_vm._f("subStr")(_vm.producto.nombre)) +
