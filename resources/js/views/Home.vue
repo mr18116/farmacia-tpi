@@ -6,7 +6,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
               <h1 class="display-2 font-weight-black mb-4">Somos tu mejor opción</h1>
-              <h1 class="font-weight-light">
+              <h1 class="font-weight-light ">
                 Lorem ipsum dolor sit amet consectetur <br />
                 adipisicing elit. Maiores porro voluptatibus <br />
                 delectus nam optio harum!

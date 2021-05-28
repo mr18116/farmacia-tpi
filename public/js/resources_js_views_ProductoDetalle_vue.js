@@ -296,11 +296,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CardsProductos: _components_CardsProductos__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  filters: {
-    subStr: function subStr(string) {
-      return string.substring(0, 15) + '...';
-    }
-  },
   data: function data() {
     return {
       producto: {
@@ -894,7 +889,7 @@ var render = function() {
               { staticClass: "pl-6" },
               [
                 _c("p", { staticClass: "display-1 mb-1" }, [
-                  _vm._v(_vm._s(_vm._f("subStr")(_vm.producto.nombre)))
+                  _vm._v(_vm._s(_vm.producto.nombre))
                 ]),
                 _vm._v(" "),
                 _c(

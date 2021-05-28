@@ -11,7 +11,7 @@
         <div class="col-md-7 col-sm-7 col-xs-12">
           <v-breadcrumbs class="pb-0" :items="etiquetas"></v-breadcrumbs>
           <div class="pl-6">
-            <p class="display-1 mb-1">{{ producto.nombre | subStr}}</p>
+            <p class="display-1 mb-1">{{ producto.nombre }}</p>
             <v-card-actions>
               <p class="headline font-weight-light pt-3">${{ producto.precio }} <del style="" class="subtitle-1 font-weight-thin">$80.00</del></p>
               <v-rating v-model="rating" class="pl-10" background-color="warning lighten-3" color="warning" dense></v-rating>
@@ -111,13 +111,6 @@ import CardsProductos from "../components/CardsProductos";
 export default {
   components: {
     CardsProductos,
-  },
-        filters: {
-  
-  	subStr: function(string) {
-    	return string.substring(0,15) + '...';
-        }
-  
   },
   data: () => ({
     producto: {

@@ -8084,6 +8084,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -10232,6 +10236,8 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
+      _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
+      _vm._v(" "),
       _c(
         "v-row",
         { attrs: { align: "center" } },

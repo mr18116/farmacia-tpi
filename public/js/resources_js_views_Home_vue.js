@@ -1101,7 +1101,7 @@ var render = function() {
                             [_vm._v("Somos tu mejor opción")]
                           ),
                           _vm._v(" "),
-                          _c("h1", { staticClass: "font-weight-light" }, [
+                          _c("h1", { staticClass: "font-weight-light " }, [
                             _vm._v(
                               "\r\n                Lorem ipsum dolor sit amet consectetur "
                             ),

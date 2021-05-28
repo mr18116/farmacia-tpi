@@ -1,5 +1,9 @@
 <template>
     <v-container fluid>
+        <v-app-bar
+            color="#0077c9"
+            class="px-5">
+        </v-app-bar>
         <v-row align="center">
             <v-col cols="12" class="text-h1">
                 Inventario
