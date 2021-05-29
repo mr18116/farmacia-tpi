@@ -3,8 +3,8 @@
         <router-link :to="'/detalle/' + producto.id">
             <v-img height="200" contain :src="producto.imagen_url"></v-img>
         </router-link>
-        <v-card-title class="text-uppercase">
-            {{ producto.nombre | subStr}}
+        <v-card-title class="d-block text-uppercase text-truncate">
+            {{ producto.nombre }}
         </v-card-title>
         <v-card-subtitle>${{ producto.precio }}</v-card-subtitle>
         <v-card-actions>

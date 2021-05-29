@@ -80,9 +80,12 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        $producto = Producto::find($id);
+        $producto->categoria;
+        $producto->tipoProducto;
+        return $producto;
     }
 
     /**

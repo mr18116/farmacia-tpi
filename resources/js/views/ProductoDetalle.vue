@@ -4,7 +4,7 @@
             color="#0077c9"
             class="px-5">
         </v-app-bar>
-      <div class="row pt-10">
+      <div class="row pt-10" v-if="producto != null">
         <div class="col-md-5 col-sm-5 col-xs-12">
             <v-img  class="elevation-1" :src="producto.imagen_url"></v-img>
         </div>
@@ -34,7 +34,7 @@
           </div>
       </div>
       </div>
-      <div class="row">
+      <div class="row" v-if="producto != null">
         <div class="col-sm-12 col-xs-12 col-md-12">
             <v-tabs>
             <v-tab >Description</v-tab>
@@ -107,24 +107,14 @@
 
 <script>
 import CardsProductos from "../components/CardsProductos";
+import axios from 'axios';
 
 export default {
   components: {
     CardsProductos,
   },
   data: () => ({
-    producto: {
-      nombre: "NEUROGLUTAN AMPOLLAS BEBIBLES X 12 SACHET",
-      imagen_url:
-        "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=022e3d37-b35d-404c-9187-8192ecf46404&idMultimedia=e8d015ed-f476-40f7-b3a6-5c1224e8ca73",
-      descripcion:
-        "Neuroglután está indicado para el cansancio físico y mental. Mejora la capacidad de concentración y la memoria. Es un estimulante cerebral que contiene ácido glutámico que activa la circulación del cerebro. Además posee las vitaminas b1, b6, b12 y ginseng coreano. Estos componentes mejoran el estado de ánimo y el sistema nervioso.",
-      precio: 8.26,
-      laboratorio: "",
-      cantidad: 1,
-      indicaciones:
-        "1. Tomar Medicamento en la mañana.\n2. No tomar mucha agua.\n3. Beber mucha agua",
-    },
+    producto: null,
     cantidad: 1,
     rating: 4.5,
     etiquetas: [
@@ -171,6 +161,11 @@ export default {
     ],
   }
   ),
+  created(){
+    axios.get('/api/producto/' + this.$route.params.id).then( response => {
+      this.producto = response.data;
+    });
+  }
 };
 </script>
 <style lang="scss">

@@ -184,6 +184,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_CardsProductos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/CardsProductos */ "./resources/js/components/CardsProductos.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -292,21 +294,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     CardsProductos: _components_CardsProductos__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
     return {
-      producto: {
-        nombre: "NEUROGLUTAN AMPOLLAS BEBIBLES X 12 SACHET",
-        imagen_url: "https://www.farmaciasannicolas.com/Producto/GetMultimediaProducto?idProducto=022e3d37-b35d-404c-9187-8192ecf46404&idMultimedia=e8d015ed-f476-40f7-b3a6-5c1224e8ca73",
-        descripcion: "Neuroglután está indicado para el cansancio físico y mental. Mejora la capacidad de concentración y la memoria. Es un estimulante cerebral que contiene ácido glutámico que activa la circulación del cerebro. Además posee las vitaminas b1, b6, b12 y ginseng coreano. Estos componentes mejoran el estado de ánimo y el sistema nervioso.",
-        precio: 8.26,
-        laboratorio: "",
-        cantidad: 1,
-        indicaciones: "1. Tomar Medicamento en la mañana.\n2. No tomar mucha agua.\n3. Beber mucha agua"
-      },
+      producto: null,
       cantidad: 1,
       rating: 4.5,
       etiquetas: [{
@@ -337,6 +332,13 @@ __webpack_require__.r(__webpack_exports__);
         subtitle: "<span class='text--primary'>Vladimir Putín</span> &mdash; Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       }]
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/producto/' + this.$route.params.id).then(function (response) {
+      _this.producto = response.data;
+    });
   }
 });
 
@@ -383,7 +385,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.centered-input[data-v-8d3d670a] input {\r\n    text-align: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.centered-input[data-v-8d3d670a] input {\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -674,13 +676,11 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-card-title", { staticClass: "text-uppercase" }, [
-        _vm._v(
-          "\n        " +
-            _vm._s(_vm._f("subStr")(_vm.producto.nombre)) +
-            "\n    "
-        )
-      ]),
+      _c(
+        "v-card-title",
+        { staticClass: "d-block text-uppercase text-truncate" },
+        [_vm._v("\n        " + _vm._s(_vm.producto.nombre) + "\n    ")]
+      ),
       _vm._v(" "),
       _c("v-card-subtitle", [_vm._v("$" + _vm._s(_vm.producto.precio))]),
       _vm._v(" "),
@@ -862,218 +862,102 @@ var render = function() {
     [
       _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-10" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-5 col-sm-5 col-xs-12" },
-          [
-            _c("v-img", {
-              staticClass: "elevation-1",
-              attrs: { src: _vm.producto.imagen_url }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-md-7 col-sm-7 col-xs-12" },
-          [
-            _c("v-breadcrumbs", {
-              staticClass: "pb-0",
-              attrs: { items: _vm.etiquetas }
-            }),
+      _vm.producto != null
+        ? _c("div", { staticClass: "row pt-10" }, [
+            _c(
+              "div",
+              { staticClass: "col-md-5 col-sm-5 col-xs-12" },
+              [
+                _c("v-img", {
+                  staticClass: "elevation-1",
+                  attrs: { src: _vm.producto.imagen_url }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "pl-6" },
+              { staticClass: "col-md-7 col-sm-7 col-xs-12" },
               [
-                _c("p", { staticClass: "display-1 mb-1" }, [
-                  _vm._v(_vm._s(_vm.producto.nombre))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "v-card-actions",
-                  [
-                    _c(
-                      "p",
-                      { staticClass: "headline font-weight-light pt-3" },
-                      [
-                        _vm._v("$" + _vm._s(_vm.producto.precio) + " "),
-                        _c(
-                          "del",
-                          { staticClass: "subtitle-1 font-weight-thin" },
-                          [_vm._v("$80.00")]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("v-rating", {
-                      staticClass: "pl-10",
-                      attrs: {
-                        "background-color": "warning lighten-3",
-                        color: "warning",
-                        dense: ""
-                      },
-                      model: {
-                        value: _vm.rating,
-                        callback: function($$v) {
-                          _vm.rating = $$v
-                        },
-                        expression: "rating"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "font-weight-thin" }, [
-                      _vm._v(" 25 REVIEWS")
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("p", { staticClass: "subtitle-1 font-weight-thin" }, [
-                  _c("pre", [_vm._v(_vm._s(_vm.producto.indicaciones))])
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "title" }, [_vm._v("CANTIDAD")]),
-                _vm._v(" "),
-                _c("v-text-field", {
-                  staticClass: "centered-input",
-                  staticStyle: { width: "100px" },
-                  attrs: { outlined: "", dense: "" },
-                  model: {
-                    value: _vm.cantidad,
-                    callback: function($$v) {
-                      _vm.cantidad = $$v
-                    },
-                    expression: "cantidad"
-                  }
+                _c("v-breadcrumbs", {
+                  staticClass: "pb-0",
+                  attrs: { items: _vm.etiquetas }
                 }),
                 _vm._v(" "),
                 _c(
-                  "v-btn",
-                  {
-                    staticClass: "primary white--text",
-                    attrs: { outlined: "", tile: "", dense: "" }
-                  },
-                  [_c("v-icon", [_vm._v("mdi-cart")]), _vm._v(" Agregar")],
-                  1
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          { staticClass: "col-sm-12 col-xs-12 col-md-12" },
-          [
-            _c(
-              "v-tabs",
-              [
-                _c("v-tab", [_vm._v("Description")]),
-                _vm._v(" "),
-                _c("v-tab", [_vm._v("Indicaciones")]),
-                _vm._v(" "),
-                _c("v-tab", [_vm._v("REVIEWS")]),
-                _vm._v(" "),
-                _c("v-tab-item", [
-                  _c(
-                    "p",
-                    { staticClass: "pt-10 subtitle-1 font-weight-thin" },
-                    [
-                      _vm._v(
-                        "\n            " +
-                          _vm._s(_vm.producto.descripcion) +
-                          "}\n          "
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("v-tab-item", [
-                  _c(
-                    "p",
-                    { staticClass: "pt-10 subtitle-1 font-weight-thin" },
-                    [_c("pre", [_vm._v(_vm._s(_vm.producto.indicaciones))])]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "v-tab-item",
+                  "div",
+                  { staticClass: "pl-6" },
                   [
+                    _c("p", { staticClass: "display-1 mb-1" }, [
+                      _vm._v(_vm._s(_vm.producto.nombre))
+                    ]),
+                    _vm._v(" "),
                     _c(
-                      "v-list",
-                      { attrs: { "three-line": "true", avatar: "true" } },
+                      "v-card-actions",
                       [
                         _c(
-                          "v-list-item-group",
-                          {
-                            attrs: { color: "primary" },
-                            model: {
-                              value: _vm.item,
-                              callback: function($$v) {
-                                _vm.item = $$v
-                              },
-                              expression: "item"
-                            }
-                          },
-                          _vm._l(_vm.items, function(item, i) {
-                            return _c(
-                              "v-list-item",
-                              { key: i, attrs: { inactive: "true" } },
-                              [
-                                _c(
-                                  "v-list-item-avatar",
-                                  [
-                                    _c("v-img", { attrs: { src: item.avatar } })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-list-item-content",
-                                  [
-                                    _c("v-list-item-title", {
-                                      domProps: {
-                                        innerHTML: _vm._s(item.title)
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-rating", {
-                                      attrs: {
-                                        "background-color": "warning lighten-3",
-                                        color: "warning",
-                                        dense: ""
-                                      },
-                                      model: {
-                                        value: _vm.rating,
-                                        callback: function($$v) {
-                                          _vm.rating = $$v
-                                        },
-                                        expression: "rating"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-list-item-subtitle", {
-                                      domProps: {
-                                        innerHTML: _vm._s(item.subtitle)
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
+                          "p",
+                          { staticClass: "headline font-weight-light pt-3" },
+                          [
+                            _vm._v("$" + _vm._s(_vm.producto.precio) + " "),
+                            _c(
+                              "del",
+                              { staticClass: "subtitle-1 font-weight-thin" },
+                              [_vm._v("$80.00")]
                             )
-                          }),
-                          1
-                        )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("v-rating", {
+                          staticClass: "pl-10",
+                          attrs: {
+                            "background-color": "warning lighten-3",
+                            color: "warning",
+                            dense: ""
+                          },
+                          model: {
+                            value: _vm.rating,
+                            callback: function($$v) {
+                              _vm.rating = $$v
+                            },
+                            expression: "rating"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "font-weight-thin" }, [
+                          _vm._v(" 25 REVIEWS")
+                        ])
                       ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "subtitle-1 font-weight-thin" }, [
+                      _c("pre", [_vm._v(_vm._s(_vm.producto.indicaciones))])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "title" }, [_vm._v("CANTIDAD")]),
+                    _vm._v(" "),
+                    _c("v-text-field", {
+                      staticClass: "centered-input",
+                      staticStyle: { width: "100px" },
+                      attrs: { outlined: "", dense: "" },
+                      model: {
+                        value: _vm.cantidad,
+                        callback: function($$v) {
+                          _vm.cantidad = $$v
+                        },
+                        expression: "cantidad"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        staticClass: "primary white--text",
+                        attrs: { outlined: "", tile: "", dense: "" }
+                      },
+                      [_c("v-icon", [_vm._v("mdi-cart")]), _vm._v(" Agregar")],
                       1
                     )
                   ],
@@ -1081,65 +965,206 @@ var render = function() {
                 )
               ],
               1
-            ),
-            _vm._v(" "),
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.producto != null
+        ? _c("div", { staticClass: "row" }, [
             _c(
-              "v-card-text",
-              { staticClass: "pa-0 pt-4", attrs: { tile: "", outlined: "" } },
+              "div",
+              { staticClass: "col-sm-12 col-xs-12 col-md-12" },
               [
                 _c(
-                  "p",
-                  {
-                    staticClass: "subtitle-1 font-weight-light pt-3 text-center"
-                  },
-                  [_vm._v("PRODUCTOS RELACIONADOS")]
-                ),
-                _vm._v(" "),
-                _c("v-divider")
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "v-row",
-              { attrs: { align: "center", justify: "center" } },
-              [
-                _c(
-                  "v-col",
-                  { attrs: { cols: "12" } },
+                  "v-tabs",
                   [
+                    _c("v-tab", [_vm._v("Description")]),
+                    _vm._v(" "),
+                    _c("v-tab", [_vm._v("Indicaciones")]),
+                    _vm._v(" "),
+                    _c("v-tab", [_vm._v("REVIEWS")]),
+                    _vm._v(" "),
+                    _c("v-tab-item", [
+                      _c(
+                        "p",
+                        { staticClass: "pt-10 subtitle-1 font-weight-thin" },
+                        [
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.producto.descripcion) +
+                              "}\n          "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("v-tab-item", [
+                      _c(
+                        "p",
+                        { staticClass: "pt-10 subtitle-1 font-weight-thin" },
+                        [_c("pre", [_vm._v(_vm._s(_vm.producto.indicaciones))])]
+                      )
+                    ]),
+                    _vm._v(" "),
                     _c(
-                      "v-row",
-                      { attrs: { align: "center", justify: "space-around" } },
+                      "v-tab-item",
                       [
                         _c(
-                          "v-col",
+                          "v-list",
+                          { attrs: { "three-line": "true", avatar: "true" } },
+                          [
+                            _c(
+                              "v-list-item-group",
+                              {
+                                attrs: { color: "primary" },
+                                model: {
+                                  value: _vm.item,
+                                  callback: function($$v) {
+                                    _vm.item = $$v
+                                  },
+                                  expression: "item"
+                                }
+                              },
+                              _vm._l(_vm.items, function(item, i) {
+                                return _c(
+                                  "v-list-item",
+                                  { key: i, attrs: { inactive: "true" } },
+                                  [
+                                    _c(
+                                      "v-list-item-avatar",
+                                      [
+                                        _c("v-img", {
+                                          attrs: { src: item.avatar }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", {
+                                          domProps: {
+                                            innerHTML: _vm._s(item.title)
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-rating", {
+                                          attrs: {
+                                            "background-color":
+                                              "warning lighten-3",
+                                            color: "warning",
+                                            dense: ""
+                                          },
+                                          model: {
+                                            value: _vm.rating,
+                                            callback: function($$v) {
+                                              _vm.rating = $$v
+                                            },
+                                            expression: "rating"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("v-list-item-subtitle", {
+                                          domProps: {
+                                            innerHTML: _vm._s(item.subtitle)
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-card-text",
+                  {
+                    staticClass: "pa-0 pt-4",
+                    attrs: { tile: "", outlined: "" }
+                  },
+                  [
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "subtitle-1 font-weight-light pt-3 text-center"
+                      },
+                      [_vm._v("PRODUCTOS RELACIONADOS")]
+                    ),
+                    _vm._v(" "),
+                    _c("v-divider")
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-row",
+                  { attrs: { align: "center", justify: "center" } },
+                  [
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12" } },
+                      [
+                        _c(
+                          "v-row",
                           {
-                            staticClass: "text-center",
-                            attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
+                            attrs: { align: "center", justify: "space-around" }
                           },
                           [
-                            _c("v-hover", {
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "default",
-                                  fn: function(ref) {
-                                    var hover = ref.hover
-                                    return [
-                                      _c("CardsProductos", {
-                                        class: { up: hover },
-                                        attrs: {
-                                          shaped: "",
-                                          elevation: hover ? 10 : 4,
-                                          n: 4,
-                                          parametro: "ultimos"
-                                        }
-                                      })
-                                    ]
-                                  }
+                            _c(
+                              "v-col",
+                              {
+                                staticClass: "text-center",
+                                attrs: {
+                                  cols: "12",
+                                  xl: "9",
+                                  md: "10",
+                                  sm: "12"
                                 }
-                              ])
-                            })
+                              },
+                              [
+                                _c("v-hover", {
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var hover = ref.hover
+                                          return [
+                                            _c("CardsProductos", {
+                                              class: { up: hover },
+                                              attrs: {
+                                                shaped: "",
+                                                elevation: hover ? 10 : 4,
+                                                n: 4,
+                                                parametro: "ultimos"
+                                              }
+                                            })
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    4049729108
+                                  )
+                                })
+                              ],
+                              1
+                            )
                           ],
                           1
                         )
@@ -1152,10 +1177,8 @@ var render = function() {
               ],
               1
             )
-          ],
-          1
-        )
-      ])
+          ])
+        : _vm._e()
     ],
     1
   )
