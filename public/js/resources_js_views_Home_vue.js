@@ -351,7 +351,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.svg-border-waves .v-image {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 3rem;\r\n  width: 100%;\r\n  overflow: hidden;\n}\n.svg-border-waves img {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  margin-bottom: -2px;\r\n  z-index: -1;\n}\n.zoom-efect {\r\n  transform: scale(1.1);\n}\n.up {\r\n  transform: translateY(-20px);\r\n  transition: 0.5s ease-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.heading {color: white; text-shadow: rgb(179, 179, 179) 0.1em 0.1em 0.2em}\n.svg-border-waves .v-image {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  height: 3rem;\r\n  width: 100%;\r\n  overflow: hidden;\n}\n.svg-border-waves img {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  margin-bottom: -2px;\r\n  z-index: -1;\n}\n.zoom-efect {\r\n  transform: scale(1.1);\n}\n.up {\r\n  transform: translateY(-20px);\r\n  transition: 0.5s ease-out;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1095,22 +1095,19 @@ var render = function() {
                         [
                           _c(
                             "h1",
-                            { staticClass: "display-2 font-weight-black mb-4" },
+                            {
+                              staticClass:
+                                "display-2 font-weight-black mb-4 heading"
+                            },
                             [_vm._v("Somos tu mejor opción")]
                           ),
                           _vm._v(" "),
-                          _c("h1", { staticClass: "font-weight-light " }, [
-                            _vm._v(
-                              "\r\n                Detecta los problemas de salud antes de que ocurran."
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              " Conoce las ventajas de un chequeo médico de rutina"
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              " y con qué frecuencia debes realizarlo.\r\n              "
-                            )
+                          _c("h1", { staticClass: "font-weight-bold" }, [
+                            _c("span", { staticClass: "heading" }, [
+                              _vm._v(
+                                "Detecta los problemas de salud antes de que ocurran. Conoce las ventajas de un chequeo médico de rutina y con qué frecuencia debes realizarlo."
+                              )
+                            ])
                           ]),
                           _vm._v(" "),
                           _c(

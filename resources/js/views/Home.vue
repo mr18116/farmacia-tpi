@@ -5,9 +5,9 @@
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
-              <h1 class="display-2 font-weight-black mb-4">Somos tu mejor opción</h1>
-              <h1 class="font-weight-light ">
-                Detecta los problemas de salud antes de que ocurran.<br/> Conoce las ventajas de un chequeo médico de rutina<br/> y con qué frecuencia debes realizarlo.
+              <h1 class="display-2 font-weight-black mb-4 heading">Somos tu mejor opción</h1>
+              <h1 class="font-weight-bold">
+                <span class="heading">Detecta los problemas de salud antes de que ocurran. Conoce las ventajas de un chequeo médico de rutina y con qué frecuencia debes realizarlo.</span>
               </h1>
               <v-btn
                 rounded
@@ -102,6 +102,7 @@ export default {
 </script>
 
 <style>
+.heading {color: white; text-shadow: rgb(179, 179, 179) 0.1em 0.1em 0.2em}
 .svg-border-waves .v-image {
   position: absolute;
   bottom: 0;
