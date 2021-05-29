@@ -12,7 +12,7 @@
                         <v-card class="elevation-12">
                             <v-window>
                                 <v-window-item :value="2">
-                                    <v-row class="fill-height">
+                                    <v-row class="fill-height" v-if="registrando == false">
                                         <v-col cols="12" md="4" class="light-blue darken-1">
                                         <v-card-text class="white--text mt-12">
                                             <h1 class="text-center display-1">¿Ya tienes cuenta?</h1>
@@ -30,23 +30,42 @@
                                             <h1 class="text-center display-2 light-blue--text text--darken-3">Crear cuenta</h1>
                                             <h4 class="text-center mt-4">Ingresa tus datos de registro</h4>
                                             <v-form>
-                                            <v-text-field v-model="user.name" label="Nombre"></v-text-field>
-                                            <v-text-field v-model="user.email" label="email"></v-text-field>
-                                            <v-text-field v-model="user.password" label="contraseña" type="password"></v-text-field>
-                                            <v-text-field v-model="user.password_confirmation" label="Confirmar contraseña" type="password"></v-text-field>
+                                            <v-text-field v-model="user.name" label="Nombre" 
+                                            @focus="focusInput" :rules="rules.nombre" required></v-text-field>
+                                            <v-text-field v-model="user.email" label="email" 
+                                            @focus="focusInput" :rules="rules.email" required></v-text-field>
+                                            <v-text-field v-model="user.password" label="contraseña" type="password" 
+                                            @focus="focusInput" :rules="rules.password" required></v-text-field>
+                                            <v-text-field v-model="user.password_confirmation" label="Confirmar contraseña" type="password"
+                                             @focus="focusInput" :rules="rules.password" required></v-text-field>
                                         </v-form>
+                                        <v-alert dense type="error" outlined v-if="mensajeError != ''">
+                                            {{ mensajeError }}
+                                        </v-alert>
                                         </v-card-text>
                                         <div class="text-center py-4">
                                             <v-btn rounded color="light-blue darken-2" dark @click="signup">REGISTRARSE</v-btn>
                                         </div>
                                         </v-col>
                                     </v-row>
+                                    <v-row align="center" v-else>
+                                    <v-col cols="12" class="light-blue darken-1 text-center py-16">
+                                        <h1
+                                        class="display-2 white--text my-4"
+                                        >Registrando</h1>
+                                        <v-progress-circular
+                                            :size="60"
+                                            color="white"
+                                            indeterminate
+                                            class="mt-4"
+                                            ></v-progress-circular>
+                                    </v-col>
+                                </v-row>
                                 </v-window-item>
                             </v-window>
                         </v-card>
                     </v-col>
                 </v-row>
-                <Loader :cargando="cargando" />
             </v-container>
 </template>
 
@@ -64,12 +83,20 @@ export default {
             password: '',
             password_confirmation: '',
         },
-        cargando: false
+        cargando: false,
+        registrando: false,
+        mensajeError: '',
+        rules: {
+          nombre: [val => (val || '').length > 0 || 'Este campo es requerido'],
+          password: [val => (val || '').length >= 8 || 'La contraseña debe ser de 8 caracteres como minimo'],
+          email: [ v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Debe ser formato email: ejemplo@ejemplo.com']
+        },
     }),
     methods: {
         signup(){
             axios.get("/sanctum/csrf-cookie").then(response => {
                  this.cargando = true;
+                 this.registrando = true;
                 axios.post('/register', this.user).then(async response => {
                     await axios.get('/api/user').then( async res => {
                         await axios.post('/api/tipo_usuario', {
@@ -83,8 +110,17 @@ export default {
                     await this.$store.dispatch('getUser');
                      this.cargando = false;
                     this.$router.replace('/');
+                    this.registrando = false;
+                }).catch( e => {
+                    this.mensajeError = "Datos inválidos";
+                    this.registrando = false;
                 });
             });
+        },
+        focusInput(){
+            if (this.mensajeError != '') {
+                this.mensajeError = '';
+            }
         }
     },
     components: {

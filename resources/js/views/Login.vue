@@ -12,7 +12,7 @@
                     <v-card class="elevation-12">
                         <v-window>
                             <v-window-item :value="1">
-                                <v-row>
+                                <v-row v-if="loggin == false">
                                     <v-col cols="12" md="8">
                                     <v-card-text class="mt-12">
                                         <h1
@@ -20,9 +20,12 @@
                                         >Iniciar Sesión</h1>
                                         <h4 class="text-center mt-4">Ingrese sus credenciales</h4>
                                         <v-form>
-                                            <v-text-field v-model="user.email" label="email"></v-text-field>
-                                            <v-text-field v-model="user.password" label="contraseña" type="password"></v-text-field>
+                                            <v-text-field v-model="user.email" label="email" @focus="focusInput" @keyup.enter="login"></v-text-field>
+                                            <v-text-field v-model="user.password" label="contraseña" type="password" @focus="focusInput" @keyup.enter="login"></v-text-field>
                                         </v-form>
+                                        <v-alert dense type="error" outlined v-if="mensajeError != ''">
+                                            {{ mensajeError }}
+                                        </v-alert>
                                         <h6 class="text-center mt-3">Olvidé mi contraseña</h6>
                                     </v-card-text>
                                     <div class="text-center py-4">
@@ -41,12 +44,24 @@
                                     </div>
                                     </v-col>
                                 </v-row>
+                                <v-row align="center" v-else>
+                                    <v-col cols="12" class="light-blue darken-1 text-center py-16">
+                                        <h1
+                                        class="display-2 white--text my-4"
+                                        >Iniciando Sesión</h1>
+                                        <v-progress-circular
+                                            :size="60"
+                                            color="white"
+                                            indeterminate
+                                            class="mt-4"
+                                            ></v-progress-circular>
+                                    </v-col>
+                                </v-row>
                             </v-window-item>
                         </v-window>
                     </v-card>
                 </v-col>
             </v-row>
-            <Loader :cargando="cargando"/>
         </v-container>
 </template>
 
@@ -62,23 +77,39 @@ export default {
             email: '',
             password: '',
         },
-        cargando: false
+        cargando: false,
+        loggin: false,
+        mensajeError: '',
     }),
     methods: {
         login(){
+            this.loggin = true;
             axios.get("/sanctum/csrf-cookie").then(response => {
                 this.cargando = true
                 axios.post('/login', this.user).then(async response => {
                     await this.$store.dispatch('getUser');
                     this.cargando = false;
                     this.$router.replace('/');
+                    this.loggin = false;
+                }).catch( e => {
+                    if (e.response.data.message == "The given data was invalid.") {
+                        this.mensajeError = "Email o contraseña incorrectos";
+                    } else {
+                        this.mensajeError = e.response.data.message;
+                    }
+                    this.loggin = false;
                 });
             });
+        },
+        focusInput(){
+            if (this.mensajeError != '') {
+                this.mensajeError = '';
+            }
         }
     },
     components:{
         Loader
-    }
+    },
 }
 </script>
 

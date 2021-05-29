@@ -117,6 +117,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.withCredentials) = true;
@@ -129,7 +148,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         password: '',
         password_confirmation: ''
       },
-      cargando: false
+      cargando: false,
+      registrando: false,
+      mensajeError: '',
+      rules: {
+        nombre: [function (val) {
+          return (val || '').length > 0 || 'Este campo es requerido';
+        }],
+        password: [function (val) {
+          return (val || '').length >= 8 || 'La contraseña debe ser de 8 caracteres como minimo';
+        }],
+        email: [function (v) {
+          return !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Debe ser formato email: ejemplo@ejemplo.com';
+        }]
+      }
     };
   },
   methods: {
@@ -138,6 +170,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/sanctum/csrf-cookie").then(function (response) {
         _this.cargando = true;
+        _this.registrando = true;
         axios__WEBPACK_IMPORTED_MODULE_2___default().post('/register', _this.user).then( /*#__PURE__*/function () {
           var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(response) {
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -185,7 +218,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     _this.$router.replace('/');
 
-                  case 6:
+                    _this.registrando = false;
+
+                  case 7:
                   case "end":
                     return _context2.stop();
                 }
@@ -196,8 +231,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           return function (_x) {
             return _ref.apply(this, arguments);
           };
-        }());
+        }())["catch"](function (e) {
+          _this.mensajeError = "Datos inválidos";
+          _this.registrando = false;
+        });
       });
+    },
+    focusInput: function focusInput() {
+      if (this.mensajeError != '') {
+        this.mensajeError = '';
+      }
     }
   },
   components: {
@@ -582,148 +625,56 @@ var render = function() {
                         "v-window-item",
                         { attrs: { value: 2 } },
                         [
-                          _c(
-                            "v-row",
-                            { staticClass: "fill-height" },
-                            [
-                              _c(
-                                "v-col",
-                                {
-                                  staticClass: "light-blue darken-1",
-                                  attrs: { cols: "12", md: "4" }
-                                },
+                          _vm.registrando == false
+                            ? _c(
+                                "v-row",
+                                { staticClass: "fill-height" },
                                 [
                                   _c(
-                                    "v-card-text",
-                                    { staticClass: "white--text mt-12" },
+                                    "v-col",
+                                    {
+                                      staticClass: "light-blue darken-1",
+                                      attrs: { cols: "12", md: "4" }
+                                    },
                                     [
                                       _c(
-                                        "h1",
-                                        {
-                                          staticClass: "text-center display-1"
-                                        },
-                                        [_vm._v("¿Ya tienes cuenta?")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("h5", { staticClass: "text-center" }, [
-                                        _vm._v("Ingresa tus credenciales")
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "text-center" },
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            small: "",
-                                            to: "/login",
-                                            rounded: "",
-                                            outlined: "",
-                                            dark: ""
-                                          }
-                                        },
-                                        [_vm._v("INICIAR SESIÓN")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "12", md: "8" } },
-                                [
-                                  _c(
-                                    "v-card-text",
-                                    { staticClass: "mt-12" },
-                                    [
-                                      _c(
-                                        "h1",
-                                        {
-                                          staticClass:
-                                            "text-center display-2 light-blue--text text--darken-3"
-                                        },
-                                        [_vm._v("Crear cuenta")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "h4",
-                                        { staticClass: "text-center mt-4" },
+                                        "v-card-text",
+                                        { staticClass: "white--text mt-12" },
                                         [
-                                          _vm._v(
-                                            "Ingresa tus datos de registro"
+                                          _c(
+                                            "h1",
+                                            {
+                                              staticClass:
+                                                "text-center display-1"
+                                            },
+                                            [_vm._v("¿Ya tienes cuenta?")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "h5",
+                                            { staticClass: "text-center" },
+                                            [_vm._v("Ingresa tus credenciales")]
                                           )
                                         ]
                                       ),
                                       _vm._v(" "),
                                       _c(
-                                        "v-form",
+                                        "div",
+                                        { staticClass: "text-center" },
                                         [
-                                          _c("v-text-field", {
-                                            attrs: { label: "Nombre" },
-                                            model: {
-                                              value: _vm.user.name,
-                                              callback: function($$v) {
-                                                _vm.$set(_vm.user, "name", $$v)
-                                              },
-                                              expression: "user.name"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-text-field", {
-                                            attrs: { label: "email" },
-                                            model: {
-                                              value: _vm.user.email,
-                                              callback: function($$v) {
-                                                _vm.$set(_vm.user, "email", $$v)
-                                              },
-                                              expression: "user.email"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              label: "contraseña",
-                                              type: "password"
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                small: "",
+                                                to: "/login",
+                                                rounded: "",
+                                                outlined: "",
+                                                dark: ""
+                                              }
                                             },
-                                            model: {
-                                              value: _vm.user.password,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.user,
-                                                  "password",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "user.password"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              label: "Confirmar contraseña",
-                                              type: "password"
-                                            },
-                                            model: {
-                                              value:
-                                                _vm.user.password_confirmation,
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.user,
-                                                  "password_confirmation",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "user.password_confirmation"
-                                            }
-                                          })
+                                            [_vm._v("INICIAR SESIÓN")]
+                                          )
                                         ],
                                         1
                                       )
@@ -732,20 +683,164 @@ var render = function() {
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "div",
-                                    { staticClass: "text-center py-4" },
+                                    "v-col",
+                                    { attrs: { cols: "12", md: "8" } },
                                     [
                                       _c(
-                                        "v-btn",
-                                        {
-                                          attrs: {
-                                            rounded: "",
-                                            color: "light-blue darken-2",
-                                            dark: ""
-                                          },
-                                          on: { click: _vm.signup }
-                                        },
-                                        [_vm._v("REGISTRARSE")]
+                                        "v-card-text",
+                                        { staticClass: "mt-12" },
+                                        [
+                                          _c(
+                                            "h1",
+                                            {
+                                              staticClass:
+                                                "text-center display-2 light-blue--text text--darken-3"
+                                            },
+                                            [_vm._v("Crear cuenta")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "h4",
+                                            { staticClass: "text-center mt-4" },
+                                            [
+                                              _vm._v(
+                                                "Ingresa tus datos de registro"
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-form",
+                                            [
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  label: "Nombre",
+                                                  rules: _vm.rules.nombre,
+                                                  required: ""
+                                                },
+                                                on: { focus: _vm.focusInput },
+                                                model: {
+                                                  value: _vm.user.name,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.user,
+                                                      "name",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "user.name"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  label: "email",
+                                                  rules: _vm.rules.email,
+                                                  required: ""
+                                                },
+                                                on: { focus: _vm.focusInput },
+                                                model: {
+                                                  value: _vm.user.email,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.user,
+                                                      "email",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "user.email"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  label: "contraseña",
+                                                  type: "password",
+                                                  rules: _vm.rules.password,
+                                                  required: ""
+                                                },
+                                                on: { focus: _vm.focusInput },
+                                                model: {
+                                                  value: _vm.user.password,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.user,
+                                                      "password",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "user.password"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("v-text-field", {
+                                                attrs: {
+                                                  label: "Confirmar contraseña",
+                                                  type: "password",
+                                                  rules: _vm.rules.password,
+                                                  required: ""
+                                                },
+                                                on: { focus: _vm.focusInput },
+                                                model: {
+                                                  value:
+                                                    _vm.user
+                                                      .password_confirmation,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.user,
+                                                      "password_confirmation",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "user.password_confirmation"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _vm.mensajeError != ""
+                                            ? _c(
+                                                "v-alert",
+                                                {
+                                                  attrs: {
+                                                    dense: "",
+                                                    type: "error",
+                                                    outlined: ""
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                " +
+                                                      _vm._s(_vm.mensajeError) +
+                                                      "\n                            "
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "text-center py-4" },
+                                        [
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                rounded: "",
+                                                color: "light-blue darken-2",
+                                                dark: ""
+                                              },
+                                              on: { click: _vm.signup }
+                                            },
+                                            [_vm._v("REGISTRARSE")]
+                                          )
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
@@ -753,9 +848,41 @@ var render = function() {
                                 ],
                                 1
                               )
-                            ],
-                            1
-                          )
+                            : _c(
+                                "v-row",
+                                { attrs: { align: "center" } },
+                                [
+                                  _c(
+                                    "v-col",
+                                    {
+                                      staticClass:
+                                        "light-blue darken-1 text-center py-16",
+                                      attrs: { cols: "12" }
+                                    },
+                                    [
+                                      _c(
+                                        "h1",
+                                        {
+                                          staticClass:
+                                            "display-2 white--text my-4"
+                                        },
+                                        [_vm._v("Registrando")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-progress-circular", {
+                                        staticClass: "mt-4",
+                                        attrs: {
+                                          size: 60,
+                                          color: "white",
+                                          indeterminate: ""
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
                         ],
                         1
                       )
@@ -770,9 +897,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("Loader", { attrs: { cargando: _vm.cargando } })
+      )
     ],
     1
   )
