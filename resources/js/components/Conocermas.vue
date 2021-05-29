@@ -10,9 +10,7 @@
             <v-col cols="12" sm="8" class="white--text text-left">
               <h1 class="font-weight-light display-2 mb-2">Conoce más sobre nuestras ofertas</h1>
               <h1 class="font-weight-light">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ex
-                animi quod laboriosam vel blanditiis labore alias, aliquid,
-                tempora repellendus non.
+                En Farmacias TPI buscamos desarrollar productos y servicios innovadores que generen valor agregado, brindando profesionalismo, responsabilidad, excelencia en el servicio, calidad humana y pasión en todo lo que hacemos. 
               </h1>
               <v-btn rounded outlined href="#" target="_blank" large color="white" class="mt-4">
                 <v-icon class="mr-2">

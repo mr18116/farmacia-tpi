@@ -7,9 +7,7 @@
             <v-col cols="12" md="6" xl="8">
               <h1 class="display-2 font-weight-black mb-4">Somos tu mejor opción</h1>
               <h1 class="font-weight-light ">
-                Lorem ipsum dolor sit amet consectetur <br />
-                adipisicing elit. Maiores porro voluptatibus <br />
-                delectus nam optio harum!
+                Detecta los problemas de salud antes de que ocurran.<br/> Conoce las ventajas de un chequeo médico de rutina<br/> y con qué frecuencia debes realizarlo.
               </h1>
               <v-btn
                 rounded

@@ -272,8 +272,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -993,7 +991,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("h1", { staticClass: "font-weight-light" }, [
                             _vm._v(
-                              "\n              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ex\n              animi quod laboriosam vel blanditiis labore alias, aliquid,\n              tempora repellendus non.\n            "
+                              "\n              En Farmacias TPI buscamos desarrollar productos y servicios innovadores que generen valor agregado, brindando profesionalismo, responsabilidad, excelencia en el servicio, calidad humana y pasión en todo lo que hacemos. \n            "
                             )
                           ]),
                           _vm._v(" "),
@@ -1103,15 +1101,15 @@ var render = function() {
                           _vm._v(" "),
                           _c("h1", { staticClass: "font-weight-light " }, [
                             _vm._v(
-                              "\r\n                Lorem ipsum dolor sit amet consectetur "
+                              "\r\n                Detecta los problemas de salud antes de que ocurran."
                             ),
                             _c("br"),
                             _vm._v(
-                              "\r\n                adipisicing elit. Maiores porro voluptatibus "
+                              " Conoce las ventajas de un chequeo médico de rutina"
                             ),
                             _c("br"),
                             _vm._v(
-                              "\r\n                delectus nam optio harum!\r\n              "
+                              " y con qué frecuencia debes realizarlo.\r\n              "
                             )
                           ]),
                           _vm._v(" "),
