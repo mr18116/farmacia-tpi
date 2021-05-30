@@ -24,8 +24,46 @@ class CarritoHasProductosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {   
+        $result = false;
+        $carritoHasProductos = '';
+
+        if(CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)->exists()){
+            $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)->get();
+            $carritoHasProductos->cantidad += $request->cantidad;
+        } else {
+            $carritoHasProductos = new CarritoHasProductos();
+            $carritoHasProductos->carrito_id = $request->carrito_id;
+            $carritoHasProductos->producto_id = $request->producto_id;
+            $carritoHasProductos->cantidad = $request->cantidad;
+        }
+
+        $result = $carritoHasProductos->save();
+
+        if($result){
+            return response($carritoHasProductos, 201);
+        } else {
+            return response('fallo', 400);
+        }
+    }
+
+    public function cantidadProducto(Request $request, $carrito_id, $producto_id)
     {
-        //
+        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->get();
+        $carritoHasProductos->cantidad = $request->cantidad;
+        $result = $carritoHasProductos->save();
+        if($result){
+            return response($carritoHasProductos, 200);
+        } else {
+            return response('fallo', 400);
+        }
+    }
+
+    public function delete($carrito_id, $producto_id)
+    {
+        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->get();
+        $carritoHasProductos->delete();
+        return $carritoHasProductos;
     }
 
     /**

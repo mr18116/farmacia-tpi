@@ -29,11 +29,11 @@ export default new Vuex.Store({
             await axios.get('/api/user').then( async response => {
                 commit('SET_USER', response.data);
                 localStorage.setItem('auth', 'true');
-                await axios.get('api/rol-user/' + response.data.id).then( res => {
+                await axios.get('/api/rol-user/' + response.data.id).then( res => {
                     commit('SET_ROL', res.data.rol);
                     localStorage.setItem('rol', res.data.rol);
                 });
-                axios.get('api/carrito-user/' + response.data.id).then( res => {
+                axios.get('/api/carrito-user/' + response.data.id).then( res => {
                     commit('SET_CARRITO', res.data);
                 });
             }).catch( () => {
@@ -44,6 +44,30 @@ export default new Vuex.Store({
                 localStorage.setItem('rol', 'null');
             });
         },
+        getCarrito({ commit, state }){
+            axios.get('/api/carrito-user/' + state.user.id).then( res => {
+                commit('SET_CARRITO', res.data);
+            });
+        },
+        addProducto({ dispatch, state }, producto_id, cantidad){
+            axios.post('/api/carrito-producto', {
+                carrito_id: state.carrito.id,
+                producto_id: producto_id,
+                cantidad: cantidad
+            }).then( () => {
+                dispatch('getCarrito');
+            });
+        },
+        cantidadProducto({ dispatch, state }, cantidad, producto_id){
+            axios.put('/api/carrito-producto/' + state.carrito.id + '/' + producto_id, cantidad).then( () => {
+                dispatch('getCarrito');
+            });
+        },
+        quitarProducto({ dispatch, state}, cantidad, producto_id){
+            axios.delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id, cantidad).then( () => {
+                dispatch('getCarrito');
+            });
+        }
     },
     getters: {
         

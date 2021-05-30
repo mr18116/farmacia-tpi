@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CarritoHasProductosController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TipoProductoController;
@@ -37,10 +38,12 @@ Route::apiResources([
 
 Route::get('carrito-user/{user_id}', [CarritoController::class, 'carritoByUser']);
 
+Route::post('carrito-producto', [CarritoHasProductosController::class, 'store']);
+Route::put('carrito-producto/{carrito_id}/{producto_id}', [CarritoHasProductosController::class, 'cantidadProducto']);
+Route::delete('carrito-producto/{carrito_id}/{producto_id}', [CarritoHasProductosController::class, 'delete']);
+
 Route::get('rol-user/{user_id}', [TipoUsuarioController::class, 'rol']);
 
 Route::get('productos-categoria/{categoria}', [ProductoController::class, 'productosByCategoria']);
-
 Route::get('productos-ultimos/{n}', [ProductoController::class, 'ultimos']);
-
 Route::get('productos-mas-comprados/{n}', [ProductoController::class, 'masVendidos']);

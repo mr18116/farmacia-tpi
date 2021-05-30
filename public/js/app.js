@@ -2747,13 +2747,13 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
                             commit('SET_USER', response.data);
                             localStorage.setItem('auth', 'true');
                             _context.next = 4;
-                            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('api/rol-user/' + response.data.id).then(function (res) {
+                            return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/rol-user/' + response.data.id).then(function (res) {
                               commit('SET_ROL', res.data.rol);
                               localStorage.setItem('rol', res.data.rol);
                             });
 
                           case 4:
-                            axios__WEBPACK_IMPORTED_MODULE_1___default().get('api/carrito-user/' + response.data.id).then(function (res) {
+                            axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/carrito-user/' + response.data.id).then(function (res) {
                               commit('SET_CARRITO', res.data);
                             });
 
@@ -2783,6 +2783,38 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
           }
         }, _callee2);
       }))();
+    },
+    getCarrito: function getCarrito(_ref3) {
+      var commit = _ref3.commit,
+          state = _ref3.state;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/carrito-user/' + state.user.id).then(function (res) {
+        commit('SET_CARRITO', res.data);
+      });
+    },
+    addProducto: function addProducto(_ref4, producto_id, cantidad) {
+      var dispatch = _ref4.dispatch,
+          state = _ref4.state;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/carrito-producto', {
+        carrito_id: state.carrito.id,
+        producto_id: producto_id,
+        cantidad: cantidad
+      }).then(function () {
+        dispatch('getCarrito');
+      });
+    },
+    cantidadProducto: function cantidadProducto(_ref5, cantidad, producto_id) {
+      var dispatch = _ref5.dispatch,
+          state = _ref5.state;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/carrito-producto/' + state.carrito.id + '/' + producto_id, cantidad).then(function () {
+        dispatch('getCarrito');
+      });
+    },
+    quitarProducto: function quitarProducto(_ref6, cantidad, producto_id) {
+      var dispatch = _ref6.dispatch,
+          state = _ref6.state;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id, cantidad).then(function () {
+        dispatch('getCarrito');
+      });
     }
   },
   getters: {}
