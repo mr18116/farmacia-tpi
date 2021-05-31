@@ -113,6 +113,7 @@
             @editarProductoModal="editarProductoModal"
             @guardarProducto="guardarProducto"
             @cerrarModal="cerrar"
+            v-if="productoEditar"
         />
         <ModalCategoria
             :mostrar="mostrarModalCategoriaOTipo"
@@ -148,7 +149,7 @@ export default {
         eliminar: false,
         itemAEliminar: {},
         tipoItemAEliminar: "",
-        productoEditar: {},
+        productoEditar: null,
         pagina: 1,
         paginas: 1,
         allProductos: [],
