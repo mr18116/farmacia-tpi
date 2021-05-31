@@ -90,7 +90,6 @@ export default {
                     await this.$store.dispatch('getUser');
                     this.cargando = false;
                     this.$router.replace('/');
-                    this.loggin = false;
                 }).catch( e => {
                     if (e.response.data.message == "The given data was invalid.") {
                         this.mensajeError = "Email o contraseña incorrectos";
@@ -99,6 +98,8 @@ export default {
                     }
                     this.loggin = false;
                 });
+            }).catch( () => {
+                this.loggin = false;
             });
         },
         focusInput(){

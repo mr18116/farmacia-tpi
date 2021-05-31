@@ -94,9 +94,9 @@ export default {
     }),
     methods: {
         signup(){
+            this.registrando = true;
             axios.get("/sanctum/csrf-cookie").then(response => {
                  this.cargando = true;
-                 this.registrando = true;
                 axios.post('/register', this.user).then(async response => {
                     await axios.get('/api/user').then( async res => {
                         await axios.post('/api/tipo_usuario', {
@@ -110,11 +110,12 @@ export default {
                     await this.$store.dispatch('getUser');
                      this.cargando = false;
                     this.$router.replace('/');
-                    this.registrando = false;
                 }).catch( e => {
                     this.mensajeError = "Datos inválidos";
                     this.registrando = false;
                 });
+            }).catch( () => {
+                this.registrando = false;
             });
         },
         focusInput(){

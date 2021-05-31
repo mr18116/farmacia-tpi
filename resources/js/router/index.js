@@ -30,6 +30,11 @@ const routes = [
         component: () => import('../views/Administrador/Inventario.vue'),
     },
     {
+        path: '/carrito',
+        name: 'Carrito',
+        component: () => import('../views/Carrito.vue'),
+    },
+    {
         path: '/:categoria',
         name: 'Categoria',
         component: () => import('../views/Categoria.vue'),

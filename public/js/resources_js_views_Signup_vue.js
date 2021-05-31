@@ -168,9 +168,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     signup: function signup() {
       var _this = this;
 
+      this.registrando = true;
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/sanctum/csrf-cookie").then(function (response) {
         _this.cargando = true;
-        _this.registrando = true;
         axios__WEBPACK_IMPORTED_MODULE_2___default().post('/register', _this.user).then( /*#__PURE__*/function () {
           var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(response) {
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -218,9 +218,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     _this.$router.replace('/');
 
-                    _this.registrando = false;
-
-                  case 7:
+                  case 6:
                   case "end":
                     return _context2.stop();
                 }
@@ -235,6 +233,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this.mensajeError = "Datos inválidos";
           _this.registrando = false;
         });
+      })["catch"](function () {
+        _this.registrando = false;
       });
     },
     focusInput: function focusInput() {

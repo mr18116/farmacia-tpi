@@ -70,6 +70,21 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        
+        productosCarrito: state => {
+            if (state.carrito != null) {
+                return state.carrito.carrito_has_productos;
+            } else {
+                return [];
+            }
+        },
+        totalCarrito: state => {
+            let total = 0;
+            if (state.carrito != null) {
+                state.carrito.carrito_has_productos.forEach( p => {
+                    total += p.cantidad*p.producto*precio;
+                });;
+            }
+            return total;
+        }
     }
 });

@@ -169,9 +169,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                     _this.$router.replace('/');
 
-                    _this.loggin = false;
-
-                  case 5:
+                  case 4:
                   case "end":
                     return _context.stop();
                 }
@@ -191,6 +189,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
           _this.loggin = false;
         });
+      })["catch"](function () {
+        _this.loggin = false;
       });
     },
     focusInput: function focusInput() {
