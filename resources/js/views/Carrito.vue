@@ -12,27 +12,7 @@
           <v-col cols="8" v-if="productos.length > 0">
               <v-row>
                 <v-col cols="12" v-for="(producto, index) in productos" :key="index">
-                    <v-card>
-                        <v-row>
-                            <v-col cols="auto">
-                                <v-img height="150" contain :src="producto.producto.imagen_url"></v-img>
-                            </v-col>
-                            <v-col>
-                                <div>{{ producto.producto.nombre }}</div>
-                                <div>{{ producto.producto.precio }}</div>
-                            </v-col>
-                            <v-col cols="auto">
-                                <div>{{ producto.cantidad }}</div>
-                                <v-btn>Eliminar</v-btn>
-                            </v-col>
-                        </v-row>
-                        <v-divider></v-divider>
-                        <v-row>
-                            <v-col cols="12">
-                                Suntotal ${{ producto.producto.precio*producto.cantidad }}
-                            </v-col>
-                        </v-row>
-                    </v-card>
+                    <ProductoCarrito :producto="producto" />
                 </v-col>
               </v-row>
           </v-col>
@@ -56,8 +36,12 @@
 </template>
 
 <script>
-export default {
+import ProductoCarrito from '../components/ProductoCarrito'
 
+export default {
+    components: {
+        ProductoCarrito
+    },
     computed: {
         productos(){
             return this.$store.getters.productosCarrito;

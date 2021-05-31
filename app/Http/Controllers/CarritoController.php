@@ -37,10 +37,7 @@ class CarritoController extends Controller
 
     public function carritoByUser(int $user_id){
         $carrito = Carrito::where('user_id', '=', $user_id)->first();
-        $relations = $carrito->carritoHasProductos;
-        foreach ($relations as $value) {
-            $value->producto;
-        }
+        $carrito->carritoHasProductos->load('producto');
         return $carrito;
     }
 

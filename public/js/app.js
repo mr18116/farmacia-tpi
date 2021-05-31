@@ -2236,6 +2236,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2281,6 +2284,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           };
         }());
       });
+    }
+  },
+  computed: {
+    nProductosCarrito: function nProductosCarrito() {
+      return this.$store.getters.nProductosCarrito;
     }
   }
 });
@@ -2797,9 +2805,11 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
         commit('SET_CARRITO', res.data);
       });
     },
-    addProducto: function addProducto(_ref4, producto_id, cantidad) {
+    addProducto: function addProducto(_ref4, _ref5) {
       var dispatch = _ref4.dispatch,
           state = _ref4.state;
+      var producto_id = _ref5.producto_id,
+          cantidad = _ref5.cantidad;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/carrito-producto', {
         carrito_id: state.carrito.id,
         producto_id: producto_id,
@@ -2808,17 +2818,19 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
         dispatch('getCarrito');
       });
     },
-    cantidadProducto: function cantidadProducto(_ref5, cantidad, producto_id) {
-      var dispatch = _ref5.dispatch,
-          state = _ref5.state;
+    cantidadProducto: function cantidadProducto(_ref6, _ref7) {
+      var dispatch = _ref6.dispatch,
+          state = _ref6.state;
+      var cantidad = _ref7.cantidad,
+          producto_id = _ref7.producto_id;
       axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/carrito-producto/' + state.carrito.id + '/' + producto_id, cantidad).then(function () {
         dispatch('getCarrito');
       });
     },
-    quitarProducto: function quitarProducto(_ref6, cantidad, producto_id) {
-      var dispatch = _ref6.dispatch,
-          state = _ref6.state;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id, cantidad).then(function () {
+    quitarProducto: function quitarProducto(_ref8, producto_id) {
+      var dispatch = _ref8.dispatch,
+          state = _ref8.state;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id).then(function () {
         dispatch('getCarrito');
       });
     }
@@ -2835,13 +2847,26 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
       var total = 0;
 
       if (state.carrito != null) {
-        state.carrito.carrito_has_productos.forEach(function (p) {
-          total += p.cantidad * p.producto * precio;
-        });
-        ;
+        if (state.carrito.carrito_has_productos.length > 0) {
+          state.carrito.carrito_has_productos.forEach(function (p) {
+            total += p.cantidad * p.producto.precio;
+          });
+          ;
+        }
       }
 
       return total;
+    },
+    nProductosCarrito: function nProductosCarrito(state) {
+      if (state.carrito != null) {
+        if (state.carrito.carrito_has_productos.length > 0) {
+          return state.carrito.carrito_has_productos.length;
+        } else {
+          return "0";
+        }
+      } else {
+        return "0";
+      }
     }
   }
 }));
@@ -39765,6 +39790,33 @@ var render = function() {
                 "div",
                 { staticClass: "hidden-xs-only" },
                 [
+                  _c(
+                    "v-badge",
+                    {
+                      attrs: {
+                        content: _vm.nProductosCarrito,
+                        value: _vm.nProductosCarrito,
+                        overlap: "",
+                        color: "red"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        {
+                          attrs: { large: "" },
+                          on: {
+                            click: function($event) {
+                              return _vm.$router.push("/carrito")
+                            }
+                          }
+                        },
+                        [_vm._v("mdi-cart")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _vm.$store.state.user == null
                     ? _c(
                         "v-btn",

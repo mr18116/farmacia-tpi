@@ -21,7 +21,7 @@ class Producto extends Model
     }
 
     public function carritoHasProductos(){
-        return $this->belongsToMany(CarritoHasProductos::class);
+        return $this->hasMany(CarritoHasProductos::class);
     }
 
     public function facturaHasProductos(){

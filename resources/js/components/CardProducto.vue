@@ -47,7 +47,7 @@
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="auto" class="mt-1 mt-lg-0">
-                    <v-btn icon outlined color="primary darken-2" block>
+                    <v-btn icon outlined color="primary darken-2" block @click="agregar">
                         <v-icon>mdi-cart-plus</v-icon>
                     </v-btn>
                 </v-col>
@@ -71,7 +71,20 @@ export default {
             }
         },
         aumentar() {
-            this.cantidad++;
+            if (this.producto.cantidad > this.cantidad) {
+                this.cantidad++;
+            }
+        },
+        agregar(){
+            if (this.$store.state.user != null) {
+                this.$store.dispatch('addProducto', {
+                    producto_id: this.producto.id,
+                    cantidad: this.cantidad
+                });
+                this.cantidad = 0;
+            } else {
+                this.$router.push('/login');
+            }
         }
     },
             filters: {

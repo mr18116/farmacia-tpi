@@ -49,7 +49,7 @@ export default new Vuex.Store({
                 commit('SET_CARRITO', res.data);
             });
         },
-        addProducto({ dispatch, state }, producto_id, cantidad){
+        addProducto({ dispatch, state }, { producto_id, cantidad }){
             axios.post('/api/carrito-producto', {
                 carrito_id: state.carrito.id,
                 producto_id: producto_id,
@@ -58,13 +58,13 @@ export default new Vuex.Store({
                 dispatch('getCarrito');
             });
         },
-        cantidadProducto({ dispatch, state }, cantidad, producto_id){
+        cantidadProducto({ dispatch, state }, { cantidad, producto_id }){
             axios.put('/api/carrito-producto/' + state.carrito.id + '/' + producto_id, cantidad).then( () => {
                 dispatch('getCarrito');
             });
         },
-        quitarProducto({ dispatch, state}, cantidad, producto_id){
-            axios.delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id, cantidad).then( () => {
+        quitarProducto({ dispatch, state}, producto_id){
+            axios.delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id).then( () => {
                 dispatch('getCarrito');
             });
         }
@@ -80,11 +80,24 @@ export default new Vuex.Store({
         totalCarrito: state => {
             let total = 0;
             if (state.carrito != null) {
-                state.carrito.carrito_has_productos.forEach( p => {
-                    total += p.cantidad*p.producto*precio;
-                });;
+                if (state.carrito.carrito_has_productos.length > 0) {
+                    state.carrito.carrito_has_productos.forEach( p => {
+                        total += p.cantidad*p.producto.precio;
+                    });;
+                }
             }
             return total;
+        },
+        nProductosCarrito: state => {
+            if (state.carrito != null) {
+                if (state.carrito.carrito_has_productos.length > 0) {
+                    return state.carrito.carrito_has_productos.length;
+                } else {
+                    return "0";
+                }
+            } else {
+                return "0";
+            }
         }
     }
 });

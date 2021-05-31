@@ -111,6 +111,9 @@
         v-if="isXs"
       />
       <div v-else class="hidden-xs-only">
+          <v-badge :content="nProductosCarrito" :value="nProductosCarrito" overlap color="red">
+              <v-icon @click="$router.push('/carrito')" large>mdi-cart</v-icon>
+          </v-badge>
             <v-btn
                 text
                 color="grey darken-3"
@@ -205,6 +208,11 @@ export default {
                 });
             });
         },
+    },
+    computed: {
+        nProductosCarrito(){
+            return this.$store.getters.nProductosCarrito;
+        }
     }
 };
 </script>

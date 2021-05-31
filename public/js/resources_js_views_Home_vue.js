@@ -85,7 +85,20 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     aumentar: function aumentar() {
-      this.cantidad++;
+      if (this.producto.cantidad > this.cantidad) {
+        this.cantidad++;
+      }
+    },
+    agregar: function agregar() {
+      if (this.$store.state.user != null) {
+        this.$store.dispatch('addProducto', {
+          producto_id: this.producto.id,
+          cantidad: this.cantidad
+        });
+        this.cantidad = 0;
+      } else {
+        this.$router.push('/login');
+      }
     }
   },
   filters: {
@@ -861,7 +874,8 @@ var render = function() {
                         outlined: "",
                         color: "primary darken-2",
                         block: ""
-                      }
+                      },
+                      on: { click: _vm.agregar }
                     },
                     [_c("v-icon", [_vm._v("mdi-cart-plus")])],
                     1
