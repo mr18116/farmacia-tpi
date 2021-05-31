@@ -28,7 +28,13 @@
                 </v-btn>
             </template>
             <template v-slot:no-data>
-                No hay datos
+                <v-progress-circular
+                                :size="100"
+                                :width="7"
+                                color="primary"
+                                indeterminate
+                                class="my-8"
+                            ></v-progress-circular>
             </template>
         </v-data-table>
     </div>

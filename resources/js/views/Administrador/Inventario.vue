@@ -1,9 +1,6 @@
 <template>
     <v-container fluid>
-        <v-app-bar
-            color="#0077c9"
-            class="px-5">
-        </v-app-bar>
+        <v-app-bar color="#0077c9" class="px-5"> </v-app-bar>
         <v-row align="center">
             <v-col cols="12" class="text-h1">
                 Inventario
@@ -22,6 +19,15 @@
                     dense
                 >
                 </v-text-field>
+            </v-col>
+            <v-col  class="d-flex justify-center" v-if="productos === null">
+                <v-progress-circular
+                    :size="100"
+                    :width="7"
+                    color="primary"
+                    indeterminate
+                    class="my-8"
+                ></v-progress-circular>
             </v-col>
         </v-row>
         <v-row>
@@ -71,7 +77,12 @@
                 </v-card>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="pagina" :length="paginas" @input="cambioPagina"> </v-pagination>
+                <v-pagination
+                    v-model="pagina"
+                    :length="paginas"
+                    @input="cambioPagina"
+                >
+                </v-pagination>
             </v-col>
         </v-row>
         <v-row>
@@ -117,7 +128,7 @@
             @cancelarEliminar="cancelarEliminar"
             @confirmarEliminar="confirmarEliminarItem"
         />
-        <Loader :cargando="cargando"/>
+        <Loader :cargando="cargando" />
     </v-container>
 </template>
 
@@ -127,12 +138,12 @@ import DataCategorias from "../../components/Administrador/DataCategorias";
 import DataTipoProductos from "../../components/Administrador/DataTipoProductos";
 import ModalCategoria from "../../components/Administrador/ModalCategoria";
 import EliminarItem from "../../components/Administrador/EliminarItem";
-import Loader from "../../components/Loader"
+import Loader from "../../components/Loader";
 import axios from "axios";
 
 export default {
     data: () => ({
-        productos: [],
+        productos: null,
         editar: false,
         eliminar: false,
         itemAEliminar: {},
@@ -148,12 +159,12 @@ export default {
         opcionesCategoria: {},
         categorias: [],
         tipos: [],
-        cargando: true
+        cargando: false,
     }),
     created() {
         this.obtenerProductos();
         this.obtenerCategorias();
-        this.obtenerTipos();        
+        this.obtenerTipos();
     },
     components: {
         ModalEditarProducto,
@@ -164,15 +175,23 @@ export default {
         Loader
     },
     methods: {
-        obtenerProductos(){
-            axios.get('/api/producto').then( response => {
+        obtenerProductos() {
+            axios.get("/api/producto").then(response => {
                 this.allProductos = response.data;
-                this.productos = this.allProductos.slice(0, this.nProductosPagina);
-                this.paginas = Math.ceil(this.allProductos.length/this.nProductosPagina);
+                this.productos = this.allProductos.slice(
+                    0,
+                    this.nProductosPagina
+                );
+                this.paginas = Math.ceil(
+                    this.allProductos.length / this.nProductosPagina
+                );
             });
         },
-        cambioPagina(){
-            this.productos = this.allProductos.slice(this.nProductosPagina*(this.pagina-1), this.nProductosPagina*this.pagina);
+        cambioPagina() {
+            this.productos = this.allProductos.slice(
+                this.nProductosPagina * (this.pagina - 1),
+                this.nProductosPagina * this.pagina
+            );
         },
         nuevoProductoModal() {
             this.editar = true;
@@ -189,7 +208,7 @@ export default {
                 disabled: false,
                 btn_guardar: true,
                 btn_texto: "Guardar",
-                 nuevo: false
+                nuevo: false
             };
             this.productoEditar = producto;
         },
@@ -203,29 +222,28 @@ export default {
             this.productoEditar = producto;
         },
         guardarProducto(producto, id, opcion) {
-            if(producto !== null && producto !== undefined){
+            if (producto !== null && producto !== undefined) {
                 this.cargando = true;
-                if(opcion === "nuevo"){
-                    axios.post("/api/producto",producto).then(() =>{
-                        this.cerrar();      
-                        this.obtenerProductos();      
-                        this.cargando = false;           
-                    })
-                }else if (opcion === "actualizar"){
-                    axios.put(`/api/producto/${id}`, producto).then( () => {
+                if (opcion === "nuevo") {
+                    axios.post("/api/producto", producto).then(() => {
                         this.cerrar();
                         this.obtenerProductos();
                         this.cargando = false;
-                    })
+                    });
+                } else if (opcion === "actualizar") {
+                    axios.put(`/api/producto/${id}`, producto).then(() => {
+                        this.cerrar();
+                        this.obtenerProductos();
+                        this.cargando = false;
+                    });
                 }
             }
-            
         },
         cerrar: function() {
             this.editar = false;
             this.productoEditar = {};
             this.opciones = {};
-        },       
+        },
         nuevaCategoriaOTipo(opciones) {
             this.mostrarModalCategoriaOTipo = true;
             this.opciones = opciones;
@@ -261,20 +279,24 @@ export default {
                     opciones.categoriaOTipo === "categoria" &&
                     opciones.editar === true
                 ) {
-                    axios.put(`api/categoria/${objeto.id}`, objeto).then( res => {
-                        this.cerrarModalCategoriaOTipo();
-                        this.obtenerCategorias();
-                        this.cargando = false;
-                    })
+                    axios
+                        .put(`api/categoria/${objeto.id}`, objeto)
+                        .then(res => {
+                            this.cerrarModalCategoriaOTipo();
+                            this.obtenerCategorias();
+                            this.cargando = false;
+                        });
                 } else if (
                     opciones.categoriaOTipo === "tipo" &&
                     opciones.editar === true
                 ) {
-                    axios.put(`api/tipo_producto/${objeto.id}`, objeto).then( res => {
-                        this.cerrarModalCategoriaOTipo();
-                        this.obtenerTipos();
-                        this.cargando = false;
-                    })
+                    axios
+                        .put(`api/tipo_producto/${objeto.id}`, objeto)
+                        .then(res => {
+                            this.cerrarModalCategoriaOTipo();
+                            this.obtenerTipos();
+                            this.cargando = false;
+                        });
                 }
             }
         },
@@ -292,19 +314,19 @@ export default {
             if (item !== null) {
                 this.cargando = true;
                 if (tipo === "categoria") {
-                    axios.delete(`/api/categoria/${item.id}`).then( () => {
+                    axios.delete(`/api/categoria/${item.id}`).then(() => {
                         this.obtenerCategorias();
                         this.cancelarEliminar();
                         this.cargando = false;
                     });
                 } else if (tipo === "tipo") {
-                    axios.delete(`/api/tipo_producto/${item.id}`).then( () => {
+                    axios.delete(`/api/tipo_producto/${item.id}`).then(() => {
                         this.obtenerTipos();
                         this.cancelarEliminar();
                         this.cargando = false;
                     });
-                } else if (tipo === "producto"){
-                   axios.delete(`/api/producto/${item.id}`).then( () => {
+                } else if (tipo === "producto") {
+                    axios.delete(`/api/producto/${item.id}`).then(() => {
                         this.obtenerProductos();
                         this.cancelarEliminar();
                         this.cargando = false;
@@ -335,13 +357,13 @@ export default {
                 this.tipos = response.data;
             });
         },
-        activarCargando(){
+        activarCargando() {
             this.cargando = true;
         }
     },
     watch: {
         tipos: function() {
-            this.cargando = this.tipos !== [] ? false: true;
+            this.cargando = this.tipos !== [] ? false : true;
         }
     }
 };

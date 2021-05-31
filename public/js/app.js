@@ -2386,80 +2386,97 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         action: "mdi-ticket",
         items: [{
           title: "Antialergicos",
-          link: "antialergicos"
+          link: "/antialergicos"
         }],
         title: "Alergias"
       }, {
         action: "mdi-silverware-fork-knife",
         items: [{
           title: "Antibiotico inyectable",
-          link: "antibiotico-inyectable"
+          link: "/antibiotico-inyectable"
         }, {
           title: "Antibiotico orales",
-          link: "antibiotico-orales"
+          link: "/antibiotico-orales"
         }, {
           title: "Antibiotico y cicatrizantes topicos",
-          link: "antibiotico-cicatrizantes-topicos"
+          link: "/antibiotico-y-cicatrizantes-topicos"
         }],
         title: "Antibioticos y cicatrizantes"
       }, {
         action: "mdi-school",
         items: [{
           title: "Anticuagulante y cuagulante",
-          link: "anticuagulante-cuagulante"
+          link: "/anticuagulante-y-cuagulante"
         }, {
           title: "Circulación saludable",
-          link: "circulación-saludable"
+          link: "/circulación-saludable"
         }, {
-          title: "Colesterol y trigliceridos"
+          title: "Colesterol y trigliceridos",
+          link: "/colesterol-y-trigliceridos"
         }, {
-          title: "Corazón"
+          title: "Corazón",
+          link: "/corazon"
         }, {
-          title: "Retención de líquidos"
+          title: "Retención de líquidos",
+          link: "/retencion-de-liquidos"
         }],
         title: "Corazón y presión arterial"
       }, {
         action: "mdi-run",
         items: [{
-          title: "Insulinas"
+          title: "Insulinas",
+          link: "/insulinas"
         }, {
-          title: "Jeringas y agujas de insulina"
+          title: "Jeringas y agujas de insulina",
+          link: "/jeringas-y-agujas-de-insulina"
         }, {
-          title: "Medicameno diabetes"
+          title: "Medicamento diabetes",
+          link: "/medicamento-diabetes"
         }],
         title: "Diabetes"
       }, {
         action: "mdi-bottle-tonic-plus",
         items: [{
-          title: "Anestesicos"
+          title: "Anestesicos",
+          link: "/anestesicos"
         }, {
-          title: 'Dolor de cabeza y migraña'
+          title: 'Dolor de cabeza y migraña',
+          link: "/dolor-de-cabeza-y-migraña"
         }, {
-          title: 'Dolor de cuerpo'
+          title: 'Dolor de cuerpo',
+          link: "/dolor-de-cuerpo"
         }, {
-          title: 'Dolor menstrual'
+          title: 'Dolor menstrual',
+          link: "/dolor-menstrual"
         }, {
-          title: 'Circulación saludable'
+          title: 'Circulación saludable',
+          link: "/circulacion-saludable"
         }],
         title: "Dolor y fiebre"
       }, {
         action: "mdi-content-cut",
         items: [{
-          title: "Diarrea"
+          title: "Diarrea",
+          link: "/diarrea"
         }, {
-          title: "Parásitos"
+          title: "Parásitos",
+          link: "/parasitos"
         }, {
-          title: "Vomitos y nauseas"
+          title: "Vomitos y nauseas",
+          link: "/vomitos-y-nauseas"
         }],
         title: "Gastrointestinales"
       }, {
         action: "mdi-tag",
         items: [{
-          title: "Asma"
+          title: "Asma",
+          link: "/asma"
         }, {
-          title: "Dolor de garganta"
+          title: "Dolor de garganta",
+          link: "/dolor de garganta"
         }, {
-          title: "Gripe y tos"
+          title: "Gripe y tos",
+          link: "/gripe-y-tos"
         }],
         title: "Gripe, tos y asma"
       }]

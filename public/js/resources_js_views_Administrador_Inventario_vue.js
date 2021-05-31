@@ -7318,6 +7318,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7376,6 +7382,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8088,6 +8100,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8098,7 +8121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      productos: [],
+      productos: null,
       editar: false,
       eliminar: false,
       itemAEliminar: {},
@@ -8114,7 +8137,7 @@ __webpack_require__.r(__webpack_exports__);
       opcionesCategoria: {},
       categorias: [],
       tipos: [],
-      cargando: true
+      cargando: false
     };
   },
   created: function created() {
@@ -8134,7 +8157,7 @@ __webpack_require__.r(__webpack_exports__);
     obtenerProductos: function obtenerProductos() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get('/api/producto').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/producto").then(function (response) {
         _this.allProductos = response.data;
         _this.productos = _this.allProductos.slice(0, _this.nProductosPagina);
         _this.paginas = Math.ceil(_this.allProductos.length / _this.nProductosPagina);
@@ -9338,7 +9361,17 @@ var render = function() {
           {
             key: "no-data",
             fn: function() {
-              return [_vm._v("\n              No hay datos\n          ")]
+              return [
+                _c("v-progress-circular", {
+                  staticClass: "my-8",
+                  attrs: {
+                    size: 100,
+                    width: 7,
+                    color: "primary",
+                    indeterminate: ""
+                  }
+                })
+              ]
             },
             proxy: true
           }
@@ -9465,7 +9498,17 @@ var render = function() {
           {
             key: "no-data",
             fn: function() {
-              return [_vm._v("\n            No hay datos\n        ")]
+              return [
+                _c("v-progress-circular", {
+                  staticClass: "my-8",
+                  attrs: {
+                    size: 100,
+                    width: 7,
+                    color: "primary",
+                    indeterminate: ""
+                  }
+                })
+              ]
             },
             proxy: true
           }
@@ -10281,7 +10324,26 @@ var render = function() {
               })
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _vm.productos === null
+            ? _c(
+                "v-col",
+                { staticClass: "d-flex justify-center" },
+                [
+                  _c("v-progress-circular", {
+                    staticClass: "my-8",
+                    attrs: {
+                      size: 100,
+                      width: 7,
+                      color: "primary",
+                      indeterminate: ""
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
       ),
