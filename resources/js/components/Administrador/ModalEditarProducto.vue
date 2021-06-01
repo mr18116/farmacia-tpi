@@ -72,7 +72,7 @@
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         <v-select
-                                            v-if="opciones.nuevo"
+                                            :disabled="opciones.disabled"
                                             :items="categorias"
                                             v-model="nuevasCategorias"
                                             item-text="nombre"
@@ -85,7 +85,7 @@
                                     </v-col>
                                     <v-col cols="12" sm="6">
                                         <v-select
-                                            v-if="opciones.nuevo"
+                                            :disabled="opciones.disabled"
                                             :items="tipos"
                                             v-model="nuevosTipos"
                                             item-text="nombre"
@@ -174,13 +174,18 @@ export default {
                     idsCtegorias: this.nuevasCategorias,
                     idsTipoProductos: this.nuevosTipos
                 };
-                this.$emit("guardarProducto", productoAGuardar, id,"actualizar");
+                this.$emit(
+                    "guardarProducto",
+                    productoAGuardar,
+                    id,
+                    "actualizar"
+                );
             } else if (
                 this.nuevaImagen !== null &&
                 this.opciones.nuevo === false
             ) {
                 await this.subirImagen();
-                 const id = this.producto.id;
+                const id = this.producto.id;
                 let productoAGuardar = {
                     nombre: this.producto.nombre,
                     imagen_url: this.nuevaImagenUrl,
@@ -192,10 +197,18 @@ export default {
                     idsCtegorias: this.nuevasCategorias,
                     idsTipoProductos: this.nuevosTipos
                 };
-                this.$emit("guardarProducto", productoAGuardar, id, "actualizar");
-            } else if (this.nuevaImagen !== null && this.opciones.nuevo === true) {
+                this.$emit(
+                    "guardarProducto",
+                    productoAGuardar,
+                    id,
+                    "actualizar"
+                );
+            } else if (
+                this.nuevaImagen !== null &&
+                this.opciones.nuevo === true
+            ) {
                 await this.subirImagen();
-                 const id = this.producto.id;
+                const id = this.producto.id;
                 let productoAGuardar = {
                     nombre: this.producto.nombre,
                     imagen_url: this.nuevaImagenUrl,
@@ -227,6 +240,10 @@ export default {
         nuevaImagen: function() {
             this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
         }
+    },
+    mounted() {
+            this.nuevasCategorias = this.producto.categoria;
+            this.nuevosTipos = this.producto.tipo_producto
     }
 };
 </script>

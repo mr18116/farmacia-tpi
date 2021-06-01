@@ -7318,6 +7318,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -7376,6 +7382,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7898,6 +7910,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     nuevaImagen: function nuevaImagen() {
       this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
     }
+  },
+  mounted: function mounted() {
+    this.nuevasCategorias = this.producto.categoria;
+    this.nuevosTipos = this.producto.tipo_producto;
   }
 });
 
@@ -8088,6 +8104,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8098,12 +8126,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      productos: [],
+      productos: null,
       editar: false,
       eliminar: false,
       itemAEliminar: {},
       tipoItemAEliminar: "",
-      productoEditar: {},
+      productoEditar: null,
       pagina: 1,
       paginas: 1,
       allProductos: [],
@@ -8114,7 +8142,7 @@ __webpack_require__.r(__webpack_exports__);
       opcionesCategoria: {},
       categorias: [],
       tipos: [],
-      cargando: true
+      cargando: false
     };
   },
   created: function created() {
@@ -8134,7 +8162,7 @@ __webpack_require__.r(__webpack_exports__);
     obtenerProductos: function obtenerProductos() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_6___default().get('/api/producto').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/producto").then(function (response) {
         _this.allProductos = response.data;
         _this.productos = _this.allProductos.slice(0, _this.nProductosPagina);
         _this.paginas = Math.ceil(_this.allProductos.length / _this.nProductosPagina);
@@ -9338,7 +9366,17 @@ var render = function() {
           {
             key: "no-data",
             fn: function() {
-              return [_vm._v("\n              No hay datos\n          ")]
+              return [
+                _c("v-progress-circular", {
+                  staticClass: "my-8",
+                  attrs: {
+                    size: 100,
+                    width: 7,
+                    color: "primary",
+                    indeterminate: ""
+                  }
+                })
+              ]
             },
             proxy: true
           }
@@ -9465,7 +9503,17 @@ var render = function() {
           {
             key: "no-data",
             fn: function() {
-              return [_vm._v("\n            No hay datos\n        ")]
+              return [
+                _c("v-progress-circular", {
+                  staticClass: "my-8",
+                  attrs: {
+                    size: 100,
+                    width: 7,
+                    color: "primary",
+                    indeterminate: ""
+                  }
+                })
+              ]
             },
             proxy: true
           }
@@ -9944,26 +9992,25 @@ var render = function() {
                                     "v-col",
                                     { attrs: { cols: "12", sm: "6" } },
                                     [
-                                      _vm.opciones.nuevo
-                                        ? _c("v-select", {
-                                            attrs: {
-                                              items: _vm.categorias,
-                                              "item-text": "nombre",
-                                              "item-value": "id",
-                                              label: "Categoria",
-                                              "persistent-hint": "",
-                                              "single-line": "",
-                                              multiple: ""
-                                            },
-                                            model: {
-                                              value: _vm.nuevasCategorias,
-                                              callback: function($$v) {
-                                                _vm.nuevasCategorias = $$v
-                                              },
-                                              expression: "nuevasCategorias"
-                                            }
-                                          })
-                                        : _vm._e()
+                                      _c("v-select", {
+                                        attrs: {
+                                          disabled: _vm.opciones.disabled,
+                                          items: _vm.categorias,
+                                          "item-text": "nombre",
+                                          "item-value": "id",
+                                          label: "Categoria",
+                                          "persistent-hint": "",
+                                          "single-line": "",
+                                          multiple: ""
+                                        },
+                                        model: {
+                                          value: _vm.nuevasCategorias,
+                                          callback: function($$v) {
+                                            _vm.nuevasCategorias = $$v
+                                          },
+                                          expression: "nuevasCategorias"
+                                        }
+                                      })
                                     ],
                                     1
                                   ),
@@ -9972,26 +10019,25 @@ var render = function() {
                                     "v-col",
                                     { attrs: { cols: "12", sm: "6" } },
                                     [
-                                      _vm.opciones.nuevo
-                                        ? _c("v-select", {
-                                            attrs: {
-                                              items: _vm.tipos,
-                                              "item-text": "nombre",
-                                              "item-value": "id",
-                                              label: "Tipo",
-                                              "persistent-hint": "",
-                                              "single-line": "",
-                                              multiple: ""
-                                            },
-                                            model: {
-                                              value: _vm.nuevosTipos,
-                                              callback: function($$v) {
-                                                _vm.nuevosTipos = $$v
-                                              },
-                                              expression: "nuevosTipos"
-                                            }
-                                          })
-                                        : _vm._e()
+                                      _c("v-select", {
+                                        attrs: {
+                                          disabled: _vm.opciones.disabled,
+                                          items: _vm.tipos,
+                                          "item-text": "nombre",
+                                          "item-value": "id",
+                                          label: "Tipo",
+                                          "persistent-hint": "",
+                                          "single-line": "",
+                                          multiple: ""
+                                        },
+                                        model: {
+                                          value: _vm.nuevosTipos,
+                                          callback: function($$v) {
+                                            _vm.nuevosTipos = $$v
+                                          },
+                                          expression: "nuevosTipos"
+                                        }
+                                      })
                                     ],
                                     1
                                   ),
@@ -10281,7 +10327,26 @@ var render = function() {
               })
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _vm.productos === null
+            ? _c(
+                "v-col",
+                { staticClass: "d-flex justify-center" },
+                [
+                  _c("v-progress-circular", {
+                    staticClass: "my-8",
+                    attrs: {
+                      size: 100,
+                      width: 7,
+                      color: "primary",
+                      indeterminate: ""
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
       ),
@@ -10470,21 +10535,23 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("ModalEditarProducto", {
-        attrs: {
-          editar: _vm.editar,
-          producto: _vm.productoEditar,
-          opciones: _vm.opciones,
-          categorias: _vm.categorias,
-          tipos: _vm.tipos
-        },
-        on: {
-          activarCargando: _vm.activarCargando,
-          editarProductoModal: _vm.editarProductoModal,
-          guardarProducto: _vm.guardarProducto,
-          cerrarModal: _vm.cerrar
-        }
-      }),
+      _vm.productoEditar
+        ? _c("ModalEditarProducto", {
+            attrs: {
+              editar: _vm.editar,
+              producto: _vm.productoEditar,
+              opciones: _vm.opciones,
+              categorias: _vm.categorias,
+              tipos: _vm.tipos
+            },
+            on: {
+              activarCargando: _vm.activarCargando,
+              editarProductoModal: _vm.editarProductoModal,
+              guardarProducto: _vm.guardarProducto,
+              cerrarModal: _vm.cerrar
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c("ModalCategoria", {
         attrs: {
