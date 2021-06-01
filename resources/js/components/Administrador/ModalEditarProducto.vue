@@ -74,7 +74,7 @@
                                         <v-select
                                             :disabled="opciones.disabled"
                                             :items="categorias"
-                                            v-model="nuevasCategorias"
+                                            v-model="producto.categoria"
                                             item-text="nombre"
                                             item-value="id"
                                             label="Categoria"
@@ -87,7 +87,7 @@
                                         <v-select
                                             :disabled="opciones.disabled"
                                             :items="tipos"
-                                            v-model="nuevosTipos"
+                                            v-model="producto.tipo_producto"
                                             item-text="nombre"
                                             item-value="id"
                                             label="Tipo"
@@ -171,8 +171,8 @@ export default {
                     laboratorio: this.producto.laboratorio,
                     cantidad: this.producto.cantidad,
                     indicaciones: this.producto.indicaciones,
-                    idsCtegorias: this.nuevasCategorias,
-                    idsTipoProductos: this.nuevosTipos
+                    idsCategorias: this.producto.categoria,
+                    idsTipoProductos: this.producto.tipo_producto,
                 };
                 this.$emit(
                     "guardarProducto",
@@ -194,8 +194,8 @@ export default {
                     laboratorio: this.producto.laboratorio,
                     cantidad: this.producto.cantidad,
                     indicaciones: this.producto.indicaciones,
-                    idsCtegorias: this.nuevasCategorias,
-                    idsTipoProductos: this.nuevosTipos
+                    idsCategorias: this.producto.categoria,
+                    idsTipoProductos: this.producto.tipo_producto,
                 };
                 this.$emit(
                     "guardarProducto",
@@ -217,8 +217,8 @@ export default {
                     laboratorio: this.producto.laboratorio,
                     cantidad: this.producto.cantidad,
                     indicaciones: this.producto.indicaciones,
-                    idsCtegorias: this.nuevasCategorias,
-                    idsTipoProductos: this.nuevosTipos
+                    idsCategorias: this.producto.categoria,
+                    idsTipoProductos: this.producto.tipo_producto,
                 };
                 this.$emit("guardarProducto", productoAGuardar, id, "nuevo");
             }
@@ -241,10 +241,6 @@ export default {
             this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
         }
     },
-    mounted() {
-            this.nuevasCategorias = this.producto.categoria;
-            this.nuevosTipos = this.producto.tipo_producto
-    }
 };
 </script>
 

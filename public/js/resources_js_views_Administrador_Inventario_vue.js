@@ -7794,8 +7794,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   laboratorio: this.producto.laboratorio,
                   cantidad: this.producto.cantidad,
                   indicaciones: this.producto.indicaciones,
-                  idsCtegorias: this.nuevasCategorias,
-                  idsTipoProductos: this.nuevosTipos
+                  idsCategorias: this.producto.categoria,
+                  idsTipoProductos: this.producto.tipo_producto
                 };
                 this.$emit("guardarProducto", productoAGuardar, id, "actualizar");
                 _context.next = 21;
@@ -7820,8 +7820,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   laboratorio: this.producto.laboratorio,
                   cantidad: this.producto.cantidad,
                   indicaciones: this.producto.indicaciones,
-                  idsCtegorias: this.nuevasCategorias,
-                  idsTipoProductos: this.nuevosTipos
+                  idsCategorias: this.producto.categoria,
+                  idsTipoProductos: this.producto.tipo_producto
                 };
                 this.$emit("guardarProducto", _productoAGuardar, _id, "actualizar");
                 _context.next = 21;
@@ -7846,8 +7846,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   laboratorio: this.producto.laboratorio,
                   cantidad: this.producto.cantidad,
                   indicaciones: this.producto.indicaciones,
-                  idsCtegorias: this.nuevasCategorias,
-                  idsTipoProductos: this.nuevosTipos
+                  idsCategorias: this.producto.categoria,
+                  idsTipoProductos: this.producto.tipo_producto
                 };
                 this.$emit("guardarProducto", _productoAGuardar2, _id2, "nuevo");
 
@@ -7910,10 +7910,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     nuevaImagen: function nuevaImagen() {
       this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
     }
-  },
-  mounted: function mounted() {
-    this.nuevasCategorias = this.producto.categoria;
-    this.nuevosTipos = this.producto.tipo_producto;
   }
 });
 
@@ -10004,11 +10000,15 @@ var render = function() {
                                           multiple: ""
                                         },
                                         model: {
-                                          value: _vm.nuevasCategorias,
+                                          value: _vm.producto.categoria,
                                           callback: function($$v) {
-                                            _vm.nuevasCategorias = $$v
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "categoria",
+                                              $$v
+                                            )
                                           },
-                                          expression: "nuevasCategorias"
+                                          expression: "producto.categoria"
                                         }
                                       })
                                     ],
@@ -10031,11 +10031,15 @@ var render = function() {
                                           multiple: ""
                                         },
                                         model: {
-                                          value: _vm.nuevosTipos,
+                                          value: _vm.producto.tipo_producto,
                                           callback: function($$v) {
-                                            _vm.nuevosTipos = $$v
+                                            _vm.$set(
+                                              _vm.producto,
+                                              "tipo_producto",
+                                              $$v
+                                            )
                                           },
-                                          expression: "nuevosTipos"
+                                          expression: "producto.tipo_producto"
                                         }
                                       })
                                     ],
