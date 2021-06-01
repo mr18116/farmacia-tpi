@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
           producto_id: this.producto.id,
           cantidad: this.cantidad
         });
-        this.cantidad = 0;
+        this.cantidad = 1;
       } else {
         this.$router.push('/login');
       }
@@ -649,7 +649,8 @@ var render = function() {
                         icon: "",
                         outlined: "",
                         color: "primary darken-2",
-                        block: ""
+                        block: "",
+                        disabled: _vm.$store.state.actualizandoCarrito
                       },
                       on: { click: _vm.agregar }
                     },

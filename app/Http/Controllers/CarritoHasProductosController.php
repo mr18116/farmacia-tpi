@@ -29,8 +29,10 @@ class CarritoHasProductosController extends Controller
         $carritoHasProductos = '';
 
         if(CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)->exists()){
-            $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)->get();
-            $carritoHasProductos->cantidad += $request->cantidad;
+            $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)->first();
+            CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)
+            ->update(['cantidad' => $carritoHasProductos->cantidad + $request->cantidad]);
+            $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $request->carrito_id)->where('producto_id', '=', $request->producto_id)->first();
         } else {
             $carritoHasProductos = new CarritoHasProductos();
             $carritoHasProductos->carrito_id = $request->carrito_id;
@@ -49,20 +51,23 @@ class CarritoHasProductosController extends Controller
 
     public function cantidadProducto(Request $request, $carrito_id, $producto_id)
     {
-        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->get();
+        /*$carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->first();
         $carritoHasProductos->cantidad = $request->cantidad;
         $result = $carritoHasProductos->save();
         if($result){
             return response($carritoHasProductos, 200);
         } else {
             return response('fallo', 400);
-        }
+        }*/
+        CarritoHasProductos::where('carrito_id', '=', $carrito_id)
+        ->where('producto_id', '=', $producto_id)->update(['cantidad' => $request->cantidad]);
+        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->first();
+        return $carritoHasProductos;
     }
 
     public function delete($carrito_id, $producto_id)
     {
-        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->get();
-        $carritoHasProductos->delete();
+        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->where('producto_id', '=', $producto_id)->delete();
         return $carritoHasProductos;
     }
 

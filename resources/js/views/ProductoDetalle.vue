@@ -29,7 +29,8 @@
                 style="width:100px"
                 dense
             ></v-text-field>
-            <v-btn class="primary white--text" outlined tile dense><v-icon>mdi-cart</v-icon> Agregar</v-btn>
+            <v-btn class="primary white--text" outlined tile dense @click="agregar" :disabled="$store.state.actualizandoCarrito">
+              <v-icon>mdi-cart</v-icon> Agregar</v-btn>
 
           </div>
       </div>
@@ -165,6 +166,19 @@ export default {
     axios.get('/api/producto/' + this.$route.params.id).then( response => {
       this.producto = response.data;
     });
+  },
+  methods: {
+    agregar(){
+      if (this.$store.state.user != null) {
+          this.$store.dispatch('addProducto', {
+              producto_id: this.producto.id,
+              cantidad: this.cantidad
+          });
+          this.cantidad = 1;
+      } else {
+          this.$router.push('/login');
+      }
+    }
   }
 };
 </script>

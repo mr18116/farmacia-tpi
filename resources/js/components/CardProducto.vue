@@ -47,7 +47,7 @@
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="auto" class="mt-1 mt-lg-0">
-                    <v-btn icon outlined color="primary darken-2" block @click="agregar">
+                    <v-btn icon outlined color="primary darken-2" block @click="agregar" :disabled="$store.state.actualizandoCarrito">
                         <v-icon>mdi-cart-plus</v-icon>
                     </v-btn>
                 </v-col>
@@ -62,7 +62,7 @@ export default {
         producto: Object
     },
     data: () => ({
-        cantidad: 1
+        cantidad: 1,
     }),
     methods: {
         disminuir() {
@@ -81,7 +81,7 @@ export default {
                     producto_id: this.producto.id,
                     cantidad: this.cantidad
                 });
-                this.cantidad = 0;
+                this.cantidad = 1;
             } else {
                 this.$router.push('/login');
             }

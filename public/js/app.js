@@ -2729,7 +2729,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
     drawer: true,
     user: null,
     rol: null,
-    carrito: null
+    carrito: null,
+    actualizandoCarrito: false
   },
   mutations: {
     SET_USER: function SET_USER(state, user) {
@@ -2740,6 +2741,9 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
     },
     SET_CARRITO: function SET_CARRITO(state, carrito) {
       state.carrito = carrito;
+    },
+    SET_AC: function SET_AC(state, estado) {
+      state.actualizandoCarrito = estado;
     }
   },
   actions: {
@@ -2801,37 +2805,74 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
     getCarrito: function getCarrito(_ref3) {
       var commit = _ref3.commit,
           state = _ref3.state;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/carrito-user/' + state.user.id).then(function (res) {
-        commit('SET_CARRITO', res.data);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/carrito-user/' + state.user.id).then( /*#__PURE__*/function () {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(res) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return commit('SET_CARRITO', res.data);
+
+                case 2:
+                  commit('SET_AC', false);
+
+                case 3:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }));
+
+        return function (_x2) {
+          return _ref4.apply(this, arguments);
+        };
+      }())["catch"](function () {
+        commit('SET_AC', false);
       });
     },
-    addProducto: function addProducto(_ref4, _ref5) {
-      var dispatch = _ref4.dispatch,
-          state = _ref4.state;
-      var producto_id = _ref5.producto_id,
-          cantidad = _ref5.cantidad;
+    addProducto: function addProducto(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch,
+          state = _ref5.state,
+          commit = _ref5.commit;
+      var producto_id = _ref6.producto_id,
+          cantidad = _ref6.cantidad;
+      commit('SET_AC', true);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/carrito-producto', {
         carrito_id: state.carrito.id,
         producto_id: producto_id,
         cantidad: cantidad
       }).then(function () {
         dispatch('getCarrito');
+      })["catch"](function () {
+        commit('SET_AC', false);
       });
     },
-    cantidadProducto: function cantidadProducto(_ref6, _ref7) {
-      var dispatch = _ref6.dispatch,
-          state = _ref6.state;
-      var cantidad = _ref7.cantidad,
-          producto_id = _ref7.producto_id;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/carrito-producto/' + state.carrito.id + '/' + producto_id, cantidad).then(function () {
+    cantidadProducto: function cantidadProducto(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          state = _ref7.state,
+          commit = _ref7.commit;
+      var cantidad = _ref8.cantidad,
+          producto_id = _ref8.producto_id;
+      commit('SET_AC', true);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().put('/api/carrito-producto/' + state.carrito.id + '/' + producto_id, {
+        cantidad: cantidad
+      }).then(function () {
         dispatch('getCarrito');
+      })["catch"](function () {
+        commit('SET_AC', false);
       });
     },
-    quitarProducto: function quitarProducto(_ref8, producto_id) {
-      var dispatch = _ref8.dispatch,
-          state = _ref8.state;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/carrito-producto' + state.carrito.id + '/' + producto_id).then(function () {
+    quitarProducto: function quitarProducto(_ref9, producto_id) {
+      var dispatch = _ref9.dispatch,
+          state = _ref9.state,
+          commit = _ref9.commit;
+      commit('SET_AC', true);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/carrito-producto/' + state.carrito.id + '/' + producto_id).then(function () {
         dispatch('getCarrito');
+      })["catch"](function () {
+        commit('SET_AC', false);
       });
     }
   },
@@ -2860,7 +2901,11 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
     nProductosCarrito: function nProductosCarrito(state) {
       if (state.carrito != null) {
         if (state.carrito.carrito_has_productos.length > 0) {
-          return state.carrito.carrito_has_productos.length;
+          var cantidad = 0;
+          state.carrito.carrito_has_productos.forEach(function (p) {
+            cantidad += p.cantidad;
+          });
+          return cantidad;
         } else {
           return "0";
         }

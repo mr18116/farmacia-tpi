@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
           producto_id: this.producto.id,
           cantidad: this.cantidad
         });
-        this.cantidad = 0;
+        this.cantidad = 1;
       } else {
         this.$router.push('/login');
       }
@@ -306,6 +306,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -352,6 +353,19 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/producto/' + this.$route.params.id).then(function (response) {
       _this.producto = response.data;
     });
+  },
+  methods: {
+    agregar: function agregar() {
+      if (this.$store.state.user != null) {
+        this.$store.dispatch('addProducto', {
+          producto_id: this.producto.id,
+          cantidad: this.cantidad
+        });
+        this.cantidad = 1;
+      } else {
+        this.$router.push('/login');
+      }
+    }
   }
 });
 
@@ -791,7 +805,8 @@ var render = function() {
                         icon: "",
                         outlined: "",
                         color: "primary darken-2",
-                        block: ""
+                        block: "",
+                        disabled: _vm.$store.state.actualizandoCarrito
                       },
                       on: { click: _vm.agregar }
                     },
@@ -969,7 +984,13 @@ var render = function() {
                       "v-btn",
                       {
                         staticClass: "primary white--text",
-                        attrs: { outlined: "", tile: "", dense: "" }
+                        attrs: {
+                          outlined: "",
+                          tile: "",
+                          dense: "",
+                          disabled: _vm.$store.state.actualizandoCarrito
+                        },
+                        on: { click: _vm.agregar }
                       },
                       [_c("v-icon", [_vm._v("mdi-cart")]), _vm._v(" Agregar")],
                       1
