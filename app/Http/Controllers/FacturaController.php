@@ -14,7 +14,9 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        //
+        $factura = Factura::all();
+        $factura->load(['formasEnvios', 'metodoPagos', 'user', 'productos']);
+        return $factura;
     }
 
     /**

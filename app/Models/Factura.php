@@ -18,12 +18,12 @@ class Factura extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function formasEnvio(){
-        return $this->hasOne(FormasEnvio::class);
+    public function formasEnvios(){
+        return $this->belongsTo(FormasEnvio::class);
     }
 
     public function metodoPagos(){
-        return $this->hasOne(MetodoPago::class);
+        return $this->belongsTo(MetodoPago::class);
     }
 
     public function facturaHasProductos(){
@@ -31,6 +31,6 @@ class Factura extends Model
     }
 
     public function productos(){
-        return $this->belongsToMany(Producto::class, 'factura_has_productos');
+        return $this->belongsToMany(Producto::class, 'factura_has_productos')->withPivot('cantidad');
     }
 }

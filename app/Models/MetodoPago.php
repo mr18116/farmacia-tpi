@@ -11,6 +11,6 @@ class MetodoPago extends Model
     use HasFactory;
 
     public function facturas(){
-        return $this->belongsToMany(Factura::class);
+        return $this->hasMany(Factura::class);
     }
 }
