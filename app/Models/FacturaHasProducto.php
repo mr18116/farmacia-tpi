@@ -12,7 +12,7 @@ class FacturaHasProducto extends Model
     use HasFactory;
 
     public function factura(){
-        return $this->belongsTo(Factura::class);
+        return $this->hasOne(Factura::class);
     }
 
     public function producto(){

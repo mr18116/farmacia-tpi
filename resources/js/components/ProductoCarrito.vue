@@ -3,10 +3,12 @@
       <v-container>
           <v-row>
             <v-col cols="3">
-                <v-img height="120" contain :src="producto.producto.imagen_url"></v-img>
+                <router-link :to="'/detalle/' + producto.producto.id">
+                    <v-img height="120" contain :src="producto.producto.imagen_url"></v-img>
+                </router-link>
             </v-col>
             <v-col cols="6">
-                <div class="text-h5">{{ producto.producto.nombre }}</div>
+                <div class="text-h5"><router-link :to="'/detalle/' + producto.producto.id" class="black--text">{{ producto.producto.nombre }}</router-link></div>
                 <div class="text-h6">${{ producto.producto.precio }}</div>
             </v-col>
             <v-col cols="3">
@@ -49,9 +51,12 @@
         </v-row>
         <v-divider></v-divider>
         <v-row >
+            <v-col cols="auto">
+                <v-btn color="green" small>Comprar</v-btn>
+            </v-col>
             <v-spacer></v-spacer>
             <v-col cols="auto" class="text-h6">
-                Subtotal ${{ producto.producto.precio*producto.cantidad }}
+                Subtotal ${{ Math.round(producto.producto.precio*producto.cantidad * 100)/100 }}
             </v-col>
         </v-row>
       </v-container>

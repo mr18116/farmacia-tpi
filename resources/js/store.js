@@ -104,7 +104,7 @@ export default new Vuex.Store({
                     });;
                 }
             }
-            return total;
+            return Math.round(total * 100)/100;
         },
         nProductosCarrito: state => {
             if (state.carrito != null) {

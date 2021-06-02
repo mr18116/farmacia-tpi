@@ -71,6 +71,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     producto: Object
@@ -410,21 +415,40 @@ var render = function() {
                 "v-col",
                 { attrs: { cols: "3" } },
                 [
-                  _c("v-img", {
-                    attrs: {
-                      height: "120",
-                      contain: "",
-                      src: _vm.producto.producto.imagen_url
-                    }
-                  })
+                  _c(
+                    "router-link",
+                    { attrs: { to: "/detalle/" + _vm.producto.producto.id } },
+                    [
+                      _c("v-img", {
+                        attrs: {
+                          height: "120",
+                          contain: "",
+                          src: _vm.producto.producto.imagen_url
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               ),
               _vm._v(" "),
               _c("v-col", { attrs: { cols: "6" } }, [
-                _c("div", { staticClass: "text-h5" }, [
-                  _vm._v(_vm._s(_vm.producto.producto.nombre))
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "text-h5" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "black--text",
+                        attrs: { to: "/detalle/" + _vm.producto.producto.id }
+                      },
+                      [_vm._v(_vm._s(_vm.producto.producto.nombre))]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-h6" }, [
                   _vm._v("$" + _vm._s(_vm.producto.producto.precio))
@@ -552,13 +576,28 @@ var render = function() {
           _c(
             "v-row",
             [
+              _c(
+                "v-col",
+                { attrs: { cols: "auto" } },
+                [
+                  _c("v-btn", { attrs: { color: "green", small: "" } }, [
+                    _vm._v("Comprar")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("v-spacer"),
               _vm._v(" "),
               _c("v-col", { staticClass: "text-h6", attrs: { cols: "auto" } }, [
                 _vm._v(
                   "\n              Subtotal $" +
                     _vm._s(
-                      _vm.producto.producto.precio * _vm.producto.cantidad
+                      Math.round(
+                        _vm.producto.producto.precio *
+                          _vm.producto.cantidad *
+                          100
+                      ) / 100
                     ) +
                     "\n          "
                 )
@@ -690,7 +729,7 @@ var render = function() {
                               _c(
                                 "v-btn",
                                 { attrs: { block: "", color: "blue" } },
-                                [_vm._v("Comprar")]
+                                [_vm._v("Comprar Todo")]
                               )
                             ],
                             1

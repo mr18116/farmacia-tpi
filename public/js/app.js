@@ -2913,7 +2913,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
         }
       }
 
-      return total;
+      return Math.round(total * 100) / 100;
     },
     nProductosCarrito: function nProductosCarrito(state) {
       if (state.carrito != null) {

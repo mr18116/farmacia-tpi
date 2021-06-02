@@ -550,7 +550,17 @@ var render = function() {
       _c(
         "v-card-title",
         { staticClass: "d-block text-uppercase text-truncate" },
-        [_vm._v("\n        " + _vm._s(_vm.producto.nombre) + "\n    ")]
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "black--text",
+              attrs: { to: "/detalle/" + _vm.producto.id }
+            },
+            [_vm._v(_vm._s(_vm.producto.nombre))]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c("v-card-subtitle", [_vm._v("$" + _vm._s(_vm.producto.precio))]),

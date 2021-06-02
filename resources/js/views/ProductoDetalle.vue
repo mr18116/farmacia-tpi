@@ -31,7 +31,9 @@
             ></v-text-field>
             <v-btn class="primary white--text" outlined tile dense @click="agregar" :disabled="$store.state.actualizandoCarrito">
               <v-icon>mdi-cart</v-icon> Agregar</v-btn>
-
+            <v-btn color="green" :disabled="$store.state.actualizandoCarrito">
+              Comprar
+            </v-btn>
           </div>
       </div>
       </div>

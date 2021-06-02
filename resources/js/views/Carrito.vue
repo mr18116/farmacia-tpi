@@ -26,7 +26,7 @@
                       Total: ${{ total }}
                   </v-card-title>
                   <v-card-actions>
-                      <v-btn block color="blue">Comprar</v-btn>
+                      <v-btn block color="blue">Comprar Todo</v-btn>
                   </v-card-actions>
               </v-card>
           </v-col>

@@ -25,7 +25,22 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $factura = new Factura();
+        $factura->user_id = $request->user_id;
+        $factura->formas_envios_id = $request->formas_envios_id;
+        $factura->metodo_pagos_id = $request->metodo_pagos_id;
+        $factura->direccion = $request->direccion;
+        $factura->total = $request->total;
+        $result = $factura->save();
+        if($result){
+            for ($i=0; $i < count($request->idsProductos); $i++) { 
+                $factura->productos()->attach($request->idsProductos[$i], ['cantidad' => $request->cantidades[$i]]);
+            }
+            $result = $factura->save();
+            return response($factura, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**

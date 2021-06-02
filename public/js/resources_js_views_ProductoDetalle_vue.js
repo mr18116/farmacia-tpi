@@ -307,6 +307,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -706,7 +708,17 @@ var render = function() {
       _c(
         "v-card-title",
         { staticClass: "d-block text-uppercase text-truncate" },
-        [_vm._v("\n        " + _vm._s(_vm.producto.nombre) + "\n    ")]
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "black--text",
+              attrs: { to: "/detalle/" + _vm.producto.id }
+            },
+            [_vm._v(_vm._s(_vm.producto.nombre))]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c("v-card-subtitle", [_vm._v("$" + _vm._s(_vm.producto.precio))]),
@@ -994,6 +1006,17 @@ var render = function() {
                       },
                       [_c("v-icon", [_vm._v("mdi-cart")]), _vm._v(" Agregar")],
                       1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      {
+                        attrs: {
+                          color: "green",
+                          disabled: _vm.$store.state.actualizandoCarrito
+                        }
+                      },
+                      [_vm._v("\n          Comprar\n        ")]
                     )
                   ],
                   1

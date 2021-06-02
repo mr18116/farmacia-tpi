@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\TipoProducto;
 use App\Models\Categoria;
 use App\Models\CarritoHasProductos;
+use App\Models\Factura;
 
 class Producto extends Model
 {
@@ -28,4 +29,7 @@ class Producto extends Model
         return $this->belongsToMany(FacturaHasProductos::class);
     }
 
+    public function factura(){
+        return $this->belongsToMany(Factura::class, 'factura_has_productos');
+    }
 }

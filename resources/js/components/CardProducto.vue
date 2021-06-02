@@ -4,7 +4,7 @@
             <v-img height="200" contain :src="producto.imagen_url"></v-img>
         </router-link>
         <v-card-title class="d-block text-uppercase text-truncate">
-            {{ producto.nombre }}
+            <router-link :to="'/detalle/' + producto.id" class="black--text">{{ producto.nombre }}</router-link>
         </v-card-title>
         <v-card-subtitle>${{ producto.precio }}</v-card-subtitle>
         <v-card-actions>

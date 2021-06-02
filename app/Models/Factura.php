@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\FormasEnvio;
 use App\Models\MetodoPago;
 use App\Models\FacturaHasProducto;
+use App\Models\Producto;
 
 class Factura extends Model
 {
@@ -26,6 +27,10 @@ class Factura extends Model
     }
 
     public function facturaHasProductos(){
-        return $this->hasMany(FacturaHasProducto::class);
+        return $this->belongsToMany(FacturaHasProducto::class);
+    }
+
+    public function productos(){
+        return $this->belongsToMany(Producto::class, 'factura_has_productos');
     }
 }

@@ -16,7 +16,6 @@ class CreateFacturasTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
             $table->string('direccion');
-            $table->dateTime('fecha_compra');
             $table->float('total');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
