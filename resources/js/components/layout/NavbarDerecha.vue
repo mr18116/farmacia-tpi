@@ -18,7 +18,10 @@
             </v-list-item-content>
         </v-list-item>
         <v-row class="d-flex justify-center my-md-3" v-if="$store.state.user != null">
-            <v-btn  elevation="0" small @click="logout" v-if="$store.state.user != null">Cerrar sesión</v-btn>
+            <v-btn elevation="0" small v-if="$store.state.user != null" color="primary" to="/compras">Ver compras</v-btn>
+        </v-row>
+        <v-row class="d-flex justify-center my-md-3" v-if="$store.state.user != null">
+            <v-btn elevation="0" small @click="logout" v-if="$store.state.user != null" color="red">Cerrar sesión</v-btn>
         </v-row>
         <v-divider v-if="$store.state.rol == 'administrador'"></v-divider>
         <v-list v-if="$store.state.rol == 'administrador'">
@@ -26,6 +29,11 @@
             <v-list-item to="/inventario" link>
                 <v-list-item-content>
                     <v-list-item-title>Inventario</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item to="/ventas" link>
+                <v-list-item-content>
+                    <v-list-item-title>Ventas</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         </v-list>

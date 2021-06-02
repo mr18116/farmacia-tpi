@@ -19,6 +19,13 @@ class FacturaController extends Controller
         return $factura;
     }
 
+    public function facturasUser($user_id)
+    {
+        $factura = Factura::where('user_id', '=', $user_id)->get();
+        $factura->load(['formasEnvios', 'metodoPagos', 'user', 'productos']);
+        return $factura;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
