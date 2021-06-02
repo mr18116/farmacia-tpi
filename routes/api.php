@@ -4,6 +4,8 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\CarritoHasProductosController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\FormasEnvioController;
+use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TipoProductoController;
 use App\Http\Controllers\TipoUsuarioController;
@@ -36,6 +38,8 @@ Route::apiResources([
     'categoria' => CategoriaController::class,
     'tipo_producto' => TipoProductoController::class,
     'factura' => FacturaController::class,
+    'formas_envio' => FormasEnvioController::class,
+    'metodo_pago' => MetodoPagoController::class,
 ]);
 
 Route::get('carrito-user/{user_id}', [CarritoController::class, 'carritoByUser']);

@@ -14,7 +14,7 @@ class MetodoPagoController extends Controller
      */
     public function index()
     {
-        //
+        return MetodoPago::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class MetodoPagoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $metodoPago = new MetodoPago();
+        $metodoPago->tipo = $request->tipo;
+        $result = $metodoPago->save();
+        if($result){
+            return response($metodoPago, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -46,9 +53,16 @@ class MetodoPagoController extends Controller
      * @param  \App\Models\MetodoPago  $metodoPago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MetodoPago $metodoPago)
+    public function update(Request $request, $id)
     {
-        //
+        $metodoPago = MetodoPago::find($id);
+        $metodoPago->tipo = $request->tipo;
+        $result = $metodoPago->save();
+        if($result){
+            return response($metodoPago, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -57,8 +71,10 @@ class MetodoPagoController extends Controller
      * @param  \App\Models\MetodoPago  $metodoPago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MetodoPago $metodoPago)
+    public function destroy($id)
     {
-        //
+        $metodoPago = MetodoPago::find($id);
+        $metodoPago->delete();
+        return $metodoPago;
     }
 }

@@ -14,7 +14,7 @@ class FormasEnvioController extends Controller
      */
     public function index()
     {
-        //
+        return FormasEnvio::all();
     }
 
     /**
@@ -25,7 +25,14 @@ class FormasEnvioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formasEnvio = new FormasEnvio();
+        $formasEnvio->empresa = $request->empresa;
+        $result = $formasEnvio->save();
+        if($result){
+            return response($formasEnvio, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -46,9 +53,16 @@ class FormasEnvioController extends Controller
      * @param  \App\Models\FormasEnvio  $formasEnvio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FormasEnvio $formasEnvio)
+    public function update(Request $request, $id)
     {
-        //
+        $formasEnvio = FormasEnvio::find($id);
+        $formasEnvio->empresa = $request->empresa;
+        $result = $formasEnvio->save();
+        if($result){
+            return response($formasEnvio, 201);
+        } else {
+            return response('fallo', 400);
+        }
     }
 
     /**
@@ -57,8 +71,10 @@ class FormasEnvioController extends Controller
      * @param  \App\Models\FormasEnvio  $formasEnvio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FormasEnvio $formasEnvio)
+    public function destroy($id)
     {
-        //
+        $formasEnvio = FormasEnvio::find($id);
+        $formasEnvio->delete();
+        return $formasEnvio;
     }
 }
