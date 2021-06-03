@@ -72,7 +72,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     nuevoEnvio: function nuevoEnvio() {
       var opciones = {
-        titulo: "Nuevo Tipo",
+        titulo: "Nueva forma de envio",
         disabled: false,
         btn_guardar: true,
         btn_texto: "Guardar",
@@ -176,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     nuevoPago: function nuevoPago() {
       var opciones = {
-        titulo: "Nuevo Tipo",
+        titulo: "Nuevo método de pago",
         disabled: false,
         btn_guardar: true,
         btn_texto: "Guardar",

@@ -52,7 +52,7 @@ export default {
     methods:{
         nuevoEnvio() {
             let opciones = {
-                titulo: "Nuevo Tipo",
+                titulo: "Nueva forma de envio",
                 disabled: false,
                 btn_guardar: true,
                 btn_texto: "Guardar",

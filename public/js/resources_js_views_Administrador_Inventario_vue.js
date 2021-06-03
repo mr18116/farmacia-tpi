@@ -8127,7 +8127,7 @@ __webpack_require__.r(__webpack_exports__);
       eliminar: false,
       itemAEliminar: {},
       tipoItemAEliminar: "",
-      productoEditar: null,
+      productoEditar: {},
       pagina: 1,
       paginas: 1,
       allProductos: [],

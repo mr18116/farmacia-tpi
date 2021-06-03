@@ -149,7 +149,7 @@ export default {
         eliminar: false,
         itemAEliminar: {},
         tipoItemAEliminar: "",
-        productoEditar: null,
+        productoEditar: {},
         pagina: 1,
         paginas: 1,
         allProductos: [],

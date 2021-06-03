@@ -52,7 +52,7 @@ export default {
     methods:{
         nuevoPago() {
             let opciones = {
-                titulo: "Nuevo Tipo",
+                titulo: "Nuevo método de pago",
                 disabled: false,
                 btn_guardar: true,
                 btn_texto: "Guardar",
