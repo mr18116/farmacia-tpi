@@ -2401,32 +2401,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         action: "mdi-silverware-fork-knife",
         items: [{
           title: "Antibiotico inyectable",
-          link: "/antibiotico-inyectable"
+          link: "/antibiotico inyectable"
         }, {
           title: "Antibiotico orales",
-          link: "/antibiotico-orales"
+          link: "/antibiotico orales"
         }, {
           title: "Antibiotico y cicatrizantes topicos",
-          link: "/antibiotico-y-cicatrizantes-topicos"
+          link: "/antibiotico y cicatrizantes topicos"
         }],
         title: "Antibioticos y cicatrizantes"
       }, {
         action: "mdi-school",
         items: [{
           title: "Anticuagulante y cuagulante",
-          link: "/anticuagulante-y-cuagulante"
+          link: "/anticuagulante y cuagulante"
         }, {
           title: "Circulación saludable",
-          link: "/circulación-saludable"
+          link: "/circulación saludable"
         }, {
           title: "Colesterol y trigliceridos",
-          link: "/colesterol-y-trigliceridos"
+          link: "/colesterol y trigliceridos"
         }, {
           title: "Corazón",
           link: "/corazon"
         }, {
           title: "Retención de líquidos",
-          link: "/retencion-de-liquidos"
+          link: "/retencion de liquidos"
         }],
         title: "Corazón y presión arterial"
       }, {
@@ -2436,10 +2436,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           link: "/insulinas"
         }, {
           title: "Jeringas y agujas de insulina",
-          link: "/jeringas-y-agujas-de-insulina"
+          link: "/jeringas y agujas de insulina"
         }, {
           title: "Medicamento diabetes",
-          link: "/medicamento-diabetes"
+          link: "/medicamento diabetes"
         }],
         title: "Diabetes"
       }, {
@@ -2449,16 +2449,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           link: "/anestesicos"
         }, {
           title: 'Dolor de cabeza y migraña',
-          link: "/dolor-de-cabeza-y-migraña"
+          link: "/dolor de cabeza y migraña"
         }, {
           title: 'Dolor de cuerpo',
-          link: "/dolor-de-cuerpo"
+          link: "/dolor de cuerpo"
         }, {
           title: 'Dolor menstrual',
-          link: "/dolor-menstrual"
+          link: "/dolor menstrual"
         }, {
           title: 'Circulación saludable',
-          link: "/circulacion-saludable"
+          link: "/circulacion saludable"
         }],
         title: "Dolor y fiebre"
       }, {
@@ -2471,7 +2471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           link: "/parasitos"
         }, {
           title: "Vomitos y nauseas",
-          link: "/vomitos-y-nauseas"
+          link: "/vomitos y nauseas"
         }],
         title: "Gastrointestinales"
       }, {
@@ -2484,7 +2484,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           link: "/dolor de garganta"
         }, {
           title: "Gripe y tos",
-          link: "/gripe-y-tos"
+          link: "/gripe y tos"
         }],
         title: "Gripe, tos y asma"
       }]
@@ -40228,7 +40228,11 @@ var render = function() {
                 [
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Ventas")])],
+                    [
+                      _c("v-list-item-title", [
+                        _vm._v("Ventas, pagos y envios")
+                      ])
+                    ],
                     1
                   )
                 ],

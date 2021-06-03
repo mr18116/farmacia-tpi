@@ -7453,7 +7453,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     editarTipo: function editarTipo(item) {
       var opciones = {
-        titulo: "Nueva Categoria",
+        titulo: "Editar Tipo",
         disabled: false,
         btn_guardar: true,
         btn_texto: "Guardar",

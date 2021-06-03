@@ -63,7 +63,7 @@ export default {
         },
         editarTipo(item) {
             let opciones = {
-                titulo: "Nueva Categoria",
+                titulo: "Editar Tipo",
                 disabled: false,
                 btn_guardar: true,
                 btn_texto: "Guardar",

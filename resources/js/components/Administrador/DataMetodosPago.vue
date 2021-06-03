@@ -12,21 +12,27 @@
                 >
                     <v-toolbar-title class="text-h5">Metodos de pago</v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" dark>
+                    <v-btn color="primary" @click="nuevoPago" dark>
                         Agregar Metodo
                     </v-btn>
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-                <v-icon small class="mr-2">
+                <v-icon small class="mr-2" @click="editarModal(item)">
                     mdi-pencil
                 </v-icon>
-                <v-icon small>
+                <v-icon small @click="eliminarItem(item)">
                     mdi-delete
                 </v-icon>
             </template>
             <template v-slot:no-data>
-                No hay datos
+               <v-progress-circular
+                                :size="100"
+                                :width="7"
+                                color="primary"
+                                indeterminate
+                                class="my-8"
+                            ></v-progress-circular>
             </template>
         </v-data-table>
   </div>
@@ -41,13 +47,39 @@ export default {
             { text: 'Tipo', value: 'tipo', sorteable: true },
             { text: 'Acciones', value: 'actions', sortable: false },
         ],
-        metodos: [],
     }),
-    created(){
-        axios.get('/api/metodo_pago').then( response => {
-            this.metodos = response.data;
-        });
-    }
+    props: ["metodos"],
+    methods:{
+        nuevoPago() {
+            let opciones = {
+                titulo: "Nuevo Tipo",
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: "Guardar",
+                categoriaOTipo: "pago",
+                editar: false
+            };
+            this.$emit("nuevoPagoOEnvio", opciones);
+        },
+        editarModal(item){
+             let opciones = {
+                titulo: "Editar método de pago",
+                disabled: false,
+                btn_guardar: true,
+                btn_texto: "Guardar",
+                categoriaOTipo: "pago",
+                editar: true
+            };
+            let item2 = {
+                id: item.id,
+                nombre: item.tipo,
+            }
+            this.$emit("editarModal", item2, opciones);
+        },
+        eliminarItem(item){
+            this.$emit("eliminarItem", item, "pago")
+        }
+    },
 }
 </script>
 
