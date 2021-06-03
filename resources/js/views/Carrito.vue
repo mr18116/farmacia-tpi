@@ -26,7 +26,7 @@
                       Total: ${{ total }}
                   </v-card-title>
                   <v-card-actions>
-                      <v-btn block color="blue">Comprar Todo</v-btn>
+                      <v-btn block color="blue" @click="procederCompra">Comprar Todo</v-btn>
                   </v-card-actions>
               </v-card>
           </v-col>
@@ -42,15 +42,18 @@
               Inicie Sesión para ver el contenido de su carrito
           </v-col>
       </v-row>
+      <ModalComprar ref="modalComprar" :productos="productosArray" :cantidades="cantidades" v-if="productos.length > 0"/>
   </v-container>
 </template>
 
 <script>
-import ProductoCarrito from '../components/ProductoCarrito'
+import ProductoCarrito from '../components/ProductoCarrito';
+import ModalComprar from '../components/ModalComprar';
 
 export default {
     components: {
-        ProductoCarrito
+        ProductoCarrito,
+        ModalComprar,
     },
     computed: {
         productos(){
@@ -58,6 +61,29 @@ export default {
         },
         total(){
             return this.$store.getters.totalCarrito;
+        },
+        cantidades(){
+            let c = [];
+            this.productos.forEach(p => {
+                c.push(p.cantidad);
+            });
+            return c;
+        },
+        productosArray(){
+            let pa = [];
+            this.productos.forEach(p => {
+                pa.push(p.producto);
+            });
+            return pa;
+        }
+    },
+    methods: {
+        procederCompra(){
+            if (this.$store.state.user != null) {
+                this.$refs.modalComprar.dialog = true;
+            } else {
+                this.$router.push('/login');
+            }
         }
     }
 

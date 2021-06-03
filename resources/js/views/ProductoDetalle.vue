@@ -31,7 +31,7 @@
             ></v-text-field>
             <v-btn class="primary white--text" outlined tile dense @click="agregar" :disabled="$store.state.actualizandoCarrito">
               <v-icon>mdi-cart</v-icon> Agregar</v-btn>
-            <v-btn color="green" :disabled="$store.state.actualizandoCarrito">
+            <v-btn color="green" :disabled="$store.state.actualizandoCarrito" @click="procederCompra">
               Comprar
             </v-btn>
           </div>
@@ -105,16 +105,19 @@
         </div>
         
       </div>
+      <ModalComprar ref="modalComprar" :productos="[producto]" :cantidades="[cantidad]" v-if="producto != null" />
     </v-container>
 </template>
 
 <script>
 import CardsProductos from "../components/CardsProductos";
 import axios from 'axios';
+import ModalComprar from '../components/ModalComprar';
 
 export default {
   components: {
     CardsProductos,
+    ModalComprar,
   },
   data: () => ({
     producto: null,
@@ -179,6 +182,13 @@ export default {
           this.cantidad = 1;
       } else {
           this.$router.push('/login');
+      }
+    },
+    procederCompra(){
+      if (this.$store.state.user != null) {
+        this.$refs.modalComprar.dialog = true;
+      } else {
+        this.$router.push('/login');
       }
     }
   }

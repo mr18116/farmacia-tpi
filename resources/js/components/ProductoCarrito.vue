@@ -52,7 +52,7 @@
         <v-divider></v-divider>
         <v-row >
             <v-col cols="auto">
-                <v-btn color="green" small>Comprar</v-btn>
+                <v-btn color="green" small @click="procederCompra">Comprar</v-btn>
             </v-col>
             <v-spacer></v-spacer>
             <v-col cols="auto" class="text-h6">
@@ -60,12 +60,17 @@
             </v-col>
         </v-row>
       </v-container>
+      <ModalComprar ref="modalComprar" :productos="[producto.producto]" :cantidades="[producto.cantidad]" v-if="producto != null" />
     </v-card>
 </template>
 
 <script>
-export default {
+import ModalComprar from '../components/ModalComprar';
 
+export default {
+    components: {
+        ModalComprar,
+    },
     props: {
         producto: Object,
     },
@@ -92,6 +97,13 @@ export default {
         },
         quitarProducto(){
             this.$store.dispatch('quitarProducto', this.producto.producto_id);
+        },
+        procederCompra(){
+            if (this.$store.state.user != null) {
+                this.$refs.modalComprar.dialog = true;
+            } else {
+                this.$router.push('/login');
+            }
         }
     },
     created(){

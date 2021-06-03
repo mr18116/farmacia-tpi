@@ -26,14 +26,14 @@
         <v-divider v-if="$store.state.rol == 'administrador'"></v-divider>
         <v-list v-if="$store.state.rol == 'administrador'">
             <v-subheader>Administracion</v-subheader>
+            <v-list-item to="/dashboard" link>
+                <v-list-item-content>
+                    <v-list-item-title>Dashboard</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
             <v-list-item to="/inventario" link>
                 <v-list-item-content>
                     <v-list-item-title>Inventario</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-             <v-list-item to="/dashboard" link>
-                <v-list-item-content>
-                    <v-list-item-title>Dashboard</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
             <v-list-item to="/ventas" link>

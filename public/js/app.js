@@ -40222,11 +40222,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/inventario", link: "" } },
+                { attrs: { to: "/dashboard", link: "" } },
                 [
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Inventario")])],
+                    [_c("v-list-item-title", [_vm._v("Dashboard")])],
                     1
                   )
                 ],
@@ -40235,11 +40235,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard", link: "" } },
+                { attrs: { to: "/inventario", link: "" } },
                 [
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Dashboard")])],
+                    [_c("v-list-item-title", [_vm._v("Inventario")])],
                     1
                   )
                 ],
