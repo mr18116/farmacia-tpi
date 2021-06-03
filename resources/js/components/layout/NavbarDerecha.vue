@@ -31,6 +31,11 @@
                     <v-list-item-title>Inventario</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+             <v-list-item to="/dashboard" link>
+                <v-list-item-content>
+                    <v-list-item-title>Dashboard</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
             <v-list-item to="/ventas" link>
                 <v-list-item-content>
                     <v-list-item-title>Ventas, pagos y envios</v-list-item-title>

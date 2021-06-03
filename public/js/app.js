@@ -2387,6 +2387,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2693,6 +2698,12 @@ var routes = [{
   name: 'Carrito',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_views_Carrito_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Carrito.vue */ "./resources/js/views/Carrito.vue"));
+  }
+}, {
+  path: '/dashboard',
+  name: 'Dashboard',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_Administrador_Dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Administrador/Dashboard.vue */ "./resources/js/views/Administrador/Dashboard.vue"));
   }
 }, {
   path: '/:categoria',
@@ -40216,6 +40227,19 @@ var render = function() {
                   _c(
                     "v-list-item-content",
                     [_c("v-list-item-title", [_vm._v("Inventario")])],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard", link: "" } },
+                [
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Dashboard")])],
                     1
                   )
                 ],
@@ -102161,7 +102185,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Login_vue":1,"resources_js_views_Signup_vue":1,"resources_js_views_ProductoDetalle_vue":1,"resources_js_views_Administrador_Inventario_vue":1,"resources_js_views_Administrador_Ventas_vue":1,"resources_js_views_ComprasUsuario_vue":1,"resources_js_views_Carrito_vue":1,"resources_js_views_Categoria_vue":1,"resources_js_views_Error404_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Login_vue":1,"resources_js_views_Signup_vue":1,"resources_js_views_ProductoDetalle_vue":1,"resources_js_views_Administrador_Inventario_vue":1,"resources_js_views_Administrador_Ventas_vue":1,"resources_js_views_ComprasUsuario_vue":1,"resources_js_views_Carrito_vue":1,"resources_js_views_Administrador_Dashboard_vue":1,"resources_js_views_Categoria_vue":1,"resources_js_views_Error404_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

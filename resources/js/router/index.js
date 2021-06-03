@@ -45,10 +45,15 @@ const routes = [
         component: () => import('../views/Carrito.vue'),
     },
     {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () => import('../views/Administrador/Dashboard.vue')
+    },
+    {
         path: '/:categoria',
         name: 'Categoria',
         component: () => import('../views/Categoria.vue'),
-    },
+    },   
     {
         path: '*',
         name: 'Error',
