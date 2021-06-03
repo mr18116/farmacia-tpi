@@ -42,7 +42,7 @@
               Inicie Sesión para ver el contenido de su carrito
           </v-col>
       </v-row>
-      <ModalComprar ref="modalComprar" :productos="productosArray" :cantidades="cantidades" v-if="productos.length > 0"/>
+      <ModalComprar ref="modalComprar" :productos="productosArray" :cantidades="cantidades" tipo="todos" v-if="productos.length > 0"/>
   </v-container>
 </template>
 

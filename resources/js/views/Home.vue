@@ -67,10 +67,10 @@
               sm="12"
               class="text-center"
             >
-              <v-hover v-slot:default="{ hover }">
+              <!--<v-hover v-slot:default="{ hover }">
                 <CardsProductos shaped :elevation="hover ? 10 : 4"
                   :class="{ up: hover }" :n="4" parametro="mas-comprados" />
-              </v-hover>
+              </v-hover>-->
             </v-col>
           </v-row>
         </v-col>

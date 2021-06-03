@@ -60,7 +60,7 @@
             </v-col>
         </v-row>
       </v-container>
-      <ModalComprar ref="modalComprar" :productos="[producto.producto]" :cantidades="[producto.cantidad]" v-if="producto != null" />
+      <ModalComprar ref="modalComprar" :productos="[producto.producto]" :cantidades="[producto.cantidad]" tipo="individual-carrito" v-if="producto != null" />
     </v-card>
 </template>
 

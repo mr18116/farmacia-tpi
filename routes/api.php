@@ -47,6 +47,7 @@ Route::get('carrito-user/{user_id}', [CarritoController::class, 'carritoByUser']
 Route::post('carrito-producto', [CarritoHasProductosController::class, 'store']);
 Route::put('carrito-producto/{carrito_id}/{producto_id}', [CarritoHasProductosController::class, 'cantidadProducto']);
 Route::delete('carrito-producto/{carrito_id}/{producto_id}', [CarritoHasProductosController::class, 'delete']);
+Route::delete('carrito-producto/{carrito_id}', [CarritoHasProductosController::class, 'todosDelete']);
 
 Route::get('rol-user/{user_id}', [TipoUsuarioController::class, 'rol']);
 

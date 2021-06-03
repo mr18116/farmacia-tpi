@@ -2930,6 +2930,17 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
       })["catch"](function () {
         commit('SET_AC', false);
       });
+    },
+    quitarTodosProductos: function quitarTodosProductos(_ref10) {
+      var dispatch = _ref10.dispatch,
+          state = _ref10.state,
+          commit = _ref10.commit;
+      commit('SET_AC', true);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().delete('/api/carrito-producto/' + state.carrito.id).then(function () {
+        dispatch('getCarrito');
+      })["catch"](function () {
+        commit('SET_AC', false);
+      });
     }
   },
   getters: {

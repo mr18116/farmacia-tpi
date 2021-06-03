@@ -71,6 +71,12 @@ class CarritoHasProductosController extends Controller
         return $carritoHasProductos;
     }
 
+    public function todosDelete($carrito_id)
+    {
+        $carritoHasProductos = CarritoHasProductos::where('carrito_id', '=', $carrito_id)->delete();
+        return $carritoHasProductos;
+    }
+
     /**
      * Display the specified resource.
      *

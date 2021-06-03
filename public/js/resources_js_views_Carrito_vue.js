@@ -69,6 +69,10 @@ __webpack_require__.r(__webpack_exports__);
     cantidades: {
       type: Array,
       "default": []
+    },
+    tipo: {
+      type: String,
+      "default": 'individual'
     }
   },
   data: function data() {
@@ -84,7 +88,8 @@ __webpack_require__.r(__webpack_exports__);
         cantidades: []
       },
       formasEnvio: [],
-      metodosPago: []
+      metodosPago: [],
+      comprando: false
     };
   },
   methods: {
@@ -101,20 +106,38 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/metodo_pago').then(function (response) {
         _this2.metodosPago = response.data;
       });
+    },
+    confirmarCompra: function confirmarCompra() {
+      var _this3 = this;
+
+      this.comprando = true;
+      this.factura.user_id = this.$store.state.user.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/factura', this.factura).then(function (response) {
+        if (_this3.tipo == 'todos') {
+          _this3.$store.dispatch('quitarTodosProductos');
+        } else if (_this3.tipo == 'individual-carrito') {
+          _this3.$store.dispatch('quitarProducto', _this3.factura.idsProductos[0]);
+        }
+
+        _this3.comprando = false;
+        _this3.dialog = false;
+      })["catch"](function () {
+        _this3.comprando = false;
+      });
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     if (this.productos.length > 0 && this.cantidades.length > 0) {
       this.productos.forEach(function (producto, index) {
-        _this3.factura.idsProductos.push(producto.id);
+        _this4.factura.idsProductos.push(producto.id);
 
-        _this3.factura.cantidades.push(_this3.cantidades[index]);
+        _this4.factura.cantidades.push(_this4.cantidades[index]);
 
-        _this3.total += _this3.cantidades[index] * producto.precio;
+        _this4.factura.total += _this4.cantidades[index] * producto.precio;
       });
-      console.log(this.factura);
+      this.factura.total = Math.round(this.factura.total * 100) / 100;
     }
 
     this.obtenerFormasEnvio();
@@ -755,7 +778,7 @@ var render = function() {
               _c(
                 "v-btn",
                 {
-                  attrs: { color: "red" },
+                  attrs: { color: "red", disabled: _vm.comprando },
                   on: {
                     click: function($event) {
                       _vm.dialog = false
@@ -765,9 +788,14 @@ var render = function() {
                 [_vm._v("Cancelar")]
               ),
               _vm._v(" "),
-              _c("v-btn", { attrs: { color: "primary" } }, [
-                _vm._v("Confirmar compra")
-              ])
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "primary", disabled: _vm.comprando },
+                  on: { click: _vm.confirmarCompra }
+                },
+                [_vm._v("Confirmar compra")]
+              )
             ],
             1
           )
@@ -1018,7 +1046,8 @@ var render = function() {
             ref: "modalComprar",
             attrs: {
               productos: [_vm.producto.producto],
-              cantidades: [_vm.producto.cantidad]
+              cantidades: [_vm.producto.cantidad],
+              tipo: "individual-carrito"
             }
           })
         : _vm._e()
@@ -1199,7 +1228,11 @@ var render = function() {
       _vm.productos.length > 0
         ? _c("ModalComprar", {
             ref: "modalComprar",
-            attrs: { productos: _vm.productosArray, cantidades: _vm.cantidades }
+            attrs: {
+              productos: _vm.productosArray,
+              cantidades: _vm.cantidades,
+              tipo: "todos"
+            }
           })
         : _vm._e()
     ],

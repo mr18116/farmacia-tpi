@@ -1291,37 +1291,10 @@ var render = function() {
                     "v-row",
                     { attrs: { align: "center", justify: "space-around" } },
                     [
-                      _c(
-                        "v-col",
-                        {
-                          staticClass: "text-center",
-                          attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
-                        },
-                        [
-                          _c("v-hover", {
-                            scopedSlots: _vm._u([
-                              {
-                                key: "default",
-                                fn: function(ref) {
-                                  var hover = ref.hover
-                                  return [
-                                    _c("CardsProductos", {
-                                      class: { up: hover },
-                                      attrs: {
-                                        shaped: "",
-                                        elevation: hover ? 10 : 4,
-                                        n: 4,
-                                        parametro: "mas-comprados"
-                                      }
-                                    })
-                                  ]
-                                }
-                              }
-                            ])
-                          })
-                        ],
-                        1
-                      )
+                      _c("v-col", {
+                        staticClass: "text-center",
+                        attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
+                      })
                     ],
                     1
                   )

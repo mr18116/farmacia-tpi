@@ -37,8 +37,8 @@
           </v-card-text>
           <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="red" @click="dialog = false">Cancelar</v-btn>
-              <v-btn color="primary">Confirmar compra</v-btn>
+              <v-btn color="red" @click="dialog = false" :disabled="comprando">Cancelar</v-btn>
+              <v-btn color="primary" @click="confirmarCompra" :disabled="comprando">Confirmar compra</v-btn>
           </v-card-actions>
       </v-card>
   </v-dialog>
@@ -56,6 +56,10 @@ export default {
         cantidades: {
             type: Array,
             default: []
+        },
+        tipo: {
+            type: String,
+            default: 'individual'
         }
     },
     data: () => ({
@@ -71,6 +75,7 @@ export default {
         },
         formasEnvio: [],
         metodosPago: [],
+        comprando: false,
     }),
     methods: {
         obtenerFormasEnvio(){
@@ -82,6 +87,21 @@ export default {
             axios.get('/api/metodo_pago').then( response => {
                 this.metodosPago = response.data;
             });
+        },
+        confirmarCompra(){
+            this.comprando = true;
+            this.factura.user_id = this.$store.state.user.id;
+            axios.post('/api/factura', this.factura).then( response => {
+                if (this.tipo == 'todos') {
+                    this.$store.dispatch('quitarTodosProductos');
+                } else if (this.tipo == 'individual-carrito') {
+                    this.$store.dispatch('quitarProducto', this.factura.idsProductos[0]);
+                }
+                this.comprando = false;
+                this.dialog = false;
+            }).catch( () => {
+                this.comprando = false;
+            });
         }
     },
     created(){
@@ -89,9 +109,9 @@ export default {
             this.productos.forEach((producto, index) => {
                 this.factura.idsProductos.push(producto.id);
                 this.factura.cantidades.push(this.cantidades[index]);
-                this.total += this.cantidades[index] * producto.precio;
+                this.factura.total += this.cantidades[index] * producto.precio;
             });
-            console.log(this.factura);
+            this.factura.total = Math.round(this.factura.total * 100)/100;
         }
         this.obtenerFormasEnvio();
         this.obtenerMetodosPago();

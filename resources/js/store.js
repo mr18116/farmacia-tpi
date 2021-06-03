@@ -85,6 +85,14 @@ export default new Vuex.Store({
             }).catch( () => {
                 commit('SET_AC', false);
             });
+        },
+        quitarTodosProductos({ dispatch, state, commit}){
+            commit('SET_AC', true);
+            axios.delete('/api/carrito-producto/' + state.carrito.id).then( () => {
+                dispatch('getCarrito');
+            }).catch( () => {
+                commit('SET_AC', false);
+            });
         }
     },
     getters: {

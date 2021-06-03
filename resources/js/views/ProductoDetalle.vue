@@ -105,7 +105,7 @@
         </div>
         
       </div>
-      <ModalComprar ref="modalComprar" :productos="[producto]" :cantidades="[cantidad]" v-if="producto != null" />
+      <ModalComprar ref="modalComprar" :productos="[producto]" :cantidades="[cantidad]" tipo="individual" v-if="producto != null" />
     </v-container>
 </template>
 
