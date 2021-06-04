@@ -46,6 +46,11 @@ class FacturaController extends Controller
                 $factura->productos()->attach($request->idsProductos[$i], ['cantidad' => $request->cantidades[$i]]);
             }
             $result = $factura->save();
+            $factura = Factura::find($factura->id);
+            $factura->formasEnvios;
+            $factura->metodoPagos;
+            $factura->user;
+            $factura->productos;
             return response($factura, 201);
         } else {
             return response('fallo', 400);

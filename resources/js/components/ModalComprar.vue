@@ -46,6 +46,8 @@
 
 <script>
 import axios from 'axios';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 export default {
     props: {
@@ -98,6 +100,29 @@ export default {
                     this.$store.dispatch('quitarProducto', this.factura.idsProductos[0]);
                 }
                 this.comprando = false;
+                const doc = new jsPDF();
+                doc.text("Factura", 10, 10);
+                doc.text("Farmacia - TPI", 100, 10);
+                doc.text("N° Factura: " + response.data.id, 10, 20);
+                doc.text("Fecha: " + response.data.created_at, 10, 30);
+                doc.text("Facturar a: " + response.data.user.name, 10, 40);
+                doc.text("Identificacion del cliente: " + response.data.user.id, 10, 50);
+                doc.text("Dirección de envio: " + response.data.direccion, 10, 60);
+                doc.text("Forma de envio: " + response.data.formas_envios.empresa, 10, 70);
+                doc.text("Metodo de pago: " + response.data.metodo_pagos.tipo, 10, 80);
+                let body = [];
+                response.data.productos.forEach(producto => {
+                    body.push([producto.nombre, producto.pivot.cantidad, Math.round(producto.pivot.cantidad * producto.precio * 100)/100]);
+                });
+                doc.autoTable({
+                    head: [['Producto', 'Cantidad', 'Monto']],
+                    body: body,
+                    startY: 90,
+                },);
+                doc.text("Total: $" + response.data.total, 10, doc.previousAutoTable.finalY + 10);
+                doc.save("Factura - " + response.data.id + ".pdf");
+                //doc.output('dataurlnewwindow');
+                //window.open(doc.output('bloburl'), '_blank');
                 this.dialog = false;
             }).catch( () => {
                 this.comprando = false;
