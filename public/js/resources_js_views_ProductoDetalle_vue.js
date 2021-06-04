@@ -486,6 +486,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -531,27 +560,27 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/producto/' + this.$route.params.id).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/producto/" + this.$route.params.id).then(function (response) {
       _this.producto = response.data;
     });
   },
   methods: {
     agregar: function agregar() {
       if (this.$store.state.user != null) {
-        this.$store.dispatch('addProducto', {
+        this.$store.dispatch("addProducto", {
           producto_id: this.producto.id,
           cantidad: this.cantidad
         });
         this.cantidad = 1;
       } else {
-        this.$router.push('/login');
+        this.$router.push("/login");
       }
     },
     procederCompra: function procederCompra() {
       if (this.$store.state.user != null) {
         this.$refs.modalComprar.dialog = true;
       } else {
-        this.$router.push('/login');
+        this.$router.push("/login");
       }
     }
   }
@@ -6059,131 +6088,206 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
-      _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
-      _vm._v(" "),
       _vm.producto != null
-        ? _c("div", { staticClass: "row pt-10" }, [
-            _c(
-              "div",
-              { staticClass: "col-md-5 col-sm-5 col-xs-12" },
-              [
-                _c("v-img", {
-                  staticClass: "elevation-1",
-                  attrs: { src: _vm.producto.imagen_url }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-md-7 col-sm-7 col-xs-12" },
-              [
-                _c("v-breadcrumbs", {
-                  staticClass: "pb-0",
-                  attrs: { items: _vm.etiquetas }
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "pl-6" },
-                  [
-                    _c("p", { staticClass: "display-1 mb-1" }, [
-                      _vm._v(_vm._s(_vm.producto.nombre))
-                    ]),
-                    _vm._v(" "),
+        ? _c(
+            "v-row",
+            { staticClass: "pt-10 px-5" },
+            [
+              _c("v-card", { staticClass: "pa-5" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-sm-5 col-xs-12" },
+                    [
+                      _c("v-img", {
+                        staticClass: "elevation-0",
+                        attrs: { src: _vm.producto.imagen_url }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8 col-sm-7 col-xs-12" }, [
                     _c(
-                      "v-card-actions",
+                      "div",
+                      { staticClass: "pl-6" },
                       [
+                        _c("v-card-text", {
+                          staticClass: "text-h5",
+                          domProps: { textContent: _vm._s(_vm.producto.nombre) }
+                        }),
+                        _vm._v(" "),
                         _c(
-                          "p",
-                          { staticClass: "headline font-weight-light pt-3" },
+                          "v-card-actions",
                           [
-                            _vm._v("$" + _vm._s(_vm.producto.precio) + " "),
                             _c(
-                              "del",
-                              { staticClass: "subtitle-1 font-weight-thin" },
-                              [_vm._v("$80.00")]
-                            )
-                          ]
+                              "p",
+                              {
+                                staticClass: "headline font-weight-light pt-3"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                $" +
+                                    _vm._s(_vm.producto.precio) +
+                                    "\n                                "
+                                ),
+                                _c(
+                                  "del",
+                                  {
+                                    staticClass: "subtitle-1 font-weight-thin"
+                                  },
+                                  [_vm._v("$80.00")]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("v-rating", {
+                              staticClass: "pl-10",
+                              attrs: {
+                                "background-color": "warning lighten-3",
+                                color: "warning",
+                                dense: ""
+                              },
+                              model: {
+                                value: _vm.rating,
+                                callback: function($$v) {
+                                  _vm.rating = $$v
+                                },
+                                expression: "rating"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "font-weight-thin" }, [
+                              _vm._v(
+                                "\n                                25 REVIEWS"
+                              )
+                            ])
+                          ],
+                          1
                         ),
                         _vm._v(" "),
-                        _c("v-rating", {
-                          staticClass: "pl-10",
-                          attrs: {
-                            "background-color": "warning lighten-3",
-                            color: "warning",
-                            dense: ""
-                          },
+                        _c(
+                          "v-row",
+                          [
+                            _c(
+                              "v-col",
+                              [
+                                _c(
+                                  "v-tabs",
+                                  { attrs: { grow: "" } },
+                                  [
+                                    _c("v-tab", [_vm._v("Descripción")]),
+                                    _vm._v(" "),
+                                    _c("v-tab", [_vm._v("Indicaciones")]),
+                                    _vm._v(" "),
+                                    _c("v-tab-item", [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "pt-10 subtitle-1 font-weight-thin",
+                                          staticStyle: { height: "200px" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(_vm.producto.descripcion) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("v-tab-item", [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "pt-10 subtitle-1 font-weight-thin",
+                                          staticStyle: { height: "200px" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.producto.indicaciones
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "title" }, [_vm._v("CANTIDAD")]),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          staticClass: "centered-input",
+                          staticStyle: { width: "100px" },
+                          attrs: { outlined: "", dense: "" },
                           model: {
-                            value: _vm.rating,
+                            value: _vm.cantidad,
                             callback: function($$v) {
-                              _vm.rating = $$v
+                              _vm.cantidad = $$v
                             },
-                            expression: "rating"
+                            expression: "cantidad"
                           }
                         }),
                         _vm._v(" "),
-                        _c("span", { staticClass: "font-weight-thin" }, [
-                          _vm._v(" 25 REVIEWS")
-                        ])
+                        _c(
+                          "v-btn",
+                          {
+                            staticClass: "primary white--text",
+                            attrs: {
+                              outlined: "",
+                              tile: "",
+                              dense: "",
+                              disabled: _vm.$store.state.actualizandoCarrito
+                            },
+                            on: { click: _vm.agregar }
+                          },
+                          [
+                            _c("v-icon", [_vm._v("mdi-cart")]),
+                            _vm._v(" Agregar")
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            staticClass: "white--text",
+                            attrs: {
+                              color: "green",
+                              dense: "",
+                              tile: "",
+                              disabled: _vm.$store.state.actualizandoCarrito
+                            },
+                            on: { click: _vm.procederCompra }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Comprar\n                        "
+                            )
+                          ]
+                        )
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "subtitle-1 font-weight-thin" }, [
-                      _c("pre", [_vm._v(_vm._s(_vm.producto.indicaciones))])
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "title" }, [_vm._v("CANTIDAD")]),
-                    _vm._v(" "),
-                    _c("v-text-field", {
-                      staticClass: "centered-input",
-                      staticStyle: { width: "100px" },
-                      attrs: { outlined: "", dense: "" },
-                      model: {
-                        value: _vm.cantidad,
-                        callback: function($$v) {
-                          _vm.cantidad = $$v
-                        },
-                        expression: "cantidad"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        staticClass: "primary white--text",
-                        attrs: {
-                          outlined: "",
-                          tile: "",
-                          dense: "",
-                          disabled: _vm.$store.state.actualizandoCarrito
-                        },
-                        on: { click: _vm.agregar }
-                      },
-                      [_c("v-icon", [_vm._v("mdi-cart")]), _vm._v(" Agregar")],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-btn",
-                      {
-                        attrs: {
-                          color: "green",
-                          disabled: _vm.$store.state.actualizandoCarrito
-                        },
-                        on: { click: _vm.procederCompra }
-                      },
-                      [_vm._v("\n          Comprar\n        ")]
                     )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ])
+                  ])
+                ])
+              ])
+            ],
+            1
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.producto != null
@@ -6192,120 +6296,6 @@ var render = function() {
               "div",
               { staticClass: "col-sm-12 col-xs-12 col-md-12" },
               [
-                _c(
-                  "v-tabs",
-                  [
-                    _c("v-tab", [_vm._v("Description")]),
-                    _vm._v(" "),
-                    _c("v-tab", [_vm._v("Indicaciones")]),
-                    _vm._v(" "),
-                    _c("v-tab", [_vm._v("REVIEWS")]),
-                    _vm._v(" "),
-                    _c("v-tab-item", [
-                      _c(
-                        "p",
-                        { staticClass: "pt-10 subtitle-1 font-weight-thin" },
-                        [
-                          _vm._v(
-                            "\n            " +
-                              _vm._s(_vm.producto.descripcion) +
-                              "}\n          "
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("v-tab-item", [
-                      _c(
-                        "p",
-                        { staticClass: "pt-10 subtitle-1 font-weight-thin" },
-                        [_c("pre", [_vm._v(_vm._s(_vm.producto.indicaciones))])]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "v-tab-item",
-                      [
-                        _c(
-                          "v-list",
-                          { attrs: { "three-line": "true", avatar: "true" } },
-                          [
-                            _c(
-                              "v-list-item-group",
-                              {
-                                attrs: { color: "primary" },
-                                model: {
-                                  value: _vm.item,
-                                  callback: function($$v) {
-                                    _vm.item = $$v
-                                  },
-                                  expression: "item"
-                                }
-                              },
-                              _vm._l(_vm.items, function(item, i) {
-                                return _c(
-                                  "v-list-item",
-                                  { key: i, attrs: { inactive: "true" } },
-                                  [
-                                    _c(
-                                      "v-list-item-avatar",
-                                      [
-                                        _c("v-img", {
-                                          attrs: { src: item.avatar }
-                                        })
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-list-item-content",
-                                      [
-                                        _c("v-list-item-title", {
-                                          domProps: {
-                                            innerHTML: _vm._s(item.title)
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("v-rating", {
-                                          attrs: {
-                                            "background-color":
-                                              "warning lighten-3",
-                                            color: "warning",
-                                            dense: ""
-                                          },
-                                          model: {
-                                            value: _vm.rating,
-                                            callback: function($$v) {
-                                              _vm.rating = $$v
-                                            },
-                                            expression: "rating"
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("v-list-item-subtitle", {
-                                          domProps: {
-                                            innerHTML: _vm._s(item.subtitle)
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              }),
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
                 _c(
                   "v-card-text",
                   {
@@ -6319,7 +6309,11 @@ var render = function() {
                         staticClass:
                           "subtitle-1 font-weight-light pt-3 text-center"
                       },
-                      [_vm._v("PRODUCTOS RELACIONADOS")]
+                      [
+                        _vm._v(
+                          "\n                    PRODUCTOS RELACIONADOS\n                "
+                        )
+                      ]
                     ),
                     _vm._v(" "),
                     _c("v-divider")
