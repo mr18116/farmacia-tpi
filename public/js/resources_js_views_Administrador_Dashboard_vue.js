@@ -70,13 +70,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      datosGraficoBarras: [],
-      nombresProductosMasVendidos: []
+      datosGraficoProductosMasVendidos: [],
+      nombresProductosMasVendidos: [],
+      totalVentas: []
     };
   },
   components: {
@@ -87,11 +101,18 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/productos-mas-comprados/5").then(function (res) {
       res.data.forEach(function (element) {
-        _this.datosGraficoBarras.push(element.cantidad);
+        _this.datosGraficoProductosMasVendidos.push(element.cantidad);
 
         _this.nombresProductosMasVendidos.push(element.nombre);
       });
-      console.log(_this.datosGraficoBarras, _this.nombresProductosMasVendidos);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/factura").then(function (res) {
+      var total = 0;
+      res.data.forEach(function (el) {
+        total += el.total;
+      });
+
+      _this.totalVentas.push(total);
     });
   }
 });
@@ -38143,6 +38164,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
+        { staticClass: "mt-4", attrs: { justify: "center" } },
         [
           _c(
             "v-col",
@@ -38156,12 +38178,44 @@ var render = function() {
                   _c(
                     "v-card-text",
                     [
-                      _vm.datosGraficoBarras.length !== 0
+                      _vm.datosGraficoProductosMasVendidos.length !== 0
                         ? _c("GraficoBarras", {
                             attrs: {
-                              datosGrafica: _vm.datosGraficoBarras,
+                              datosGrafica:
+                                _vm.datosGraficoProductosMasVendidos,
                               nombresProductos: _vm.nombresProductosMasVendidos,
                               label: "productos mas vendidos"
+                            }
+                          })
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "5" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", [_vm._v("Total de todas las ventas")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    [
+                      _vm.totalVentas.length !== 0
+                        ? _c("GraficoBarras", {
+                            attrs: {
+                              datosGrafica: _vm.totalVentas,
+                              nombresProductos: [1],
+                              label: "Total de ventas"
                             }
                           })
                         : _vm._e()
