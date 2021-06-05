@@ -47,6 +47,17 @@ class ProductoController extends Controller
         return $productos;
     }
 
+    public function productosBusqueda($search)
+    {
+        $productos = Producto::where('nombre', 'like', '%' . $search . '%')
+        ->orWhere('descripcion', 'like', '%' . $search . '%')
+        ->orWhere('laboratorio', 'like', '%' . $search . '%')
+        ->orWhere('indicaciones', 'like', '%' . $search . '%')
+        ->get();
+        $productos->load(['categoria', 'tipoProducto']);
+        return $productos;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

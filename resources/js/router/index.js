@@ -50,6 +50,11 @@ const routes = [
         component: () => import('../views/Administrador/Dashboard.vue')
     },
     {
+        path: '/search/:search',
+        name: 'Search',
+        component: () => import('../views/SearchProductos.vue')
+    },
+    {
         path: '/:categoria',
         name: 'Categoria',
         component: () => import('../views/Categoria.vue'),
@@ -74,11 +79,11 @@ router.beforeEach((to, from, next) => {
         } else {
             next();
         }
-    } else if ((to.name == 'Inventario' || to.name == 'Ventas') && localStorage.getItem('rol') != 'administrador') {
+    } else if ((to.name == 'Inventario' || to.name == 'Ventas' || to.name == "Dashboard") && localStorage.getItem('rol') != 'administrador') {
         next({ path: from.path });
     } else if (to.name == 'Compras') {
         if (localStorage.getItem('auth') == 'false') {
-            next({ path: '/' });
+            next({ path: '/login' });
         } else {
             next();
         }

@@ -12,7 +12,7 @@
                         {{ this.$route.params.categoria }}
                     </v-col>
                 </v-row>
-                <CardsProductos id="cardCategoria" :n="36" :parametro="this.$route.params.categoria" />
+                <CardsProductos ref="cardCategoria" :n="36" tipo="categoria" :parametro="this.$route.params.categoria" />
                 </div>    
         </div>
       <v-col cols="12">
@@ -51,12 +51,12 @@ export default {
     }),
     methods: {
         cambioPagina(){
-            this.$refs.cardCtegoria.cambiarPagina(this.pagina);
+            this.$refs.cardCategoria.cambiarPagina(this.pagina);
         }
     },
     watch: {
         '$refs.cardCategoria.paginas': function () {
-            this.paginas = this.$refs.cardCtegoria.paginas;
+            this.paginas = this.$refs.cardCategoria.paginas;
         }
     }
 }

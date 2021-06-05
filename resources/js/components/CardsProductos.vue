@@ -17,6 +17,7 @@ export default {
     props: {
         n: Number,
         parametro: String,
+        tipo: String,
     },
     data: () => ({
         productos: [],
@@ -25,19 +26,25 @@ export default {
     }),
     methods: {
         cargarProductos(){
-            if (this.parametro == 'ultimos') {
+            if (this.tipo == 'ultimos') {
                 axios.get('/api/productos-ultimos/' + this.n).then( response => {
                     this.productos = response.data;
                 });
-            } else if (this.parametro == 'mas-comprados') {
+            } else if (this.tipo == 'mas-comprados') {
                 axios.get('/api/productos-mas-comprados/' + this.n).then( response => {
                     this.productos = response.data;
                 });
-            } else {
+            } else if (this.tipo == 'categoria') {
                 axios.get('/api/productos-categoria/' + this.parametro).then( response => {
                     this.allProductos = response.data;
                     this.productos = this.allProductos.slice(0, this.n);
-                    this.paginass = Math.ceil(this.allProductos.length/this.n);
+                    this.paginas = Math.ceil(this.allProductos.length/this.n);
+                });
+            } else if (this.tipo == 'search') {
+                axios.get('/api/productos-search/' + this.parametro).then( response => {
+                    this.allProductos = response.data;
+                    this.productos = this.allProductos.slice(0, this.n);
+                    this.paginas = Math.ceil(this.allProductos.length/this.n);
                 });
             }
         },

@@ -105,6 +105,11 @@
       </v-toolbar-title>
       <a href="/"><v-img class="mb-n1 mx-auto" src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05" max-width="200px" /></a>
       <v-spacer /> 
+      <v-text-field v-model="query" solo class="my-text-style" 
+      background-color="white" dense hide-details="true" label="Buscar producto" @keyup.enter="buscar">
+      </v-text-field>
+      <v-btn color="black" class="mr-4" height="40px" elevation="0" @click="buscar">
+          <v-icon>mdi-magnify</v-icon></v-btn>
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
         class="mr-4"
@@ -196,6 +201,7 @@ export default {
     data: () => ({
     drawer: null,
     isXs: false,
+    query: '',
   }),
     methods: {
         logout() {
@@ -208,6 +214,11 @@ export default {
                 });
             });
         },
+        buscar(){
+            if (this.query != '') {
+                this.$router.push('/search/' + this.query);
+            }
+        }
     },
     computed: {
         nProductosCarrito(){
@@ -216,7 +227,7 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
 .v-toolbar {
   transition: 0.6s;
 }
@@ -224,5 +235,14 @@ export default {
 .expand {
   height: 80px !important;
   padding-top: 10px;
+}
+
+.my-text-style >>> .v-text-field__slot input {
+    color: black;
+}
+
+.my-text-style >>> .v-label {
+  color: #616161;
+  opacity: 1;
 }
 </style>

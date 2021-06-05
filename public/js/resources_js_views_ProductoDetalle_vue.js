@@ -140,7 +140,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     n: Number,
-    parametro: String
+    parametro: String,
+    tipo: String
   },
   data: function data() {
     return {
@@ -153,19 +154,25 @@ __webpack_require__.r(__webpack_exports__);
     cargarProductos: function cargarProductos() {
       var _this = this;
 
-      if (this.parametro == 'ultimos') {
+      if (this.tipo == 'ultimos') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-ultimos/' + this.n).then(function (response) {
           _this.productos = response.data;
         });
-      } else if (this.parametro == 'mas-comprados') {
+      } else if (this.tipo == 'mas-comprados') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-mas-comprados/' + this.n).then(function (response) {
           _this.productos = response.data;
         });
-      } else {
+      } else if (this.tipo == 'categoria') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-categoria/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
           _this.productos = _this.allProductos.slice(0, _this.n);
-          _this.paginass = Math.ceil(_this.allProductos.length / _this.n);
+          _this.paginas = Math.ceil(_this.allProductos.length / _this.n);
+        });
+      } else if (this.tipo == 'search') {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-search/' + this.parametro).then(function (response) {
+          _this.allProductos = response.data;
+          _this.productos = _this.allProductos.slice(0, _this.n);
+          _this.paginas = Math.ceil(_this.allProductos.length / _this.n);
         });
       }
     },
