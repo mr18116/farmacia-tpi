@@ -27,14 +27,48 @@ class ProductoController extends Controller
         return $productos;
     }
 
+    function array_sort_by(&$arrIni, $col, $order = SORT_DESC)
+    {
+        $arrAux = array();
+        foreach ($arrIni as $key=> $row)
+        {
+            $arrAux[$key] = is_object($row) ? $arrAux[$key] = $row->$col : $row[$col];
+            $arrAux[$key] = strtolower($arrAux[$key]);
+        }
+        array_multisort($arrAux, $order, $arrIni);
+    }
+
     public function masVendidos($n)
     {
         $productos = Producto::join('factura_has_productos', 'productos.id', '=', 'factura_has_productos.producto_id')
         ->join('facturas', 'factura_has_productos.factura_id', '=', 'facturas.id')
-        ->orderBy('factura_has_productos.cantidad', 'asc')
-        ->select('productos.*')->limit($n)->get();
-        $productos->load(['categoria', 'tipoProducto']);
-        return $productos;
+        ->select('factura_has_productos.*')->get();
+        $productosAll = Producto::all();
+        $masVendidos = [];
+        foreach ($productosAll as $producto) {
+            $p = new Producto();
+            $p->id = $producto->id;
+            $p->cantidad = 0;
+            foreach ($productos as $value) {
+                if ($producto->id == $value->producto_id) {
+                    $p->cantidad += $value->cantidad;
+                }
+            }
+            if ($p->cantidad > 0) {
+                array_push($masVendidos, $p);
+            }
+        }
+        $productoCantidadVendida = array();
+        if (count($masVendidos) > 0) {
+            $this->array_sort_by($masVendidos, 'cantidad', $order = SORT_DESC);
+            if (count($masVendidos) > $n) {
+                $masVendidos = array_slice($masVendidos, 0, $n);
+            }
+            foreach ($masVendidos as $value) {
+                array_push($productoCantidadVendida, ['producto' => Producto::find($value->id), 'cantidadVendida' => $value->cantidad]);
+            }
+        }
+        return $productoCantidadVendida;
     }
 
     public function productosByCategoria($categoria){

@@ -132,6 +132,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -147,33 +151,51 @@ __webpack_require__.r(__webpack_exports__);
     return {
       productos: [],
       allProductos: [],
-      paginas: 1
+      paginas: 1,
+      cargando: false
     };
   },
   methods: {
     cargarProductos: function cargarProductos() {
       var _this = this;
 
+      this.cargando = true;
+
       if (this.tipo == 'ultimos') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-ultimos/' + this.n).then(function (response) {
           _this.productos = response.data;
+        })["finally"](function () {
+          return _this.cargando = false;
         });
       } else if (this.tipo == 'mas-comprados') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-mas-comprados/' + this.n).then(function (response) {
-          _this.productos = response.data;
+          response.data.forEach(function (element) {
+            _this.productos.push(element.producto);
+          });
+        })["finally"](function () {
+          return _this.cargando = false;
         });
+        ;
       } else if (this.tipo == 'categoria') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-categoria/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
           _this.productos = _this.allProductos.slice(0, _this.n);
           _this.paginas = Math.ceil(_this.allProductos.length / _this.n);
+        })["finally"](function () {
+          return _this.cargando = false;
         });
+        ;
       } else if (this.tipo == 'search') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-search/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
           _this.productos = _this.allProductos.slice(0, _this.n);
           _this.paginas = Math.ceil(_this.allProductos.length / _this.n);
+        })["finally"](function () {
+          return _this.cargando = false;
         });
+        ;
+      } else {
+        this.cargando = false;
       }
     },
     cambiarPagina: function cambiarPagina(pagina) {
@@ -936,15 +958,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-row",
-    _vm._l(_vm.productos, function(producto) {
-      return _c(
-        "v-col",
-        { key: producto.id, attrs: { cols: "6", sm: "4", md: "3" } },
-        [_c("CardProducto", { attrs: { producto: producto } })],
-        1
-      )
-    }),
-    1
+    [
+      _vm.cargando
+        ? _c(
+            "v-col",
+            { staticClass: "my-12", attrs: { cols: "12" } },
+            [
+              _c("div", { staticClass: "text-h5" }, [_vm._v("Cargando...")]),
+              _vm._v(" "),
+              _c("v-progress-linear", {
+                attrs: { indeterminate: "", color: "primary", height: 20 }
+              })
+            ],
+            1
+          )
+        : _vm._l(_vm.productos, function(producto) {
+            return _c(
+              "v-col",
+              { key: producto.id, attrs: { cols: "6", sm: "4", md: "3" } },
+              [_c("CardProducto", { attrs: { producto: producto } })],
+              1
+            )
+          })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -1282,7 +1319,7 @@ var render = function() {
           _c(
             "v-row",
             { staticClass: "text-h4 text-center" },
-            [_c("v-col", [_vm._v("Lo más vendido")])],
+            [_c("v-col", [_vm._v("Lo más comprado")])],
             1
           ),
           _vm._v(" "),
@@ -1298,10 +1335,37 @@ var render = function() {
                     "v-row",
                     { attrs: { align: "center", justify: "space-around" } },
                     [
-                      _c("v-col", {
-                        staticClass: "text-center",
-                        attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
-                      })
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "text-center",
+                          attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
+                        },
+                        [
+                          _c("v-hover", {
+                            scopedSlots: _vm._u([
+                              {
+                                key: "default",
+                                fn: function(ref) {
+                                  var hover = ref.hover
+                                  return [
+                                    _c("CardsProductos", {
+                                      class: { up: hover },
+                                      attrs: {
+                                        shaped: "",
+                                        elevation: hover ? 10 : 4,
+                                        n: 4,
+                                        tipo: "mas-comprados"
+                                      }
+                                    })
+                                  ]
+                                }
+                              }
+                            ])
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )

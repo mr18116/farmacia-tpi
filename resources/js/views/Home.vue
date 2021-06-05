@@ -55,7 +55,7 @@
         </v-col>
       </v-row>
         <v-row class="text-h4 text-center">
-            <v-col>Lo más vendido</v-col>
+            <v-col>Lo más comprado</v-col>
         </v-row>      
       <v-row align="center" justify="center">
         <v-col cols="12">
@@ -67,10 +67,10 @@
               sm="12"
               class="text-center"
             >
-              <!--<v-hover v-slot:default="{ hover }">
+              <v-hover v-slot:default="{ hover }">
                 <CardsProductos shaped :elevation="hover ? 10 : 4"
                   :class="{ up: hover }" :n="4" tipo="mas-comprados" />
-              </v-hover>-->
+              </v-hover>
             </v-col>
           </v-row>
         </v-col>
