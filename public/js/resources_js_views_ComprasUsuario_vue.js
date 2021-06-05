@@ -41,11 +41,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: 'Fecha',
         value: 'created_at',
@@ -4949,8 +4958,6 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
-      _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
-      _vm._v(" "),
       _c(
         "v-row",
         { attrs: { align: "center" } },
@@ -4974,9 +4981,32 @@ var render = function() {
                 attrs: {
                   headers: _vm.headers,
                   items: _vm.compras,
-                  "items-per-page": 10
+                  "items-per-page": 10,
+                  search: _vm.search
                 },
                 scopedSlots: _vm._u([
+                  {
+                    key: "top",
+                    fn: function() {
+                      return [
+                        _c("v-text-field", {
+                          staticClass: "mx-4",
+                          attrs: {
+                            placeholder: "Filtrar",
+                            "prepend-inner-icon": "mdi-magnify"
+                          },
+                          model: {
+                            value: _vm.search,
+                            callback: function($$v) {
+                              _vm.search = $$v
+                            },
+                            expression: "search"
+                          }
+                        })
+                      ]
+                    },
+                    proxy: true
+                  },
                   {
                     key: "item.actions",
                     fn: function(ref) {

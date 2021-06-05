@@ -53,10 +53,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: 'Empresa',
         value: 'empresa',
@@ -157,10 +165,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: 'Tipo',
         value: 'tipo',
@@ -455,6 +471,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -472,6 +497,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: "Fecha",
         value: "created_at",
@@ -5895,7 +5921,12 @@ var render = function() {
     [
       _c("v-data-table", {
         staticClass: "elevation-1",
-        attrs: { headers: _vm.headers, items: _vm.formas, "items-per-page": 5 },
+        attrs: {
+          headers: _vm.headers,
+          items: _vm.formas,
+          "items-per-page": 5,
+          search: _vm.search
+        },
         scopedSlots: _vm._u([
           {
             key: "top",
@@ -5925,7 +5956,22 @@ var render = function() {
                     )
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  staticClass: "mx-4",
+                  attrs: {
+                    placeholder: "Filtrar",
+                    "prepend-inner-icon": "mdi-magnify"
+                  },
+                  model: {
+                    value: _vm.search,
+                    callback: function($$v) {
+                      _vm.search = $$v
+                    },
+                    expression: "search"
+                  }
+                })
               ]
             },
             proxy: true
@@ -6018,7 +6064,8 @@ var render = function() {
         attrs: {
           headers: _vm.headers,
           items: _vm.metodos,
-          "items-per-page": 5
+          "items-per-page": 5,
+          search: _vm.search
         },
         scopedSlots: _vm._u([
           {
@@ -6049,7 +6096,22 @@ var render = function() {
                     )
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  staticClass: "mx-4",
+                  attrs: {
+                    placeholder: "Filtrar",
+                    "prepend-inner-icon": "mdi-magnify"
+                  },
+                  model: {
+                    value: _vm.search,
+                    callback: function($$v) {
+                      _vm.search = $$v
+                    },
+                    expression: "search"
+                  }
+                })
               ]
             },
             proxy: true
@@ -6480,9 +6542,32 @@ var render = function() {
                 attrs: {
                   headers: _vm.headers,
                   items: _vm.ventas,
-                  "items-per-page": 10
+                  "items-per-page": 10,
+                  search: _vm.search
                 },
                 scopedSlots: _vm._u([
+                  {
+                    key: "top",
+                    fn: function() {
+                      return [
+                        _c("v-text-field", {
+                          staticClass: "mx-4",
+                          attrs: {
+                            placeholder: "Filtrar",
+                            "prepend-inner-icon": "mdi-magnify"
+                          },
+                          model: {
+                            value: _vm.search,
+                            callback: function($$v) {
+                              _vm.search = $$v
+                            },
+                            expression: "search"
+                          }
+                        })
+                      ]
+                    },
+                    proxy: true
+                  },
                   {
                     key: "item.actions",
                     fn: function(ref) {

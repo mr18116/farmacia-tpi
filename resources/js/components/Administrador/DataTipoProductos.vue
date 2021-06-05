@@ -4,6 +4,7 @@
             :headers="headers"
             :items="tipos"
             :items-per-page="5"
+            :search="search"
             class="elevation-1"
         >
             <template v-slot:top>
@@ -14,6 +15,12 @@
                         Agregar Tipo
                     </v-btn>
                 </v-toolbar>
+                <v-text-field
+                        v-model="search"
+                        placeholder="Filtrar"
+                        prepend-inner-icon="mdi-magnify"
+                        class="mx-4"
+                        ></v-text-field>
             </template>
             <template v-slot:item.actions="{ item }">
                 <v-btn icon @click="editarTipo(item)">
@@ -43,6 +50,7 @@
 <script>
 export default {
     data: () => ({
+        search: '',
         headers: [
             { text: "Nombre", value: "nombre", sorteable: true },
             { text: "Acciones", value: "actions", sortable: false }

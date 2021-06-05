@@ -11,8 +11,17 @@
                     :headers="headers"
                     :items="ventas"
                     :items-per-page="10"
+                    :search="search"
                     class="elevation-1"
                 >
+                <template v-slot:top>
+                <v-text-field
+                        v-model="search"
+                        placeholder="Filtrar"
+                        prepend-inner-icon="mdi-magnify"
+                        class="mx-4"
+                        ></v-text-field>
+            </template>
                 <template v-slot:item.actions="{ item }">
                     <v-btn link color="primary" @click="verFactura(item)" small>Ver Factura</v-btn>
                 </template>
@@ -82,6 +91,7 @@ export default {
         EliminarItem
     },
     data: () => ({
+        search: '',
         headers: [
             { text: "Fecha", value: "created_at", sortable: true },
             { text: "Usuario", value: "user.name", sortable: true },

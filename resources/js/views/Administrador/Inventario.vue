@@ -16,6 +16,9 @@
                     prepend-inner-icon="mdi-magnify"
                     hide-details="true"
                     dense
+                    placeholder="Filtrar por nombre, descripcion, indicaciones o laboratorio"
+                    v-model="search"
+                    @input="filtrar"
                 >
                 </v-text-field>
             </v-col>
@@ -160,6 +163,7 @@ export default {
         categorias: [],
         tipos: [],
         cargando: false,
+        search: '',
     }),
     created() {
         this.obtenerProductos();
@@ -359,6 +363,31 @@ export default {
         },
         activarCargando() {
             this.cargando = true;
+        },
+        filtrar(){
+            if (this.search != '') {
+                let filtrados = this.allProductos.filter(producto => ( 
+                    producto.nombre.toLowerCase().indexOf(this.search.toLowerCase()) > -1 || 
+                    producto.descripcion.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ||
+                    producto.laboratorio.toLowerCase().indexOf(this.search.toLowerCase()) > -1 || 
+                    producto.indicaciones.toLowerCase().indexOf(this.search.toLowerCase()) > -1 
+                ));
+                this.productos = filtrados.slice(
+                    0,
+                    this.nProductosPagina
+                );
+                this.paginas = Math.ceil(
+                    filtrados.length / this.nProductosPagina
+                );
+            } else {
+                this.productos = this.allProductos.slice(
+                    0,
+                    this.nProductosPagina
+                );
+                this.paginas = Math.ceil(
+                    this.allProductos.length / this.nProductosPagina
+                );
+            }
         }
     },
     watch: {

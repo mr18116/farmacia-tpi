@@ -7324,10 +7324,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: 'Nombre',
         value: 'nombre',
@@ -7424,9 +7432,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      search: '',
       headers: [{
         text: "Nombre",
         value: "nombre",
@@ -8111,6 +8127,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -8137,7 +8156,8 @@ __webpack_require__.r(__webpack_exports__);
       opcionesCategoria: {},
       categorias: [],
       tipos: [],
-      cargando: false
+      cargando: false,
+      search: ''
     };
   },
   created: function created() {
@@ -8350,6 +8370,20 @@ __webpack_require__.r(__webpack_exports__);
     },
     activarCargando: function activarCargando() {
       this.cargando = true;
+    },
+    filtrar: function filtrar() {
+      var _this7 = this;
+
+      if (this.search != '') {
+        var filtrados = this.allProductos.filter(function (producto) {
+          return producto.nombre.toLowerCase().indexOf(_this7.search.toLowerCase()) > -1 || producto.descripcion.toLowerCase().indexOf(_this7.search.toLowerCase()) > -1 || producto.laboratorio.toLowerCase().indexOf(_this7.search.toLowerCase()) > -1 || producto.indicaciones.toLowerCase().indexOf(_this7.search.toLowerCase()) > -1;
+        });
+        this.productos = filtrados.slice(0, this.nProductosPagina);
+        this.paginas = Math.ceil(filtrados.length / this.nProductosPagina);
+      } else {
+        this.productos = this.allProductos.slice(0, this.nProductosPagina);
+        this.paginas = Math.ceil(this.allProductos.length / this.nProductosPagina);
+      }
     }
   },
   watch: {
@@ -9288,7 +9322,8 @@ var render = function() {
         attrs: {
           headers: _vm.headers,
           items: _vm.categorias,
-          "items-per-page": 5
+          "items-per-page": 5,
+          search: _vm.search
         },
         scopedSlots: _vm._u([
           {
@@ -9319,7 +9354,22 @@ var render = function() {
                     )
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  staticClass: "mx-4",
+                  attrs: {
+                    placeholder: "Filtrar",
+                    "prepend-inner-icon": "mdi-magnify"
+                  },
+                  model: {
+                    value: _vm.search,
+                    callback: function($$v) {
+                      _vm.search = $$v
+                    },
+                    expression: "search"
+                  }
+                })
               ]
             },
             proxy: true
@@ -9409,7 +9459,12 @@ var render = function() {
     [
       _c("v-data-table", {
         staticClass: "elevation-1",
-        attrs: { headers: _vm.headers, items: _vm.tipos, "items-per-page": 5 },
+        attrs: {
+          headers: _vm.headers,
+          items: _vm.tipos,
+          "items-per-page": 5,
+          search: _vm.search
+        },
         scopedSlots: _vm._u([
           {
             key: "top",
@@ -9439,7 +9494,22 @@ var render = function() {
                     )
                   ],
                   1
-                )
+                ),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  staticClass: "mx-4",
+                  attrs: {
+                    placeholder: "Filtrar",
+                    "prepend-inner-icon": "mdi-magnify"
+                  },
+                  model: {
+                    value: _vm.search,
+                    callback: function($$v) {
+                      _vm.search = $$v
+                    },
+                    expression: "search"
+                  }
+                })
               ]
             },
             proxy: true
@@ -10323,7 +10393,17 @@ var render = function() {
                   outlined: "",
                   "prepend-inner-icon": "mdi-magnify",
                   "hide-details": "true",
-                  dense: ""
+                  dense: "",
+                  placeholder:
+                    "Filtrar por nombre, descripcion, indicaciones o laboratorio"
+                },
+                on: { input: _vm.filtrar },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
                 }
               })
             ],
