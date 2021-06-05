@@ -1,9 +1,5 @@
 <template>
     <v-container fluid>
-              <v-app-bar
-            color="#0077c9"
-            class="px-5">
-        </v-app-bar>
         <div class="row pt-15">
             <div class="col-md-9 col-sm-7 col-xs-12">
                 <v-row>

@@ -100,6 +100,7 @@
     >
       <v-toolbar-title>
          <v-app-bar-nav-icon
+            class="black--text"
             @click="$store.state.drawer = !$store.state.drawer">
         </v-app-bar-nav-icon>
       </v-toolbar-title>
@@ -107,9 +108,10 @@
       <v-spacer /> 
       <v-text-field v-model="query" solo class="my-text-style" 
       background-color="white" dense hide-details="true" label="Buscar producto" @keyup.enter="buscar">
-      </v-text-field>
+      </v-text-field>      
       <v-btn color="black" class="mr-4" height="40px" elevation="0" @click="buscar">
           <v-icon>mdi-magnify</v-icon></v-btn>
+          <v-spacer></v-spacer>
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
         class="mr-4"
@@ -117,7 +119,7 @@
       />
       <div v-else class="hidden-xs-only">
           <v-badge :content="nProductosCarrito" :value="nProductosCarrito" overlap color="red">
-              <v-icon @click="$router.push('/carrito')" large>mdi-cart</v-icon>
+              <v-icon @click="$router.push('/carrito')" large color="black">mdi-cart</v-icon>
           </v-badge>
             <v-btn
                 text
@@ -125,8 +127,8 @@
                 to="/login"
                 v-if="$store.state.user == null"
             >
-                <span class="mr-2 white--text">Iniciar Sesión</span>
-                <v-icon color="grey darken-3">mdi-account</v-icon>
+                <v-icon color="grey darken-3" left>mdi-account</v-icon>
+                <span class="mr-2">Iniciar Sesión</span>
             </v-btn>
             <v-btn
                 text
@@ -134,19 +136,10 @@
                 to="/register"
                 v-if="$store.state.user == null"
             >
-                <span class="mr-2 white--text">Registrarse</span>
-                <v-icon color="grey darken-3">mdi-account</v-icon>
-            </v-btn>
-            <v-btn
-                text
-                color="grey darken-3"
-                v-if="$store.state.user != null"
-                @click="logout"
-            >
-                <span class="mr-2 white--text">Cerrar sesión</span>
-                <v-icon color="grey darken-3">mdi-logout</v-icon>
-            </v-btn>
-      </div>
+                <v-icon color="grey darken-3" left>mdi-account</v-icon>
+                <span class="mr-2">Registrarse</span>
+            </v-btn>            
+      </div>      
       <div class="hidden-sm-and-up">
             <v-menu offset-y>
                 <template v-slot:activator="{ on }">

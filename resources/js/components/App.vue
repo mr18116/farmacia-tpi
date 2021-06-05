@@ -1,32 +1,35 @@
 <template>
-
-  <v-app>
-    <Navbar :color="color" :flat="flat" v-if="mostrarLayout"/>
-    <v-navigation-drawer v-if="mostrarLayout" v-model="$store.state.drawer" app clipped >
+    <v-app>
+        <Navbar :color="color" :flat="flat" v-if="mostrarLayout"/>
+        <v-navigation-drawer
+            v-if="mostrarLayout"
+            v-model="$store.state.drawer"
+            app            
+        >
             <NavbarDerecha />
         </v-navigation-drawer>
-    <v-main class="pt-0">
-      <router-view></router-view>
-    </v-main>
-    <v-scale-transition>
-      <v-btn
-        fab
-        v-show="fab"
-        v-scroll="onScroll"
-        dark
-        fixed
-        bottom
-        right
-        color="secondary"
-        @click="toTop"
-      >
-        <v-icon>mdi-arrow-up</v-icon>
-      </v-btn>
-    </v-scale-transition>
-    <footerf />
-  </v-app>
+        <v-main :class="this.$route.path == '/' ? 'pt-0' : ''">
+            <router-view></router-view>
+        </v-main>
+        <v-scale-transition>
+            <v-btn
+                fab
+                v-show="fab"
+                v-scroll="onScroll"
+                dark
+                fixed
+                bottom
+                right
+                color="secondary"
+                @click="toTop"
+            >
+                <v-icon>mdi-arrow-up</v-icon>
+            </v-btn>
+        </v-scale-transition>
+        <footerf />
+    </v-app>
 
-<!--     <v-app>
+    <!--     <v-app>
         <v-navigation-drawer v-if="mostrarLayout" v-model="$store.state.drawer" app clipped >
             <NavbarDerecha />
         </v-navigation-drawer>
@@ -40,77 +43,76 @@
             footer
         </v-footer>
     </v-app> -->
-    
-</template> 
+</template>
 
 <script>
-import Navbar from './Navbar'
-import NavbarDerecha from './layout/NavbarDerecha'
+import Navbar from "./Navbar";
+import NavbarDerecha from "./layout/NavbarDerecha";
 import footerf from "./Footer";
 
-
 export default {
-  components: {
-    Navbar,
-    NavbarDerecha,
-    footerf,
-  },
+    components: {
+        Navbar,
+        NavbarDerecha,
+        footerf
+    },
 
-  data: () => ({
-    mostrar: true,
-    fab: null,
-    color: "",
-    flat: null,
-  }),
-    created(){
+    data: () => ({
+        mostrar: true,
+        fab: null,
+        color: "",
+        flat: null
+    }),
+    created() {
         const top = window.pageYOffset || 0;
         if (top <= 60) {
-        this.color = "transparent";
-        this.flat = true;
+            this.color = "transparent";
+            this.flat = true;
         }
         console.log(this.$store.state.user);
-
     },
-    computed:{
-        mostrarLayout(){
-            if(this.$route.path == "/login" || this.$route.path == "/register"){
-               return false;
-            }else{
+    computed: {
+        mostrarLayout() {
+            if (
+                this.$route.path == "/login" ||
+                this.$route.path == "/register"
+            ) {
+                return false;
+            } else {
                 return true;
             }
         }
     },
-      watch: {
-    fab(value) {
-      if (value) {
-        this.color = "#0077c9";
-        this.flat = false;
-      } else {
-        this.color = "transparent";
-        this.flat = true;
-      }
-    }, 
-  },
+    watch: {
+        fab(value) {
+            if (value) {
+                this.color = "light-blue lighten-2";
+                this.flat = false;
+            } else {
+                this.color = "transparent";
+                this.flat = true;
+            }
+        }
+    },
 
-  methods: {
-    onScroll(e) {
-      if (typeof window === "undefined") return;
-      const top = window.pageYOffset || e.target.scrollTop || 0;
-      this.fab = top > 40;
-    },
-    toTop() {
-      this.$vuetify.goTo(0);
-    },
-  },
+    methods: {
+        onScroll(e) {
+            if (typeof window === "undefined") return;
+            const top = window.pageYOffset || e.target.scrollTop || 0;
+            this.fab = top > 40;
+        },
+        toTop() {
+            this.$vuetify.goTo(0);
+        }
+    }
 };
 </script>
 
-
 <style scoped>
 .v-main {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgMain.png?alt=media&token=03365016-46b1-4e49-988d-86e075aa7ae3");
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgMain.png?alt=media&token=03365016-46b1-4e49-988d-86e075aa7ae3");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 </style>

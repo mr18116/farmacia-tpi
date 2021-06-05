@@ -1,9 +1,5 @@
 <template>
   <v-container fluid>
-      <v-app-bar
-            color="#0077c9"
-            class="px-5">
-    </v-app-bar>
       <v-row v-if="$store.state.user != null">
           <v-col cols="12" class="text-h4 text-center" v-if="productos.length == 0">
               No tienes productos en el carro de compras.

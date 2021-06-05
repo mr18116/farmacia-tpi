@@ -1,14 +1,10 @@
 <template>
   <v-container fluid>
-              <v-app-bar
-            color="#0077c9"
-            class="px-5">
-        </v-app-bar>
         <div class="row pt-15">
             <div class="col-md-9 col-sm-7 col-xs-12">
                 <v-breadcrumbs class="pb-0" :items="etiquetas"></v-breadcrumbs>
                 <v-row>
-                    <v-col cols="12" class="text-h1">
+                    <v-col cols="12" class="text-h4">
                         {{ this.$route.params.categoria }}
                     </v-col>
                 </v-row>

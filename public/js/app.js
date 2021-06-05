@@ -1904,6 +1904,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -1943,7 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     fab: function fab(value) {
       if (value) {
-        this.color = "#0077c9";
+        this.color = "light-blue lighten-2";
         this.flat = false;
       } else {
         this.color = "transparent";
@@ -2237,13 +2239,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2325,6 +2320,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7484,7 +7485,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.v-main[data-v-332fccf4] {\n  background-image: url(\"https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgMain.png?alt=media&token=03365016-46b1-4e49-988d-86e075aa7ae3\");\n  background-attachment: fixed;\n  background-position: center;\n  background-size: cover;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.v-main[data-v-332fccf4] {\n    background-image: url(\"https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgMain.png?alt=media&token=03365016-46b1-4e49-988d-86e075aa7ae3\");\n    background-attachment: fixed;\n    background-position: center;\n    background-size: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39687,7 +39688,7 @@ var render = function() {
         ? _c(
             "v-navigation-drawer",
             {
-              attrs: { app: "", clipped: "" },
+              attrs: { app: "" },
               model: {
                 value: _vm.$store.state.drawer,
                 callback: function($$v) {
@@ -39701,7 +39702,12 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("v-main", { staticClass: "pt-0" }, [_c("router-view")], 1),
+      _c(
+        "v-main",
+        { class: this.$route.path == "/" ? "pt-0" : "" },
+        [_c("router-view")],
+        1
+      ),
       _vm._v(" "),
       _c(
         "v-scale-transition",
@@ -39877,6 +39883,7 @@ var render = function() {
             "v-toolbar-title",
             [
               _c("v-app-bar-nav-icon", {
+                staticClass: "black--text",
                 on: {
                   click: function($event) {
                     _vm.$store.state.drawer = !_vm.$store.state.drawer
@@ -39945,6 +39952,8 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
           _vm.isXs
             ? _c("v-app-bar-nav-icon", {
                 staticClass: "mr-4",
@@ -39973,7 +39982,7 @@ var render = function() {
                       _c(
                         "v-icon",
                         {
-                          attrs: { large: "" },
+                          attrs: { large: "", color: "black" },
                           on: {
                             click: function($event) {
                               return _vm.$router.push("/carrito")
@@ -39997,12 +40006,14 @@ var render = function() {
                           }
                         },
                         [
-                          _c("span", { staticClass: "mr-2 white--text" }, [
-                            _vm._v("Iniciar Sesión")
-                          ]),
+                          _c(
+                            "v-icon",
+                            { attrs: { color: "grey darken-3", left: "" } },
+                            [_vm._v("mdi-account")]
+                          ),
                           _vm._v(" "),
-                          _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                            _vm._v("mdi-account")
+                          _c("span", { staticClass: "mr-2" }, [
+                            _vm._v("Iniciar Sesión")
                           ])
                         ],
                         1
@@ -40020,32 +40031,14 @@ var render = function() {
                           }
                         },
                         [
-                          _c("span", { staticClass: "mr-2 white--text" }, [
+                          _c(
+                            "v-icon",
+                            { attrs: { color: "grey darken-3", left: "" } },
+                            [_vm._v("mdi-account")]
+                          ),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "mr-2" }, [
                             _vm._v("Registrarse")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                            _vm._v("mdi-account")
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.$store.state.user != null
-                    ? _c(
-                        "v-btn",
-                        {
-                          attrs: { text: "", color: "grey darken-3" },
-                          on: { click: _vm.logout }
-                        },
-                        [
-                          _c("span", { staticClass: "mr-2 white--text" }, [
-                            _vm._v("Cerrar sesión")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-icon", { attrs: { color: "grey darken-3" } }, [
-                            _vm._v("mdi-logout")
                           ])
                         ],
                         1
@@ -40249,10 +40242,17 @@ var render = function() {
                         elevation: "0",
                         small: "",
                         color: "primary",
-                        to: "/compras"
+                        to: "/compras",
+                        outlined: ""
                       }
                     },
-                    [_vm._v("Ver compras")]
+                    [
+                      _c("v-icon", { attrs: { left: "" } }, [
+                        _vm._v("\n    mdi-cart\n  ")
+                      ]),
+                      _vm._v("Ver compras")
+                    ],
+                    1
                   )
                 : _vm._e()
             ],
@@ -40269,10 +40269,21 @@ var render = function() {
                 ? _c(
                     "v-btn",
                     {
-                      attrs: { elevation: "0", small: "", color: "red" },
+                      attrs: {
+                        elevation: "0",
+                        small: "",
+                        color: "red",
+                        outlined: ""
+                      },
                       on: { click: _vm.logout }
                     },
-                    [_vm._v("Cerrar sesión")]
+                    [
+                      _c("v-icon", { attrs: { left: "" } }, [
+                        _vm._v("\n    mdi-logout\n  ")
+                      ]),
+                      _vm._v("Cerrar sesión")
+                    ],
+                    1
                   )
                 : _vm._e()
             ],

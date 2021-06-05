@@ -1,6 +1,5 @@
 <template>
-    <v-container fluid>
-        <v-app-bar color="#0077c9" class="px-5"> </v-app-bar>
+    <v-container fluid>        
         <v-row justify="center" class="mt-4">
             <v-col cols="5">
                 <v-card>

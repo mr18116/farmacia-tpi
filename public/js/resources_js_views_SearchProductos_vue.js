@@ -222,10 +222,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -736,8 +732,6 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
-      _c("v-app-bar", { staticClass: "px-5", attrs: { color: "#0077c9" } }),
-      _vm._v(" "),
       _c("div", { staticClass: "row pt-15" }, [
         _c(
           "div",
