@@ -314,6 +314,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1164,17 +1165,24 @@ var render = function() {
                             "h1",
                             {
                               staticClass:
-                                "display-2 font-weight-black mb-4 heading"
+                                "display-2 font-weight-black mb-4 heading teal--text text--darken-3"
                             },
                             [_vm._v("Somos tu mejor opción")]
                           ),
                           _vm._v(" "),
-                          _c("h1", { staticClass: "font-weight-bold" }, [
-                            _c("span", { staticClass: "heading" }, [
-                              _vm._v(
-                                "Detecta los problemas de salud antes de que ocurran. Conoce las ventajas de un chequeo médico de rutina y con qué frecuencia debes realizarlo."
-                              )
-                            ])
+                          _c("h1", {}, [
+                            _c(
+                              "span",
+                              {
+                                staticClass:
+                                  "heading teal--text text--darken-2 "
+                              },
+                              [
+                                _vm._v(
+                                  "Detecta los problemas de salud antes de que ocurran. Conoce las ventajas de un chequeo médico de rutina y con qué frecuencia debes realizarlo."
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c(
@@ -1185,7 +1193,8 @@ var render = function() {
                                 rounded: "",
                                 outlined: "",
                                 large: "",
-                                dark: ""
+                                dark: "",
+                                color: "teal darken"
                               },
                               on: {
                                 click: function($event) {
