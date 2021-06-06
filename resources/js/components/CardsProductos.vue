@@ -22,6 +22,10 @@ export default {
         n: Number,
         parametro: String,
         tipo: String,
+        producto: {
+            type: Object,
+            default: null,
+        }
     },
     data: () => ({
         productos: [],
@@ -41,19 +45,28 @@ export default {
                     response.data.forEach(element => {
                         this.productos.push(element.producto);
                     });
-                }).finally( () => this.cargando = false);;
+                }).finally( () => this.cargando = false);
             } else if (this.tipo == 'categoria') {
                 axios.get('/api/productos-categoria/' + this.parametro).then( response => {
                     this.allProductos = response.data;
                     this.productos = this.allProductos.slice(0, this.n);
                     this.paginas = Math.ceil(this.allProductos.length/this.n);
-                }).finally( () => this.cargando = false);;
+                }).finally( () => this.cargando = false);
             } else if (this.tipo == 'search') {
                 axios.get('/api/productos-search/' + this.parametro).then( response => {
                     this.allProductos = response.data;
                     this.productos = this.allProductos.slice(0, this.n);
                     this.paginas = Math.ceil(this.allProductos.length/this.n);
-                }).finally( () => this.cargando = false);;
+                }).finally( () => this.cargando = false);
+            } else if (this.tipo == 'relacionados') {
+                if (this.producto != null) {
+                    let categoria_id = this.producto.categoria[Math.floor(Math.random() * this.producto.categoria.length)].id;
+                    let tipo_id = this.producto.tipo_producto[Math.floor(Math.random() * this.producto.tipo_producto.length)].id;
+                    axios.get('/api/productos-relacionados/' + this.producto.id + '/' 
+                    + categoria_id + '/' + tipo_id + '/' + this.producto.laboratorio + '/' + this.n).then( response => {
+                        this.productos = response.data;
+                    }).finally( () => this.cargando = false);
+                }
             } else {
                 this.cargando = false;
             }

@@ -145,7 +145,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     n: Number,
     parametro: String,
-    tipo: String
+    tipo: String,
+    producto: {
+      type: Object,
+      "default": null
+    }
   },
   data: function data() {
     return {
@@ -175,7 +179,6 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return _this.cargando = false;
         });
-        ;
       } else if (this.tipo == 'categoria') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-categoria/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
@@ -184,7 +187,6 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return _this.cargando = false;
         });
-        ;
       } else if (this.tipo == 'search') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-search/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
@@ -193,7 +195,16 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return _this.cargando = false;
         });
-        ;
+      } else if (this.tipo == 'relacionados') {
+        if (this.producto != null) {
+          var categoria_id = this.producto.categoria[Math.floor(Math.random() * this.producto.categoria.length)].id;
+          var tipo_id = this.producto.tipo_producto[Math.floor(Math.random() * this.producto.tipo_producto.length)].id;
+          axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-relacionados/' + this.producto.id + '/' + categoria_id + '/' + tipo_id + '/' + this.producto.laboratorio + '/' + this.n).then(function (response) {
+            _this.productos = response.data;
+          })["finally"](function () {
+            return _this.cargando = false;
+          });
+        }
       } else {
         this.cargando = false;
       }

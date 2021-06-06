@@ -145,7 +145,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     n: Number,
     parametro: String,
-    tipo: String
+    tipo: String,
+    producto: {
+      type: Object,
+      "default": null
+    }
   },
   data: function data() {
     return {
@@ -175,7 +179,6 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return _this.cargando = false;
         });
-        ;
       } else if (this.tipo == 'categoria') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-categoria/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
@@ -184,7 +187,6 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return _this.cargando = false;
         });
-        ;
       } else if (this.tipo == 'search') {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-search/' + this.parametro).then(function (response) {
           _this.allProductos = response.data;
@@ -193,7 +195,16 @@ __webpack_require__.r(__webpack_exports__);
         })["finally"](function () {
           return _this.cargando = false;
         });
-        ;
+      } else if (this.tipo == 'relacionados') {
+        if (this.producto != null) {
+          var categoria_id = this.producto.categoria[Math.floor(Math.random() * this.producto.categoria.length)].id;
+          var tipo_id = this.producto.tipo_producto[Math.floor(Math.random() * this.producto.tipo_producto.length)].id;
+          axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/productos-relacionados/' + this.producto.id + '/' + categoria_id + '/' + tipo_id + '/' + this.producto.laboratorio + '/' + this.n).then(function (response) {
+            _this.productos = response.data;
+          })["finally"](function () {
+            return _this.cargando = false;
+          });
+        }
       } else {
         this.cargando = false;
       }
@@ -544,6 +555,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -554,6 +572,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      cargando: true,
       producto: null,
       cantidad: 1,
       rating: 4.5,
@@ -587,13 +606,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/producto/" + this.$route.params.id).then(function (response) {
-      _this.producto = response.data;
-    });
+    this.obtenerProducto();
   },
   methods: {
+    obtenerProducto: function obtenerProducto() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/producto/" + this.$route.params.id).then(function (response) {
+        _this.producto = response.data;
+      })["finally"](function () {
+        return _this.cargando = false;
+      });
+    },
     agregar: function agregar() {
       if (this.$store.state.user != null) {
         this.$store.dispatch("addProducto", {
@@ -611,6 +635,15 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.$router.push("/login");
       }
+    }
+  },
+  watch: {
+    '$route.params.id': function $routeParamsId(old, n) {
+      if (old != n) {
+        this.cargando = true;
+      }
+
+      this.obtenerProducto();
     }
   }
 });
@@ -6132,7 +6165,32 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
-      _vm.producto != null
+      _vm.cargando
+        ? _c(
+            "v-row",
+            { staticClass: "my-10", attrs: { justify: "center" } },
+            [
+              _c(
+                "v-col",
+                { staticClass: "text-h4 text-center", attrs: { cols: "12" } },
+                [_vm._v("Cargando ...")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { attrs: { cols: "auto" } },
+                [
+                  _c("v-progress-circular", {
+                    staticClass: "d-inline-block mx-auto",
+                    attrs: { size: 70, indeterminate: "", color: "black" }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm.producto != null && _vm.cargando == false
         ? _c(
             "v-row",
             { staticClass: "pt-10 px-5" },
@@ -6299,7 +6357,9 @@ var render = function() {
                             on: { click: _vm.agregar }
                           },
                           [
-                            _c("v-icon", [_vm._v("mdi-cart")]),
+                            _c("v-icon", { attrs: { left: "" } }, [
+                              _vm._v("mdi-cart")
+                            ]),
                             _vm._v(" Agregar")
                           ],
                           1
@@ -6318,10 +6378,12 @@ var render = function() {
                             on: { click: _vm.procederCompra }
                           },
                           [
-                            _vm._v(
-                              "\n                            Comprar\n                        "
-                            )
-                          ]
+                            _c("v-icon", { attrs: { left: "" } }, [
+                              _vm._v("mdi-currency-usd")
+                            ]),
+                            _vm._v("Comprar\n                        ")
+                          ],
+                          1
                         )
                       ],
                       1
@@ -6334,7 +6396,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.producto != null
+      _vm.producto != null && _vm.cargando == false
         ? _c("div", { staticClass: "row" }, [
             _c(
               "div",
@@ -6405,7 +6467,8 @@ var render = function() {
                                                 shaped: "",
                                                 elevation: hover ? 10 : 4,
                                                 n: 4,
-                                                parametro: "ultimos"
+                                                tipo: "relacionados",
+                                                producto: _vm.producto
                                               }
                                             })
                                           ]
@@ -6414,7 +6477,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    4049729108
+                                    2337145022
                                   )
                                 })
                               ],

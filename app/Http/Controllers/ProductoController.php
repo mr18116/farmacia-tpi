@@ -92,6 +92,48 @@ class ProductoController extends Controller
         return $productos;
     }
 
+    public function relacionados($producto_id, $categoria_id, $tipo_id, $laboratorio, $n)
+    {
+        $productosTipo = Producto::join('tipo_producto_has_productos', 'productos.id', '=', 'tipo_producto_has_productos.producto_id')
+        ->join('tipo_productos', 'tipo_producto_has_productos.tipo_producto_id', '=', 'tipo_productos.id')
+        ->where('tipo_productos.id', '=', $tipo_id)
+        ->select('productos.*')
+        ->get();
+
+        $productosCategoria = Producto::join('categoria_has_productos', 'productos.id', '=', 'categoria_has_productos.producto_id')
+        ->join('categorias', 'categoria_has_productos.categoria_id', '=', 'categorias.id')
+        ->where('categorias.id', '=', $categoria_id)
+        ->select('productos.*')
+        ->get();
+
+        $productosLaboratorio = Producto::where('laboratorio', '=', $laboratorio)->get();
+
+        $productos = array();
+
+        foreach ($productosTipo as $value) {
+            if($value->id != $producto_id){
+                array_push($productos, $value);
+            }
+        }
+        foreach ($productosCategoria as $value) {
+            if($value->id != $producto_id){
+                array_push($productos, $value);
+            }
+        }
+        foreach ($productosLaboratorio as $value) {
+            if($value->id != $producto_id){
+                array_push($productos, $value);
+            }
+        }
+        shuffle($productos);
+        if (count($productos) > $n) {
+            $productos = array_slice($productos, 0, $n);
+        }
+        $productos = array_unique($productos);
+
+        return $productos;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

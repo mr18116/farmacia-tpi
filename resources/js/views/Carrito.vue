@@ -26,11 +26,11 @@
                   </v-card-actions>
               </v-card>
           </v-col>
-          <v-col cols="auto" v-if="productos.length > 0 && $store.state.actualizandoCarrito">
-              <div class="text-h4">Actualizando ...</div>
-              <div class="mx-auto">
+          <v-col cols="auto" class="my-10" v-if="productos.length > 0 && $store.state.actualizandoCarrito">
+              <v-row class="text-h4">Actualizando ...</v-row>
+              <v-row justify="center">
                   <v-progress-circular :size="70" indeterminate color="black"></v-progress-circular>
-              </div>
+              </v-row>
           </v-col>
       </v-row>
       <v-row v-else>

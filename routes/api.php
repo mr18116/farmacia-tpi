@@ -55,5 +55,6 @@ Route::get('productos-categoria/{categoria}', [ProductoController::class, 'produ
 Route::get('productos-ultimos/{n}', [ProductoController::class, 'ultimos']);
 Route::get('productos-mas-comprados/{n}', [ProductoController::class, 'masVendidos']);
 Route::get('productos-search/{search}', [ProductoController::class, 'productosBusqueda']);
+Route::get('productos-relacionados/{producto_id}/{categoria_id}/{tipo_id}/{laboratorio}/{n}', [ProductoController::class, 'relacionados']);
 
 Route::get('facturas-user/{user_id}', [FacturaController::class, 'facturasUser']);

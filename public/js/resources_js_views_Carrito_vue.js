@@ -5943,22 +5943,31 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.productos.length > 0 && _vm.$store.state.actualizandoCarrito
-                ? _c("v-col", { attrs: { cols: "auto" } }, [
-                    _c("div", { staticClass: "text-h4" }, [
-                      _vm._v("Actualizando ...")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "mx-auto" },
-                      [
-                        _c("v-progress-circular", {
-                          attrs: { size: 70, indeterminate: "", color: "black" }
-                        })
-                      ],
-                      1
-                    )
-                  ])
+                ? _c(
+                    "v-col",
+                    { staticClass: "my-10", attrs: { cols: "auto" } },
+                    [
+                      _c("v-row", { staticClass: "text-h4" }, [
+                        _vm._v("Actualizando ...")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { attrs: { justify: "center" } },
+                        [
+                          _c("v-progress-circular", {
+                            attrs: {
+                              size: 70,
+                              indeterminate: "",
+                              color: "black"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 : _vm._e()
             ],
             1

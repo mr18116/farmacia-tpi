@@ -1,7 +1,13 @@
 <template>
     <v-container fluid>
         <!--<v-app-bar color="blue lighten-1"> </v-app-bar>-->
-        <v-row class="pt-10 px-5"  v-if="producto != null">
+        <v-row v-if="cargando" justify="center" class="my-10">
+              <v-col cols="12" class="text-h4 text-center">Cargando ...</v-col>
+              <v-col cols="auto">
+                  <v-progress-circular :size="70" indeterminate color="black" class="d-inline-block mx-auto"></v-progress-circular>
+              </v-col>
+        </v-row>
+        <v-row class="pt-10 px-5"  v-else-if="producto != null && cargando == false">
             <v-card class="pa-5">
                 <div class="row">
                     <div class="col-md-4 col-sm-5 col-xs-12">
@@ -77,7 +83,7 @@
                                 @click="agregar"
                                 :disabled="$store.state.actualizandoCarrito"
                             >
-                                <v-icon>mdi-cart</v-icon> Agregar</v-btn
+                                <v-icon left>mdi-cart</v-icon> Agregar</v-btn
                             >
                             <v-btn
                                 color="green"
@@ -87,14 +93,14 @@
                                 :disabled="$store.state.actualizandoCarrito"
                                 @click="procederCompra"
                             >
-                                Comprar
+                                 <v-icon left>mdi-currency-usd</v-icon>Comprar
                             </v-btn>
                         </div>
                     </div>
                 </div>
             </v-card>
         </v-row>
-        <div class="row" v-if="producto != null">
+        <div class="row" v-if="producto != null && cargando == false">
             <div class="col-sm-12 col-xs-12 col-md-12">
                 <v-card-text class="pa-0 pt-4" tile outlined>
                     <p class="subtitle-1 font-weight-light pt-3 text-center">
@@ -119,7 +125,8 @@
                                         :elevation="hover ? 10 : 4"
                                         :class="{ up: hover }"
                                         :n="4"
-                                        parametro="ultimos"
+                                        tipo="relacionados"
+                                        :producto="producto"
                                     />
                                 </v-hover>
                             </v-col>
@@ -149,6 +156,7 @@ export default {
         ModalComprar
     },
     data: () => ({
+        cargando: true,
         producto: null,
         cantidad: 1,
         rating: 4.5,
@@ -196,11 +204,14 @@ export default {
         ]
     }),
     created() {
-        axios.get("/api/producto/" + this.$route.params.id).then(response => {
-            this.producto = response.data;
-        });
+        this.obtenerProducto();
     },
     methods: {
+        obtenerProducto(){
+            axios.get("/api/producto/" + this.$route.params.id).then(response => {
+                this.producto = response.data;
+            }).finally( () => this.cargando = false);
+        },
         agregar() {
             if (this.$store.state.user != null) {
                 this.$store.dispatch("addProducto", {
@@ -218,6 +229,14 @@ export default {
             } else {
                 this.$router.push("/login");
             }
+        }
+    },
+    watch: {
+        '$route.params.id'(old, n){
+            if (old != n) {
+                this.cargando = true;
+            }
+            this.obtenerProducto();
         }
     }
 };
