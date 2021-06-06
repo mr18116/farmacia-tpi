@@ -35,6 +35,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador/GraficoLinea.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador/GraficoLinea.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__.Line,
+  props: ["datosGrafica", "nombresProductos", "label"],
+  mounted: function mounted() {
+    var dataRender = {
+      labels: this.nombresProductos,
+      datasets: [{
+        label: this.label,
+        data: this.datosGrafica,
+        backgroundColor: "rgba(1, 116, 188, 0.50)",
+        borderColor: "rgba(1, 116, 188, 0.50)"
+      }]
+    };
+    this.renderChart(dataRender, {
+      responsive: true,
+      maintainAspectRatio: true
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Administrador/Dashboard.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Administrador/Dashboard.vue?vue&type=script&lang=js& ***!
@@ -49,6 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Administrador_GraficoBarras__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Administrador/GraficoBarras */ "./resources/js/components/Administrador/GraficoBarras.vue");
+/* harmony import */ var _components_Administrador_GraficoLinea_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Administrador/GraficoLinea.vue */ "./resources/js/components/Administrador/GraficoLinea.vue");
 //
 //
 //
@@ -82,6 +118,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -89,25 +165,59 @@ __webpack_require__.r(__webpack_exports__);
     return {
       datosGraficoProductosMasVendidos: [],
       nombresProductosMasVendidos: [],
-      totalVentas: []
+      totalVentas: [],
+      ventasDiarias: [],
+      ventasDiariasTotal: [],
+      ventasDiariasTotalFechas: []
     };
   },
   components: {
-    GraficoBarras: _components_Administrador_GraficoBarras__WEBPACK_IMPORTED_MODULE_1__.default
+    GraficoBarras: _components_Administrador_GraficoBarras__WEBPACK_IMPORTED_MODULE_1__.default,
+    GraficoLinea: _components_Administrador_GraficoLinea_vue__WEBPACK_IMPORTED_MODULE_2__.default
   },
   mounted: function mounted() {
     var _this = this;
 
+    var d = new Date();
+    d.setDate(d.getDate() - 7);
+    var tiempoTranscurrido = Date.now();
+    var hoy = new Date(tiempoTranscurrido);
+    var fecha = hoy.toLocaleDateString();
+    var fechaAnterior = d.toLocaleDateString();
+    console.log(fechaAnterior);
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/productos-mas-comprados/5").then(function (res) {
       res.data.forEach(function (element) {
-        _this.datosGraficoProductosMasVendidos.push(element.cantidad);
+        _this.datosGraficoProductosMasVendidos.push(element.cantidadVendida);
 
-        _this.nombresProductosMasVendidos.push(element.nombre);
+        _this.nombresProductosMasVendidos.push(element.producto.nombre);
       });
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/factura").then(function (res) {
       var total = 0;
       res.data.forEach(function (el) {
+        if (new Date(el.created_at).toLocaleDateString() >= fechaAnterior || new Date(el.created_at).toLocaleDateString() <= fecha) {
+          var item = {
+            total: el.total,
+            fecha: new Date(el.created_at).toLocaleDateString()
+          };
+
+          _this.ventasDiarias.push(item);
+
+          if (_this.ventasDiarias.length > 1 && _this.ventasDiarias[_this.ventasDiarias.length - 2].fecha == item.fecha) {
+            if (_this.ventasDiariasTotal.length == 0) {
+              _this.ventasDiariasTotal.push(item.total);
+
+              _this.ventasDiariasTotalFechas.push(item.fecha);
+            } else {
+              _this.ventasDiariasTotal[_this.ventasDiariasTotal.length - 1] += item.total;
+            }
+          } else {
+            _this.ventasDiariasTotal.push(item.total);
+
+            _this.ventasDiariasTotalFechas.push(item.fecha);
+          }
+        }
+
         total += el.total;
       });
 
@@ -38051,6 +38161,44 @@ component.options.__file = "resources/js/components/Administrador/GraficoBarras.
 
 /***/ }),
 
+/***/ "./resources/js/components/Administrador/GraficoLinea.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/Administrador/GraficoLinea.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _GraficoLinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GraficoLinea.vue?vue&type=script&lang=js& */ "./resources/js/components/Administrador/GraficoLinea.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+;
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
+  _GraficoLinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Administrador/GraficoLinea.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/Administrador/Dashboard.vue":
 /*!********************************************************!*\
   !*** ./resources/js/views/Administrador/Dashboard.vue ***!
@@ -38103,6 +38251,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraficoBarras_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraficoBarras.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador/GraficoBarras.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraficoBarras_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Administrador/GraficoLinea.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Administrador/GraficoLinea.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraficoLinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./GraficoLinea.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador/GraficoLinea.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GraficoLinea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -38165,7 +38329,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { cols: "5" } },
+            { attrs: { cols: "12", md: "5" } },
             [
               _c(
                 "v-card",
@@ -38174,6 +38338,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-card-text",
+                    { staticClass: "d-flex justify-center" },
                     [
                       _vm.datosGraficoProductosMasVendidos.length !== 0
                         ? _c("GraficoBarras", {
@@ -38182,6 +38347,18 @@ var render = function() {
                                 _vm.datosGraficoProductosMasVendidos,
                               nombresProductos: _vm.nombresProductosMasVendidos,
                               label: "productos mas vendidos"
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.datosGraficoProductosMasVendidos.length === 0
+                        ? _c("v-progress-circular", {
+                            staticClass: "my-8",
+                            attrs: {
+                              size: 100,
+                              width: 7,
+                              color: "primary",
+                              indeterminate: ""
                             }
                           })
                         : _vm._e()
@@ -38197,7 +38374,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { attrs: { cols: "5" } },
+            { attrs: { cols: "12", md: "5" } },
             [
               _c(
                 "v-card",
@@ -38206,6 +38383,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-card-text",
+                    { staticClass: "d-flex justify-center" },
                     [
                       _vm.totalVentas.length !== 0
                         ? _c("GraficoBarras", {
@@ -38213,6 +38391,71 @@ var render = function() {
                               datosGrafica: _vm.totalVentas,
                               nombresProductos: [1],
                               label: "Total de ventas"
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.totalVentas.length === 0
+                        ? _c("v-progress-circular", {
+                            staticClass: "my-8",
+                            attrs: {
+                              size: 100,
+                              width: 7,
+                              color: "primary",
+                              indeterminate: ""
+                            }
+                          })
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { attrs: { justify: "center" } },
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "10" } },
+            [
+              _c(
+                "v-card",
+                [
+                  _c("v-card-title", [
+                    _vm._v("Total de los últimos siete días")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    { staticClass: "d-flex justify-center" },
+                    [
+                      _vm.totalVentas.length !== 0
+                        ? _c("GraficoLinea", {
+                            attrs: {
+                              datosGrafica: _vm.ventasDiariasTotal,
+                              nombresProductos: _vm.ventasDiariasTotalFechas,
+                              label: "Total de los últimos siete días"
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.totalVentas.length === 0
+                        ? _c("v-progress-circular", {
+                            staticClass: "my-8",
+                            attrs: {
+                              size: 100,
+                              width: 7,
+                              color: "primary",
+                              indeterminate: ""
                             }
                           })
                         : _vm._e()
