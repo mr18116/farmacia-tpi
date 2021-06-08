@@ -253,6 +253,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -324,6 +347,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_ProductoCarrito__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/ProductoCarrito */ "./resources/js/components/ProductoCarrito.vue");
 /* harmony import */ var _components_ModalComprar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ModalComprar */ "./resources/js/components/ModalComprar.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5586,85 +5628,42 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
+    "div",
     [
       _c(
         "v-container",
         [
           _c(
             "v-row",
+            { staticClass: "hidden-md-and-down" },
             [
               _c(
                 "v-col",
-                { attrs: { cols: "3" } },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "/detalle/" + _vm.producto.producto.id } },
-                    [
-                      _c("v-img", {
-                        attrs: {
-                          height: "120",
-                          contain: "",
-                          src: _vm.producto.producto.imagen_url
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-col", { attrs: { cols: "6" } }, [
-                _c(
-                  "div",
-                  { staticClass: "text-h5" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "black--text",
-                        attrs: { to: "/detalle/" + _vm.producto.producto.id }
-                      },
-                      [_vm._v(_vm._s(_vm.producto.producto.nombre))]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-h6" }, [
-                  _vm._v("$" + _vm._s(_vm.producto.producto.precio))
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                { attrs: { cols: "3" } },
+                { attrs: { cols: "12" } },
                 [
                   _c(
                     "v-row",
-                    { attrs: { "no-gutters": "" } },
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "auto" } },
+                        { attrs: { cols: "2" } },
                         [
                           _c(
-                            "v-btn",
+                            "router-link",
                             {
-                              staticStyle: {
-                                padding: "0px",
-                                "min-width": "30px",
-                                "min-height": "39px"
-                              },
                               attrs: {
-                                outlined: "",
-                                color: "primary darken-2"
-                              },
-                              on: { click: _vm.disminuir }
+                                to: "/detalle/" + _vm.producto.producto.id
+                              }
                             },
-                            [_c("v-icon", [_vm._v("mdi-minus")])],
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  height: "100",
+                                  contain: "",
+                                  src: _vm.producto.producto.imagen_url
+                                }
+                              })
+                            ],
                             1
                           )
                         ],
@@ -5673,14 +5672,50 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-col",
+                        {
+                          staticClass: "d-flex justify-center align-center",
+                          attrs: { cols: "3" }
+                        },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "black--text",
+                              attrs: {
+                                to: "/detalle/" + _vm.producto.producto.id
+                              }
+                            },
+                            [_vm._v(_vm._s(_vm.producto.producto.nombre))]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "d-flex justify-center align-center",
+                          attrs: { cols: "2.5" }
+                        },
+                        [_vm._v("$" + _vm._s(_vm.producto.producto.precio))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "d-flex justify-center align-center",
+                          attrs: { cols: "auto" }
+                        },
                         [
                           _c("v-text-field", {
                             staticClass: "centered-input",
+                            staticStyle: { width: "80px" },
                             attrs: {
                               "hide-details": "true",
                               dense: "",
                               outlined: "",
-                              color: "primary darken-2"
+                              color: "primary darken-2",
+                              type: "number"
                             },
                             model: {
                               value: _vm.cantidad,
@@ -5689,63 +5724,102 @@ var render = function() {
                               },
                               expression: "cantidad"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-chip",
+                            {
+                              attrs: {
+                                color: "white",
+                                disabled: _vm.actualizar == false
+                              },
+                              on: { click: _vm.actualizarCantidad }
+                            },
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  width: "24",
+                                  height: "24",
+                                  src:
+                                    "https://i.pinimg.com/originals/35/af/1d/35af1d7a2191d6926c8ee08fb7f4ee19.png"
+                                }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-col",
-                        { attrs: { cols: "auto" } },
+                        {
+                          staticClass:
+                            "d-flex justify-center align-center pr-5",
+                          attrs: { cols: "1.5" }
+                        },
+                        [
+                          _vm._v(
+                            "$" +
+                              _vm._s(
+                                Math.round(
+                                  _vm.producto.producto.precio *
+                                    _vm.producto.cantidad *
+                                    100
+                                ) / 100
+                              )
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "d-flex justify-center align-center",
+                          attrs: { cols: "1" }
+                        },
                         [
                           _c(
-                            "v-btn",
+                            "a",
                             {
-                              staticStyle: {
-                                padding: "0px",
-                                "min-width": "30px",
-                                "min-height": "39px"
-                              },
-                              attrs: {
-                                outlined: "",
-                                color: "primary darken-2"
-                              },
-                              on: { click: _vm.aumentar }
+                              staticClass: "px-2",
+                              on: { click: _vm.procederCompra }
                             },
-                            [_c("v-icon", [_vm._v("mdi-plus")])],
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  width: "60",
+                                  height: "35",
+                                  src:
+                                    "https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "pr-10",
+                              on: { click: _vm.quitarProducto }
+                            },
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  width: "24",
+                                  height: "24",
+                                  src:
+                                    "https://image.flaticon.com/icons/png/512/109/109602.png"
+                                }
+                              })
+                            ],
                             1
                           )
-                        ],
-                        1
+                        ]
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "my-2",
-                      attrs: {
-                        color: "blue",
-                        small: "",
-                        outlined: "",
-                        block: "",
-                        disabled: _vm.actualizar == false
-                      },
-                      on: { click: _vm.actualizarCantidad }
-                    },
-                    [_vm._v("Actualizar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      staticClass: "my-2",
-                      attrs: { color: "red", small: "", block: "" },
-                      on: { click: _vm.quitarProducto }
-                    },
-                    [_vm._v("Quitar")]
                   )
                 ],
                 1
@@ -5754,45 +5828,215 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
           _c(
             "v-row",
+            { staticClass: "hidden-lg-and-up" },
             [
               _c(
                 "v-col",
-                { attrs: { cols: "auto" } },
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "green", small: "" },
-                      on: { click: _vm.procederCompra }
-                    },
-                    [_vm._v("Comprar")]
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "2" } },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: "/detalle/" + _vm.producto.producto.id
+                              }
+                            },
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  height: "100",
+                                  contain: "",
+                                  src: _vm.producto.producto.imagen_url
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        {
+                          staticClass:
+                            "d-flex justify-center align-center pr-10",
+                          attrs: { cols: "8" }
+                        },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "black--text",
+                              attrs: {
+                                to: "/detalle/" + _vm.producto.producto.id
+                              }
+                            },
+                            [_vm._v(_vm._s(_vm.producto.producto.nombre))]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        {
+                          staticClass: "d-flex justify-center align-center",
+                          attrs: { cols: "2" }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "px-2",
+                              on: { click: _vm.procederCompra }
+                            },
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  width: "60",
+                                  height: "35",
+                                  src:
+                                    "https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "pr-10",
+                              on: { click: _vm.quitarProducto }
+                            },
+                            [
+                              _c("v-img", {
+                                attrs: {
+                                  width: "24",
+                                  height: "24",
+                                  src:
+                                    "https://image.flaticon.com/icons/png/512/109/109602.png"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c(
+                            "v-row",
+                            [
+                              _c(
+                                "v-col",
+                                {
+                                  staticClass:
+                                    "d-flex justify-center align-center pl-20",
+                                  attrs: { cols: "auto" }
+                                },
+                                [
+                                  _c("v-text-field", {
+                                    staticClass: "centered-input",
+                                    staticStyle: { width: "80px" },
+                                    attrs: {
+                                      "hide-details": "true",
+                                      dense: "",
+                                      outlined: "",
+                                      color: "primary darken-2",
+                                      type: "number"
+                                    },
+                                    model: {
+                                      value: _vm.cantidad,
+                                      callback: function($$v) {
+                                        _vm.cantidad = $$v
+                                      },
+                                      expression: "cantidad"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-chip",
+                                    {
+                                      attrs: {
+                                        color: "white",
+                                        disabled: _vm.actualizar == false
+                                      },
+                                      on: { click: _vm.actualizarCantidad }
+                                    },
+                                    [
+                                      _c("v-img", {
+                                        attrs: {
+                                          width: "24",
+                                          height: "24",
+                                          src:
+                                            "https://i.pinimg.com/originals/35/af/1d/35af1d7a2191d6926c8ee08fb7f4ee19.png"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  staticClass: "pr-10 font-weight-black",
+                                  attrs: { cols: "auto" }
+                                },
+                                [
+                                  _vm._v(
+                                    "$" +
+                                      _vm._s(
+                                        Math.round(
+                                          _vm.producto.producto.precio *
+                                            _vm.producto.cantidad *
+                                            100
+                                        ) / 100
+                                      )
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c("v-col", { staticClass: "text-h6", attrs: { cols: "auto" } }, [
-                _vm._v(
-                  "\n              Subtotal $" +
-                    _vm._s(
-                      Math.round(
-                        _vm.producto.producto.precio *
-                          _vm.producto.cantidad *
-                          100
-                      ) / 100
-                    ) +
-                    "\n          "
-                )
-              ])
+              )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("v-divider")
         ],
         1
       ),
@@ -5878,10 +6122,72 @@ var render = function() {
               _vm._v(" "),
               _vm.productos.length > 0 &&
               _vm.$store.state.actualizandoCarrito == false
+                ? _c("v-col", { attrs: { cols: "12", md: "12" } }, [
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "display-3 font-weight-light text-center pa-4"
+                      },
+                      [_vm._v("CARRO DE COMPRAS")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.productos.length > 0 &&
+              _vm.$store.state.actualizandoCarrito == false
                 ? _c(
                     "v-col",
-                    { attrs: { cols: "8" } },
+                    { attrs: { lg: "9", md: "12" } },
                     [
+                      _c(
+                        "v-row",
+                        { staticClass: "hidden-md-and-down" },
+                        [
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { cols: "5" }
+                            },
+                            [_vm._v("PRODUCTO")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { cols: "2.5" }
+                            },
+                            [_vm._v("PRECIO")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { cols: "auto" }
+                            },
+                            [_vm._v("CANTIDAD")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { cols: "1.5" }
+                            },
+                            [_vm._v("SUBTOTAL")]
+                          ),
+                          _vm._v(" "),
+                          _c("v-col", {
+                            staticClass: "text-center",
+                            attrs: { cols: "1" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
                         "v-row",
                         _vm._l(_vm.productos, function(producto, index) {
@@ -5907,32 +6213,70 @@ var render = function() {
               _vm.$store.state.actualizandoCarrito == false
                 ? _c(
                     "v-col",
-                    { attrs: { cols: "4" } },
+                    {
+                      staticStyle: { "background-color": "lightgray" },
+                      attrs: { cols: 12, lg: "3", md: "12", sm: "12" }
+                    },
                     [
+                      _c("p", { staticClass: "headline" }, [
+                        _vm._v("Resumen del pedido")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "overline" }, [
+                        _vm._v(
+                          "Recuerde que el total final puede cambiar en base al envío seleccionado.\n                      "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("v-simple-table", {
+                        attrs: { border: "1" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "default",
+                              fn: function() {
+                                return [
+                                  _c("tbody", [
+                                    _c("tr", [
+                                      _c("td", [_vm._v("Total")]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "text-right",
+                                          staticStyle: { width: "50px" }
+                                        },
+                                        [
+                                          _c("b", [
+                                            _vm._v("$" + _vm._s(_vm.total))
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ],
+                          null,
+                          false,
+                          53268539
+                        )
+                      }),
+                      _vm._v(" "),
                       _c(
-                        "v-card",
+                        "div",
+                        { staticClass: "text-center" },
                         [
-                          _c("v-card-title", [
-                            _vm._v(
-                              "\n                    Total: $" +
-                                _vm._s(_vm.total) +
-                                "\n                "
-                            )
-                          ]),
-                          _vm._v(" "),
                           _c(
-                            "v-card-actions",
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { block: "", color: "blue" },
-                                  on: { click: _vm.procederCompra }
-                                },
-                                [_vm._v("Comprar Todo")]
-                              )
-                            ],
-                            1
+                            "v-btn",
+                            {
+                              staticClass: "primary white--text mt-5",
+                              attrs: { outlined: "" },
+                              on: { click: _vm.procederCompra }
+                            },
+                            [_vm._v("COMPRAR TODO")]
                           )
                         ],
                         1

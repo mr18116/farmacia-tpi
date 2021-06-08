@@ -1,67 +1,90 @@
 <template>
-  <v-card>
+  <div>
       <v-container>
-          <v-row>
-            <v-col cols="3">
-                <router-link :to="'/detalle/' + producto.producto.id">
-                    <v-img height="120" contain :src="producto.producto.imagen_url"></v-img>
-                </router-link>
-            </v-col>
-            <v-col cols="6">
-                <div class="text-h5"><router-link :to="'/detalle/' + producto.producto.id" class="black--text">{{ producto.producto.nombre }}</router-link></div>
-                <div class="text-h6">${{ producto.producto.precio }}</div>
-            </v-col>
-            <v-col cols="3">
-                <v-row no-gutters>
-                    <v-col cols="auto">
-                    <v-btn
-                        style="padding: 0px; min-width: 30px; min-height: 39px;"
-                        outlined
-                        @click="disminuir"
-                        color="primary darken-2"
-                    >
-                        <v-icon>mdi-minus</v-icon>
-                    </v-btn>
+        <v-row class="hidden-md-and-down"> 
+        <v-col cols="12">
+            <v-row>
+                <v-col cols="2">
+                    <router-link :to="'/detalle/' + producto.producto.id">
+                    <v-img height="100" contain :src="producto.producto.imagen_url"></v-img>
+                </router-link> 
                 </v-col>
-                <v-col>
+                <v-col class="d-flex justify-center align-center" cols="3">  
+                    <router-link :to="'/detalle/' + producto.producto.id" class="black--text">{{ producto.producto.nombre }}</router-link>
+                </v-col>
+                <v-col class="d-flex justify-center align-center" cols="2.5">${{ producto.producto.precio }}</v-col>
+                <v-col class="d-flex justify-center align-center" cols="auto">
                     <v-text-field
                         v-model="cantidad"
                         hide-details="true"
+                        style="width: 80px;"
                         dense
                         outlined
                         class="centered-input"
                         color="primary darken-2"
-                    >
-                    </v-text-field>
+                        type="number">    
+                        </v-text-field>  
+                        <v-chip color="white" :disabled="actualizar == false" @click="actualizarCantidad"> 
+                           <v-img width="24" height="24" src="https://i.pinimg.com/originals/35/af/1d/35af1d7a2191d6926c8ee08fb7f4ee19.png"></v-img>
+                        </v-chip>
                 </v-col>
-                <v-col cols="auto">
-                    <v-btn
-                        style="padding: 0px; min-width: 30px; min-height: 39px;"
-                        outlined
-                        @click="aumentar"
-                        color="primary darken-2"
-                    >
-                        <v-icon>mdi-plus</v-icon>
-                    </v-btn>
+                <v-col class="d-flex justify-center align-center pr-5" cols="1.5">${{ Math.round(producto.producto.precio*producto.cantidad * 100)/100 }}</v-col>
+                <v-col class="d-flex justify-center align-center" cols="1">
+                  <a class="px-2" @click="procederCompra"><v-img width="60" height="35" src="https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"></v-img></a>
+                  <a class="pr-10" @click="quitarProducto"><v-img width="24" height="24" src="https://image.flaticon.com/icons/png/512/109/109602.png"></v-img></a>
                 </v-col>
+            </v-row>
+        </v-col>
+        </v-row>
+
+        <v-row class="hidden-lg-and-up"> 
+            <v-col cols="12">
+                <v-row>
+                    <v-col cols="2">
+                        <router-link :to="'/detalle/' + producto.producto.id">
+                        <v-img height="100" contain :src="producto.producto.imagen_url"></v-img>
+                        </router-link> 
+                    </v-col>
+                    <v-col class="d-flex justify-center align-center pr-10" cols="8">  
+                        <router-link :to="'/detalle/' + producto.producto.id" class="black--text">{{ producto.producto.nombre }}</router-link>
+                    </v-col>
+                    <v-col class="d-flex justify-center align-center" cols="2">
+                        <a class="px-2" @click="procederCompra"><v-img width="60" height="35" src="https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"></v-img></a>
+                        <a class="pr-10" @click="quitarProducto"><v-img width="24" height="24" src="https://image.flaticon.com/icons/png/512/109/109602.png"></v-img></a>
+                    </v-col>
                 </v-row>
-                <v-btn class="my-2" color="blue" small outlined block :disabled="actualizar == false" @click="actualizarCantidad">Actualizar</v-btn>
-                <v-btn class="my-2" color="red" small block @click="quitarProducto">Quitar</v-btn>
+                <v-row>
+                    <v-col cols="12">
+                        <v-row>
+                            <v-col class="d-flex justify-center align-center pl-20" cols="auto">
+                                <v-text-field
+                                    v-model="cantidad"
+                                    hide-details="true"
+                                    style="width: 80px;"
+                                    dense
+                                    outlined
+                                    class="centered-input"
+                                    color="primary darken-2"
+                                    type="number">    
+                                    </v-text-field>  
+                                    <v-chip color="white" :disabled="actualizar == false" @click="actualizarCantidad"> 
+                                    <v-img width="24" height="24" src="https://i.pinimg.com/originals/35/af/1d/35af1d7a2191d6926c8ee08fb7f4ee19.png"></v-img>
+                                    </v-chip>
+                                    
+                                    
+                            </v-col>
+                            <v-spacer></v-spacer>
+                            <v-col cols="auto" class="pr-10 font-weight-black">${{ Math.round(producto.producto.precio*producto.cantidad * 100)/100 }}</v-col>
+                        </v-row>
+                    </v-col>
+                </v-row>
             </v-col>
         </v-row>
+
         <v-divider></v-divider>
-        <v-row >
-            <v-col cols="auto">
-                <v-btn color="green" small @click="procederCompra">Comprar</v-btn>
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-col cols="auto" class="text-h6">
-                Subtotal ${{ Math.round(producto.producto.precio*producto.cantidad * 100)/100 }}
-            </v-col>
-        </v-row>
       </v-container>
       <ModalComprar ref="modalComprar" :productos="[producto.producto]" :cantidades="[producto.cantidad]" tipo="individual-carrito" v-if="producto != null" />
-    </v-card>
+    </div>
 </template>
 
 <script>
