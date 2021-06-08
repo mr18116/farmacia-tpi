@@ -2191,54 +2191,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2250,7 +2202,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       drawer: null,
       isXs: false,
-      query: ''
+      query: ""
     };
   },
   methods: {
@@ -2268,8 +2220,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return _this.$store.dispatch("getUser");
 
                   case 2:
-                    if (_this.$route.path == '/inventario') {
-                      _this.$router.replace('/');
+                    if (_this.$route.path == "/inventario") {
+                      _this.$router.replace("/");
                     }
 
                   case 3:
@@ -2287,8 +2239,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     buscar: function buscar() {
-      if (this.query != '') {
-        this.$router.push('/search/' + this.query);
+      if (this.query != "") {
+        this.$router.push("/search/" + this.query);
       }
     }
   },
@@ -7533,7 +7485,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.v-toolbar[data-v-6dde423b] {\n  transition: 0.6s;\n}\n.expand[data-v-6dde423b] {\n  height: 80px !important;\n  padding-top: 10px;\n}\n.my-text-style[data-v-6dde423b] .v-text-field__slot input {\n    color: black;\n}\n.my-text-style[data-v-6dde423b] .v-label {\n  color: #616161;\n  opacity: 1;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.v-toolbar[data-v-6dde423b] {\n  transition: 0.6s;\n}\n.expand[data-v-6dde423b] {\n  height: 80px !important;\n  padding-top: 10px;\n}\n.my-text-style[data-v-6dde423b] .v-text-field__slot input {\n  color: black;\n}\n.my-text-style[data-v-6dde423b] .v-label {\n  color: #616161;\n  opacity: 1;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39850,28 +39802,6 @@ var render = function() {
     "div",
     [
       _c(
-        "v-navigation-drawer",
-        {
-          attrs: {
-            app: "",
-            temporary: "",
-            dark: "",
-            src:
-              "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FbgDrawer.jpg?alt=media&token=749fc88d-914f-4e6e-8f2b-52e08d8abec3"
-          },
-          model: {
-            value: _vm.drawer,
-            callback: function($$v) {
-              _vm.drawer = $$v
-            },
-            expression: "drawer"
-          }
-        },
-        [_c("v-divider")],
-        1
-      ),
-      _vm._v(" "),
-      _c(
         "v-app-bar",
         {
           staticClass: "px-5",
@@ -39883,7 +39813,7 @@ var render = function() {
             "v-toolbar-title",
             [
               _c("v-app-bar-nav-icon", {
-                staticClass: "black--text",
+                staticClass: "black--text pr-10",
                 on: {
                   click: function($event) {
                     _vm.$store.state.drawer = !_vm.$store.state.drawer
@@ -39899,11 +39829,20 @@ var render = function() {
             { attrs: { href: "/" } },
             [
               _c("v-img", {
-                staticClass: "mb-n1 mx-auto",
+                staticClass: "mb-n1 mx-auto hidden-sm-and-down",
                 attrs: {
                   src:
                     "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogotpi.png?alt=media&token=439d43f4-e37a-4a4e-bb0e-25e7e6efcc05",
                   "max-width": "200px"
+                }
+              }),
+              _vm._v(" "),
+              _c("v-img", {
+                staticClass: "mb-n1 mx-auto hidden-md-and-up",
+                attrs: {
+                  src:
+                    "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Flogoxs.png?alt=media&token=1cb20e16-d328-48b2-a73e-0eae847596d0",
+                  "max-width": "50px"
                 }
               })
             ],
@@ -39966,7 +39905,7 @@ var render = function() {
               })
             : _c(
                 "div",
-                { staticClass: "hidden-xs-only" },
+                { staticClass: "hidden-md-and-down" },
                 [
                   _c(
                     "v-badge",
@@ -40050,7 +39989,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "hidden-sm-and-up" },
+            { staticClass: "hidden-lg-and-up" },
             [
               _c(
                 "v-menu",
@@ -40144,7 +40083,40 @@ var render = function() {
                             ],
                             1
                           )
-                        : _vm._e()
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item",
+                        [
+                          _c(
+                            "v-badge",
+                            {
+                              attrs: {
+                                content: _vm.nProductosCarrito,
+                                value: _vm.nProductosCarrito,
+                                overlap: "",
+                                color: "red"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-icon",
+                                {
+                                  attrs: { large: "", color: "black" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.$router.push("/carrito")
+                                    }
+                                  }
+                                },
+                                [_vm._v("mdi-cart")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )

@@ -1176,7 +1176,7 @@ var render = function() {
                             "h1",
                             {
                               staticClass:
-                                "display-2 font-weight-black mb-4 heading teal--text text--darken-3"
+                                "display-2 font-weight-black mb-4 heading teal--text text--darken-3 pt-12"
                             },
                             [_vm._v("Somos tu mejor opción")]
                           ),

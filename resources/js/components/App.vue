@@ -6,7 +6,7 @@
             v-model="$store.state.drawer"
             app            
         >
-            <NavbarDerecha />
+            <NavbarDerecha/>
         </v-navigation-drawer>
         <v-main :class="this.$route.path == '/' ? 'pt-0' : ''">
             <router-view></router-view>
