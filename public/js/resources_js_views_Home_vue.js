@@ -429,7 +429,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection {\n  position: relative;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection {\n  position: relative;\n}\n.cat{\n    font-weight: 400;\n    background-color: #203338;\n    border-radius: 0 15px 0 15px;\n    color: white !important;\n    padding: 5px 15px;\n    position: relative;\n    font-size: 2.1875rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1278,8 +1278,14 @@ var render = function() {
         [
           _c(
             "v-row",
-            { staticClass: "text-h4 text-center" },
-            [_c("v-col", [_vm._v("Lo último")])],
+            { staticClass: "justify-center" },
+            [
+              _c("v-col", [
+                _c("p", { staticClass: "cat text-center" }, [
+                  _vm._v("Lo último")
+                ])
+              ])
+            ],
             1
           ),
           _vm._v(" "),
@@ -1338,8 +1344,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-row",
-            { staticClass: "text-h4 text-center" },
-            [_c("v-col", [_vm._v("Lo más comprado")])],
+            { staticClass: "justify-center" },
+            [
+              _c("v-col", [
+                _c("p", { staticClass: "cat text-center" }, [
+                  _vm._v("Lo más vendido")
+                ])
+              ])
+            ],
             1
           ),
           _vm._v(" "),

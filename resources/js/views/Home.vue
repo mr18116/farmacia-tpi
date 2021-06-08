@@ -34,8 +34,8 @@
         <v-img src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FborderWaves.svg?alt=media&token=c2ad04db-4fcc-419e-9a42-ebac98c1360e" />
       </div>
       <v-container fluid>
-        <v-row class="text-h4 text-center">
-            <v-col>Lo último</v-col>
+        <v-row class="justify-center">
+          <v-col><p class="cat text-center">Lo último</p></v-col>
         </v-row>
       <v-row align="center" justify="center">
         <v-col cols="12">
@@ -55,9 +55,9 @@
           </v-row>
         </v-col>
       </v-row>
-        <v-row class="text-h4 text-center">
-            <v-col>Lo más comprado</v-col>
-        </v-row>      
+      <v-row class="justify-center">
+          <v-col><p class="cat text-center">Lo más vendido</p></v-col>
+        </v-row>    
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-row align="center" justify="space-around">
@@ -134,5 +134,14 @@ export default {
 <style>
 section {
   position: relative;
+}
+.cat{
+    font-weight: 400;
+    background-color: #203338;
+    border-radius: 0 15px 0 15px;
+    color: white !important;
+    padding: 5px 15px;
+    position: relative;
+    font-size: 2.1875rem;
 }
 </style>

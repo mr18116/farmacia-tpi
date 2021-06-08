@@ -2,12 +2,13 @@
   <v-container fluid>
         <div class="row pt-15">
             <div class="col-md-9 col-sm-7 col-xs-12">
-                <v-breadcrumbs class="pb-0" :items="etiquetas"></v-breadcrumbs>
                 <v-row>
                     <v-col cols="12" class="text-h4">
-                        {{ this.$route.params.categoria }}
+                        <p class="cat text-center text-uppercase">{{ this.$route.params.categoria }}</p>
+                        
                     </v-col>
                 </v-row>
+                <hr>
                 <CardsProductos ref="cardCategoria" :n="36" tipo="categoria" :parametro="this.$route.params.categoria" />
                 </div>    
         </div>
@@ -27,23 +28,6 @@ export default {
     data: () => ({
         pagina: 1,
         paginas: 1,
-            etiquetas: [
-      {
-        text: "Inicio",
-        disabled: false,
-        href: "/",
-      },
-      {
-        text: "Alergia",
-        disabled: false,
-        href: "#",
-      },
-      {
-         text: "Antialergicos",
-        disabled: true,
-        href: "#",
-      },
-    ],
     }),
     methods: {
         cambioPagina(){
@@ -59,5 +43,12 @@ export default {
 </script>
 
 <style>
-
+.cat{
+    font-weight: 400;
+    background-color: #203338;
+    border-radius: 0 15px 0 15px;
+    color: white !important;
+    padding: 5px 15px;
+    position: relative;
+}
 </style>
