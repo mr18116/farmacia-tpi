@@ -47,10 +47,9 @@
               sm="12"
               class="text-center"
             > 
-              <v-hover v-slot:default="{ hover }">
-                <CardsProductos shaped :elevation="hover ? 10 : 4"
-                  :class="{ up: hover }" :n="4" tipo="ultimos" />
-              </v-hover>
+
+              <CardsProductos :n="4" tipo="ultimos" />
+      
             </v-col>
           </v-row>
         </v-col>
@@ -68,10 +67,9 @@
               sm="12"
               class="text-center"
             >
-              <v-hover v-slot:default="{ hover }">
-                <CardsProductos shaped :elevation="hover ? 10 : 4"
-                  :class="{ up: hover }" :n="4" tipo="mas-comprados" />
-              </v-hover>
+
+                <CardsProductos :n="4" tipo="mas-comprados" />
+       
             </v-col>
           </v-row>
         </v-col>
@@ -120,15 +118,6 @@ export default {
   width: 100%;
   margin-bottom: -2px;
   z-index: -1;
-}
-
-.zoom-efect {
-  transform: scale(1.1);
-}
-
-.up {
-  transform: translateY(-20px);
-  transition: 0.5s ease-out;
 }
 </style>
 <style>

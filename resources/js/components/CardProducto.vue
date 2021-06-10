@@ -1,7 +1,12 @@
 <template>
-    <v-card>
+<v-hover v-slot:default="{ hover }">
+    <v-card class="card"
+                  shaped
+                  :elevation="hover ? 10 : 4"
+                  :class="{ up: hover }">
         <router-link :to="'/detalle/' + producto.id">
-            <v-img height="200" contain :src="producto.imagen_url"></v-img>
+            <v-img class="d-block ml-auto mr-auto"
+                    :class="{ 'zoom-efect': hover }" height="200" contain :src="producto.imagen_url"></v-img>
         </router-link>
         <v-card-title class="d-block text-uppercase text-truncate">
             <router-link :to="'/detalle/' + producto.id" class="black--text">{{ producto.nombre }}</router-link>
@@ -54,7 +59,8 @@
             </v-row>
         </v-card-actions>
     </v-card>
-</template>
+</v-hover>
+</template> 
 
 <script>
 export default {
@@ -100,5 +106,32 @@ export default {
 <style scoped>
 .centered-input >>> input {
     text-align: center;
+}
+</style>
+<style>
+.card {
+  min-height: 300px;
+  padding: 10px;
+  transition: 0.5s ease-out;
+}
+.card .v-image {
+  margin-bottom: 15px;
+  transition: 0.75s;
+}
+.card h1 {
+  margin-bottom: 10px;
+}
+.zoom-efect {
+  transform: scale(1.1);
+}
+.up {
+  transform: translateY(-20px);
+  transition: 0.5s ease-out;
+}
+</style>
+
+<style>
+section {
+  position: relative;
 }
 </style>
