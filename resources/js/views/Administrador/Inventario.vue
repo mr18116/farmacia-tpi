@@ -1,8 +1,8 @@
 <template>
     <v-container fluid>        
         <v-row align="center">
-            <v-col cols="12" class="text-h1">
-                Inventario
+            <v-col cols="12" class="text-h2">
+                <p class="cat text-center text-uppercase">Inventario</p>
             </v-col>
             <v-col cols="12" sm="4">
                 <v-btn block color="green" @click="nuevoProductoModal"
@@ -41,7 +41,7 @@
                 v-for="producto in productos"
                 :key="producto.id"
             >
-                <v-card>
+                <v-card >
                     <v-app-bar :color="colorCard(producto.cantidad)" flat dense>
                         <v-toolbar-title>
                             <div class="text-subtitle-2">
@@ -398,4 +398,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.cat{
+    font-weight: 400;
+    background-color: #203338;
+    border-radius: 0 15px 0 15px;
+    color: white !important;
+    padding: 5px 15px;
+    position: relative;
+}
+</style>

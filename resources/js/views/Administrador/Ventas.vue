@@ -1,8 +1,8 @@
 <template>
     <v-container fluid>        
         <v-row align="center">
-            <v-col cols="12" class="text-h1">
-                Ventas
+            <v-col cols="12" class="text-h2">
+                <p class="cat text-center text-uppercase">Ventas</p>
             </v-col>
         </v-row>
         <v-row>
@@ -269,4 +269,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.cat{
+    font-weight: 400;
+    background-color: #203338;
+    border-radius: 0 15px 0 15px;
+    color: white !important;
+    padding: 5px 15px;
+    position: relative;
+}
+</style>
