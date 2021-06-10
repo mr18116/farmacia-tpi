@@ -12,7 +12,7 @@
               <h1 class="font-weight-light">
                 En Farmacias TPI buscamos desarrollar productos y servicios innovadores que generen valor agregado, brindando profesionalismo, responsabilidad, excelencia en el servicio, calidad humana y pasión en todo lo que hacemos. 
               </h1>
-              <v-btn rounded outlined href="#" target="_blank" large color="white" class="mt-4">
+              <v-btn rounded outlined @click="$router.push('/nosotros')" target="_blank" large color="white" class="mt-4">
                 <v-icon class="mr-2">
                   mdi-github
                 </v-icon>

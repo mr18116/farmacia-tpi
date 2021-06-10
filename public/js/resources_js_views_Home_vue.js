@@ -1081,10 +1081,14 @@ var render = function() {
                               attrs: {
                                 rounded: "",
                                 outlined: "",
-                                href: "#",
                                 target: "_blank",
                                 large: "",
                                 color: "white"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.$router.push("/nosotros")
+                                }
                               }
                             },
                             [
@@ -1209,7 +1213,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.$vuetify.goTo("#features")
+                                  return _vm.$vuetify.goTo("#download")
                                 }
                               }
                             },

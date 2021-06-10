@@ -14,7 +14,7 @@
                 outlined
                 large
                 dark
-                @click="$vuetify.goTo('#features')"
+                @click="$vuetify.goTo('#download')"
                 class="mt-5"
                 color="teal darken"
               >

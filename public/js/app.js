@@ -2676,6 +2676,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_views_SearchProductos_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/SearchProductos.vue */ "./resources/js/views/SearchProductos.vue"));
   }
 }, {
+  path: '/nosotros',
+  name: 'Nosotros',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_views_SobreNosotros_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../views/SobreNosotros.vue */ "./resources/js/views/SobreNosotros.vue"));
+  }
+}, {
   path: '/:categoria',
   name: 'Categoria',
   component: function component() {
@@ -102266,7 +102272,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Login_vue":1,"resources_js_views_Signup_vue":1,"resources_js_views_ProductoDetalle_vue":1,"resources_js_views_Administrador_Inventario_vue":1,"resources_js_views_Administrador_Ventas_vue":1,"resources_js_views_ComprasUsuario_vue":1,"resources_js_views_Carrito_vue":1,"resources_js_views_Administrador_Dashboard_vue":1,"resources_js_views_SearchProductos_vue":1,"resources_js_views_Categoria_vue":1,"resources_js_views_Error404_vue":1,"node_modules_html2canvas_dist_html2canvas_js":1,"node_modules_dompurify_dist_purify_js":1,"node_modules_canvg_lib_index_es_js":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_Home_vue":1,"resources_js_views_Login_vue":1,"resources_js_views_Signup_vue":1,"resources_js_views_ProductoDetalle_vue":1,"resources_js_views_Administrador_Inventario_vue":1,"resources_js_views_Administrador_Ventas_vue":1,"resources_js_views_ComprasUsuario_vue":1,"resources_js_views_Carrito_vue":1,"resources_js_views_Administrador_Dashboard_vue":1,"resources_js_views_SearchProductos_vue":1,"resources_js_views_SobreNosotros_vue":1,"resources_js_views_Categoria_vue":1,"resources_js_views_Error404_vue":1,"node_modules_html2canvas_dist_html2canvas_js":1,"node_modules_dompurify_dist_purify_js":1,"node_modules_canvg_lib_index_es_js":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -55,6 +55,11 @@ const routes = [
         component: () => import('../views/SearchProductos.vue')
     },
     {
+        path: '/nosotros',
+        name: 'Nosotros',
+        component: () => import('../views/SobreNosotros.vue'),
+    }, 
+    {
         path: '/:categoria',
         name: 'Categoria',
         component: () => import('../views/Categoria.vue'),
