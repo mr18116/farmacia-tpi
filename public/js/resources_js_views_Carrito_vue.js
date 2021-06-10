@@ -5788,7 +5788,7 @@ var render = function() {
                             [
                               _c("v-img", {
                                 attrs: {
-                                  width: "60",
+                                  width: "70",
                                   height: "35",
                                   src:
                                     "https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"
@@ -5810,7 +5810,7 @@ var render = function() {
                                   width: "24",
                                   height: "24",
                                   src:
-                                    "https://image.flaticon.com/icons/png/512/109/109602.png"
+                                    "https://static.thenounproject.com/png/2172423-200.png"
                                 }
                               })
                             ],
@@ -5924,8 +5924,7 @@ var render = function() {
                                 attrs: {
                                   width: "24",
                                   height: "24",
-                                  src:
-                                    "https://image.flaticon.com/icons/png/512/109/109602.png"
+                                  src: "https://img.icons8.com/ios/452/x.png"
                                 }
                               })
                             ],

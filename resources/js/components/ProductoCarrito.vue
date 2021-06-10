@@ -30,8 +30,8 @@
                 </v-col>
                 <v-col class="d-flex justify-center align-center pr-5" cols="1.5">${{ Math.round(producto.producto.precio*producto.cantidad * 100)/100 }}</v-col>
                 <v-col class="d-flex justify-center align-center" cols="1">
-                  <a class="px-2" @click="procederCompra"><v-img width="60" height="35" src="https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"></v-img></a>
-                  <a class="pr-10" @click="quitarProducto"><v-img width="24" height="24" src="https://image.flaticon.com/icons/png/512/109/109602.png"></v-img></a>
+                  <a class="px-2" @click="procederCompra"><v-img width="70" height="35" src="https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"></v-img></a>
+                  <a class="pr-10" @click="quitarProducto"><v-img width="24" height="24" src="https://static.thenounproject.com/png/2172423-200.png"></v-img></a>
                 </v-col>
             </v-row>
         </v-col>
@@ -50,7 +50,7 @@
                     </v-col>
                     <v-col class="d-flex justify-center align-center" cols="2">
                         <a class="px-2" @click="procederCompra"><v-img width="60" height="35" src="https://dnielectronico.pe/wp-content/uploads/2019/11/boton-comprar-png-6.png"></v-img></a>
-                        <a class="pr-10" @click="quitarProducto"><v-img width="24" height="24" src="https://image.flaticon.com/icons/png/512/109/109602.png"></v-img></a>
+                        <a class="pr-10" @click="quitarProducto"><v-img width="24" height="24" src="https://img.icons8.com/ios/452/x.png"></v-img></a>
                     </v-col>
                 </v-row>
                 <v-row>
