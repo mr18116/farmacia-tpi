@@ -263,6 +263,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -951,53 +965,80 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "" } },
     [
-      _c("div", { staticClass: "row pt-15" }, [
-        _c(
-          "div",
-          { staticClass: "col-md-9 col-sm-7 col-xs-12" },
-          [
-            _c(
-              "v-row",
-              [
-                _c("v-col", { staticClass: "text-h4", attrs: { cols: "12" } }, [
-                  _c("p", { staticClass: "cat text-center text-uppercase" }, [
-                    _vm._v(_vm._s(this.$route.params.categoria))
-                  ])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("CardsProductos", {
-              ref: "cardCategoria",
-              attrs: {
-                n: 36,
-                tipo: "categoria",
-                parametro: this.$route.params.categoria
-              }
-            })
-          ],
-          1
-        )
-      ]),
+      _c(
+        "v-row",
+        { staticClass: "pt-10" },
+        [
+          _c("v-col", { staticClass: "text-h4", attrs: { cols: "12" } }, [
+            _c("p", { staticClass: "cat text-center text-uppercase" }, [
+              _vm._v(_vm._s(this.$route.params.categoria))
+            ])
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
-        "v-col",
-        { attrs: { cols: "12" } },
+        "v-row",
+        { attrs: { align: "center", justify: "center" } },
         [
-          _c("v-pagination", {
-            attrs: { length: _vm.paginas },
-            on: { input: _vm.cambioPagina },
-            model: {
-              value: _vm.pagina,
-              callback: function($$v) {
-                _vm.pagina = $$v
-              },
-              expression: "pagina"
-            }
-          })
+          _c(
+            "v-col",
+            { attrs: { cols: "12" } },
+            [
+              _c(
+                "v-row",
+                { attrs: { align: "center", justify: "space-around" } },
+                [
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "text-center",
+                      attrs: { cols: "12", xl: "9", md: "10", sm: "12" }
+                    },
+                    [
+                      _c("CardsProductos", {
+                        ref: "cardCategoria",
+                        attrs: {
+                          n: 36,
+                          tipo: "categoria",
+                          parametro: this.$route.params.categoria
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "12" } },
+            [
+              _c("v-pagination", {
+                attrs: { length: _vm.paginas },
+                on: { input: _vm.cambioPagina },
+                model: {
+                  value: _vm.pagina,
+                  callback: function($$v) {
+                    _vm.pagina = $$v
+                  },
+                  expression: "pagina"
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       )

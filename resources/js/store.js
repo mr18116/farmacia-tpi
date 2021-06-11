@@ -13,6 +13,8 @@ export default new Vuex.Store({
         rol: null,
         carrito: null,
         actualizandoCarrito: false,
+        addCarrito: false,
+        compra: false,
     },
     mutations: {
         SET_USER(state, user){
@@ -26,6 +28,12 @@ export default new Vuex.Store({
         },
         SET_AC(state, estado){
             state.actualizandoCarrito = estado;
+        },
+        SET_ADDC(state, estado){
+            state.addCarrito = estado;
+        },
+        SET_COMPRA(state, estado){
+            state.compra = estado;
         }
     },
     actions: {
@@ -52,12 +60,15 @@ export default new Vuex.Store({
             axios.get('/api/carrito-user/' + state.user.id).then(async res => {
                 await commit('SET_CARRITO', res.data);
                 commit('SET_AC', false);
+                commit('SET_ADDC', false);
             }).catch( () => {
                 commit('SET_AC', false);
+                commit('SET_ADDC', false);
             });
         },
         addProducto({ dispatch, state, commit }, { producto_id, cantidad }){
             commit('SET_AC', true);
+            commit('SET_ADDC', true);
             axios.post('/api/carrito-producto', {
                 carrito_id: state.carrito.id,
                 producto_id: producto_id,
@@ -66,6 +77,7 @@ export default new Vuex.Store({
                 dispatch('getCarrito');
             }).catch( () => {
                 commit('SET_AC', false);
+                commit('SET_ADDC', false);
             });
         },
         cantidadProducto({ dispatch, state, commit }, { cantidad, producto_id }){
@@ -93,6 +105,9 @@ export default new Vuex.Store({
             }).catch( () => {
                 commit('SET_AC', false);
             });
+        },
+        comprando({commit}, estado){
+            commit('SET_COMPRA', estado);
         }
     },
     getters: {

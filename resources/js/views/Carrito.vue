@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-      <v-row v-if="$store.state.user != null">
+      <v-row v-if="$store.state.user != null" justify="center">
           <v-col cols="12" class="text-h4 text-center" v-if="productos.length == 0">
               No tienes productos en el carro de compras.
           </v-col>
@@ -46,10 +46,12 @@
 
           </v-col>
           <v-col cols="auto" class="my-10" v-if="productos.length > 0 && $store.state.actualizandoCarrito">
-              <v-row class="text-h4">Actualizando ...</v-row>
-              <v-row justify="center">
-                  <v-progress-circular :size="70" indeterminate color="black"></v-progress-circular>
-              </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" class="text-h4 text-center">Actualizando ...</v-col>
+                    <v-col cols="auto">
+                        <v-progress-circular :size="70" indeterminate color="black"></v-progress-circular>
+                    </v-col>
+                </v-row>
           </v-col>
       </v-row>
       <v-row v-else>
@@ -58,6 +60,25 @@
           </v-col>
       </v-row>
       <ModalComprar ref="modalComprar" :productos="productosArray" :cantidades="cantidades" tipo="todos" v-if="productos.length > 0"/>
+        <v-snackbar
+        v-model="snackCompra"
+        color="light-blue lighten-2"
+        rounded="pill"
+        right
+        top
+        >
+        <v-icon dark left>mdi-receipt</v-icon>
+        <span class="text-subtitle-1">Compra completada. <router-link to="/compras" class="white--text font-weight-bold">Ver Compras</router-link></span>
+        <template v-slot:action="{ attrs }">
+            <v-btn
+            icon
+            v-bind="attrs"
+            @click="snackCompra = false"
+            >
+            <v-icon dark>mdi-window-close</v-icon>
+            </v-btn>
+        </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -70,6 +91,9 @@ export default {
         ProductoCarrito,
         ModalComprar,
     },
+    data: () => ({
+        snackCompra: false,
+    }),
     computed: {
         productos(){
             return this.$store.getters.productosCarrito;
@@ -98,6 +122,14 @@ export default {
                 this.$refs.modalComprar.dialog = true;
             } else {
                 this.$router.push('/login');
+            }
+        }
+    },
+    watch: {
+        '$store.state.compra'(newV, oldV){
+            if (this.$store.state.compra == true) {
+                this.snackCompra = true;
+                this.$store.dispatch('comprando', false);
             }
         }
     }

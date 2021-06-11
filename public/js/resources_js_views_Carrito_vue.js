@@ -148,10 +148,15 @@ __webpack_require__.r(__webpack_exports__);
         doc.save("Factura - " + response.data.id + ".pdf"); //doc.output('dataurlnewwindow');
         //window.open(doc.output('bloburl'), '_blank');
 
-        _this3.dialog = false;
+        _this3.$store.dispatch('comprando', true);
+
+        _this3.cerrarModal();
       })["catch"](function () {
         _this3.comprando = false;
       });
+    },
+    cerrarModal: function cerrarModal() {
+      this.factura.formas_envios_id = null, this.factura.metodo_pagos_id = null, this.factura.direccion = '', this.dialog = false;
     }
   },
   created: function created() {
@@ -410,12 +415,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     ProductoCarrito: _components_ProductoCarrito__WEBPACK_IMPORTED_MODULE_0__.default,
     ModalComprar: _components_ModalComprar__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      snackCompra: false
+    };
   },
   computed: {
     productos: function productos() {
@@ -445,6 +476,14 @@ __webpack_require__.r(__webpack_exports__);
         this.$refs.modalComprar.dialog = true;
       } else {
         this.$router.push('/login');
+      }
+    }
+  },
+  watch: {
+    '$store.state.compra': function $storeStateCompra(newV, oldV) {
+      if (this.$store.state.compra == true) {
+        this.snackCompra = true;
+        this.$store.dispatch('comprando', false);
       }
     }
   }
@@ -5577,11 +5616,7 @@ var render = function() {
                 "v-btn",
                 {
                   attrs: { color: "red", disabled: _vm.comprando },
-                  on: {
-                    click: function($event) {
-                      _vm.dialog = false
-                    }
-                  }
+                  on: { click: _vm.cerrarModal }
                 },
                 [_vm._v("Cancelar")]
               ),
@@ -6084,6 +6119,7 @@ var render = function() {
       _vm.$store.state.user != null
         ? _c(
             "v-row",
+            { attrs: { justify: "center" } },
             [
               _vm.productos.length == 0
                 ? _c(
@@ -6290,21 +6326,33 @@ var render = function() {
                     "v-col",
                     { staticClass: "my-10", attrs: { cols: "auto" } },
                     [
-                      _c("v-row", { staticClass: "text-h4" }, [
-                        _vm._v("Actualizando ...")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "v-row",
                         { attrs: { justify: "center" } },
                         [
-                          _c("v-progress-circular", {
-                            attrs: {
-                              size: 70,
-                              indeterminate: "",
-                              color: "black"
-                            }
-                          })
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "text-h4 text-center",
+                              attrs: { cols: "12" }
+                            },
+                            [_vm._v("Actualizando ...")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "auto" } },
+                            [
+                              _c("v-progress-circular", {
+                                attrs: {
+                                  size: 70,
+                                  indeterminate: "",
+                                  color: "black"
+                                }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -6340,7 +6388,81 @@ var render = function() {
               tipo: "todos"
             }
           })
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: {
+            color: "light-blue lighten-2",
+            rounded: "pill",
+            right: "",
+            top: ""
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { icon: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snackCompra = false
+                          }
+                        }
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [
+                      _c("v-icon", { attrs: { dark: "" } }, [
+                        _vm._v("mdi-window-close")
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snackCompra,
+            callback: function($$v) {
+              _vm.snackCompra = $$v
+            },
+            expression: "snackCompra"
+          }
+        },
+        [
+          _c("v-icon", { attrs: { dark: "", left: "" } }, [
+            _vm._v("mdi-receipt")
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "text-subtitle-1" },
+            [
+              _vm._v("Compra completada. "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "white--text font-weight-bold",
+                  attrs: { to: "/compras" }
+                },
+                [_vm._v("Ver Compras")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )

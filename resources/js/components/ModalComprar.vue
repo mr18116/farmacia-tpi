@@ -37,7 +37,7 @@
           </v-card-text>
           <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="red" @click="dialog = false" :disabled="comprando">Cancelar</v-btn>
+              <v-btn color="red" @click="cerrarModal" :disabled="comprando">Cancelar</v-btn>
               <v-btn color="primary" @click="confirmarCompra" :disabled="comprando">Confirmar compra</v-btn>
           </v-card-actions>
       </v-card>
@@ -123,11 +123,18 @@ export default {
                 doc.save("Factura - " + response.data.id + ".pdf");
                 //doc.output('dataurlnewwindow');
                 //window.open(doc.output('bloburl'), '_blank');
-                this.dialog = false;
+                this.$store.dispatch('comprando', true);
+                this.cerrarModal();
             }).catch( () => {
                 this.comprando = false;
             });
-        }
+        },
+        cerrarModal(){
+            this.factura.formas_envios_id = null,
+            this.factura.metodo_pagos_id = null,
+            this.factura.direccion = '',
+            this.dialog = false;
+        },
     },
     created(){
         if (this.productos.length > 0 && this.cantidades.length > 0) {

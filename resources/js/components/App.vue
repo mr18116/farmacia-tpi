@@ -27,6 +27,26 @@
             </v-btn>
         </v-scale-transition>
         <footerf />
+        <v-snackbar
+        v-model="snackCarrito"
+        color="green"
+        rounded="pill"
+        :timeout="3000"
+        right
+        >
+        <v-icon dark left>mdi-cart</v-icon>
+        <span class="text-subtitle-1">Producto agregado al <router-link to="/carrito" class="white--text font-weight-bold">carrito</router-link></span>
+        <template v-slot:action="{ attrs }">
+            <v-btn
+            icon
+            v-bind="attrs"
+            @click="snackCarrito = false"
+            >
+            <v-icon dark>mdi-window-close</v-icon>
+            </v-btn>
+        </template>
+        </v-snackbar>
+
     </v-app>
 
     <!--     <v-app>
@@ -61,7 +81,8 @@ export default {
         mostrar: true,
         fab: null,
         color: "",
-        flat: null
+        flat: null,
+        snackCarrito: false,
     }),
     created() {
         const top = window.pageYOffset || 0;
@@ -91,6 +112,11 @@ export default {
             } else {
                 this.color = "transparent";
                 this.flat = true;
+            }
+        },
+        '$store.state.addCarrito'(newV, oldV){
+            if (newV == false && oldV == true) {
+                this.snackCarrito = true;
             }
         }
     },

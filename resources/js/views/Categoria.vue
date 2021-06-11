@@ -1,20 +1,34 @@
 <template>
   <v-container fluid>
-        <div class="row pt-15">
-            <div class="col-md-9 col-sm-7 col-xs-12">
-                <v-row>
-                    <v-col cols="12" class="text-h4">
-                        <p class="cat text-center text-uppercase">{{ this.$route.params.categoria }}</p>
-                        
-                    </v-col>
-                </v-row>
-                <hr>
+        
+        <v-row class="pt-10">
+            <v-col cols="12" class="text-h4">
+                <p class="cat text-center text-uppercase">{{ this.$route.params.categoria }}</p>
+                
+            </v-col>
+        </v-row>
+        <v-row align="center" justify="center">
+            <v-col cols="12">
+            <v-row align="center" justify="space-around">
+                <v-col
+                cols="12"
+                xl="9"
+                md="10"
+                sm="12"
+                class="text-center"
+                > 
+
                 <CardsProductos ref="cardCategoria" :n="36" tipo="categoria" :parametro="this.$route.params.categoria" />
-                </div>    
-        </div>
-      <v-col cols="12">
-           <v-pagination v-model="pagina" :length="paginas" @input="cambioPagina"> </v-pagination>
-      </v-col>
+        
+                </v-col>
+             </v-row>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12">
+                <v-pagination v-model="pagina" :length="paginas" @input="cambioPagina"> </v-pagination>
+            </v-col>
+        </v-row>
   </v-container>
 </template>
 

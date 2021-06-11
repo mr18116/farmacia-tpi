@@ -4,7 +4,7 @@
         <v-row v-if="cargando" justify="center" class="my-10">
               <v-col cols="12" class="text-h4 text-center">Cargando ...</v-col>
               <v-col cols="auto">
-                  <v-progress-circular :size="70" indeterminate color="black" class="d-inline-block mx-auto"></v-progress-circular>
+                  <v-progress-circular :size="70" indeterminate color="black"></v-progress-circular>
               </v-col>
         </v-row>
         <v-row class="pt-10 px-5"  v-else-if="producto != null && cargando == false">
@@ -142,6 +142,24 @@
             tipo="individual"
             v-if="producto != null"
         />
+        <v-snackbar
+        v-model="snackCompra"
+        color="light-blue lighten-2"
+        rounded="pill"
+        right
+        >
+        <v-icon dark left>mdi-receipt</v-icon>
+        <span class="text-subtitle-1">Compra completada. <router-link to="/compras" class="white--text font-weight-bold">Ver Compras</router-link></span>
+        <template v-slot:action="{ attrs }">
+            <v-btn
+            icon
+            v-bind="attrs"
+            @click="snackCompra = false"
+            >
+            <v-icon dark>mdi-window-close</v-icon>
+            </v-btn>
+        </template>
+        </v-snackbar>
     </v-container>
 </template>
 
@@ -159,6 +177,7 @@ export default {
         cargando: true,
         producto: null,
         cantidad: 1,
+        snackCompra: false,
         rating: 4.5,
         etiquetas: [
             {
@@ -237,6 +256,12 @@ export default {
                 this.cargando = true;
             }
             this.obtenerProducto();
+        },
+        '$store.state.compra'(newV, oldV){
+            if (this.$store.state.compra == true) {
+                this.snackCompra = true;
+                this.$store.dispatch('comprando', false);
+            }
         }
     }
 };

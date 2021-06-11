@@ -379,10 +379,15 @@ __webpack_require__.r(__webpack_exports__);
         doc.save("Factura - " + response.data.id + ".pdf"); //doc.output('dataurlnewwindow');
         //window.open(doc.output('bloburl'), '_blank');
 
-        _this3.dialog = false;
+        _this3.$store.dispatch('comprando', true);
+
+        _this3.cerrarModal();
       })["catch"](function () {
         _this3.comprando = false;
       });
+    },
+    cerrarModal: function cerrarModal() {
+      this.factura.formas_envios_id = null, this.factura.metodo_pagos_id = null, this.factura.direccion = '', this.dialog = false;
     }
   },
   created: function created() {
@@ -568,6 +573,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -581,6 +604,7 @@ __webpack_require__.r(__webpack_exports__);
       cargando: true,
       producto: null,
       cantidad: 1,
+      snackCompra: false,
       rating: 4.5,
       etiquetas: [{
         text: "Inicio",
@@ -650,6 +674,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.obtenerProducto();
+    },
+    '$store.state.compra': function $storeStateCompra(newV, oldV) {
+      if (this.$store.state.compra == true) {
+        this.snackCompra = true;
+        this.$store.dispatch('comprando', false);
+      }
     }
   }
 });
@@ -6237,11 +6267,7 @@ var render = function() {
                 "v-btn",
                 {
                   attrs: { color: "red", disabled: _vm.comprando },
-                  on: {
-                    click: function($event) {
-                      _vm.dialog = false
-                    }
-                  }
+                  on: { click: _vm.cerrarModal }
                 },
                 [_vm._v("Cancelar")]
               ),
@@ -6307,7 +6333,6 @@ var render = function() {
                 { attrs: { cols: "auto" } },
                 [
                   _c("v-progress-circular", {
-                    staticClass: "d-inline-block mx-auto",
                     attrs: { size: 70, indeterminate: "", color: "black" }
                   })
                 ],
@@ -6633,7 +6658,76 @@ var render = function() {
               tipo: "individual"
             }
           })
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { color: "light-blue lighten-2", rounded: "pill", right: "" },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function(ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { icon: "" },
+                        on: {
+                          click: function($event) {
+                            _vm.snackCompra = false
+                          }
+                        }
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [
+                      _c("v-icon", { attrs: { dark: "" } }, [
+                        _vm._v("mdi-window-close")
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.snackCompra,
+            callback: function($$v) {
+              _vm.snackCompra = $$v
+            },
+            expression: "snackCompra"
+          }
+        },
+        [
+          _c("v-icon", { attrs: { dark: "", left: "" } }, [
+            _vm._v("mdi-receipt")
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "text-subtitle-1" },
+            [
+              _vm._v("Compra completada. "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "white--text font-weight-bold",
+                  attrs: { to: "/compras" }
+                },
+                [_vm._v("Ver Compras")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
