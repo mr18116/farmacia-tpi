@@ -281,6 +281,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -5766,7 +5768,10 @@ var render = function() {
                             {
                               attrs: {
                                 color: "white",
-                                disabled: _vm.actualizar == false
+                                disabled:
+                                  _vm.actualizar == false ||
+                                  _vm.cantidad == 0 ||
+                                  _vm.cantidad == ""
                               },
                               on: { click: _vm.actualizarCantidad }
                             },

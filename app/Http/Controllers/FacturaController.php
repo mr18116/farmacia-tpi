@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Factura;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -43,7 +44,15 @@ class FacturaController extends Controller
         $result = $factura->save();
         if($result){
             for ($i=0; $i < count($request->idsProductos); $i++) { 
-                $factura->productos()->attach($request->idsProductos[$i], ['cantidad' => $request->cantidades[$i]]);
+                $producto = Producto::find($request->idsProductos[$i]);
+                if ($request->idsProductos[$i] > $producto->cantidad) {
+                    $producto->cantidad = 0;
+                    $factura->productos()->attach($request->idsProductos[$i], ['cantidad' => $producto->cantidad]);
+                } else {
+                    $producto->cantidad -= $request->cantidades[$i];
+                    $factura->productos()->attach($request->idsProductos[$i], ['cantidad' => $request->cantidades[$i]]);
+                }
+                $producto->save();
             }
             $result = $factura->save();
             $factura = Factura::find($factura->id);

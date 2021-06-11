@@ -22,9 +22,10 @@
                         outlined
                         class="centered-input"
                         color="primary darken-2"
-                        type="number">    
+                        type="number"
+                        >    
                         </v-text-field>  
-                        <v-chip color="white" :disabled="actualizar == false" @click="actualizarCantidad"> 
+                        <v-chip color="white" :disabled="actualizar == false || cantidad == 0 || cantidad == ''" @click="actualizarCantidad"> 
                            <v-img width="24" height="24" src="https://i.pinimg.com/originals/35/af/1d/35af1d7a2191d6926c8ee08fb7f4ee19.png"></v-img>
                         </v-chip>
                 </v-col>
@@ -65,7 +66,8 @@
                                     outlined
                                     class="centered-input"
                                     color="primary darken-2"
-                                    type="number">    
+                                    type="number"
+                                    >    
                                     </v-text-field>  
                                     <v-chip color="white" :disabled="actualizar == false" @click="actualizarCantidad"> 
                                     <v-img width="24" height="24" src="https://i.pinimg.com/originals/35/af/1d/35af1d7a2191d6926c8ee08fb7f4ee19.png"></v-img>
@@ -127,7 +129,7 @@ export default {
             } else {
                 this.$router.push('/login');
             }
-        }
+        },
     },
     created(){
         this.cantidad = this.producto.cantidad;

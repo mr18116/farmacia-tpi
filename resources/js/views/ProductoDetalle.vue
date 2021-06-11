@@ -74,6 +74,8 @@
                                 outlined
                                 style="width:100px"
                                 dense
+                                @input="controlCantidad"
+                                type="number"
                             ></v-text-field>
                             <v-btn
                                 class="primary white--text"
@@ -81,7 +83,7 @@
                                 tile
                                 dense
                                 @click="agregar"
-                                :disabled="$store.state.actualizandoCarrito"
+                                :disabled="$store.state.actualizandoCarrito || cantidad == 0 || cantidad == ''"
                             >
                                 <v-icon left>mdi-cart</v-icon> Agregar</v-btn
                             >
@@ -90,7 +92,7 @@
                                 class="white--text"
                                 dense
                                 tile
-                                :disabled="$store.state.actualizandoCarrito"
+                                :disabled="$store.state.actualizandoCarrito || cantidad == 0 || cantidad == ''"
                                 @click="procederCompra"
                             >
                                  <v-icon left>mdi-currency-usd</v-icon>Comprar
@@ -247,6 +249,11 @@ export default {
                 this.$refs.modalComprar.dialog = true;
             } else {
                 this.$router.push("/login");
+            }
+        },
+        controlCantidad(){
+            if (this.cantidad > this.producto.cantidad) {
+                this.cantidad = this.producto.cantidad;
             }
         }
     },

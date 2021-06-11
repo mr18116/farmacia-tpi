@@ -37,6 +37,7 @@
                         outlined
                         class="centered-input"
                         color="primary darken-2"
+                        @input="controlCantidad"
                     >
                     </v-text-field>
                 </v-col>
@@ -52,7 +53,7 @@
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="auto" class="mt-1 mt-lg-0">
-                    <v-btn icon outlined color="primary darken-2" block @click="agregar" :disabled="$store.state.actualizandoCarrito">
+                    <v-btn icon outlined color="primary darken-2" block @click="agregar" :disabled="$store.state.actualizandoCarrito || cantidad == 0 || cantidad == ''">
                         <v-icon>mdi-cart-plus</v-icon>
                     </v-btn>
                 </v-col>
@@ -90,6 +91,11 @@ export default {
                 this.cantidad = 1;
             } else {
                 this.$router.push('/login');
+            }
+        },
+        controlCantidad(){
+            if (this.cantidad > this.producto.cantidad) {
+                this.cantidad = this.producto.cantidad;
             }
         }
     },

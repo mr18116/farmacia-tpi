@@ -75,6 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     producto: Object
@@ -104,6 +105,11 @@ __webpack_require__.r(__webpack_exports__);
         this.cantidad = 1;
       } else {
         this.$router.push('/login');
+      }
+    },
+    controlCantidad: function controlCantidad() {
+      if (this.cantidad > this.producto.cantidad) {
+        this.cantidad = this.producto.cantidad;
       }
     }
   },
@@ -591,6 +597,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -664,6 +672,11 @@ __webpack_require__.r(__webpack_exports__);
         this.$refs.modalComprar.dialog = true;
       } else {
         this.$router.push("/login");
+      }
+    },
+    controlCantidad: function controlCantidad() {
+      if (this.cantidad > this.producto.cantidad) {
+        this.cantidad = this.producto.cantidad;
       }
     }
   },
@@ -5996,6 +6009,7 @@ var render = function() {
                                 outlined: "",
                                 color: "primary darken-2"
                               },
+                              on: { input: _vm.controlCantidad },
                               model: {
                                 value: _vm.cantidad,
                                 callback: function($$v) {
@@ -6050,7 +6064,10 @@ var render = function() {
                                   outlined: "",
                                   color: "primary darken-2",
                                   block: "",
-                                  disabled: _vm.$store.state.actualizandoCarrito
+                                  disabled:
+                                    _vm.$store.state.actualizandoCarrito ||
+                                    _vm.cantidad == 0 ||
+                                    _vm.cantidad == ""
                                 },
                                 on: { click: _vm.agregar }
                               },
@@ -6485,7 +6502,8 @@ var render = function() {
                         _c("v-text-field", {
                           staticClass: "centered-input",
                           staticStyle: { width: "100px" },
-                          attrs: { outlined: "", dense: "" },
+                          attrs: { outlined: "", dense: "", type: "number" },
+                          on: { input: _vm.controlCantidad },
                           model: {
                             value: _vm.cantidad,
                             callback: function($$v) {
@@ -6503,7 +6521,10 @@ var render = function() {
                               outlined: "",
                               tile: "",
                               dense: "",
-                              disabled: _vm.$store.state.actualizandoCarrito
+                              disabled:
+                                _vm.$store.state.actualizandoCarrito ||
+                                _vm.cantidad == 0 ||
+                                _vm.cantidad == ""
                             },
                             on: { click: _vm.agregar }
                           },
@@ -6524,7 +6545,10 @@ var render = function() {
                               color: "green",
                               dense: "",
                               tile: "",
-                              disabled: _vm.$store.state.actualizandoCarrito
+                              disabled:
+                                _vm.$store.state.actualizandoCarrito ||
+                                _vm.cantidad == 0 ||
+                                _vm.cantidad == ""
                             },
                             on: { click: _vm.procederCompra }
                           },
