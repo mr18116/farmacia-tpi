@@ -15,7 +15,7 @@ class CreateTipoUsuariosTable extends Migration
     {
         Schema::create('tipo_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('rol');
+            $table->string('rol', 100);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

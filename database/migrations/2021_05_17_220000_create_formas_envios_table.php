@@ -15,7 +15,7 @@ class CreateFormasEnviosTable extends Migration
     {
         Schema::create('formas_envios', function (Blueprint $table) {
             $table->id();
-            $table->string('empresa');
+            $table->string('empresa', 200);
             $table->timestamps();
         });
     }
