@@ -74,6 +74,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -361,87 +365,106 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { attrs: { align: "center", justify: "center" } },
+        [
           _c(
-            "v-row",
-            {
-              staticClass: "mb-5",
-              attrs: { align: "center", justify: "space-around" }
-            },
+            "v-col",
+            { attrs: { cols: "10" } },
             [
               _c(
-                "v-col",
-                { attrs: { cols: "12", sm: "6" } },
+                "v-row",
+                {
+                  staticClass: "mb-5",
+                  attrs: { align: "center", justify: "space-around" }
+                },
                 [
-                  _c("v-hover", {
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function(ref) {
-                          var hover = ref.hover
-                          return [
-                            _c(
-                              "v-card",
-                              {
-                                staticClass: "card",
-                                class: { up: hover },
-                                attrs: { shaped: "", elevation: hover ? 10 : 4 }
-                              },
-                              [
-                                _c("v-img", {
-                                  staticClass: "d-block ml-auto mr-auto",
-                                  class: { "zoom-efect": hover },
-                                  attrs: {
-                                    src:
-                                      "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fintegrantes.png?alt=media&token=98e4d000-c25c-4a2c-8ac2-5b5479540979",
-                                    "max-width": "100px"
-                                  }
-                                }),
-                                _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12", sm: "6" } },
+                    [
+                      _c("v-hover", {
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(ref) {
+                              var hover = ref.hover
+                              return [
                                 _c(
-                                  "h1",
+                                  "v-card",
                                   {
-                                    staticClass:
-                                      "font-weight-regular text-center"
-                                  },
-                                  [_vm._v("Integrantes")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "h4",
-                                  {
-                                    staticClass:
-                                      "font-weight-regular subtitle-1 text-center"
+                                    staticClass: "card",
+                                    class: { up: hover },
+                                    attrs: {
+                                      shaped: "",
+                                      elevation: hover ? 10 : 4
+                                    }
                                   },
                                   [
-                                    _vm._v("Acuña Valdivieso, Daniel Enrique"),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n              Galicia Cáceres, Fernando Amilcar"
+                                    _c("v-img", {
+                                      staticClass: "d-block ml-auto mr-auto",
+                                      class: { "zoom-efect": hover },
+                                      attrs: {
+                                        src:
+                                          "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fintegrantes.png?alt=media&token=98e4d000-c25c-4a2c-8ac2-5b5479540979",
+                                        "max-width": "100px"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "h1",
+                                      {
+                                        staticClass:
+                                          "font-weight-regular text-center"
+                                      },
+                                      [_vm._v("Integrantes")]
                                     ),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n              Martínez Ruíz, Noé Francisco "
-                                    ),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n              Portillo Merlos, Melvin Ernesto"
-                                    ),
-                                    _c("br"),
-                                    _vm._v(
-                                      "\n              Zarco Alvarenga, Harold José\n            "
+                                    _vm._v(" "),
+                                    _c(
+                                      "h4",
+                                      {
+                                        staticClass:
+                                          "font-weight-regular subtitle-1 text-center"
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Acuña Valdivieso, Daniel Enrique"
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                Galicia Cáceres, Fernando Amilcar"
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                Martínez Ruíz, Noé Francisco "
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                Portillo Merlos, Melvin Ernesto"
+                                        ),
+                                        _c("br"),
+                                        _vm._v(
+                                          "\n                Zarco Alvarenga, Harold José\n              "
+                                        )
+                                      ]
                                     )
-                                  ]
+                                  ],
+                                  1
                                 )
-                              ],
-                              1
-                            )
-                          ]
-                        }
-                      }
-                    ])
-                  })
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               )

@@ -2408,8 +2408,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         action: "mdi-school",
         items: [{
-          title: "Anticuagulante y cuagulante",
-          link: "/anticuagulante y cuagulante"
+          title: "Anticoagulante y coagulante",
+          link: "/anticoagulante y coagulante"
         }, {
           title: "Circulación saludable",
           link: "/circulación saludable"
@@ -2500,7 +2500,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     return _this.$store.dispatch('getUser');
 
                   case 2:
-                    if (_this.$route.path == '/inventario') {
+                    if (_this.$route.path == '/inventario' || _this.$route.path == '/ventas' || _this.$route.path == '/dashboard' || _this.$route.path == '/compras') {
                       _this.$router.replace('/');
                     }
 

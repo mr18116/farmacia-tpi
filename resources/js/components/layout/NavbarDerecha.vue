@@ -103,7 +103,7 @@ export default {
             {
                 action: "mdi-school",
                 items: [
-                    { title: "Anticuagulante y cuagulante",  link: "/anticuagulante y cuagulante" },
+                    { title: "Anticoagulante y coagulante",  link: "/anticoagulante y coagulante" },
                     { title: "Circulación saludable", link: "/circulación saludable" },
                     { title: "Colesterol y trigliceridos", link: "/colesterol y trigliceridos"},
                     { title: "Corazón" , link: "/corazon"},
@@ -154,7 +154,7 @@ export default {
             axios.get("/sanctum/csrf-cookie").then((response) => {
                 axios.post("/logout").then(async response => {
                     await this.$store.dispatch('getUser');
-                    if (this.$route.path == '/inventario') {
+                    if (this.$route.path == '/inventario' || this.$route.path == '/ventas' || this.$route.path == '/dashboard' || this.$route.path == '/compras') {
                         this.$router.replace('/');
                     }
                 });

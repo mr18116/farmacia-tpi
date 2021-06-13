@@ -32,32 +32,36 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-row align="center" justify="space-around" class="mb-5">
-        <v-col cols="12" sm="6">
-          <v-hover v-slot:default="{ hover }">
-            <v-card
-              class="card"
-              shaped
-              :elevation="hover ? 10 : 4"
-              :class="{ up: hover }"
-            >
-              <v-img
-                src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fintegrantes.png?alt=media&token=98e4d000-c25c-4a2c-8ac2-5b5479540979"
-                max-width="100px"
-                class="d-block ml-auto mr-auto"
-                :class="{ 'zoom-efect': hover }"
-              ></v-img>
-              <h1 class="font-weight-regular text-center">Integrantes</h1>
-              <h4 class="font-weight-regular subtitle-1 text-center">Acuña Valdivieso, Daniel Enrique<br/>
-                Galicia Cáceres, Fernando Amilcar<br/>
-                Martínez Ruíz, Noé Francisco <br/>
-                Portillo Merlos, Melvin Ernesto<br/>
-                Zarco Alvarenga, Harold José
-              </h4>
-            </v-card>
-          </v-hover>
-        </v-col>
-      </v-row>
+    </v-row>
+    <v-row align="center" justify="center">
+      <v-col cols="10">
+        <v-row align="center" justify="space-around" class="mb-5">
+          <v-col cols="12" sm="6">
+            <v-hover v-slot:default="{ hover }">
+              <v-card
+                class="card"
+                shaped
+                :elevation="hover ? 10 : 4"
+                :class="{ up: hover }"
+              >
+                <v-img
+                  src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fintegrantes.png?alt=media&token=98e4d000-c25c-4a2c-8ac2-5b5479540979"
+                  max-width="100px"
+                  class="d-block ml-auto mr-auto"
+                  :class="{ 'zoom-efect': hover }"
+                ></v-img>
+                <h1 class="font-weight-regular text-center">Integrantes</h1>
+                <h4 class="font-weight-regular subtitle-1 text-center">Acuña Valdivieso, Daniel Enrique<br/>
+                  Galicia Cáceres, Fernando Amilcar<br/>
+                  Martínez Ruíz, Noé Francisco <br/>
+                  Portillo Merlos, Melvin Ernesto<br/>
+                  Zarco Alvarenga, Harold José
+                </h4>
+              </v-card>
+            </v-hover>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
   </v-container>
 </template>
