@@ -76,6 +76,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     producto: Object
@@ -464,6 +470,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_ModalComprar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ModalComprar */ "./resources/js/components/ModalComprar.vue");
+//
+//
 //
 //
 //
@@ -5995,124 +6003,147 @@ var render = function() {
                 _c(
                   "v-card-actions",
                   [
-                    _c(
-                      "v-row",
-                      {
-                        attrs: {
-                          align: "center",
-                          justify: "center",
-                          "align-content": "center",
-                          "no-gutters": ""
-                        }
-                      },
-                      [
-                        _c(
-                          "v-col",
-                          { attrs: { cols: "auto" } },
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                staticStyle: {
-                                  padding: "0px",
-                                  "min-width": "30px",
-                                  "min-height": "39px"
-                                },
-                                attrs: {
-                                  outlined: "",
-                                  color: "primary darken-2"
-                                },
-                                on: { click: _vm.disminuir }
-                              },
-                              [_c("v-icon", [_vm._v("mdi-minus")])],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          [
-                            _c("v-text-field", {
-                              staticClass: "centered-input",
-                              attrs: {
-                                "hide-details": "true",
-                                dense: "",
-                                outlined: "",
-                                color: "primary darken-2"
-                              },
-                              on: { input: _vm.controlCantidad },
-                              model: {
-                                value: _vm.cantidad,
-                                callback: function($$v) {
-                                  _vm.cantidad = $$v
-                                },
-                                expression: "cantidad"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
-                          { attrs: { cols: "auto" } },
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                staticStyle: {
-                                  padding: "0px",
-                                  "min-width": "30px",
-                                  "min-height": "39px"
-                                },
-                                attrs: {
-                                  outlined: "",
-                                  color: "primary darken-2"
-                                },
-                                on: { click: _vm.aumentar }
-                              },
-                              [_c("v-icon", [_vm._v("mdi-plus")])],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("v-spacer"),
-                        _vm._v(" "),
-                        _c(
-                          "v-col",
+                    _vm.producto.cantidad > 0
+                      ? _c(
+                          "v-row",
                           {
-                            staticClass: "mt-1 mt-lg-0",
-                            attrs: { cols: "auto" }
+                            attrs: {
+                              align: "center",
+                              justify: "center",
+                              "align-content": "center",
+                              "no-gutters": ""
+                            }
                           },
                           [
                             _c(
-                              "v-btn",
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticStyle: {
+                                      padding: "0px",
+                                      "min-width": "30px",
+                                      "min-height": "39px"
+                                    },
+                                    attrs: {
+                                      outlined: "",
+                                      color: "primary darken-2"
+                                    },
+                                    on: { click: _vm.disminuir }
+                                  },
+                                  [_c("v-icon", [_vm._v("mdi-minus")])],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              [
+                                _c("v-text-field", {
+                                  staticClass: "centered-input",
+                                  attrs: {
+                                    "hide-details": "true",
+                                    dense: "",
+                                    outlined: "",
+                                    color: "primary darken-2"
+                                  },
+                                  on: { input: _vm.controlCantidad },
+                                  model: {
+                                    value: _vm.cantidad,
+                                    callback: function($$v) {
+                                      _vm.cantidad = $$v
+                                    },
+                                    expression: "cantidad"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "auto" } },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticStyle: {
+                                      padding: "0px",
+                                      "min-width": "30px",
+                                      "min-height": "39px"
+                                    },
+                                    attrs: {
+                                      outlined: "",
+                                      color: "primary darken-2"
+                                    },
+                                    on: { click: _vm.aumentar }
+                                  },
+                                  [_c("v-icon", [_vm._v("mdi-plus")])],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("v-spacer"),
+                            _vm._v(" "),
+                            _c(
+                              "v-col",
                               {
-                                attrs: {
-                                  icon: "",
-                                  outlined: "",
-                                  color: "primary darken-2",
-                                  block: "",
-                                  disabled:
-                                    _vm.$store.state.actualizandoCarrito ||
-                                    _vm.cantidad == 0 ||
-                                    _vm.cantidad == ""
-                                },
-                                on: { click: _vm.agregar }
+                                staticClass: "mt-1 mt-lg-0",
+                                attrs: { cols: "auto" }
                               },
-                              [_c("v-icon", [_vm._v("mdi-cart-plus")])],
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      icon: "",
+                                      outlined: "",
+                                      color: "primary darken-2",
+                                      block: "",
+                                      disabled:
+                                        _vm.$store.state.actualizandoCarrito ||
+                                        _vm.cantidad <= 0 ||
+                                        _vm.cantidad == ""
+                                    },
+                                    on: { click: _vm.agregar }
+                                  },
+                                  [_c("v-icon", [_vm._v("mdi-cart-plus")])],
+                                  1
+                                )
+                              ],
                               1
                             )
                           ],
                           1
                         )
-                      ],
-                      1
-                    )
+                      : _c(
+                          "v-row",
+                          { attrs: { justify: "center" } },
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "12" } },
+                              [
+                                _c(
+                                  "v-alert",
+                                  {
+                                    staticClass: "mb-0",
+                                    attrs: { dense: "", type: "error" }
+                                  },
+                                  [_vm._v("AGOTADO")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
                   ],
                   1
                 )
@@ -6530,69 +6561,90 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c("p", { staticClass: "title" }, [_vm._v("CANTIDAD")]),
+                        _vm.producto.cantidad > 0
+                          ? _c("p", { staticClass: "title" }, [
+                              _vm._v("CANTIDAD")
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c("v-text-field", {
-                          staticClass: "centered-input",
-                          staticStyle: { width: "100px" },
-                          attrs: { outlined: "", dense: "", type: "number" },
-                          on: { input: _vm.controlCantidad },
-                          model: {
-                            value: _vm.cantidad,
-                            callback: function($$v) {
-                              _vm.cantidad = $$v
-                            },
-                            expression: "cantidad"
-                          }
-                        }),
+                        _vm.producto.cantidad > 0
+                          ? _c("v-text-field", {
+                              staticClass: "centered-input",
+                              staticStyle: { width: "100px" },
+                              attrs: {
+                                outlined: "",
+                                dense: "",
+                                type: "number"
+                              },
+                              on: { input: _vm.controlCantidad },
+                              model: {
+                                value: _vm.cantidad,
+                                callback: function($$v) {
+                                  _vm.cantidad = $$v
+                                },
+                                expression: "cantidad"
+                              }
+                            })
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          {
-                            staticClass: "primary white--text",
-                            attrs: {
-                              outlined: "",
-                              tile: "",
-                              dense: "",
-                              disabled:
-                                _vm.$store.state.actualizandoCarrito ||
-                                _vm.cantidad == 0 ||
-                                _vm.cantidad == ""
-                            },
-                            on: { click: _vm.agregar }
-                          },
-                          [
-                            _c("v-icon", { attrs: { left: "" } }, [
-                              _vm._v("mdi-cart")
-                            ]),
-                            _vm._v(" Agregar")
-                          ],
-                          1
-                        ),
+                        _vm.producto.cantidad > 0
+                          ? _c(
+                              "v-btn",
+                              {
+                                staticClass: "primary white--text",
+                                attrs: {
+                                  outlined: "",
+                                  tile: "",
+                                  dense: "",
+                                  disabled:
+                                    _vm.$store.state.actualizandoCarrito ||
+                                    _vm.cantidad <= 0 ||
+                                    _vm.cantidad == ""
+                                },
+                                on: { click: _vm.agregar }
+                              },
+                              [
+                                _c("v-icon", { attrs: { left: "" } }, [
+                                  _vm._v("mdi-cart")
+                                ]),
+                                _vm._v(" Agregar")
+                              ],
+                              1
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "v-btn",
-                          {
-                            staticClass: "white--text",
-                            attrs: {
-                              color: "green",
-                              dense: "",
-                              tile: "",
-                              disabled:
-                                _vm.$store.state.actualizandoCarrito ||
-                                _vm.cantidad == 0 ||
-                                _vm.cantidad == ""
-                            },
-                            on: { click: _vm.procederCompra }
-                          },
-                          [
-                            _c("v-icon", { attrs: { left: "" } }, [
-                              _vm._v("mdi-currency-usd")
-                            ]),
-                            _vm._v("Comprar\n                        ")
-                          ],
-                          1
-                        )
+                        _vm.producto.cantidad > 0
+                          ? _c(
+                              "v-btn",
+                              {
+                                staticClass: "white--text",
+                                attrs: {
+                                  color: "green",
+                                  dense: "",
+                                  tile: "",
+                                  disabled:
+                                    _vm.$store.state.actualizandoCarrito ||
+                                    _vm.cantidad <= 0 ||
+                                    _vm.cantidad == ""
+                                },
+                                on: { click: _vm.procederCompra }
+                              },
+                              [
+                                _c("v-icon", { attrs: { left: "" } }, [
+                                  _vm._v("mdi-currency-usd")
+                                ]),
+                                _vm._v("Comprar\n                        ")
+                              ],
+                              1
+                            )
+                          : _c(
+                              "v-alert",
+                              {
+                                staticClass: "mb-0",
+                                attrs: { dense: "", type: "error" }
+                              },
+                              [_vm._v("AGOTADO")]
+                            )
                       ],
                       1
                     )

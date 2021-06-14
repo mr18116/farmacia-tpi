@@ -13,7 +13,7 @@
         </v-card-title>
         <v-card-subtitle>${{ producto.precio }}</v-card-subtitle>
         <v-card-actions>
-            <v-row
+            <v-row v-if="producto.cantidad > 0"
                 align="center"
                 justify="center"
                 align-content="center"
@@ -53,11 +53,17 @@
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="auto" class="mt-1 mt-lg-0">
-                    <v-btn icon outlined color="primary darken-2" block @click="agregar" :disabled="$store.state.actualizandoCarrito || cantidad == 0 || cantidad == ''">
+                    <v-btn icon outlined color="primary darken-2" block @click="agregar" :disabled="$store.state.actualizandoCarrito || cantidad <= 0 || cantidad == ''">
                         <v-icon>mdi-cart-plus</v-icon>
                     </v-btn>
                 </v-col>
             </v-row>
+            <v-row v-else justify="center">
+                <v-col cols="12">
+                    <v-alert dense class="mb-0"
+            type="error" >AGOTADO</v-alert>
+                </v-col>
+                </v-row>
         </v-card-actions>
     </v-card>
 </v-hover>

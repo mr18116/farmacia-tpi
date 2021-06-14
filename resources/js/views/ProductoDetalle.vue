@@ -66,9 +66,9 @@
                                     </v-tabs>
                                 </v-col>
                             </v-row>
-                            <p class="title">CANTIDAD</p>
+                            <p class="title" v-if="producto.cantidad > 0">CANTIDAD</p>
 
-                            <v-text-field
+                            <v-text-field v-if="producto.cantidad > 0"
                                 v-model="cantidad"
                                 class="centered-input"
                                 outlined
@@ -77,26 +77,28 @@
                                 @input="controlCantidad"
                                 type="number"
                             ></v-text-field>
-                            <v-btn
+                            <v-btn v-if="producto.cantidad > 0"
                                 class="primary white--text"
                                 outlined
                                 tile
                                 dense
                                 @click="agregar"
-                                :disabled="$store.state.actualizandoCarrito || cantidad == 0 || cantidad == ''"
+                                :disabled="$store.state.actualizandoCarrito || cantidad <= 0 || cantidad == ''"
                             >
                                 <v-icon left>mdi-cart</v-icon> Agregar</v-btn
                             >
-                            <v-btn
+                            <v-btn v-if="producto.cantidad > 0"
                                 color="green"
                                 class="white--text"
                                 dense
                                 tile
-                                :disabled="$store.state.actualizandoCarrito || cantidad == 0 || cantidad == ''"
+                                :disabled="$store.state.actualizandoCarrito || cantidad <= 0 || cantidad == ''"
                                 @click="procederCompra"
                             >
                                  <v-icon left>mdi-currency-usd</v-icon>Comprar
                             </v-btn>
+                            <v-alert v-else dense class="mb-0"
+            type="error" >AGOTADO</v-alert>
                         </div>
                     </div>
                 </div>
