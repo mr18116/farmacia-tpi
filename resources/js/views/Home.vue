@@ -7,7 +7,7 @@
             <v-col cols="12" md="6" xl="8">
               <h1 class="display-2 font-weight-black mb-4 heading teal--text text--darken-3 pt-12">Somos tu mejor opción</h1>
               <h1 class="">
-                <span class="heading teal--text text--darken-2 ">Detecta los problemas de salud antes de que ocurran. Conoce las ventajas de un chequeo médico de rutina y con qué frecuencia debes realizarlo.</span>
+                <span class="heading teal--text text--darken-2 ">Trabajamos duro para brindarte todo lo necesario para tu salud. Siéntete seguro gracias a nuestro servicio integral farmacéutico.</span>
               </h1>
               <v-btn
                 rounded

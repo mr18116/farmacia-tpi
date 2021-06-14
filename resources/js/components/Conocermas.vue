@@ -5,13 +5,13 @@
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col sm="4" class="hidden-xs-only">
-              <v-img src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fill2.svg?alt=media&token=68ef4dd8-bdb7-4925-b16c-ed176f5c0d5f" class="d-block ml-auto mr-auto" max-width="350px" />
+              <v-img src="https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FMedicamentos.png?alt=media&token=2842afdc-72d4-408b-a443-bf0f33784d53" class="d-block ml-auto mr-auto" max-width="350px" />
             </v-col>
-            <v-col cols="12" sm="8" class="white--text text-left">
-              <h1 class="font-weight-light display-2 mb-2">Conoce más sobre nuestras ofertas</h1>
+            <v-col cols="12" md="6" xl="8" class="white--text text-left">
+              <h1 class="font-weight-light display-2 mb-2">Calidad</h1>
               <h1 class="font-weight-light">
-                En Farmacias TPI buscamos desarrollar productos y servicios innovadores que generen valor agregado, brindando profesionalismo, responsabilidad, excelencia en el servicio, calidad humana y pasión en todo lo que hacemos. 
-              </h1>
+                Está presente en cada paso que damos, queremos asegurar el éxito de nuestras marcas dotándolas de la mejor calidad.
+              </h1>              
               <v-btn rounded outlined @click="$router.push('/nosotros')" target="_blank" large color="white" class="mt-4">
                 <v-icon class="mr-2">
                   mdi-github
