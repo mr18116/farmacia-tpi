@@ -262,6 +262,7 @@ export default {
             if (old != n) {
                 this.cargando = true;
             }
+            this.cantidad = 1;
             this.obtenerProducto();
         },
         '$store.state.compra'(newV, oldV){

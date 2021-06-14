@@ -233,11 +233,19 @@ export default {
                         this.cerrar();
                         this.obtenerProductos();
                         this.cargando = false;
+                    }).catch( () => {
+                        this.cerrar();
+                        this.obtenerProductos();
+                        this.cargando = false;
                     });
                 } else if (opcion === "actualizar") {
                     axios.put(`/api/producto/${id}`, producto).then(() => {
                         this.cerrar();
                         this.obtenerProductos();
+                        this.cargando = false;
+                    }).catch( () => {
+                        this.cerrar();
+                        //this.obtenerProductos();
                         this.cargando = false;
                     });
                 }

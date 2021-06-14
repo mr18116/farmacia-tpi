@@ -147,6 +147,30 @@ export default {
         }
         this.obtenerFormasEnvio();
         this.obtenerMetodosPago();
+    },
+    watch: {
+        cantidades(){
+            this.factura.idsProductos = [];
+            this.factura.cantidades = [];
+            this.factura.total = 0;
+            this.productos.forEach((producto, index) => {
+                this.factura.idsProductos.push(producto.id);
+                this.factura.cantidades.push(this.cantidades[index]);
+                this.factura.total += this.cantidades[index] * producto.precio;
+            });
+            this.factura.total = Math.round(this.factura.total * 100)/100;
+        },
+        productos(){
+            this.factura.idsProductos = [];
+            this.factura.cantidades = [];
+            this.factura.total = 0;
+            this.productos.forEach((producto, index) => {
+                this.factura.idsProductos.push(producto.id);
+                this.factura.cantidades.push(this.cantidades[index]);
+                this.factura.total += this.cantidades[index] * producto.precio;
+            });
+            this.factura.total = Math.round(this.factura.total * 100)/100;
+        }
     }
 }
 </script>

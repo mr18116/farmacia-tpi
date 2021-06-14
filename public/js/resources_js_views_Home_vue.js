@@ -1181,7 +1181,7 @@ var render = function() {
                             staticClass: "d-block ml-auto mr-auto",
                             attrs: {
                               src:
-                                "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2Fill2.svg?alt=media&token=68ef4dd8-bdb7-4925-b16c-ed176f5c0d5f",
+                                "https://firebasestorage.googleapis.com/v0/b/farmacia-tpi.appspot.com/o/Banner%2FMedicamentos.png?alt=media&token=2842afdc-72d4-408b-a443-bf0f33784d53",
                               "max-width": "350px"
                             }
                           })
@@ -1193,18 +1193,18 @@ var render = function() {
                         "v-col",
                         {
                           staticClass: "white--text text-left",
-                          attrs: { cols: "12", sm: "8" }
+                          attrs: { cols: "12", md: "6", xl: "8" }
                         },
                         [
                           _c(
                             "h1",
                             { staticClass: "font-weight-light display-2 mb-2" },
-                            [_vm._v("Conoce más sobre nuestras ofertas")]
+                            [_vm._v("Calidad")]
                           ),
                           _vm._v(" "),
                           _c("h1", { staticClass: "font-weight-light" }, [
                             _vm._v(
-                              "\n              En Farmacias TPI buscamos desarrollar productos y servicios innovadores que generen valor agregado, brindando profesionalismo, responsabilidad, excelencia en el servicio, calidad humana y pasión en todo lo que hacemos. \n            "
+                              "\n              Está presente en cada paso que damos, queremos asegurar el éxito de nuestras marcas dotándolas de la mejor calidad.\n            "
                             )
                           ]),
                           _vm._v(" "),
@@ -1328,7 +1328,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "Detecta los problemas de salud antes de que ocurran. Conoce las ventajas de un chequeo médico de rutina y con qué frecuencia debes realizarlo."
+                                  "Trabajamos duro para brindarte todo lo necesario para tu salud. Siéntete seguro gracias a nuestro servicio integral farmacéutico."
                                 )
                               ]
                             )

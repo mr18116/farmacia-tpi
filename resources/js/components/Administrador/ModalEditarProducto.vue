@@ -234,12 +234,12 @@ export default {
             var task = await archivoRef.put(this.nuevaImagen);
             const urlImage = await task.ref.getDownloadURL();
             this.nuevaImagenUrl = urlImage;
-        }
+        },
     },
     watch: {
         nuevaImagen: function() {
             this.nuevaImagenUrl = URL.createObjectURL(this.nuevaImagen);
-        }
+        },
     },
 };
 </script>

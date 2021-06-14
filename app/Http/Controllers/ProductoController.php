@@ -194,9 +194,13 @@ class ProductoController extends Controller
         $producto->indicaciones = $request->indicaciones;
         $result = $producto->save();
         if($result){
+            /*$producto->categoria()->detach();
+            $producto->tipoProducto()->detach();
+            $producto->categoria()->attach($request->idsCategorias);
+            $producto->tipoProducto()->attach($request->idsTipoProductos);
+            $result = $producto->save();*/
             $producto->categoria()->sync($request->idsCategorias);
             $producto->tipoProducto()->sync($request->idsTipoProductos);
-            $result = $producto->save();
             return response($producto, 201);
         } else {
             return response('fallo', 400);

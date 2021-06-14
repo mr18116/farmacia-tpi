@@ -412,6 +412,38 @@ __webpack_require__.r(__webpack_exports__);
 
     this.obtenerFormasEnvio();
     this.obtenerMetodosPago();
+  },
+  watch: {
+    cantidades: function cantidades() {
+      var _this5 = this;
+
+      this.factura.idsProductos = [];
+      this.factura.cantidades = [];
+      this.factura.total = 0;
+      this.productos.forEach(function (producto, index) {
+        _this5.factura.idsProductos.push(producto.id);
+
+        _this5.factura.cantidades.push(_this5.cantidades[index]);
+
+        _this5.factura.total += _this5.cantidades[index] * producto.precio;
+      });
+      this.factura.total = Math.round(this.factura.total * 100) / 100;
+    },
+    productos: function productos() {
+      var _this6 = this;
+
+      this.factura.idsProductos = [];
+      this.factura.cantidades = [];
+      this.factura.total = 0;
+      this.productos.forEach(function (producto, index) {
+        _this6.factura.idsProductos.push(producto.id);
+
+        _this6.factura.cantidades.push(_this6.cantidades[index]);
+
+        _this6.factura.total += _this6.cantidades[index] * producto.precio;
+      });
+      this.factura.total = Math.round(this.factura.total * 100) / 100;
+    }
   }
 });
 
@@ -686,6 +718,7 @@ __webpack_require__.r(__webpack_exports__);
         this.cargando = true;
       }
 
+      this.cantidad = 1;
       this.obtenerProducto();
     },
     '$store.state.compra': function $storeStateCompra(newV, oldV) {

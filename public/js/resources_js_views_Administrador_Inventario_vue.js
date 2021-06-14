@@ -8227,12 +8227,23 @@ __webpack_require__.r(__webpack_exports__);
             _this2.obtenerProductos();
 
             _this2.cargando = false;
+          })["catch"](function () {
+            _this2.cerrar();
+
+            _this2.obtenerProductos();
+
+            _this2.cargando = false;
           });
         } else if (opcion === "actualizar") {
           axios__WEBPACK_IMPORTED_MODULE_6___default().put("/api/producto/".concat(id), producto).then(function () {
             _this2.cerrar();
 
             _this2.obtenerProductos();
+
+            _this2.cargando = false;
+          })["catch"](function () {
+            _this2.cerrar(); //this.obtenerProductos();
+
 
             _this2.cargando = false;
           });
